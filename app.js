@@ -64696,8 +64696,8 @@ Ext.define('Ext.direct.Manager', {
 			js.src = "https://connect.facebook.net/en_US/sdk.js";
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));*/
-        console.log('Initializing FB SDK');
-        console.log('In Facebook Init');
+        //console.log('Initializing FB SDK');
+        //console.log('In Facebook Init');
         (function(d) {
             var js,
                 id = 'facebook-jssdk';
@@ -64706,7 +64706,7 @@ Ext.define('Ext.direct.Manager', {
             }
             js = d.createElement('script');
             js.id = id;
-            js.async = false;
+            js.async = true;
             js.src = "//connect.facebook.net/en_US/all.js";
             d.getElementsByTagName('head')[0].appendChild(js);
         }(document));
