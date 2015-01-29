@@ -63506,25 +63506,7 @@ Ext.define('Ext.direct.Manager', {
                 itemId: 'manageDeals',
                 text: 'Manage Deals'
             }
-        ],
-        listeners: [
-            {
-                fn: 'onContactinfoShow',
-                event: 'show'
-            }
         ]
-    },
-    onContactinfoShow: function(component, eOpts) {
-        //this.callParent(arguments);
-        console.log('On Info page');
-        var data = component.getData();
-        var businessName = data.businessName;
-        var customerId = data.customerId;
-        //console.log(this.getValues(true,true));
-        this.down('#nameTxt').setHtml(businessName);
-        this.down('#phoneNumber').setValue(data.phoneNumber);
-        this.down('#address').setValue(data.address);
-        this.down('contactpic').setHtml('<img src="' + data.picture + '"/>');
     },
     setRecord: function(record) {
         console.log('Inside Info setRecord Function');
@@ -63992,6 +63974,9 @@ Ext.define('Ext.direct.Manager', {
             },
             "button#share": {
                 tap: 'onShareTap'
+            },
+            "#contactinfo": {
+                show: 'onContactinfoShow'
             }
         }
     },
@@ -64113,39 +64098,54 @@ Ext.define('Ext.direct.Manager', {
         }, this);
     },
     onEditButtonTap: function(button, e, eOpts) {
+        /*var referrer = Ext.Viewport.getActiveItem();
+		var form = this.getContactform();
+		var info = this.getContactinfo();
+		var data = info.getData();
+		//console.log(referrer.getData());
+
+
+		form.referrer = referrer;
+		form.down('#phoneNumber').clearListeners();
+		form.down('#address').clearListeners();
+		form.down('#phoneNumber').enable();
+		form.down('#businessName').setValue(data.businessName);
+		form.down('#phoneNumber').setValue(data.phoneNumber);
+		form.down('#address').setValue(data.address);
+		//console.log('form.businessName: ' + form.businessName);
+		form.down('contactpic').setHtml('<img src="' + data.picture + '"/>');
+		Ext.Viewport.setActiveItem(form);*/
         var referrer = Ext.Viewport.getActiveItem();
         var form = this.getContactform();
         var info = this.getContactinfo();
-        var data = info.getData();
-        //console.log(referrer.getData());
         form.referrer = referrer;
-        form.down('#phoneNumber').clearListeners();
-        form.down('#address').clearListeners();
-        form.down('#phoneNumber').enable();
-        form.down('#businessName').setValue(data.businessName);
-        form.down('#phoneNumber').setValue(data.phoneNumber);
-        form.down('#address').setValue(data.address);
-        //console.log('form.businessName: ' + form.businessName);
-        form.down('contactpic').setHtml('<img src="' + data.picture + '"/>');
         Ext.Viewport.setActiveItem(form);
+        form.setRecord(info.getRecord());
     },
     onSaveContactButtonTap: function(button, e, eOpts) {
-        var form = this.getContactform();
-        var errors = form.getValidationErrors();
-        if (errors.length) {
-            Ext.Msg.alert('Error', errors.join('<br/>'));
-        } else {
-            var values;
-            var record = form.getRecord();
-            var businessName = form.getAt(2).getValue();
-            var phoneNumber = form.getAt(3).getValue();
-            var address = form.getAt(4).getValue();
-            //console.log('Record is : ' + record);
-            record.setData(form.getValues());
-            console.log('Record is : ' + record.get('businessName'));
-        }
-    },
-    /*  if (form.referrer) {
+        /*var form = this.getContactform();
+		var errors = form.getValidationErrors();
+
+		if (errors.length) {
+			Ext.Msg.alert('Error', errors.join('<br/>'));
+		} else {
+
+
+
+			var values;
+
+		    var record = form.getRecord();
+
+			var businessName = form.getAt(2).getValue();
+			var phoneNumber = form.getAt(3).getValue();
+			var address = form.getAt(4).getValue();
+			//console.log('Record is : ' + record);
+
+
+			record.setData(form.getValues());
+			console.log('Record is : ' + record.get('businessName'));
+
+			/*  if (form.referrer) {
 		                    form.referrer.setRecord(record);
 							console.log('Form Referrer');
 		                }
@@ -64155,7 +64155,27 @@ Ext.define('Ext.direct.Manager', {
 
 
 		           Ext.Viewport.setActiveItem(form.referrer);
-		           delete form.referrer;*/
+		           delete form.referrer;
+		}*/
+        var form = this.getContactform();
+        var errors = form.getValidationErrors();
+        if (errors.length) {
+            Ext.Msg.alert('Error', errors.join('<br/>'));
+        } else {
+            var values = form.getValues();
+            var record = form.getRecord();
+            if (record) {
+                record.setData(values);
+                record.commit();
+                if (form.referrer.setRecord) {
+                    form.referrer.setRecord(record);
+                }
+            } else {}
+            // Ext.StoreManager.lookup('ContactStore').add(values);
+            Ext.Viewport.setActiveItem(form.referrer);
+            delete form.referrer;
+        }
+    },
     onCancelButtonTap: function(button, e, eOpts) {
         var form = this.getContactform();
         Ext.Viewport.setActiveItem(form.referrer);
@@ -64250,6 +64270,18 @@ Ext.define('Ext.direct.Manager', {
         }, function(errormsg) {
             alert(errormsg);
         });
+    },
+    onContactinfoShow: function(component, eOpts) {
+        //this.callParent(arguments);
+        console.log('On Info page');
+        var data = component.getData();
+        var businessName = data.businessName;
+        var customerId = data.customerId;
+        //console.log(this.getValues(true,true));
+        this.down('#nameTxt').setHtml(businessName);
+        this.down('#phoneNumber').setValue(data.phoneNumber);
+        this.down('#address').setValue(data.address);
+        this.down('contactpic').setHtml('<img src="' + data.picture + '"/>');
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.controller,
