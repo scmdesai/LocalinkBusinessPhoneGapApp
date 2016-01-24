@@ -25,12 +25,12 @@
     <preference name="android-installLocation" value="auto" />
 	<preference name="android-build-tool" value="gradle" />
 	
-	<!-- Facebook plugin -->
+	<!-- Facebook plugin 
 	<gap:plugin name="phonegap-facebook-plugin" source="npm" version="0.12.0">
         <param name="APP_ID" value="900651756709444" />
         <param name="APP_NAME" value="LocalLink For Business" />
     </gap:plugin>
-
+	-->
 	
 	<!-- New Phonegap plugins -->
 	<gap:plugin name="cordova-plugin-battery-status" source="npm" version="1.1.0" />
