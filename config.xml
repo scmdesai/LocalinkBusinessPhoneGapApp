@@ -26,7 +26,7 @@
     <preference name="android-installLocation" value="auto" />
 	
 	<!-- Facebook plugin -->
-	<gap:plugin name="phonegap-facebook-plugin" source="npm" version="0.9.0">
+	<gap:plugin name="phonegap-facebook-plugin" source="npm" version="0.12.0">
         <param name="APP_ID" value="900651756709444" />
         <param name="APP_NAME" value="LocalLink For Business" />
     </gap:plugin>
