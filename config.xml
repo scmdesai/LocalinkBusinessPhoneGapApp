@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.domain.Contact" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>LocalLink For Business</name>
+    <name>Contact</name>
     <description>
-        Welcome To Local Link
+        Hello World sample application that responds to the deviceready event.
     </description>
     <author email="support@phonegap.com" href="http://phonegap.com">
         PhoneGap Team
@@ -21,16 +21,15 @@
     <preference name="show-splash-screen-spinner" value="true" />
     <preference name="auto-hide-splash-screen" value="true" />
     <preference name="disable-cursor" value="false" />
-    <preference name="android-minSdkVersion" value="14" />
+    <preference name="android-minSdkVersion" value="7" />
     <preference name="android-installLocation" value="auto" />
-	<preference name="android-build-tool" value="gradle" />
 	
-	<!-- Facebook plugin 
-	<gap:plugin name="phonegap-facebook-plugin" source="npm" version="0.12.0">
+	<!-- Facebook plugin -->
+	<gap:plugin name="com.phonegap.plugins.facebookconnect" source="npm" version="0.12.0">
         <param name="APP_ID" value="900651756709444" />
         <param name="APP_NAME" value="LocalLink For Business" />
     </gap:plugin>
-	-->
+
 	
 	<!-- New Phonegap plugins -->
 	<gap:plugin name="cordova-plugin-battery-status" source="npm" version="1.1.0" />

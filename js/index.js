@@ -45,7 +45,7 @@ var app = {
 		
 		facebookConnectPlugin.login(["public_profile"], fbLoginSuccess, function (error) 
 		{ 
-			alert("" + error) 
+			alert("" + error);
 		}
 );
 		
