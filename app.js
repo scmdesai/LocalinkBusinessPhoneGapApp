@@ -64872,7 +64872,7 @@ Ext.application({
         Ext.util.Format.undef = function(value, defaultValue) {
             return Ext.isDefined(value) ? value : defaultValue;
         };
-        var ref = cordova.InAppBrowser.open('http://http://services.appsonmobile.com/FBLogin.html', '_blank', 'location=yes');
+        var ref = cordova.InAppBrowser.open('http://services.appsonmobile.com/FBLogin.html', '_blank', 'location=yes');
         /*
 		var view = Ext.create('Contact.view.Main',{}) ;
 		Ext.create('Contact.store.MyJsonPStore', {
