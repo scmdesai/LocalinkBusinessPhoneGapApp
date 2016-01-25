@@ -65034,7 +65034,16 @@ Ext.application({
                 xtype: 'toolbar',
                 docked: 'top'
             }
+        ],
+        listeners: [
+            {
+                fn: 'onLoginShow',
+                event: 'show'
+            }
         ]
+    },
+    onLoginShow: function(component, eOpts) {
+        console.log('Login Show');
     },
     showLoginText: function() {
         console.log('Inside showLoginText Function');
