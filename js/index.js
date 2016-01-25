@@ -55,7 +55,7 @@ var app = {
 
 		
 		
-    },
+    
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
@@ -68,3 +68,4 @@ var app = {
         console.log('Received Event: ' + id);
     }
 };
+app.initialize();
