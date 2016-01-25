@@ -24,7 +24,7 @@ var myPanel = new Ext.Panel({
 });
  window.fbAsyncInit = function() {
         FB.init({
-          appId      : '<app id>'//Give your app id,
+          appId      : '900651756709444'//Give your app id,
           status     : true, 
           cookie     : true,
           xfbml      : true,
