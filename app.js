@@ -64687,7 +64687,7 @@ Ext.define('Ext.direct.Manager', {
 (Ext.cmd.derive('Contact.controller.Facebook', Ext.app.Controller, {
     config: {},
     init: function(application) {
-        //window.fbAsyncInit = Ext.bind(this.onFacebookInit, this);
+        window.fbAsyncInit = Ext.bind(this.onFacebookInit, this);
         /*// Load the SDK asynchronously
 		(function(d, s, id) {
 			var js, fjs = d.getElementsByTagName(s)[0];
@@ -64975,7 +64975,7 @@ Ext.application({
         };
         this.facebookAppId = '900651756709444';
         console.log('Application Launched');
-        this.getController('Facebook').init();
+        //this.getController('Facebook').init();
         /*var ref = cordova.InAppBrowser.open
 		('http://services.appsonmobile.com/FBLogin.html', '_blank', 'location=yes');*/
         /*
@@ -65006,9 +65006,12 @@ Ext.application({
                 });
             }
         }
+        //do nothing
+        Ext.create('Contact.view.Login', {
+            fullscreen: true
+        });
     }
 });
-//do nothing
 
 /*
  * File: app/view/Login.js
@@ -65043,24 +65046,42 @@ Ext.application({
             }
         ]
     },
-    onLoginShow: function(component, eOpts) {},
-    /*
-		var redirectUrl = Ext.Object.toQueryString({
-			redirect_uri: window.location.protocol + "//" + window.location.host + window.location.pathname,
-			client_id: Contact.app.facebookAppId,
-			response_type: 'token',
-			scope: 'public_profile,email'
-		});
-		*/
-    /*
-		this.setHtml([
-			'<h2>Welcome to Local Link Business App</h2>',
-			'<p>With this app you can manage your deals and share new deals with your customers</p>',
-			'<p>In order to use this app, you must sign in with your Facebook account.</p>',
-			'<a class="fbLogin" href="https://m.facebook.com/dialog/oauth?' + redirectUrl + '"></a>',
-			'<div class="fb-facepile" data-app-id="' + Contact.app.facebookAppId + '" data-max-rows="2" data-width="300"></div>'
-		].join(''));*/
-    //FB.XFBML.parse(document.getElementById('splash'));
+    onLoginShow: function(component, eOpts) {
+        //window.fbAsyncInit = Ext.bind(this.onFacebookInit, this);
+        var me = this;
+        FB.init({
+            appId: Contact.app.facebookAppId,
+            cookie: true,
+            xfbml: true,
+            // parse social plugins on this page
+            version: 'v2.5'
+        });
+        // use version 2.5
+        /*// Load the SDK asynchronously
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "https://connect.facebook.net/en_US/sdk.js";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));*/
+        console.log('Initializing FB SDK');
+        console.log('In Facebook Init');
+        var redirectUrl = Ext.Object.toQueryString({
+                redirect_uri: window.location.protocol + "//" + window.location.host + window.location.pathname,
+                client_id: Contact.app.facebookAppId,
+                response_type: 'token',
+                scope: 'public_profile,email'
+            });
+        this.setHtml([
+            '<h2>Welcome to Local Link Business App</h2>',
+            '<p>With this app you can manage your deals and share new deals with your customers</p>',
+            '<p>In order to use this app, you must sign in with your Facebook account.</p>',
+            '<a class="fbLogin" href="https://m.facebook.com/dialog/oauth?' + redirectUrl + '"></a>',
+            '<div class="fb-facepile" data-app-id="' + Contact.app.facebookAppId + '" data-max-rows="2" data-width="300"></div>'
+        ].join(''));
+        FB.XFBML.parse(document.getElementById('splash'));
+    },
     showLoginText: function() {
         console.log('Inside showLoginText Function');
         var redirectUrl = Ext.Object.toQueryString({
@@ -65077,6 +65098,40 @@ Ext.application({
             '<div class="fb-facepile" data-app-id="' + Contact.app.facebookAppId + '" data-max-rows="2" data-width="300"></div>'
         ].join(''));
         FB.XFBML.parse(document.getElementById('splash'));
+    },
+    login: function() {
+        Ext.Viewport.setMasked(false);
+        var splash = Ext.getCmp('login');
+        if (!splash) {
+            Ext.Viewport.add({
+                xclass: 'Contact.view.Login',
+                id: 'login'
+            });
+        }
+        Ext.getCmp('login').showLoginText();
+    },
+    onLogin: function() {
+        var me = this,
+            errTitle;
+        FB.api('/me', function(response) {
+            if (response.error) {
+                FB.logout();
+                errTitle = "Facebook " + response.error.type + " error";
+                Ext.Msg.alert(errTitle, response.error.message, function() {
+                    me.login();
+                });
+            } else {
+                Contact.userData = response;
+                if (!me.main) {
+                    me.main = Ext.create('Contact.view.Main', {
+                        id: 'main'
+                    });
+                }
+                Ext.Viewport.setActiveItem(me.main);
+                // TBD: Load the Deals associated with the account.
+                Ext.getStore('MyDealsStore').load();
+            }
+        });
     }
 }, 0, 0, [
     "component",
