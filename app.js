@@ -65043,7 +65043,21 @@ Ext.application({
         ]
     },
     onLoginShow: function(component, eOpts) {
-        console.log('Login Show');
+        console.log('Inside showLoginText Function');
+        var redirectUrl = Ext.Object.toQueryString({
+                redirect_uri: window.location.protocol + "//" + window.location.host + window.location.pathname,
+                client_id: Contact.app.facebookAppId,
+                response_type: 'token',
+                scope: 'public_profile,email'
+            });
+        this.setHtml([
+            '<h2>Welcome to Local Link Business App</h2>',
+            '<p>With this app you can manage your deals and share new deals with your customers</p>',
+            '<p>In order to use this app, you must sign in with your Facebook account.</p>',
+            '<a class="fbLogin" href="https://m.facebook.com/dialog/oauth?' + redirectUrl + '"></a>',
+            '<div class="fb-facepile" data-app-id="' + Contact.app.facebookAppId + '" data-max-rows="2" data-width="300"></div>'
+        ].join(''));
+        FB.XFBML.parse(document.getElementById('splash'));
     },
     showLoginText: function() {
         console.log('Inside showLoginText Function');
