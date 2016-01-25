@@ -64698,45 +64698,6 @@ Ext.define('Ext.direct.Manager', {
 		}(document, 'script', 'facebook-jssdk'));*/
         console.log('Initializing FB SDK');
         console.log('In Facebook Init');
-        if (Contact.app.facebookAppId === '') {
-            return;
-        }
-        var me = this;
-        //init({
-        var appId = Contact.app.facebookAppId,
-            cookie = true,
-            xfbml = true,
-            // parse social plugins on this page
-            version = 'v2.5';
-        // use version 2.5
-        //});
-        Event.subscribe('auth.logout', Ext.bind(me.onLogout, me));
-        getLoginStatus(function(response) {
-            clearTimeout(me.fbLoginTimeout);
-            me.hasCheckedStatus = true;
-            Ext.Viewport.setMasked(false);
-            //Ext.get('splashLoader').destroy();
-            //Ext.get('rwf-body').addCls('greyBg');
-            if (response.status == 'connected') {
-                me.onLogin();
-                console.log(response);
-            } else {
-                me.login();
-                console.log('Not Connected To FB');
-            }
-        });
-        me.fbLoginTimeout = setTimeout(function() {
-            Ext.Viewport.setMasked(false);
-            Ext.create('Ext.MessageBox', {
-                title: 'Facebook Error',
-                message: [
-                    'Facebook Authentication is not responding. ',
-                    'Please check your Facebook app is correctly configured, ',
-                    'then check the network log for calls to Facebook for more information.',
-                    'Restart the app to try again.'
-                ].join('')
-            }).show();
-        }, 10000);
         (function(d) {
             var js,
                 id = 'facebook-jssdk';
@@ -65014,8 +64975,9 @@ Ext.application({
         };
         this.facebookAppId = '900651756709444';
         console.log('Application Launched');
+        this.getController('Facebook').onFacebookInit();
         this.getController('Facebook').init();
-        //this.getController('Facebook').onFacebookInit();
+        //
         /*var ref = cordova.InAppBrowser.open
 		('http://services.appsonmobile.com/FBLogin.html', '_blank', 'location=yes');*/
         /*
