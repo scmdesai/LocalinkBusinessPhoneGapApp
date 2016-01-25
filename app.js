@@ -65049,14 +65049,13 @@ Ext.application({
     onLoginShow: function(component, eOpts) {
         //window.fbAsyncInit = Ext.bind(this.onFacebookInit, this);
         var me = this;
-        FB.init({
-            appId: Contact.app.facebookAppId,
-            cookie: true,
-            xfbml: true,
-            // parse social plugins on this page
-            version: 'v2.5'
-        });
-        // use version 2.5
+        /*FB.init({
+			appId  : Contact.app.facebookAppId,
+			cookie : true,
+			xfbml      : true,  // parse social plugins on this page
+		    version    : 'v2.5' // use version 2.5
+
+		});*/
         /*// Load the SDK asynchronously
 		(function(d, s, id) {
 			var js, fjs = d.getElementsByTagName(s)[0];
