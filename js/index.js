@@ -50,6 +50,8 @@ var app = {
 );
 		
 }*/
+this.facebookAppId = '900651756709444';
+init(this);
 
 		
 		
