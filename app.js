@@ -64702,14 +64702,14 @@ Ext.define('Ext.direct.Manager', {
             return;
         }
         var me = this;
-        init({
-            appId: Contact.app.facebookAppId,
-            cookie: true,
-            xfbml: true,
+        //init({
+        var appId = Contact.app.facebookAppId,
+            cookie = true,
+            xfbml = true,
             // parse social plugins on this page
-            version: 'v2.5'
-        });
+            version = 'v2.5';
         // use version 2.5
+        //});
         Event.subscribe('auth.logout', Ext.bind(me.onLogout, me));
         getLoginStatus(function(response) {
             clearTimeout(me.fbLoginTimeout);
