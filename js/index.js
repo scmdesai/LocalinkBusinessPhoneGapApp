@@ -35,7 +35,7 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
 		
-		var fbLoginSuccess = function (userData) {
+	/*	var fbLoginSuccess = function (userData) {
 			alert("UserInfo: " + JSON.stringify(userData));
 			facebookConnectPlugin.getAccessToken(function(token) {
 			alert("Token: " + token);
@@ -49,7 +49,7 @@ var app = {
 		}
 );
 		
-}
+}*/
 
 		
 		
@@ -66,4 +66,4 @@ var app = {
         console.log('Received Event: ' + id);
     }
 };
-app.initialize();
+//app.initialize();
