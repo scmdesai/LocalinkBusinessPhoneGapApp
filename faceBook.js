@@ -1,4 +1,4 @@
-<script type="text/javascript"> 
+
    Ext.setup({
     onReady: function() {
         var topToolbar = new Ext.Toolbar({
@@ -56,4 +56,4 @@ var myPanel = new Ext.Panel({
          js.src = "//connect.facebook.net/en_US/all.js";
          d.getElementsByTagName('head')[0].appendChild(js);
        }(document));    
-</script>
+
