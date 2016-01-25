@@ -65057,8 +65057,9 @@ Ext.application({
             '<a class="fbLogin" href="https://m.facebook.com/dialog/oauth?' + redirectUrl + '"></a>',
             '<div class="fb-facepile" data-app-id="' + Contact.app.facebookAppId + '" data-max-rows="2" data-width="300"></div>'
         ].join(''));
+        console.log(redirectUrl);
+        FB.XFBML.parse(document.getElementById('splash'));
     },
-    //FB.XFBML.parse(document.getElementById('splash'));
     showLoginText: function() {
         console.log('Inside showLoginText Function');
         var redirectUrl = Ext.Object.toQueryString({
