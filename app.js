@@ -64971,6 +64971,7 @@ Ext.application({
             return Ext.isDefined(value) ? value : defaultValue;
         };
         this.facebookAppId = '900651756709444';
+        console.log('Application Launched');
         /*var ref = cordova.InAppBrowser.open
 		('http://services.appsonmobile.com/FBLogin.html', '_blank', 'location=yes');*/
         /*
@@ -65001,9 +65002,12 @@ Ext.application({
                 });
             }
         }
+        //do nothing
+        Ext.create('Contact.view.Login', {
+            fullscreen: true
+        });
     }
 });
-//do nothing
 
 /*
  * File: app/view/Login.js
