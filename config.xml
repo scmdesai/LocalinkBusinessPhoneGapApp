@@ -24,11 +24,11 @@
     <preference name="android-minSdkVersion" value="7" />
     <preference name="android-installLocation" value="auto" />
 	
-	<!-- Facebook plugin -->
+	<!-- Facebook plugin 
 	<gap:plugin name="com.phonegap.plugins.facebookconnect" source="npm" version="0.12.0">
         <param name="APP_ID" value="900651756709444" />
         <param name="APP_NAME" value="LocalLink For Business" />
-    </gap:plugin>
+    </gap:plugin> -->
 
 	
 	<!-- New Phonegap plugins -->
