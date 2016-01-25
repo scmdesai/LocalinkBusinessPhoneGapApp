@@ -64688,8 +64688,21 @@ Ext.define('Ext.direct.Manager', {
     config: {},
     init: function(application) {
         //window.fbAsyncInit = Ext.bind(this.onFacebookInit, this);
+        /*// Load the SDK asynchronously
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "https://connect.facebook.net/en_US/sdk.js";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));*/
+        console.log('Initializing FB SDK');
+        console.log('In Facebook Init');
+        if (Contact.app.facebookAppId === '') {
+            return;
+        }
         var me = this;
-        FB.init({
+        init({
             appId: Contact.app.facebookAppId,
             cookie: true,
             xfbml: true,
@@ -64697,8 +64710,8 @@ Ext.define('Ext.direct.Manager', {
             version: 'v2.5'
         });
         // use version 2.5
-        FB.Event.subscribe('auth.logout', Ext.bind(me.onLogout, me));
-        FB.getLoginStatus(function(response) {
+        Event.subscribe('auth.logout', Ext.bind(me.onLogout, me));
+        getLoginStatus(function(response) {
             clearTimeout(me.fbLoginTimeout);
             me.hasCheckedStatus = true;
             Ext.Viewport.setMasked(false);
@@ -64724,15 +64737,6 @@ Ext.define('Ext.direct.Manager', {
                 ].join('')
             }).show();
         }, 10000);
-        /*// Load the SDK asynchronously
-		(function(d, s, id) {
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id)) return;
-			js = d.createElement(s); js.id = id;
-			js.src = "https://connect.facebook.net/en_US/sdk.js";
-			fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));*/
-        console.log('Initializing FB SDK');
         (function(d) {
             var js,
                 id = 'facebook-jssdk';
