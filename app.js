@@ -64711,6 +64711,7 @@ Ext.define('Ext.direct.Manager', {
         }(document));
     },
     onFacebookInit: function() {
+        console.log(Contact.app.facebookAppId);
         if (Contact.app.facebookAppId === '') {
             return;
         }
