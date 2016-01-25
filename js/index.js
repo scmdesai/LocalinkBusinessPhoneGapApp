@@ -50,6 +50,7 @@ var app = {
 );
 		
 }*/
+console.log(deviceready);
 this.facebookAppId = '900651756709444';
 this.onFacebookInit();
 
