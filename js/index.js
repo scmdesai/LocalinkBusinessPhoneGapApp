@@ -33,9 +33,7 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        app.receivedEvent('deviceready', function(){
-      alert("123");
- },true);
+        //app.receivedEvent('deviceready');
 		
 	/*	var fbLoginSuccess = function (userData) {
 			alert("UserInfo: " + JSON.stringify(userData));
@@ -52,7 +50,7 @@ var app = {
 );
 		
 }*/
-console.log(deviceready);
+console.log('deviceready');
 this.facebookAppId = '900651756709444';
 this.onFacebookInit();
 
