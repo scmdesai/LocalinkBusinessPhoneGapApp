@@ -64712,10 +64712,12 @@ Ext.define('Ext.direct.Manager', {
         }(document));
     },
     onFacebookInit: function() {
-        console.log('In Facebook Init');
+        //console.log('In Facebook Init');
+        Contact.app.facebookAppId = '900651756709444';
         if (Contact.app.facebookAppId === '') {
             return;
         }
+        console.log('In Facebook Init');
         var me = this;
         FB.init({
             appId: Contact.app.facebookAppId,
