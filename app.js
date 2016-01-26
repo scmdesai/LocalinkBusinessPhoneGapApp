@@ -63709,18 +63709,7 @@ Ext.define('Ext.direct.Manager', {
         ]
     },
     onLoginTap: function(button, e, eOpts) {
-        //e.preventDefault();
-        console.log('Inside FB Login' + response);
-        FB.login(function(response) {
-            console.log('Inside FB Login' + response);
-            if (response.status === 'connected') {
-                alert('logged in');
-            } else {
-                alert('not logged in');
-            }
-        }, {
-            scope: "email"
-        });
+        console.log('Inside Login Tap');
     }
 }, 0, 0, [
     "component",
