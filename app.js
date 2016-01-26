@@ -64729,6 +64729,7 @@ Ext.define('Ext.direct.Manager', {
         // use version 2.5
         FB.Event.subscribe('auth.logout', Ext.bind(me.onLogout, me));
         FB.getLoginStatus(function(response) {
+            console.log('Getting Login Status with response' + response);
             clearTimeout(me.fbLoginTimeout);
             me.hasCheckedStatus = true;
             Ext.Viewport.setMasked(false);
@@ -64736,7 +64737,6 @@ Ext.define('Ext.direct.Manager', {
             //Ext.get('rwf-body').addCls('greyBg');
             if (response.status == 'connected') {
                 me.onLogin();
-                console.log(response);
             } else {
                 me.login();
                 console.log('Not Connected To FB');
@@ -64978,7 +64978,7 @@ Ext.application({
             return Ext.isDefined(value) ? value : defaultValue;
         };
         this.facebookAppId = '900651756709444';
-        console.log('Application Launched');
+        //console.log('Application Launched');
         var ret = this.getController('Facebook').init();
         /*var ref = cordova.InAppBrowser.open
 		('http://services.appsonmobile.com/FBLogin.html', '_blank', 'location=yes');*/
