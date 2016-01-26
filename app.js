@@ -63711,7 +63711,7 @@ Ext.define('Ext.direct.Manager', {
     onLoginTap: function(button, e, eOpts) {
         e.preventDefault();
         FB.login(function(response) {
-            console.log(response);
+            //console.log(response);
             if (response.status === 'connected') {
                 alert('logged in');
             } else {
