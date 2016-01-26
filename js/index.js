@@ -27,7 +27,18 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+       // document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+		document.addEventListener('deviceready', function() {
+    try {
+        FB.init({
+            appId: "900651756709444",
+            nativeInterface: CDV.FB,
+            useCachedDialogs: false
+        });
+    } catch (e) {
+        alert(e);
+    }
+}, false);
     },
 
 
