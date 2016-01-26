@@ -63718,33 +63718,26 @@ Ext.define('Ext.direct.Manager', {
         FacebookInAppBrowser.settings.timeoutDuration = 7500;
         // Login(accessToken will be stored trough localStorage in 'accessToken');
         FacebookInAppBrowser.login({
-            send: function() {
-                console.log('login opened');
-            },
-            success: function(access_token) {
-                console.log('done, access token: ' + access_token);
-                console.log('Welcome!');
-            },
-            denied: function() {
-                console.log('user denied');
-            },
-            timeout: function() {
-                console.log('a timeout has occurred, probably a bad internet connection');
-            },
+            send: function() {},
+            //  console.log('login opened');
+            success: function(access_token) {},
+            //  console.log('done, access token: ' + access_token);
+            denied: function() {},
+            // console.log('user denied');
+            timeout: function() {},
+            // console.log('a timeout has occurred, probably a bad internet connection');
             complete: function(access_token) {
                 console.log('window closed');
-                if (access_token) {
-                    console.log(access_token);
-                } else {
-                    console.log('no access token');
-                }
+                if (access_token) {} else //   console.log(access_token);
+                {}
             },
+            //  console.log('no access token');
             userInfo: function(userInfo) {
                 if (userInfo) {
-                    console.log(JSON.stringify(userInfo));
-                } else {
-                    console.log('no user info');
-                }
+                    // console.log(JSON.stringify(userInfo));
+                    var email = JSON.stringify(userInfo).indexOf(email);
+                    console.log('email');
+                } else {}
             }
         });
     }
@@ -63758,6 +63751,7 @@ Ext.define('Ext.direct.Manager', {
     Contact.view,
     'Login'
 ], 0));
+// console.log('no user info');
 
 /*
  * File: app/view/Picture.js
