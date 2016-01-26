@@ -64975,7 +64975,8 @@ Ext.application({
         };
         this.facebookAppId = '900651756709444';
         console.log('Application Launched');
-        this.getController('Facebook').init();
+        var ret = this.getController('Facebook').init();
+        console.log(ret);
         /*var ref = cordova.InAppBrowser.open
 		('http://services.appsonmobile.com/FBLogin.html', '_blank', 'location=yes');*/
         /*
