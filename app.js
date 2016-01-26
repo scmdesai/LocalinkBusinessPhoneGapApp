@@ -63736,7 +63736,7 @@ Ext.define('Ext.direct.Manager', {
                 if (userInfo) {
                     // console.log(JSON.stringify(userInfo));
                     var email = JSON.stringify(userInfo).indexOf(email);
-                    console.log('email');
+                    console.log(email);
                 } else {}
             }
         });
