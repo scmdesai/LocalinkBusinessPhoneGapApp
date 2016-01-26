@@ -53,17 +53,15 @@ var app = {
 		//StatusBar Overlay set to false
 		StatusBar.overlaysWebView(false);
 		
-		 facebookConnectPlugin.login(["email"], function(response) {
-             if (response.authResponse) {
-			     console.log(response);
-                 facebookConnectPlugin.api('/me', null,
-                     function(response) {
-                         alert('Good to see you, ' +
-                             response.email + response.name + '.');
-                     });
+		var fbLoginSuccess = function (userData) {
+    alert("UserInfo: " + JSON.stringify(userData));
+}
 
-             }
-         });
+facebookConnectPlugin.login(["public_profile"],
+    fbLoginSuccess,
+    function (error) { alert("" + error) }
+);
+
 		
 		/* Commenting out Amazon Analytics */
 		/* Amazon Mobile Analytics*/
@@ -80,7 +78,7 @@ var app = {
 		};
 
 		*/
-}
+
     
     }, // end of onDeviceReady function
 	
