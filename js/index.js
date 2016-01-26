@@ -42,6 +42,18 @@ var app = {
 		//StatusBar Overlay set to false
 		StatusBar.overlaysWebView(false);
 		
+		 facebookConnectPlugin.login(["email"], function(response) {
+             if (response.authResponse) {
+			     console.log(response);
+                 facebookConnectPlugin.api('/me', null,
+                     function(response) {
+                         alert('Good to see you, ' +
+                             response.email + response.name + '.');
+                     });
+
+             }
+         });
+		
 		/* Commenting out Amazon Analytics */
 		/* Amazon Mobile Analytics*/
 		/*AWS.config.region = 'us-east-1';
