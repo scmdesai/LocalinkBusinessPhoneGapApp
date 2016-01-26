@@ -64755,6 +64755,7 @@ Ext.define('Ext.direct.Manager', {
     },
     login: function() {
         Ext.Viewport.setMasked(false);
+        console.log('In Login');
         var splash = Ext.getCmp('login');
         if (!splash) {
             Ext.Viewport.add({
@@ -64767,6 +64768,7 @@ Ext.define('Ext.direct.Manager', {
     onLogin: function() {
         var me = this,
             errTitle;
+        console.log('In onLogin');
         FB.api('/me', function(response) {
             if (response.error) {
                 FB.logout();
@@ -64976,7 +64978,6 @@ Ext.application({
         this.facebookAppId = '900651756709444';
         console.log('Application Launched');
         var ret = this.getController('Facebook').init();
-        console.log(ret);
         /*var ref = cordova.InAppBrowser.open
 		('http://services.appsonmobile.com/FBLogin.html', '_blank', 'location=yes');*/
         /*
