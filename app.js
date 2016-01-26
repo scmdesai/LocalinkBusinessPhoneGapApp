@@ -63713,7 +63713,7 @@ Ext.define('Ext.direct.Manager', {
         console.log('Inside Login Tap');
         // Settings
         FacebookInAppBrowser.settings.appId = '900651756709444';
-        FacebookInAppBrowser.settings.redirectUrl = '';
+        FacebookInAppBrowser.settings.redirectUrl = 'http://localhost:1841';
         FacebookInAppBrowser.settings.permissions = 'email';
         // Optional
         FacebookInAppBrowser.settings.timeoutDuration = 7500;
