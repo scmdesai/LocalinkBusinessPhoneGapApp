@@ -63735,7 +63735,7 @@ Ext.define('Ext.direct.Manager', {
             userInfo: function(userInfo) {
                 if (userInfo) {
                     // console.log(JSON.stringify(userInfo));
-                    var email = JSON.stringify(userInfo).indexOf(email);
+                    var email = JSON.stringify(userInfo).indexOf('email');
                     console.log(email);
                 } else {}
             }
