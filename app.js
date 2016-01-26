@@ -63709,7 +63709,8 @@ Ext.define('Ext.direct.Manager', {
         ]
     },
     onLoginTap: function(button, e, eOpts) {
-        e.preventDefault();
+        //e.preventDefault();
+        console.log('Inside FB Login' + response);
         FB.login(function(response) {
             console.log('Inside FB Login' + response);
             if (response.status === 'connected') {
