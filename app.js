@@ -64686,9 +64686,12 @@ Ext.define('Ext.direct.Manager', {
  */
 (Ext.cmd.derive('Contact.controller.Facebook', Ext.app.Controller, {
     config: {},
-    init: function(application) {
-        window.fbAsyncInit = Ext.bind(this.onFacebookInit, this);
-        /*// Load the SDK asynchronously
+    init: function(application) {},
+    /*window.fbAsyncInit = Ext.bind(this.onFacebookInit, this);
+
+
+
+		// Load the SDK asynchronously
 		(function(d, s, id) {
 			var js, fjs = d.getElementsByTagName(s)[0];
 			if (d.getElementById(id)) return;
@@ -64696,105 +64699,112 @@ Ext.define('Ext.direct.Manager', {
 			js.src = "https://connect.facebook.net/en_US/sdk.js";
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));*/
-        //console.log('Initializing FB SDK');
-        //console.log('In Facebook Init');
-        (function(d) {
-            var js,
-                id = 'facebook-jssdk';
-            if (d.getElementById(id)) {
-                return;
-            }
-            js = d.createElement('script');
-            js.id = id;
-            js.async = true;
-            js.src = "//connect.facebook.net/en_US/all.js";
-            d.getElementsByTagName('head')[0].appendChild(js);
-        }(document));
-    },
-    onFacebookInit: function() {
-        //console.log('In Facebook Init');
-        Contact.app.facebookAppId = '900651756709444';
-        if (Contact.app.facebookAppId === '') {
-            return;
-        }
-        console.log('In Facebook Init');
-        var me = this;
-        FB.init({
-            appId: Contact.app.facebookAppId,
-            cookie: true,
-            xfbml: true,
-            // parse social plugins on this page
-            version: 'v2.5'
-        });
-        // use version 2.5
-        FB.Event.subscribe('auth.logout', Ext.bind(me.onLogout, me));
-        FB.getLoginStatus(function(response) {
-            console.log('Getting Login Status with response' + response);
-            clearTimeout(me.fbLoginTimeout);
-            me.hasCheckedStatus = true;
-            Ext.Viewport.setMasked(false);
-            //Ext.get('splashLoader').destroy();
-            //Ext.get('rwf-body').addCls('greyBg');
-            if (response.status == 'connected') {
-                me.onLogin();
-            } else {
-                me.login();
-                console.log('Not Connected To FB');
-            }
-        });
-        me.fbLoginTimeout = setTimeout(function() {
-            Ext.Viewport.setMasked(false);
-            Ext.create('Ext.MessageBox', {
-                title: 'Facebook Error',
-                message: [
-                    'Facebook Authentication is not responding. ',
-                    'Please check your Facebook app is correctly configured, ',
-                    'then check the network log for calls to Facebook for more information.',
-                    'Restart the app to try again.'
-                ].join('')
-            }).show();
-        }, 10000);
-    },
-    login: function() {
-        Ext.Viewport.setMasked(false);
-        console.log('In Login');
-        var splash = Ext.getCmp('login');
-        if (!splash) {
-            Ext.Viewport.add({
-                xclass: 'Contact.view.Login',
-                id: 'login'
-            });
-        }
-        Ext.getCmp('login').showLoginText();
-    },
-    onLogin: function() {
-        var me = this,
-            errTitle;
-        console.log('In onLogin');
-        FB.api('/me', function(response) {
-            if (response.error) {
-                FB.logout();
-                errTitle = "Facebook " + response.error.type + " error";
-                Ext.Msg.alert(errTitle, response.error.message, function() {
-                    me.login();
-                });
-            } else {
-                Contact.userData = response;
-                if (!me.main) {
-                    me.main = Ext.create('Contact.view.Main', {
-                        id: 'main'
-                    });
-                }
-                Ext.Viewport.setActiveItem(me.main);
-                // TBD: Load the Deals associated with the account.
-                Ext.getStore('MyDealsStore').load();
-            }
-        });
-    }
+    //console.log('Initializing FB SDK');
+    //console.log('In Facebook Init');
+    /*(function(d) {
+			var js,
+				id = 'facebook-jssdk';
+			if (d.getElementById(id)) {
+				return;
+			}
+			js = d.createElement('script');
+			js.id = id;
+			js.async = true;
+			js.src = "//connect.facebook.net/en_US/all.js";
+			d.getElementsByTagName('head')[0].appendChild(js);
+		} (document));*/
+    onFacebookInit: function() {},
+    //console.log('In Facebook Init');
+    /*Contact.app.facebookAppId='900651756709444';
+		if (Contact.app.facebookAppId === '') return;
+
+		console.log('In Facebook Init');
+		var me = this;
+
+		FB.init({
+			appId  : Contact.app.facebookAppId,
+			cookie : true,
+			xfbml      : true,  // parse social plugins on this page
+		    version    : 'v2.5' // use version 2.5
+
+		});
+
+		FB.Event.subscribe('auth.logout', Ext.bind(me.onLogout, me));
+
+		FB.getLoginStatus(function(response) {
+
+			console.log('Getting Login Status with response' + response);
+			clearTimeout(me.fbLoginTimeout);
+
+			me.hasCheckedStatus = true;
+			Ext.Viewport.setMasked(false);
+
+			//Ext.get('splashLoader').destroy();
+			//Ext.get('rwf-body').addCls('greyBg');
+
+			if (response.status == 'connected') {
+				me.onLogin();
+
+			} else {
+				me.login();
+				console.log('Not Connected To FB');
+			}
+		});
+
+		me.fbLoginTimeout = setTimeout(function() {
+
+			Ext.Viewport.setMasked(false);
+
+			Ext.create('Ext.MessageBox', {
+				title: 'Facebook Error',
+				message: [
+				'Facebook Authentication is not responding. ',
+				'Please check your Facebook app is correctly configured, ',
+				'then check the network log for calls to Facebook for more information.',
+				'Restart the app to try again.'
+				].join('')
+			}).show();
+
+		}, 10000);*/
+    login: function() {},
+    /*Ext.Viewport.setMasked(false);
+		console.log('In Login');
+		var splash = Ext.getCmp('login');
+		if (!splash) {
+			Ext.Viewport.add({ xclass: 'Contact.view.Login', id: 'login' });
+		}
+		Ext.getCmp('login').showLoginText();*/
+    onLogin: function() {}
 }, 0, 0, 0, 0, 0, 0, [
     Contact.controller,
     'Facebook'
 ], 0));
+/*var me = this,
+			errTitle;
+		console.log('In onLogin');
+
+		FB.api('/me', function(response) {
+
+			if (response.error) {
+				FB.logout();
+
+				errTitle = "Facebook " + response.error.type + " error";
+				Ext.Msg.alert(errTitle, response.error.message, function() {
+					me.login();
+				});
+			} else {
+				Contact.userData = response;
+				if (!me.main) {
+					me.main = Ext.create('Contact.view.Main', {
+						id: 'main'
+					});
+				}
+				Ext.Viewport.setActiveItem(me.main);
+				// TBD: Load the Deals associated with the account.
+				Ext.getStore('MyDealsStore').load();
+			}
+		});
+		*/
 
 /*
  * File: app/view/Main.js
@@ -65013,143 +65023,6 @@ Ext.application({
     }
 });
 //do nothing
-
-/*
- * File: app/view/Login.js
- *
- * This file was generated by Sencha Architect version 3.2.0.
- * http://www.sencha.com/products/architect/
- *
- * This file requires use of the Sencha Touch 2.4.x library, under independent license.
- * License of Sencha Architect does not include license for Sencha Touch 2.4.x. For more
- * details see http://www.sencha.com/license or contact license@sencha.com.
- *
- * This file will be auto-generated each and everytime you save your project.
- *
- * Do NOT hand edit this file.
- */
-(Ext.cmd.derive('Contact.view.Login', Ext.Container, {
-    config: {
-        id: 'login',
-        padding: 20,
-        layout: 'fit',
-        scrollable: true,
-        items: [
-            {
-                xtype: 'toolbar',
-                docked: 'top'
-            }
-        ],
-        listeners: [
-            {
-                fn: 'onLoginShow',
-                event: 'show'
-            }
-        ]
-    },
-    onLoginShow: function(component, eOpts) {
-        //window.fbAsyncInit = Ext.bind(this.onFacebookInit, this);
-        var me = this;
-    },
-    /*FB.init({
-			appId  : Contact.app.facebookAppId,
-			cookie : true,
-			xfbml      : true,  // parse social plugins on this page
-		    version    : 'v2.5' // use version 2.5
-
-		});*/
-    /*// Load the SDK asynchronously
-		(function(d, s, id) {
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id)) return;
-			js = d.createElement(s); js.id = id;
-			js.src = "https://connect.facebook.net/en_US/sdk.js";
-			fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));*/
-    /*console.log('Initializing FB SDK');
-		console.log('In Facebook Init');
-
-
-
-
-		var redirectUrl = Ext.Object.toQueryString({
-			redirect_uri: window.location.protocol + "//" + window.location.host + window.location.pathname,
-			client_id: Contact.app.facebookAppId,
-			response_type: 'token',
-			scope: 'public_profile,email'
-		});
-
-		this.setHtml([
-			'<h2>Welcome to Local Link Business App</h2>',
-			'<p>With this app you can manage your deals and share new deals with your customers</p>',
-			'<p>In order to use this app, you must sign in with your Facebook account.</p>',
-			'<a class="fbLogin" href="https://m.facebook.com/dialog/oauth?' + redirectUrl + '"></a>',
-			'<div class="fb-facepile" data-app-id="' + Contact.app.facebookAppId + '" data-max-rows="2" data-width="300"></div>'
-		].join(''));
-
-
-		FB.XFBML.parse(document.getElementById('splash'));*/
-    showLoginText: function() {
-        console.log('Inside showLoginText Function');
-        var redirectUrl = Ext.Object.toQueryString({
-                redirect_uri: window.location.protocol + "//" + window.location.host + window.location.pathname,
-                client_id: Contact.app.facebookAppId,
-                response_type: 'token',
-                scope: 'public_profile,email'
-            });
-        this.setHtml([
-            '<h2>Welcome to Local Link Business App</h2>',
-            '<p>With this app you can manage your deals and share new deals with your customers</p>',
-            '<p>In order to use this app, you must sign in with your Facebook account.</p>',
-            '<a class="fbLogin" href="https://m.facebook.com/dialog/oauth?' + redirectUrl + '"></a>',
-            '<div class="fb-facepile" data-app-id="' + Contact.app.facebookAppId + '" data-max-rows="2" data-width="300"></div>'
-        ].join(''));
-        FB.XFBML.parse(document.getElementById('splash'));
-    },
-    login: function() {
-        Ext.Viewport.setMasked(false);
-        var splash = Ext.getCmp('login');
-        if (!splash) {
-            Ext.Viewport.add({
-                xclass: 'Contact.view.Login',
-                id: 'login'
-            });
-        }
-        Ext.getCmp('login').showLoginText();
-    },
-    onLogin: function() {
-        var me = this,
-            errTitle;
-        FB.api('/me', function(response) {
-            if (response.error) {
-                FB.logout();
-                errTitle = "Facebook " + response.error.type + " error";
-                Ext.Msg.alert(errTitle, response.error.message, function() {
-                    me.login();
-                });
-            } else {
-                Contact.userData = response;
-                if (!me.main) {
-                    me.main = Ext.create('Contact.view.Main', {
-                        id: 'main'
-                    });
-                }
-                Ext.Viewport.setActiveItem(me.main);
-                // TBD: Load the Deals associated with the account.
-                Ext.getStore('MyDealsStore').load();
-            }
-        });
-    }
-}, 0, 0, [
-    "component",
-    "container"
-], {
-    "component": true,
-    "container": true
-}, 0, 0, [
-    Contact.view,
-    'Login'
-], 0));
 
 // @tag full-page
 // @require H:\Apps\Sencha Architect Apps\LocalBuzzBusinessApp\app.js
