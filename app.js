@@ -63710,6 +63710,16 @@ Ext.define('Ext.direct.Manager', {
     },
     onLoginTap: function(button, e, eOpts) {
         console.log('Inside Login Tap');
+        FB.login(function(response) {
+            console.log('Inside FB Login function ' + response);
+            if (response.status === 'connected') {
+                alert('logged in');
+            } else {
+                alert('not logged in');
+            }
+        }, {
+            scope: "email"
+        });
     }
 }, 0, 0, [
     "component",
