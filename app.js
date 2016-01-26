@@ -63710,7 +63710,6 @@ Ext.define('Ext.direct.Manager', {
         ]
     },
     onLoginTap: function(button, e, eOpts) {
-        console.log('Inside Login Tap');
         // Settings
         FacebookInAppBrowser.settings.appId = '900651756709444';
         FacebookInAppBrowser.settings.redirectUrl = 'http://localhost:1841';
@@ -63724,6 +63723,7 @@ Ext.define('Ext.direct.Manager', {
             },
             success: function(access_token) {
                 console.log('done, access token: ' + access_token);
+                console.log('Welcome!');
             },
             denied: function() {
                 console.log('user denied');
