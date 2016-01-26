@@ -27,8 +27,8 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
-       // document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-		document.addEventListener('deviceready', function() {
+       document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+		/*document.addEventListener('deviceready', function() {
     try {
         FB.init({
             appId: "900651756709444",
@@ -38,7 +38,7 @@ var app = {
     } catch (e) {
         alert(e);
     }
-}, false);
+}, false);*/
     },
 
 
@@ -53,14 +53,14 @@ var app = {
 		//StatusBar Overlay set to false
 		StatusBar.overlaysWebView(false);
 		
-		var fbLoginSuccess = function (userData) {
+		/*var fbLoginSuccess = function (userData) {
     alert("UserInfo: " + JSON.stringify(userData));
 }
 
 facebookConnectPlugin.login(["public_profile"],
     fbLoginSuccess,
     function (error) { alert("" + error) }
-);
+);*/
 
 		
 		/* Commenting out Amazon Analytics */

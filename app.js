@@ -63710,15 +63710,49 @@ Ext.define('Ext.direct.Manager', {
     },
     onLoginTap: function(button, e, eOpts) {
         console.log('Inside Login Tap');
-        FB.login(function(response) {
-            console.log('Inside FB Login function ' + response);
-            if (response.status === 'connected') {
-                alert('logged in');
-            } else {
-                alert('not logged in');
+        /*FB.login(function(response) {
+			console.log('Inside FB Login function ' + response);
+				if (response.status === 'connected') {
+					alert('logged in');
+				} else {
+					alert('not logged in');
+				}
+			},{ scope: "email" });*/
+        // Settings
+        FacebookInAppBrowser.settings.appId = '900651756709444';
+        FacebookInAppBrowser.settings.redirectUrl = 'http://localhost:1841';
+        FacebookInAppBrowser.settings.permissions = 'email';
+        // Optional
+        FacebookInAppBrowser.settings.timeoutDuration = 7500;
+        // Login(accessToken will be stored trough localStorage in 'accessToken');
+        FacebookInAppBrowser.login({
+            send: function() {
+                console.log('login opened');
+            },
+            success: function(access_token) {
+                console.log('done, access token: ' + access_token);
+            },
+            denied: function() {
+                console.log('user denied');
+            },
+            timeout: function() {
+                console.log('a timeout has occurred, probably a bad internet connection');
+            },
+            complete: function(access_token) {
+                console.log('window closed');
+                if (access_token) {
+                    console.log(access_token);
+                } else {
+                    console.log('no access token');
+                }
+            },
+            userInfo: function(userInfo) {
+                if (userInfo) {
+                    console.log(JSON.stringify(userInfo));
+                } else {
+                    console.log('no user info');
+                }
             }
-        }, {
-            scope: "email"
         });
     }
 }, 0, 0, [
