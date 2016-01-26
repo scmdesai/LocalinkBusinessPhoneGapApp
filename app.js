@@ -64977,9 +64977,9 @@ Ext.application({
         Ext.util.Format.undef = function(value, defaultValue) {
             return Ext.isDefined(value) ? value : defaultValue;
         };
-        this.facebookAppId = '900651756709444';
+        //this.facebookAppId = '900651756709444';
         //console.log('Application Launched');
-        var ret = this.getController('Facebook').init();
+        //var ret = this.getController('Facebook').init();
         /*var ref = cordova.InAppBrowser.open
 		('http://services.appsonmobile.com/FBLogin.html', '_blank', 'location=yes');*/
         /*
