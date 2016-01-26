@@ -30,6 +30,11 @@
 	<preference name="StatusBarBackgroundColor" value="#4b79bc" />
     <preference name="StatusBarStyle" value="lightcontent" />
 	
+	<!-- Facebook plugin-->
+	<gap:plugin name="com.phonegap.plugins.facebookconnect" spec="0.9.0"> source="pgb">
+	<param name="APP_ID" value="900651756709444" />
+	<param name="APP_NAME" value="LocalLink For Business" />
+    </gap:plugin>
 	<!-- New PhoneGap Plugins -->
 	<gap:plugin name="cordova-plugin-battery-status" source="npm" version="1.1.0" />
     <gap:plugin name="cordova-plugin-camera" source="npm" version="1.2.0" />
