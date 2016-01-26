@@ -63692,6 +63692,7 @@ Ext.define('Ext.direct.Manager', {
  */
 (Ext.cmd.derive('Contact.view.Login', Ext.Container, {
     config: {
+        html: '<h1>Welcome to LocalLink!</h1>',
         items: [
             {
                 xtype: 'button',
@@ -63710,17 +63711,9 @@ Ext.define('Ext.direct.Manager', {
     },
     onLoginTap: function(button, e, eOpts) {
         console.log('Inside Login Tap');
-        /*FB.login(function(response) {
-			console.log('Inside FB Login function ' + response);
-				if (response.status === 'connected') {
-					alert('logged in');
-				} else {
-					alert('not logged in');
-				}
-			},{ scope: "email" });*/
         // Settings
         FacebookInAppBrowser.settings.appId = '900651756709444';
-        FacebookInAppBrowser.settings.redirectUrl = 'http://localhost:1841';
+        FacebookInAppBrowser.settings.redirectUrl = '';
         FacebookInAppBrowser.settings.permissions = 'email';
         // Optional
         FacebookInAppBrowser.settings.timeoutDuration = 7500;
