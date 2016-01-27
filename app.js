@@ -63678,12 +63678,7 @@ Ext.define('Ext.direct.Manager', {
                     var userInf = JSON.stringify(userInfo);
                     console.log(userInf);
                     var info = userInf.split(",");
-                    var user = Ext.create('Contact.Model.userInfo', {
-                            email: '',
-                            name: '',
-                            gender: '',
-                            userId: ''
-                        });
+                    var user = Ext.create('Contact.Model.userInfo');
                     user.set(info[0], info[1], info[2], info[3]);
                     console.log(user);
                 } else {
