@@ -63684,7 +63684,7 @@ Ext.define('Ext.direct.Manager', {
                     var name = tmp[1];
                     tmp = info[2].split("\":\"");
                     var gender = tmp[1];
-                    tmp = info[3].split("\":\"\\}");
+                    tmp = info[3].split("\":\"");
                     var userId = tmp[1];
                     console.log(email);
                     console.log(name);
