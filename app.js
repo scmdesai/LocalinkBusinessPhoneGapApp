@@ -63679,22 +63679,7 @@ Ext.define('Ext.direct.Manager', {
                     console.log(userInf);
                     var info = userInf.split(",");
                     var user = Ext.ModelManager.getModel('UserInfo');
-                    user.set({
-                        email: info[0]
-                    });
-                    user.set({
-                        name: info[1]
-                    });
-                    user.set({
-                        gender: info[2]
-                    });
-                    user.set({
-                        userId: info[3]
-                    });
-                    console.log(user.email);
-                    console.log(user.name);
-                    console.log(user.gender);
-                    console.log(user.userId);
+                    console.log(user);
                 } else {
                     console.log('no user info');
                 }
