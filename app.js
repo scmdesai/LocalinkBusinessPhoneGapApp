@@ -63679,10 +63679,10 @@ Ext.define('Ext.direct.Manager', {
                     console.log(userInf);
                     var info = userInf.split(",");
                     var user = Ext.create('UserInfo', {
-                            email: info[0],
-                            name: info[1],
-                            gender: info[2],
-                            userId: info[3]
+                            email: 'sdadad',
+                            name: 'asdsf',
+                            gender: 'asdsadasd',
+                            userId: 'asdsad'
                         });
                     console.log(user);
                 } else {
