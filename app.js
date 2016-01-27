@@ -63675,8 +63675,9 @@ Ext.define('Ext.direct.Manager', {
             },
             userInfo: function(userInfo) {
                 if (userInfo) {
-                    console.log(JSON.stringify(userInfo));
-                    var info = userInfo.split(",");
+                    var userInf = JSON.stringify(userInfo);
+                    console.log(userInf);
+                    var info = userInf.split(",");
                     for (var i = 0; i < info.length; i++) console.log(info[i]);
                 } else {
                     console.log('no user info');
