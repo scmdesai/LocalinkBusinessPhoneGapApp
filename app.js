@@ -63678,13 +63678,13 @@ Ext.define('Ext.direct.Manager', {
                     var userInf = JSON.stringify(userInfo);
                     console.log(userInf);
                     var info = userInf.split(",");
-                    var tmp = info[0].split("=");
+                    var tmp = info[0].split("\":\"");
                     var email = tmp[1];
-                    tmp = info[1].split("=");
+                    tmp = info[1].split(":");
                     var name = tmp[1];
-                    tmp = info[2].split("=");
+                    tmp = info[2].split(":");
                     var gender = tmp[1];
-                    tmp = info[3].split("=");
+                    tmp = info[3].split(":");
                     var userId = tmp[1];
                     console.log(email);
                 } else {
