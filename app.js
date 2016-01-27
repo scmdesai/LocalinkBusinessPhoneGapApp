@@ -63678,8 +63678,13 @@ Ext.define('Ext.direct.Manager', {
                     var userInf = JSON.stringify(userInfo);
                     console.log(userInf);
                     var info = userInf.split(",");
-                    var user = Ext.data.ModelManager('UserInfo');
-                    console.log(user);
+                    var reader = Ext.create('Ext.data.reader.Json', {
+                            model: 'UserInfo'
+                        });
+                    var resultSet = reader.read({
+                            email: info[0]
+                        });
+                    console.log(resultSet);
                 } else {
                     console.log('no user info');
                 }
