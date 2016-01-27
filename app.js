@@ -63678,7 +63678,7 @@ Ext.define('Ext.direct.Manager', {
                     var userInf = JSON.stringify(userInfo);
                     console.log(userInf);
                     var info = userInf.split(",");
-                    var user = Ext.data.Model('UserInfo').getFields();
+                    var user = Ext.data.ModelManager('UserInfo');
                     console.log(user);
                 } else {
                     console.log('no user info');
