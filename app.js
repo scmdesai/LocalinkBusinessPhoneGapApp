@@ -63679,10 +63679,10 @@ Ext.define('Ext.direct.Manager', {
                     console.log(userInf);
                     var info = userInf.split(",");
                     var user = Ext.ModelManager.getModel('UserInfo');
-                    user.setAttribute('email', info[0]);
-                    user.setAttribute('name', info[1]);
-                    user.setAttribute('gender', info[2]);
-                    user.setAttribute('userId', info[3]);
+                    user.email = info[0];
+                    user.setAttribute = info[1];
+                    user.setAttribute = info[2];
+                    user.setAttribute = info[3];
                     console.log(user.email);
                     console.log(user.name);
                     console.log(user.gender);
