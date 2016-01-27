@@ -63678,7 +63678,7 @@ Ext.define('Ext.direct.Manager', {
                     var userInf = JSON.stringify(userInfo);
                     console.log(userInf);
                     var info = userInf.split(",");
-                    var user = this.setModel('UserInfo');
+                    var user = Ext.data.Model('UserInfo').getFields();
                     console.log(user);
                 } else {
                     console.log('no user info');
@@ -64377,9 +64377,6 @@ Ext.define('Ext.direct.Manager', {
             },
             "button#share": {
                 tap: 'onShareTap'
-            },
-            "button#LoginButton": {
-                tap: 'onLoginButtonTap'
             }
         }
     },
@@ -64681,10 +64678,6 @@ Ext.define('Ext.direct.Manager', {
         }, function(errormsg) {
             alert(errormsg);
         });
-    },
-    onLoginButtonTap: function(button, e, eOpts) {
-        var ctrl = this.getApplication().getController('Facebook');
-        ctrl.onFacebookInit();
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.controller,
