@@ -63678,7 +63678,7 @@ Ext.define('Ext.direct.Manager', {
                     var userInf = JSON.stringify(userInfo);
                     console.log(userInf);
                     var info = userInf.split(",");
-                    var tmp = info[0].split("\":\"");
+                    var tmp = info[0].split("\":\"\"");
                     var email = tmp[1];
                     tmp = info[1].split(":");
                     var name = tmp[1];
