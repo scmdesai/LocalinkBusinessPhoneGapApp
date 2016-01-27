@@ -63669,18 +63669,13 @@ Ext.define('Ext.direct.Manager', {
             //  console.log('no access token');
             userInfo: function(userInfo) {
                 if (userInfo) {
-<<<<<<< HEAD
+
                     var userInf = JSON.stringify(userInfo);
                     console.log(userInf);
                 } else {
                     console.log('no user info');
                 }
-=======
-                    // console.log(JSON.stringify(userInfo));
-                    var email = JSON.stringify(userInfo).indexOf('email');
-                    console.log(email);
-                } else {}
->>>>>>> parent of 9c88b7f... printing out all console log
+
             }
         });
     }
