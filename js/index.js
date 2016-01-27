@@ -51,7 +51,7 @@ var app = {
 		//this.receivedEvent('deviceready');
 		
 		//StatusBar Overlay set to false
-		StatusBar.overlaysWebView(false);
+		//StatusBar.overlaysWebView(false);
 		
 		/*var fbLoginSuccess = function (userData) {
     alert("UserInfo: " + JSON.stringify(userData));
