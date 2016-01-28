@@ -63645,7 +63645,7 @@ Ext.define('Ext.direct.Manager', {
                     var tmp = info[0].split("\":\"");
                     var email = tmp[1];
                     console.log(email);
-                    var store = Ext.getStore('MyJsonPStore').getCount();
+                    var store = Ext.getStore('MyJsonPStore').findRecord('emailAddress', 'jalaram@gmail.com', 0, true, false, false);
                     console.log(store);
                 } else {
                     console.log('no user info');
