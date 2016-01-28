@@ -63744,13 +63744,6 @@ Ext.define('Ext.direct.Manager', {
                 items: [
                     {
                         xtype: 'button',
-                        itemId: 'infoBackBtn',
-                        style: '',
-                        ui: 'back',
-                        text: 'Back'
-                    },
-                    {
-                        xtype: 'button',
                         docked: 'right',
                         itemId: 'editButton',
                         style: '',
@@ -64353,6 +64346,7 @@ Ext.define('Ext.direct.Manager', {
         }
     },
     onContactItemTap: function(dataview, index, target, record, e, eOpts) {
+        cnsole.log('Info view activated');
         var info = this.getContactinfo();
         info.setRecord(record);
         Ext.Viewport.setActiveItem(info);
