@@ -63877,10 +63877,12 @@ Ext.define('Ext.direct.Manager', {
         ]
     },
     onContactinfoShow: function(component, eOpts) {
+        this.callParent(arguments);
         console.log('On Info page');
-        var data = component.get('businessName');
-        this.down('#nameTxt').setHtml(data);
+        var data = component.getData();
+        console.log(eOpts);
     },
+    //this.down('#nameTxt').setHtml(data);
     setRecord: function(record) {
         console.log('Inside Info setRecord Function');
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
