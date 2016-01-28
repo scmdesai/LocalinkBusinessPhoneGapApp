@@ -63812,6 +63812,7 @@ Ext.define('Ext.direct.Manager', {
                                     'customfield'
                                 ],
                                 height: '',
+                                html: '',
                                 itemId: 'phoneNumber',
                                 maxHeight: '30%',
                                 maxWidth: '100%',
@@ -63834,6 +63835,7 @@ Ext.define('Ext.direct.Manager', {
                                     'customfield'
                                 ],
                                 height: '100%',
+                                html: '',
                                 itemId: 'address',
                                 maxHeight: '100%',
                                 maxWidth: '100%',
@@ -63882,6 +63884,7 @@ Ext.define('Ext.direct.Manager', {
         var data = component.getData();
         var businessName = data.businessName;
         var customerId = data.customerId;
+        console.log(this.getValues(true, true));
         this.down('#nameTxt').setHtml(businessName);
         this.down('#phoneNumber').setData(data.phoneNumber);
         this.down('#address').setData(data.address);
