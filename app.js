@@ -64509,7 +64509,10 @@ Ext.define('Ext.direct.Manager', {
         //console.log(referrer.getData());
         form.referrer = referrer;
         form.down('#businessName').setValue(data.businessName);
+        form.down('#phoneNumber').setValue(data.phoneNumber);
+        form.down('#address').setValue(data.address);
         //console.log('form.businessName: ' + form.businessName);
+        form.down('contactpic').setHtml('<img src="' + data.picture + '"/>');
         Ext.Viewport.setActiveItem(form);
     },
     onSaveContactButtonTap: function(button, e, eOpts) {
