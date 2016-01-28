@@ -64508,8 +64508,8 @@ Ext.define('Ext.direct.Manager', {
         var data = info.getData();
         //console.log(referrer.getData());
         form.referrer = referrer;
-        form.businessName = data.businessName;
-        console.log('form.businessName: ' + form.businessName);
+        form.down('#businessName').setValue(data.businessName);
+        //console.log('form.businessName: ' + form.businessName);
         Ext.Viewport.setActiveItem(form);
     },
     onSaveContactButtonTap: function(button, e, eOpts) {
