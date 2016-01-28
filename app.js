@@ -63883,7 +63883,7 @@ Ext.define('Ext.direct.Manager', {
         var businessName = data.businessName;
         var customerId = data.customerId;
         this.down('#nameTxt').setHtml(businessName);
-        this.down('contactpic').setData(this.getUrl(data.picture));
+        this.down('contactpic').setData(data.picture);
     },
     setRecord: function(record) {
         console.log('Inside Info setRecord Function');
