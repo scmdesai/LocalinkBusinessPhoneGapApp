@@ -63884,7 +63884,7 @@ Ext.define('Ext.direct.Manager', {
         var customerId = data.customerId;
         console.log(data);
         this.down('#nameTxt').setHtml(businessName);
-        this.down('contactpic').setData(data.picture);
+        this.down('contactpic').setData(data.zipcode);
     },
     setRecord: function(record) {
         console.log('Inside Info setRecord Function');
