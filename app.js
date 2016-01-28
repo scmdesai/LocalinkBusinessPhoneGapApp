@@ -63878,8 +63878,10 @@ Ext.define('Ext.direct.Manager', {
     onContactinfoShow: function(component, eOpts) {
         console.log('On Info page');
         //var info = this.getContactinfo();
-        this.setRecord(component.getRecord());
-        console.log(this.getData());
+        var name = this.get('businessName');
+        var customerId = record.get('customerId');
+        this.down('#nameTxt').setHtml(name);
+        this.down('contactpic').setData(record.data);
     },
     setRecord: function(record) {
         console.log('Inside Info setRecord Function');
