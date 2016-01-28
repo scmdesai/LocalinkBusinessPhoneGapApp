@@ -63880,8 +63880,8 @@ Ext.define('Ext.direct.Manager', {
         //var info = this.getContactinfo();
         var name = this.get('businessName');
         var customerId = record.get('customerId');
-        this.down('#nameTxt').setHtml(name);
-        this.down('contactpic').setData(record.data);
+        component.down('#nameTxt').setHtml(name);
+        component.down('contactpic').setData(record.data);
     },
     setRecord: function(record) {
         console.log('Inside Info setRecord Function');
