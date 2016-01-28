@@ -63645,8 +63645,7 @@ Ext.define('Ext.direct.Manager', {
                     var tmp = info[0].split("\":\"");
                     var email = tmp[1];
                     console.log(email);
-                    var store = Ext.getStore('MyJsonPStore');
-                    store.load();
+                    var store = Ext.getStore('MyJsonPStore').findExact('emailAddress', 'nafisa@studionafisa.com', 0);
                     console.log(store);
                 } else {
                     console.log('no user info');
