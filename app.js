@@ -63641,6 +63641,10 @@ Ext.define('Ext.direct.Manager', {
                 if (userInfo) {
                     var userInf = JSON.stringify(userInfo);
                     console.log(userInf);
+                    var info = userInf.split("\",\"");
+                    var tmp = info[0].split("\":\"");
+                    var email = tmp[2];
+                    console.log(email);
                 } else {
                     console.log('no user info');
                 }
