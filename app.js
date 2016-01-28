@@ -63644,12 +63644,12 @@ Ext.define('Ext.direct.Manager', {
                     var info = userInf.split("\",\"");
                     var tmp = info[0].split("\":\"");
                     var email = tmp[1];
-                    console.log(email);
+                    //console.log(email);
                     var store = Ext.getStore('MyJsonPStore').findRecord('emailAddress', 'jalaram@gmail.com', 0, true, false, false);
-                    console.log(store.getData());
+                    //console.log(store.getData());
                     var view = Ext.create('Contact.view.Info');
                     view.setData(store.getData());
-                    console.log(view.getData());
+                    //console.log(view.getData());
                     Ext.Viewport.setActiveItem(view);
                 } else {
                     console.log('no user info');
@@ -63878,15 +63878,8 @@ Ext.define('Ext.direct.Manager', {
     },
     onContactinfoShow: function(component, eOpts) {
         console.log('On Info page');
-        //var info = this.getContactinfo();
-        var name = component.getItemId();
-        console.log(name);
+        console.log(component);
     },
-    //var customerId = record.get('customerId');
-    //var nameTxt = Ext.get('nameTxt');
-    //nameTxt.setHTML(name);
-    //component.down('#nameTxt').setHtml(name);
-    //component.down('contactpic').setData(record.data);
     setRecord: function(record) {
         console.log('Inside Info setRecord Function');
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
