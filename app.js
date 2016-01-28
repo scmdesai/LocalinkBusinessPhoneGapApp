@@ -63890,6 +63890,7 @@ Ext.define('Ext.direct.Manager', {
         this.down('#phoneNumber').setValue(data.phoneNumber);
         this.down('#address').setValue(data.address);
         this.down('contactpic').setHtml('<img src="' + data.picture + '"/>');
+        this.setContactinfo(data);
     },
     setRecord: function(record) {
         console.log('Inside Info setRecord Function');
@@ -64318,12 +64319,6 @@ Ext.define('Ext.direct.Manager', {
             share: 'button#share'
         },
         control: {
-            "dataview": {
-                itemtap: 'onContactItemTap'
-            },
-            "button#infoBackBtn": {
-                tap: 'onInfoBackBtnTapHome'
-            },
             "contactpic": {
                 change: 'onContactPickerChange'
             },
@@ -64367,38 +64362,6 @@ Ext.define('Ext.direct.Manager', {
                 tap: 'onShareTap'
             }
         }
-    },
-    onContactItemTap: function(dataview, index, target, record, e, eOpts) {
-        console.log('Info view activated');
-        var info = this.getContactinfo();
-        info.setRecord(record);
-        Ext.Viewport.setActiveItem(info);
-    },
-    //console.log(info);
-    onInfoBackBtnTapHome: function(button, e, eOpts) {
-        //workaround to fix the warning of destroy element in deleteDeals
-        /*var el = document.getElementById('ListOfDeals');
-		  el.parentNode.removeChild(el);
-		var btn = document.getElementById('DeleteDeal');
-			btn.parentNode.removeChild(btn);*/
-        /*var ds = Ext.StoreManager.lookup('MyJsonPStore');
-		ds.clearFilter() ;*/
-        Ext.Viewport.setActiveItem(0);
-        var store = Ext.getStore('UserPreferences');
-        var records = [];
-        var ds = Ext.getStore('MyJsonPStore1');
-        ds.clearFilter();
-        //store.clearFilter();
-        store.each(function(rec) {
-            if (rec.get('isFavorite') === true) {
-                records.push(rec.get('customerId'));
-            } else {
-                Ext.Array.remove(records, rec.get('customerId'));
-            }
-        });
-        ds.filterBy(function(record) {
-            return Ext.Array.indexOf(records, record.get('customerId')) !== -1;
-        }, this);
     },
     onContactPickerChange: function(picker, value, eOpts) {
         var currentForm = Ext.Viewport.getActiveItem();
