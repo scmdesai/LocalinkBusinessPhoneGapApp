@@ -63890,7 +63890,6 @@ Ext.define('Ext.direct.Manager', {
         this.down('#phoneNumber').setValue(data.phoneNumber);
         this.down('#address').setValue(data.address);
         this.down('contactpic').setHtml('<img src="' + data.picture + '"/>');
-        this.setContactinfo(data);
     },
     setRecord: function(record) {
         console.log('Inside Info setRecord Function');
@@ -64506,6 +64505,8 @@ Ext.define('Ext.direct.Manager', {
         var referrer = Ext.Viewport.getActiveItem();
         var form = this.getContactform();
         var info = this.getContactinfo();
+        console.log(form);
+        console.log(info);
         form.referrer = referrer;
         form.setRecord(info.getRecord());
         Ext.Viewport.setActiveItem(form);
