@@ -63818,6 +63818,7 @@ Ext.define('Ext.direct.Manager', {
                                 maxWidth: '100%',
                                 minHeight: '',
                                 minWidth: '100%',
+                                styleHtmlCls: '',
                                 width: '100%',
                                 clearIcon: false,
                                 inputCls: 'customfield',
@@ -63886,8 +63887,8 @@ Ext.define('Ext.direct.Manager', {
         var customerId = data.customerId;
         //console.log(this.getValues(true,true));
         this.down('#nameTxt').setHtml(businessName);
-        this.down('#phoneNumber').setHtml(data.phoneNumber);
-        this.down('#address').setHtml(data.address);
+        this.down('#phoneNumber').setValue(data.phoneNumber);
+        this.down('#address').setValue(data.address);
         this.down('contactpic').setHtml('<img src = ' + data.picture + '/>');
     },
     setRecord: function(record) {
