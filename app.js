@@ -64505,7 +64505,7 @@ Ext.define('Ext.direct.Manager', {
         var referrer = Ext.Viewport.getActiveItem();
         var form = this.getContactform();
         var info = this.getContactinfo();
-        console.log(info.businessName);
+        console.log(info.get('businessName'));
         form.referrer = referrer;
         form.setValues(info.getValues());
         Ext.Viewport.setActiveItem(form);
