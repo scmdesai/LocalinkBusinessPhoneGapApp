@@ -64505,9 +64505,9 @@ Ext.define('Ext.direct.Manager', {
         var referrer = Ext.Viewport.getActiveItem();
         var form = this.getContactform();
         var info = this.getContactinfo();
-        console.log(info.getData().businessName);
+        console.log(info.getData().getValues());
         form.referrer = referrer;
-        form.setValues(info.getValues());
+        form.setData(info.getData().getValues());
         Ext.Viewport.setActiveItem(form);
     },
     onSaveContactButtonTap: function(button, e, eOpts) {
