@@ -63867,9 +63867,20 @@ Ext.define('Ext.direct.Manager', {
                 itemId: 'manageDeals',
                 text: 'Manage Deals'
             }
+        ],
+        listeners: [
+            {
+                fn: 'onContactinfoShow',
+                event: 'show'
+            }
         ]
     },
+    onContactinfoShow: function(component, eOpts) {
+        console.log('On Info page');
+        console.log(component.getData());
+    },
     setRecord: function(record) {
+        console.log('Inside Info setRecord Function');
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
         if (record) {
             var name = record.get('businessName');
