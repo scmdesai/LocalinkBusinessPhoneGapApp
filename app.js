@@ -63877,7 +63877,9 @@ Ext.define('Ext.direct.Manager', {
     },
     onContactinfoShow: function(component, eOpts) {
         console.log('On Info page');
-        this.setRecord(component);
+        var info = this.getContactinfo();
+        info.setRecord(component.getRecord());
+        console.log(info.getData());
     },
     setRecord: function(record) {
         console.log('Inside Info setRecord Function');
@@ -64357,7 +64359,7 @@ Ext.define('Ext.direct.Manager', {
         }
     },
     onContactItemTap: function(dataview, index, target, record, e, eOpts) {
-        cnsole.log('Info view activated');
+        console.log('Info view activated');
         var info = this.getContactinfo();
         info.setRecord(record);
         Ext.Viewport.setActiveItem(info);
