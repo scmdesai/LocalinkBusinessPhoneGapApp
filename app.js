@@ -63880,10 +63880,11 @@ Ext.define('Ext.direct.Manager', {
         console.log('On Info page');
         //var info = this.getContactinfo();
         var name = component.get('businessName');
-        var customerId = record.get('customerId');
-        var nameTxt = Ext.get('nameTxt');
-        nameTxt.setHTML(name);
+        console.log(name);
     },
+    //var customerId = record.get('customerId');
+    //var nameTxt = Ext.get('nameTxt');
+    //nameTxt.setHTML(name);
     //component.down('#nameTxt').setHtml(name);
     //component.down('contactpic').setData(record.data);
     setRecord: function(record) {
