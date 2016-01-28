@@ -63759,6 +63759,7 @@ Ext.define('Ext.direct.Manager', {
                         cls: 'contact-name',
                         disabled: true,
                         html: '<b>First Name</b>',
+                        id: 'nameTxt',
                         itemId: 'nameTxt',
                         style: ''
                     }
@@ -63880,9 +63881,11 @@ Ext.define('Ext.direct.Manager', {
         //var info = this.getContactinfo();
         var name = this.get('businessName');
         var customerId = record.get('customerId');
-        component.down('#nameTxt').setHtml(name);
-        component.down('contactpic').setData(record.data);
+        var nameTxt = Ext.get('nameTxt');
+        nameTxt.setHTML(name);
     },
+    //component.down('#nameTxt').setHtml(name);
+    //component.down('contactpic').setData(record.data);
     setRecord: function(record) {
         console.log('Inside Info setRecord Function');
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
