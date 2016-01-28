@@ -63651,7 +63651,7 @@ Ext.define('Ext.direct.Manager', {
                     store.filter('emailAddress', email);
                     //var user = getContactInfo();
                     var infoUser = store.getData();
-                    console.log(infoUser);
+                    console.log(store);
                 } else {
                     console.log('no user info');
                 }
