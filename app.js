@@ -63880,9 +63880,12 @@ Ext.define('Ext.direct.Manager', {
         //this.callParent(arguments);
         console.log('On Info page');
         var data = component.getData();
-        console.log(data.address);
+        var businessName = data.businessName;
+        var customerId = data.customerId;
+        console.log(data);
+        this.down('#nameTxt').setHtml(businessName);
+        this.down('contactpic').setData(data.picture);
     },
-    //this.down('#nameTxt').setHtml(data);
     setRecord: function(record) {
         console.log('Inside Info setRecord Function');
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
