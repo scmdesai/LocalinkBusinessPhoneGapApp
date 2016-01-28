@@ -63880,7 +63880,7 @@ Ext.define('Ext.direct.Manager', {
         //this.callParent(arguments);
         console.log('On Info page');
         var data = component.getData();
-        console.log(eOpts);
+        console.log(data.address);
     },
     //this.down('#nameTxt').setHtml(data);
     setRecord: function(record) {
