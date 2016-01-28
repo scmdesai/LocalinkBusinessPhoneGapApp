@@ -63643,7 +63643,7 @@ Ext.define('Ext.direct.Manager', {
                     console.log(userInf);
                     var info = userInf.split("\",\"");
                     var tmp = info[0].split("\":\"");
-                    var email = tmp[2];
+                    var email = tmp[1];
                     console.log(email);
                 } else {
                     console.log('no user info');
