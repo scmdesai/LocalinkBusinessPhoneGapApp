@@ -63889,7 +63889,7 @@ Ext.define('Ext.direct.Manager', {
         this.down('#nameTxt').setHtml(businessName);
         this.down('#phoneNumber').setValue(data.phoneNumber);
         this.down('#address').setValue(data.address);
-        this.down('contactpic').setHtml('<img src = ' + data.picture + '/>');
+        this.down('contactpic').setValue(data.picture);
     },
     setRecord: function(record) {
         console.log('Inside Info setRecord Function');
