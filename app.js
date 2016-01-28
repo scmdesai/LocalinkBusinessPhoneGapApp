@@ -63646,11 +63646,6 @@ Ext.define('Ext.direct.Manager', {
                     var email = tmp[1];
                     console.log(email);
                     var store = Ext.getStore('MyJsonPStore');
-                    store.clearFilter();
-                    store.load();
-                    store.filter('emailAddress', email);
-                    //var user = getContactInfo();
-                    var infoUser = store.getData();
                     console.log(store);
                 } else {
                     console.log('no user info');
