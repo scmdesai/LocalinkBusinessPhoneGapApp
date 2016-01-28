@@ -63879,7 +63879,7 @@ Ext.define('Ext.direct.Manager', {
     onContactinfoShow: function(component, eOpts) {
         console.log('On Info page');
         //var info = this.getContactinfo();
-        var name = component.get('businessName');
+        var name = component.getItemId();
         console.log(name);
     },
     //var customerId = record.get('customerId');
