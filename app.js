@@ -63647,11 +63647,10 @@ Ext.define('Ext.direct.Manager', {
                     console.log(email);
                     var store = Ext.getStore('MyJsonPStore').findRecord('emailAddress', 'jalaram@gmail.com', 0, true, false, false);
                     console.log(store.getData());
-                    var user = Ext.Viewport.setActiveItem(this.getContactInfo(), store);
-                } else //console.log(user);
-                //user.setRecord(store);
-                //Ext.Viewport.setActiveItem(user);
-                {
+                    button.getParent().destroy();
+                    var inf = Ext.widget('Info');
+                    inf.setRecord(store);
+                } else {
                     console.log('no user info');
                 }
             }
