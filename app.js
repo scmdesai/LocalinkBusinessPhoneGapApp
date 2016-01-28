@@ -63878,7 +63878,7 @@ Ext.define('Ext.direct.Manager', {
     },
     onContactinfoShow: function(component, eOpts) {
         console.log('On Info page');
-        console.log(component);
+        console.log(component.getData());
     },
     setRecord: function(record) {
         console.log('Inside Info setRecord Function');
