@@ -63877,7 +63877,7 @@ Ext.define('Ext.direct.Manager', {
         ]
     },
     onContactinfoShow: function(component, eOpts) {
-        this.callParent(arguments);
+        //this.callParent(arguments);
         console.log('On Info page');
         var data = component.getData();
         console.log(eOpts);
