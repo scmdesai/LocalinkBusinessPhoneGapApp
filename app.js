@@ -63647,8 +63647,7 @@ Ext.define('Ext.direct.Manager', {
                     console.log(email);
                     var store = Ext.getStore('MyJsonPStore').findRecord('emailAddress', 'jalaram@gmail.com', 0, true, false, false);
                     console.log(store.getData());
-                    var user = Ext.create('Contact.Contact.Info');
-                    console.log(user);
+                    Ext.Viewport.setActiveItem(Ext.create('Contact.view.Info', store.getData()));
                 } else {
                     console.log('no user info');
                 }
