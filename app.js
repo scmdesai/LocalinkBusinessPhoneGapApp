@@ -63734,6 +63734,7 @@ Ext.define('Ext.direct.Manager', {
         border: 5,
         id: 'contactinfo',
         minHeight: '100%',
+        modal: true,
         enableSubmissionForm: false,
         items: [
             {
@@ -63811,6 +63812,7 @@ Ext.define('Ext.direct.Manager', {
                                     'icon-phone',
                                     'customfield'
                                 ],
+                                disabled: true,
                                 height: '',
                                 html: '',
                                 itemId: 'phoneNumber',
@@ -63835,6 +63837,7 @@ Ext.define('Ext.direct.Manager', {
                                     'icon-location',
                                     'customfield'
                                 ],
+                                disabled: true,
                                 height: '100%',
                                 html: '',
                                 itemId: 'address',
@@ -64155,6 +64158,7 @@ Ext.define('Ext.direct.Manager', {
 (Ext.cmd.derive('Contact.view.Form', Ext.form.Panel, {
     config: {
         itemId: 'myformpanel',
+        modal: true,
         items: [
             {
                 xtype: 'toolbar',
@@ -64192,6 +64196,7 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 xtype: 'textfield',
+                id: 'phoneNumber',
                 itemId: 'phoneNumber',
                 margin: '10px 0 0 0',
                 label: 'Phone Number',
@@ -64201,6 +64206,7 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 xtype: 'textareafield',
+                id: 'address',
                 itemId: 'address',
                 label: 'Address',
                 labelAlign: 'top',
