@@ -64192,7 +64192,7 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 xtype: 'textfield',
-                itemId: 'phoneNo',
+                itemId: 'phoneNumber',
                 margin: '10px 0 0 0',
                 label: 'Phone Number',
                 labelAlign: 'top',
@@ -64201,6 +64201,7 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 xtype: 'textareafield',
+                itemId: 'address',
                 label: 'Address',
                 labelAlign: 'top',
                 required: true
