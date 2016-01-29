@@ -63498,7 +63498,8 @@ Ext.define('Ext.direct.Manager', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    var customerId = this.getParent().getData().customerId;
+                    var customerId = this.getParent().getRecord().get('customerId');
+                    console.log(customerId);
                     var ds = Ext.StoreManager.lookup('MyDealsStore');
                     ds.clearFilter();
                     ds.filter('customerId', customerId);
