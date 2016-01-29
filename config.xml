@@ -37,7 +37,7 @@
     </gap:plugin>-->
 	<!-- New PhoneGap Plugins -->
 	<gap:plugin name="cordova-plugin-battery-status" source="npm" version="1.1.0" />
-    <gap:plugin name="cordova-plugin-camera" source="npm" version="1.2.0" />
+    <gap:plugin name="cordova-plugin-camera" source="npm" version="2.1.0" />
     <gap:plugin name="cordova-plugin-media-capture" source="npm" version="1.0.1" />
 	<!-- Comment out the console plugin as it is causing issues on Android -->
     <!-- <gap:plugin name="cordova-plugin-console" source="npm" version="1.0.1" /> -->
