@@ -64145,7 +64145,9 @@ Ext.define('Ext.direct.Manager', {
             // record.set('businessName',businessName);
             //record.set('phoneNumber',phoneNumber);
             //record.set('address',address);
-            businessName.commit();
+            form.set('businessName', businessName);
+            console.log(form.get('businessName'));
+            form.commit();
             if (form.referrer) {
                 form.referrer.setRecord(businessName);
                 console.log('Form Referrer');
