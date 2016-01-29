@@ -63457,7 +63457,7 @@ Ext.define('Ext.direct.Manager', {
                                 clearIcon: false,
                                 inputCls: 'customfield',
                                 name: 'phoneNumber',
-                                readOnly: false
+                                readOnly: true
                             },
                             {
                                 xtype: 'spacer',
@@ -63482,7 +63482,7 @@ Ext.define('Ext.direct.Manager', {
                                 clearIcon: false,
                                 inputCls: 'customfield',
                                 name: 'address',
-                                readOnly: false,
+                                readOnly: true,
                                 maxRows: 3
                             }
                         ]
@@ -64142,9 +64142,9 @@ Ext.define('Ext.direct.Manager', {
             var address = form.getAt(4).getValue();
             console.log(address);
             if (record) {
-                record.set('businessName', businessName);
-                record.set('phoneNumber', phoneNumber);
-                record.set('address', address);
+                record.setValue('businessName', businessName);
+                record.setValue('phoneNumber', phoneNumber);
+                record.setValue('address', address);
                 record.commit();
                 console.log(record.getData());
                 if (form.referrer) {
