@@ -63506,7 +63506,6 @@ Ext.define('Ext.direct.Manager', {
                     view = Ext.Viewport.add({
                         xtype: 'DealsPanel'
                     });
-                    view.refresh();
                     Ext.Viewport.setActiveItem(view);
                 },
                 id: 'manageDeals',
