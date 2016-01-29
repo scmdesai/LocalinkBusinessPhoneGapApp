@@ -64136,29 +64136,34 @@ Ext.define('Ext.direct.Manager', {
             Ext.Msg.alert('Error', errors.join('<br/>'));
         } else {
             var values;
-            var record = form.getRecord();
+            var record = form.getFields();
+            console.log(record);
             var businessName = form.getAt(2).getValue();
             var phoneNumber = form.getAt(3).getValue();
             var address = form.getAt(4).getValue();
             //console.log('Record is : ' + record);
             //if (record) {
             //console.log(businessName);
-            record.set('businessName', businessName);
-            record.set('phoneNumber', phoneNumber);
-            record.set('address', address);
-            //form.down('#businessName').setValue(businessName);
-            //form.down('#phoneNumber').setValue(phoneNumber);
-            //form.down('#address').setValue(address);
-            record.commit();
-            if (form.referrer) {
-                form.referrer.setRecord(record);
-                console.log('Form Referrer');
-            }
-            // }
-            Ext.Viewport.setActiveItem(form.referrer);
-            delete form.referrer;
+            record.change('businessName', businessName);
         }
     },
+    //record.set('phoneNumber',phoneNumber);
+    //record.set('address',address);
+    //form.down('#businessName').setValue(businessName);
+    //form.down('#phoneNumber').setValue(phoneNumber);
+    //form.down('#address').setValue(address);
+    // record.commit();
+    /*  if (form.referrer) {
+		                    form.referrer.setRecord(record);
+							console.log('Form Referrer');
+		                }
+		           // }
+
+
+
+
+		           Ext.Viewport.setActiveItem(form.referrer);
+		           delete form.referrer;*/
     onCancelButtonTap: function(button, e, eOpts) {
         var form = this.getContactform();
         Ext.Viewport.setActiveItem(form.referrer);
