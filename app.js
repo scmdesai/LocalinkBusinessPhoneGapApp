@@ -63783,55 +63783,6 @@ Ext.define('Ext.direct.Manager', {
         modal: true,
         items: [
             {
-                xtype: 'container',
-                items: [
-                    {
-                        xtype: 'contactpic'
-                    },
-                    {
-                        xtype: 'button',
-                        centered: false,
-                        docked: 'top',
-                        itemId: 'changePicture',
-                        maxHeight: '10%',
-                        maxWidth: '10%',
-                        right: 5,
-                        styleHtmlCls: '',
-                        styleHtmlContent: true,
-                        top: 100,
-                        ui: 'plain',
-                        iconCls: 'add'
-                    },
-                    {
-                        xtype: 'textfield',
-                        itemId: 'businessName',
-                        margin: '10px 0 0 0',
-                        label: 'Business Name',
-                        labelAlign: 'top',
-                        labelWrap: true,
-                        required: true
-                    },
-                    {
-                        xtype: 'textfield',
-                        id: 'phoneNumber',
-                        itemId: 'phoneNumber',
-                        margin: '10px 0 0 0',
-                        label: 'Phone Number',
-                        labelAlign: 'top',
-                        labelWrap: true,
-                        required: true
-                    },
-                    {
-                        xtype: 'textareafield',
-                        id: 'address',
-                        itemId: 'address',
-                        label: 'Address',
-                        labelAlign: 'top',
-                        required: true
-                    }
-                ]
-            },
-            {
                 xtype: 'toolbar',
                 docked: 'top',
                 ui: 'light',
@@ -63852,6 +63803,50 @@ Ext.define('Ext.direct.Manager', {
                         text: 'Save'
                     }
                 ]
+            },
+            {
+                xtype: 'contactpic'
+            },
+            {
+                xtype: 'button',
+                centered: false,
+                docked: 'top',
+                itemId: 'changePicture',
+                maxHeight: '10%',
+                maxWidth: '20%',
+                right: 5,
+                styleHtmlCls: '',
+                styleHtmlContent: true,
+                top: 100,
+                ui: 'plain',
+                iconAlign: 'center',
+                iconCls: 'add'
+            },
+            {
+                xtype: 'textfield',
+                itemId: 'businessName',
+                margin: '20px 0 0 0',
+                label: 'Business Name',
+                labelAlign: 'top',
+                labelWrap: true,
+                required: true
+            },
+            {
+                xtype: 'textfield',
+                id: 'phoneNumber',
+                itemId: 'phoneNumber',
+                label: 'Phone Number',
+                labelAlign: 'top',
+                labelWrap: true,
+                required: true
+            },
+            {
+                xtype: 'textareafield',
+                id: 'address',
+                itemId: 'address',
+                label: 'Address',
+                labelAlign: 'top',
+                required: true
             }
         ],
         listeners: [
