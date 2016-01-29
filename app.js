@@ -64168,15 +64168,16 @@ Ext.define('Ext.direct.Manager', {
             Ext.Msg.alert('Error', errors.join('<br/>'));
         } else {
             var values = form.getValues();
+            var valueBusinessName = form.getAt(2).getValue();
+            console.log('Record: ' + valueBusinessName);
             var record = form.getRecord();
             //console.log('form.referrer is : ' + form.referrer.setRecord);
             //if (record) {
             record.setData(values);
             //info.setRecord(record);
-            //console.log('Record: ' + record.getData());
             record.commit();
-            console.log('businessName: ' + record.get('businessName'));
         }
+        //console.log('businessName: ' + record.get('businessName'));
         // if (form.referrer.setRecord) {
         // form.referrer.setRecord(record);
         // }
