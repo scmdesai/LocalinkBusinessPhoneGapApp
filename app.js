@@ -63819,7 +63819,7 @@ Ext.define('Ext.direct.Manager', {
                 styleHtmlCls: '',
                 styleHtmlContent: true,
                 top: '20%',
-                ui: 'round',
+                ui: 'action-round',
                 iconAlign: 'center',
                 iconCls: 'add'
             },
@@ -64254,6 +64254,7 @@ Ext.define('Ext.direct.Manager', {
         btn.destroy();
     },
     onUploadDealTap: function(button, e, eOpts) {
+        var cameraPic;
         var actionSheet = new Ext.ActionSheet({
                 items: [
                     {
