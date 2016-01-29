@@ -64136,6 +64136,7 @@ Ext.define('Ext.direct.Manager', {
             Ext.Msg.alert('Error', errors.join('<br/>'));
         } else {
             var values;
+            var record = form.getRecord();
             var businessName = form.getAt(2).getValue();
             var phoneNumber = form.getAt(3).getValue();
             var address = form.getAt(4).getValue();
@@ -64145,11 +64146,12 @@ Ext.define('Ext.direct.Manager', {
             // record.set('businessName',businessName);
             //record.set('phoneNumber',phoneNumber);
             //record.set('address',address);
-            form.set('businessName', businessName);
-            console.log(form.get('businessName'));
+            form.down('#businessName').setValue(businessName);
+            form.down('#phoneNumber').setValue(data.phoneNumber);
+            form.down('#address').setValue(data.address);
             form.commit();
             if (form.referrer) {
-                form.referrer.setRecord(businessName);
+                form.referrer.setRecord(record);
                 console.log('Form Referrer');
             }
             // }
