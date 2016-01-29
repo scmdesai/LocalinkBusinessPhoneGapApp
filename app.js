@@ -63808,16 +63808,6 @@ Ext.define('Ext.direct.Manager', {
                 xtype: 'contactpic'
             },
             {
-                xtype: 'button',
-                bottom: '',
-                itemId: 'changePicture',
-                maxWidth: '20%',
-                right: 5,
-                ui: 'plain',
-                autoEvent: '',
-                iconCls: 'add'
-            },
-            {
                 xtype: 'textfield',
                 itemId: 'businessName',
                 margin: '10px 0 0 0',
@@ -63844,69 +63834,7 @@ Ext.define('Ext.direct.Manager', {
                 labelAlign: 'top',
                 required: true
             }
-        ],
-        listeners: [
-            {
-                fn: 'onChangePictureTap',
-                event: 'tap',
-                delegate: '#changePicture'
-            }
         ]
-    },
-    onChangePictureTap: function(button, e, eOpts) {
-        var actionSheet = new Ext.ActionSheet({
-                items: [
-                    {
-                        text: 'Camera',
-                        scope: this,
-                        handler: function() {
-                            actionSheet.hide();
-                            /* phonegap camera */
-                            navigator.camera.getPicture(uploadPhoto, null, {
-                                sourceType: 1,
-                                quality: 60
-                            });
-                            function uploadPhoto(data) {
-                                // this is where you would send the image file to server
-                                //output image to screen
-                                cameraPic.src = "data:image/jpeg;base64," + data;
-                                navigator.notification.alert('Your Photo has been uploaded', // message
-                                okay, // callback
-                                'Photo Uploaded', // title
-                                'OK');
-                                // buttonName
-                                function okay() {}
-                            }
-                        }
-                    },
-                    // Do something
-                    {
-                        text: 'Photo Album',
-                        scope: this,
-                        handler: function() {
-                            actionSheet.hide();
-                            navigator.camera.getPicture(uploadPhoto, null, {
-                                sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-                                quality: 60
-                            });
-                            function uploadPhoto(data) {
-                                // this is where you would send the image file to server
-                                //output image to screen
-                                cameraPic.src = "data:image/jpeg;base64," + data;
-                                navigator.notification.alert('Your Photo has been uploaded', // message
-                                okay, // callback
-                                'Photo Uploaded', // title
-                                'OK');
-                                // buttonName
-                                function okay() {}
-                            }
-                        }
-                    }
-                ]
-            });
-        // Do something
-        Ext.Viewport.add(actionSheet);
-        actionSheet.show();
     },
     getValidationErrors: function() {
         var errors = [];
