@@ -64169,21 +64169,21 @@ Ext.define('Ext.direct.Manager', {
         } else {
             var values = form.getValues();
             var record = form.getRecord();
-            console.log('Record is : ' + record);
-            if (record) {
-                record.setData(values);
-                record.commit();
-                info.setRecord(record);
-                // if (form.referrer.setRecord) {
-                form.referrer.setRecord(record);
-            }
-            // }
-            // } else {
-            // Ext.StoreManager.lookup('ContactStore').add(values);
-            Ext.Viewport.setActiveItem(form.referrer);
-            delete form.referrer;
+            //console.log('Record is : ' + record);
+            //if (record) {
+            record.setData(values);
+            info.setRecord(record);
+            record.commit();
+            // if (form.referrer.setRecord) {
+            form.referrer.setRecord(record);
         }
+        // }
+        // } else {
+        // Ext.StoreManager.lookup('ContactStore').add(values);
+        Ext.Viewport.setActiveItem(form.referrer);
+        delete form.referrer;
     },
+    //}
     onCancelButtonTap: function(button, e, eOpts) {
         var form = this.getContactform();
         Ext.Viewport.setActiveItem(form.referrer);
