@@ -63121,7 +63121,6 @@ Ext.define('Ext.direct.Manager', {
         storeId: 'MyDealsStore',
         proxy: {
             type: 'jsonp',
-            extraParams: '{customerId}',
             url: 'http://services.appsonmobile.com/deals',
             reader: {
                 type: 'json'
@@ -63507,6 +63506,7 @@ Ext.define('Ext.direct.Manager', {
                     view = Ext.Viewport.add({
                         xtype: 'DealsPanel'
                     });
+                    view.refresh();
                     Ext.Viewport.setActiveItem(view);
                 },
                 id: 'manageDeals',
