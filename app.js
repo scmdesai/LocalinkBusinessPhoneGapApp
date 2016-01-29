@@ -63514,8 +63514,53 @@ Ext.define('Ext.direct.Manager', {
         ]
     },
     setRecord: function(record) {
-        //console.log('Inside Info setRecord Function');
+        console.log('Inside Info setRecord Function');
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
+        if (record) {
+            var name = record.get('businessName');
+            //var isFavorite = record.get('isFavorite');
+            var customerId = record.get('customerId');
+            // var store = Ext.getStore('UserPreferences');
+            /* if(store.getAllCount()!==0){
+		    store.each(function(rec) {
+		        if(rec.get('customerId')==customerId) {
+		            isFavorite = rec.get('isFavorite');
+		        }
+		    });
+		   }*/
+            //console.log(customerId + isFavorite );
+            this.down('#nameTxt').setHtml(name);
+            // console.log(store.getData());
+            /* if(isFavorite===true) {
+		       this.down('#favbutton').setCls('fill-star');
+		        //store.setData({'isFavorite':isFavorite});
+		    }
+		    else {
+		        this.down('#favbutton').setCls('empty-star');
+
+
+
+
+
+		    }*/
+            // this.down('#favoriteview')[isFavorite ? 'addCls' : 'removeCls']('x-button-pressed');
+            //  this.down('#favbutton')[isFavorite ? 'addCls' : 'removeCls']('x-button-pressed');
+            this.down('contactpic').setData(record.data);
+        }
+    },
+    // var ds = Ext.StoreManager.lookup('MyDealsStore');
+    // ds.clearFilter() ;
+    // ds.filter('customerId', customerId);
+    // this.down('listofdeals').setData(ds.getData()) ;
+    /*dealsData  = ds.getData().getAt(0);
+		    var dealName = 'No Deals';
+		    if(dealsData) {
+		         dealName = dealsData.get('dealName');
+		    }*/
+    initialize: function() {
+        //this.callParent();
+        console.log('Inside Initialize  Function');
+        Ext.form.Panel.prototype.initialize.apply(this, arguments);
         if (record) {
             var name = record.get('businessName');
             //var isFavorite = record.get('isFavorite');
