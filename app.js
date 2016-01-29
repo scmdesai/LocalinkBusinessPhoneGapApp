@@ -63932,9 +63932,9 @@ Ext.define('Ext.direct.Manager', {
         if (record) {
             var value = record.data;
             this.child('contactpic').setData(record.data);
-            this.getActiveItem().getParent().getAt(2).setValue(value.businessName);
-            this.getActiveItem().getParent().getAt(3).setValue(value.phoneNumber);
-            this.getActiveItem().getParent().getAt(4).setValue(value.address);
+            this.getActiveItem().getParent().getAt(3).setValue(value.businessName);
+            this.getActiveItem().getParent().getAt(4).setValue(value.phoneNumber);
+            this.getActiveItem().getParent().getAt(5).setValue(value.address);
         }
     }
 }, 0, [
