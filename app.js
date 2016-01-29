@@ -64142,11 +64142,11 @@ Ext.define('Ext.direct.Manager', {
             var address = form.getAt(4).getValue();
             console.log(address);
             if (record) {
+                console.log(businessName);
                 record.set('businessName', businessName);
                 // record.phoneNumber = phoneNumber;
                 //  record.address = address;
                 record.commit();
-                console.log('Recrd BusinessName is: ' + record.get('businessName'));
                 if (form.referrer) {
                     form.referrer.setRecord(record);
                 }
