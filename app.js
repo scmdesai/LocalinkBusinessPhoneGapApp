@@ -64140,7 +64140,7 @@ Ext.define('Ext.direct.Manager', {
             var businessName = form.getAt(2).getValue();
             var phoneNumber = form.getAt(3).getValue();
             var address = form.getAt(4).getValue();
-            console.log(address);
+            console.log(businessName);
             if (record) {
                 console.log(businessName);
                 record.set('businessName', businessName);
@@ -64149,6 +64149,7 @@ Ext.define('Ext.direct.Manager', {
                 record.commit();
                 if (form.referrer) {
                     form.referrer.setRecord(record);
+                    console.log('Form Referrer');
                 }
             }
             Ext.Viewport.setActiveItem(form.referrer);
