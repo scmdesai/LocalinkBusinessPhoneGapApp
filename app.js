@@ -64127,40 +64127,6 @@ Ext.define('Ext.direct.Manager', {
         form.setRecord(info.getRecord());
     },
     onSaveContactButtonTap: function(button, e, eOpts) {
-        /*var form = this.getContactform();
-		var errors = form.getValidationErrors();
-
-		if (errors.length) {
-			Ext.Msg.alert('Error', errors.join('<br/>'));
-		} else {
-
-
-
-			var values;
-
-		    var record = form.getRecord();
-
-			var businessName = form.getAt(2).getValue();
-			var phoneNumber = form.getAt(3).getValue();
-			var address = form.getAt(4).getValue();
-			//console.log('Record is : ' + record);
-
-
-			record.setData(form.getValues());
-			console.log('Record is : ' + record.get('businessName'));
-
-			/*  if (form.referrer) {
-		                    form.referrer.setRecord(record);
-							console.log('Form Referrer');
-		                }
-		           // }
-
-
-
-
-		           Ext.Viewport.setActiveItem(form.referrer);
-		           delete form.referrer;
-		}*/
         var form = this.getContactform();
         var errors = form.getValidationErrors();
         var info = this.getContactinfo();
@@ -64168,32 +64134,21 @@ Ext.define('Ext.direct.Manager', {
             Ext.Msg.alert('Error', errors.join('<br/>'));
         } else {
             var values = form.getValues();
+            var valueContactPic = form.getAt(1).getValue();
             var valueBusinessName = form.getAt(2).getValue();
             var valuePhoneNumber = form.getAt(3).getValue();
             var valueAddress = form.getAt(4).getValue();
             var record = form.getRecord();
-            //console.log('form.referrer is : ' + form.referrer.setRecord);
-            //if (record) {
-            // record.setData(values);
-            //if(!record) {
             record.set('businessName', valueBusinessName);
             record.set('phoneNumber', valuePhoneNumber);
             record.set('address', valueAddress);
-            // }
+            record.set('contactpic', valueContactPic);
             info.setRecord(record);
-            //info.setRecord(record);
             record.commit();
         }
-        //console.log('businessName: ' + record.get('businessName'));
-        // if (form.referrer.setRecord) {
-        // form.referrer.setRecord(record);
-        // }
-        // } else {
-        // Ext.StoreManager.lookup('ContactStore').add(values);
         Ext.Viewport.setActiveItem(info);
         delete form.referrer;
     },
-    //}
     onCancelButtonTap: function(button, e, eOpts) {
         var form = this.getContactform();
         Ext.Viewport.setActiveItem(form.referrer);
