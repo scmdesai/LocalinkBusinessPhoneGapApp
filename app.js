@@ -64139,7 +64139,7 @@ Ext.define('Ext.direct.Manager', {
             var businessName = form.getAt(2).getValue();
             var phoneNumber = form.getAt(3).getValue();
             var address = form.getAt(4).getValue();
-            console.log('Record is : ' + record);
+            //console.log('Record is : ' + record);
             //if (record) {
             //console.log(businessName);
             // record.set('businessName',businessName);
