@@ -64173,13 +64173,13 @@ Ext.define('Ext.direct.Manager', {
             if (record) {
                 record.setData(values);
                 record.commit();
+                info.setRecord(record);
                 // if (form.referrer.setRecord) {
                 form.referrer.setRecord(record);
             }
             // }
             // } else {
             // Ext.StoreManager.lookup('ContactStore').add(values);
-            info.setRecord(record);
             Ext.Viewport.setActiveItem(form.referrer);
             delete form.referrer;
         }
