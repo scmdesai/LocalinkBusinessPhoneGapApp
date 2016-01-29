@@ -63517,6 +63517,7 @@ Ext.define('Ext.direct.Manager', {
     setRecord: function(record) {
         console.log('Inside Info setRecord Function');
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
+        console.log(record.get('businessName'));
         if (record) {
             var name = record.get('businessName');
             //var isFavorite = record.get('isFavorite');
