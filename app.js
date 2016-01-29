@@ -64135,23 +64135,22 @@ Ext.define('Ext.direct.Manager', {
         if (errors.length) {
             Ext.Msg.alert('Error', errors.join('<br/>'));
         } else {
-            var record = form.getRecord();
             var values;
             var businessName = form.getAt(2).getValue();
             var phoneNumber = form.getAt(3).getValue();
             var address = form.getAt(4).getValue();
-            console.log(businessName);
-            if (record) {
-                console.log(businessName);
-                record.set('businessName', businessName);
-                // record.phoneNumber = phoneNumber;
-                //  record.address = address;
-                record.commit();
-                if (form.referrer) {
-                    form.referrer.setRecord(record);
-                    console.log('Form Referrer');
-                }
+            console.log('Record is : ' + record);
+            //if (record) {
+            //console.log(businessName);
+            // record.set('businessName',businessName);
+            //record.set('phoneNumber',phoneNumber);
+            //record.set('address',address);
+            businessName.commit();
+            if (form.referrer) {
+                form.referrer.setRecord(businessName);
+                console.log('Form Referrer');
             }
+            // }
             Ext.Viewport.setActiveItem(form.referrer);
             delete form.referrer;
         }
