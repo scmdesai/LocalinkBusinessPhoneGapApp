@@ -64169,11 +64169,17 @@ Ext.define('Ext.direct.Manager', {
         } else {
             var values = form.getValues();
             var valueBusinessName = form.getAt(2).getValue();
-            console.log('Record: ' + valueBusinessName);
+            var valuePhoneNumber = form.getAt(3).getValue();
+            var valueAddress = form.getAt(4).getValue();
             var record = form.getRecord();
             //console.log('form.referrer is : ' + form.referrer.setRecord);
             //if (record) {
-            record.setData(values);
+            // record.setData(values);
+            if (!record) {
+                record.set('businessName', valueBusinessName);
+                record.set('phoneNumber', valuePhoneNumber);
+                record.set('address', valueAddress);
+            }
             info.setRecord(record);
             //info.setRecord(record);
             record.commit();
