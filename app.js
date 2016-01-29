@@ -63798,6 +63798,7 @@ Ext.define('Ext.direct.Manager', {
                         right: 5,
                         styleHtmlCls: '',
                         styleHtmlContent: true,
+                        top: 100,
                         ui: 'plain',
                         iconCls: 'add'
                     },
@@ -63852,7 +63853,69 @@ Ext.define('Ext.direct.Manager', {
                     }
                 ]
             }
+        ],
+        listeners: [
+            {
+                fn: 'onChangePictureTap',
+                event: 'tap',
+                delegate: '#changePicture'
+            }
         ]
+    },
+    onChangePictureTap: function(button, e, eOpts) {
+        var actionSheet = new Ext.ActionSheet({
+                items: [
+                    {
+                        text: 'Camera',
+                        scope: this,
+                        handler: function() {
+                            actionSheet.hide();
+                            /* phonegap camera */
+                            navigator.camera.getPicture(uploadPhoto, null, {
+                                sourceType: 1,
+                                quality: 60
+                            });
+                            function uploadPhoto(data) {
+                                // this is where you would send the image file to server
+                                //output image to screen
+                                cameraPic.src = "data:image/jpeg;base64," + data;
+                                navigator.notification.alert('Your Photo has been uploaded', // message
+                                okay, // callback
+                                'Photo Uploaded', // title
+                                'OK');
+                                // buttonName
+                                function okay() {}
+                            }
+                        }
+                    },
+                    // Do something
+                    {
+                        text: 'Photo Album',
+                        scope: this,
+                        handler: function() {
+                            actionSheet.hide();
+                            navigator.camera.getPicture(uploadPhoto, null, {
+                                sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+                                quality: 60
+                            });
+                            function uploadPhoto(data) {
+                                // this is where you would send the image file to server
+                                //output image to screen
+                                cameraPic.src = "data:image/jpeg;base64," + data;
+                                navigator.notification.alert('Your Photo has been uploaded', // message
+                                okay, // callback
+                                'Photo Uploaded', // title
+                                'OK');
+                                // buttonName
+                                function okay() {}
+                            }
+                        }
+                    }
+                ]
+            });
+        // Do something
+        Ext.Viewport.add(actionSheet);
+        actionSheet.show();
     },
     getValidationErrors: function() {
         var errors = [];
@@ -64154,9 +64217,9 @@ Ext.define('Ext.direct.Manager', {
             Ext.Msg.alert('Error', errors.join('<br/>'));
         } else {
             var values = form.getValues();
-            var valueBusinessName = form.getAt(2).getValue();
-            var valuePhoneNumber = form.getAt(3).getValue();
-            var valueAddress = form.getAt(4).getValue();
+            var valueBusinessName = form.getAt(3).getValue();
+            var valuePhoneNumber = form.getAt(4).getValue();
+            var valueAddress = form.getAt(5).getValue();
             var record = form.getRecord();
             record.set('businessName', valueBusinessName);
             record.set('phoneNumber', valuePhoneNumber);
