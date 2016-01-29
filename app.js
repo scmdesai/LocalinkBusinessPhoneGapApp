@@ -63334,78 +63334,7 @@ Ext.define('Ext.direct.Manager', {
         layout: {
             type: 'vbox',
             align: 'center'
-        },
-        items: [
-            {
-                xtype: 'button',
-                bottom: 5,
-                itemId: 'changePicture',
-                right: 5,
-                iconCls: 'add'
-            }
-        ],
-        listeners: [
-            {
-                fn: 'onChangePictureTap',
-                event: 'tap',
-                delegate: '#changePicture'
-            }
-        ]
-    },
-    onChangePictureTap: function(button, e, eOpts) {
-        var actionSheet = new Ext.ActionSheet({
-                items: [
-                    {
-                        text: 'Camera',
-                        scope: this,
-                        handler: function() {
-                            actionSheet.hide();
-                            /* phonegap camera */
-                            navigator.camera.getPicture(uploadPhoto, null, {
-                                sourceType: 1,
-                                quality: 60
-                            });
-                            function uploadPhoto(data) {
-                                // this is where you would send the image file to server
-                                //output image to screen
-                                cameraPic.src = "data:image/jpeg;base64," + data;
-                                navigator.notification.alert('Your Photo has been uploaded', // message
-                                okay, // callback
-                                'Photo Uploaded', // title
-                                'OK');
-                                // buttonName
-                                function okay() {}
-                            }
-                        }
-                    },
-                    // Do something
-                    {
-                        text: 'Photo Album',
-                        scope: this,
-                        handler: function() {
-                            actionSheet.hide();
-                            navigator.camera.getPicture(uploadPhoto, null, {
-                                sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-                                quality: 60
-                            });
-                            function uploadPhoto(data) {
-                                // this is where you would send the image file to server
-                                //output image to screen
-                                cameraPic.src = "data:image/jpeg;base64," + data;
-                                navigator.notification.alert('Your Photo has been uploaded', // message
-                                okay, // callback
-                                'Photo Uploaded', // title
-                                'OK');
-                                // buttonName
-                                function okay() {}
-                            }
-                        }
-                    }
-                ]
-            });
-        // Do something
-        Ext.Viewport.add(actionSheet);
-        actionSheet.show();
+        }
     }
 }, 0, [
     "contactpic"
@@ -63854,6 +63783,54 @@ Ext.define('Ext.direct.Manager', {
         modal: true,
         items: [
             {
+                xtype: 'container',
+                items: [
+                    {
+                        xtype: 'contactpic'
+                    },
+                    {
+                        xtype: 'button',
+                        centered: false,
+                        docked: 'top',
+                        itemId: 'changePicture',
+                        maxHeight: '10%',
+                        maxWidth: '10%',
+                        right: 5,
+                        styleHtmlCls: '',
+                        styleHtmlContent: true,
+                        ui: 'plain',
+                        iconCls: 'add'
+                    },
+                    {
+                        xtype: 'textfield',
+                        itemId: 'businessName',
+                        margin: '10px 0 0 0',
+                        label: 'Business Name',
+                        labelAlign: 'top',
+                        labelWrap: true,
+                        required: true
+                    },
+                    {
+                        xtype: 'textfield',
+                        id: 'phoneNumber',
+                        itemId: 'phoneNumber',
+                        margin: '10px 0 0 0',
+                        label: 'Phone Number',
+                        labelAlign: 'top',
+                        labelWrap: true,
+                        required: true
+                    },
+                    {
+                        xtype: 'textareafield',
+                        id: 'address',
+                        itemId: 'address',
+                        label: 'Address',
+                        labelAlign: 'top',
+                        required: true
+                    }
+                ]
+            },
+            {
                 xtype: 'toolbar',
                 docked: 'top',
                 ui: 'light',
@@ -63874,36 +63851,6 @@ Ext.define('Ext.direct.Manager', {
                         text: 'Save'
                     }
                 ]
-            },
-            {
-                xtype: 'contactpic'
-            },
-            {
-                xtype: 'textfield',
-                itemId: 'businessName',
-                margin: '10px 0 0 0',
-                label: 'Business Name',
-                labelAlign: 'top',
-                labelWrap: true,
-                required: true
-            },
-            {
-                xtype: 'textfield',
-                id: 'phoneNumber',
-                itemId: 'phoneNumber',
-                margin: '10px 0 0 0',
-                label: 'Phone Number',
-                labelAlign: 'top',
-                labelWrap: true,
-                required: true
-            },
-            {
-                xtype: 'textareafield',
-                id: 'address',
-                itemId: 'address',
-                label: 'Address',
-                labelAlign: 'top',
-                required: true
             }
         ]
     },
