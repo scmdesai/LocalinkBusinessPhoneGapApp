@@ -64136,20 +64136,12 @@ Ext.define('Ext.direct.Manager', {
             Ext.Msg.alert('Error', errors.join('<br/>'));
         } else {
             var values;
-            var record = form.getFields();
+            var record = form.getRecord();
             var businessName = form.getAt(2).getValue();
             var phoneNumber = form.getAt(3).getValue();
             var address = form.getAt(4).getValue();
             //console.log('Record is : ' + record);
-            //if (record) {
-            //console.log(businessName);
-            record.setField('businessName', businessName);
-            //record.set('phoneNumber',phoneNumber);
-            //record.set('address',address);
-            //form.down('#businessName').setValue(businessName);
-            //form.down('#phoneNumber').setValue(phoneNumber);
-            //form.down('#address').setValue(address);
-            // record.commit();
+            record.set(form.getValues());
             console.log('Record is : ' + record.get('businessName'));
         }
     },
