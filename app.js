@@ -64172,6 +64172,7 @@ Ext.define('Ext.direct.Manager', {
             //console.log('form.referrer is : ' + form.referrer.setRecord);
             //if (record) {
             record.setData(values);
+            console.log('values: ' + values);
             //info.setRecord(record);
             //console.log('Record: ' + record.getData());
             record.commit();
