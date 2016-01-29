@@ -64271,7 +64271,8 @@ Ext.define('Ext.direct.Manager', {
                             function uploadPhoto(data) {
                                 // this is where you would send the image file to server
                                 //output image to screen
-                                cameraPic.src = "data:image/jpeg;base64," + data;
+                                var image = document.getElementById('CameraPic');
+                                image.src = "data:image/jpeg;base64," + data;
                                 navigator.notification.alert('Your Photo has been uploaded', // message
                                 okay, // callback
                                 'Photo Uploaded', // title
