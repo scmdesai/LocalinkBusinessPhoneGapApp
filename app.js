@@ -63284,7 +63284,7 @@ Ext.define('Ext.direct.Manager', {
                     //view.setRecord(record.getRecord());
                     //console.log(view.getData());
                     //Ext.Viewport.setActiveItem(view);
-                    var inf = this.getParent().getContactinfo();
+                    var inf = this.getController('Contacts').getContactinfo();
                     inf.setRecord(record);
                     Ext.Viewport.setActiveItem(inf);
                 } else {
