@@ -63277,13 +63277,16 @@ Ext.define('Ext.direct.Manager', {
                     var tmp = info[0].split("\":\"");
                     var email = tmp[1];
                     //console.log(email);
-                    var store = Ext.getStore('MyJsonPStore').findRecord('emailAddress', email, 0, true, false, false);
+                    var record = Ext.getStore('MyJsonPStore').findRecord('emailAddress', email, 0, true, false, false);
                     //console.log(store.getData());
-                    store.load();
-                    var view = Ext.create('Contact.view.Info');
-                    view.setRecord(store.getRecord());
+                    //store.loadRecord();
+                    //var view = Ext.create('Contact.view.Info');
+                    //view.setRecord(record.getRecord());
                     //console.log(view.getData());
-                    Ext.Viewport.setActiveItem(view);
+                    //Ext.Viewport.setActiveItem(view);
+                    var inf = this.getParent().getContactinfo();
+                    inf.setRecord(record);
+                    Ext.Viewport.setActiveItem(inf);
                 } else {
                     console.log('no user info');
                 }
