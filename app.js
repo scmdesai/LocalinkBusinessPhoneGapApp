@@ -64169,10 +64169,10 @@ Ext.define('Ext.direct.Manager', {
         } else {
             var values = form.getValues();
             var record = form.getRecord();
-            //console.log('Record is : ' + record);
+            console.log('form.referrer is : ' + form.referrer);
             //if (record) {
             record.setData(values);
-            info.setRecord(record);
+            //info.setRecord(record);
             record.commit();
             // if (form.referrer.setRecord) {
             form.referrer.setRecord(record);
