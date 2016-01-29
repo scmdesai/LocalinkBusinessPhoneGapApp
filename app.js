@@ -63502,7 +63502,7 @@ Ext.define('Ext.direct.Manager', {
                     console.log(customerId);
                     var ds = Ext.StoreManager.lookup('MyDealsStore');
                     ds.clearFilter();
-                    // ds.filter('customerId', customerId);
+                    ds.filter('customerId', customerId);
                     var view;
                     view = Ext.Viewport.add({
                         xtype: 'DealsPanel'
@@ -63652,6 +63652,7 @@ Ext.define('Ext.direct.Manager', {
         style: 'font-size: 10px',
         deselectOnContainerClick: false,
         mode: 'MULTI',
+        emptyText: 'No Deals Uploaded',
         itemCls: 'listofdeals',
         store: 'MyDealsStore',
         onItemDisclosure: false,
