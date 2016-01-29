@@ -64137,22 +64137,22 @@ Ext.define('Ext.direct.Manager', {
         } else {
             var values;
             var record = form.getFields();
-            console.log(record);
             var businessName = form.getAt(2).getValue();
             var phoneNumber = form.getAt(3).getValue();
             var address = form.getAt(4).getValue();
             //console.log('Record is : ' + record);
             //if (record) {
             //console.log(businessName);
-            record.change('businessName', businessName);
+            record.setField('businessName', businessName);
+            //record.set('phoneNumber',phoneNumber);
+            //record.set('address',address);
+            //form.down('#businessName').setValue(businessName);
+            //form.down('#phoneNumber').setValue(phoneNumber);
+            //form.down('#address').setValue(address);
+            // record.commit();
+            console.log('Record is : ' + record.get('businessName'));
         }
     },
-    //record.set('phoneNumber',phoneNumber);
-    //record.set('address',address);
-    //form.down('#businessName').setValue(businessName);
-    //form.down('#phoneNumber').setValue(phoneNumber);
-    //form.down('#address').setValue(address);
-    // record.commit();
     /*  if (form.referrer) {
 		                    form.referrer.setRecord(record);
 							console.log('Form Referrer');
