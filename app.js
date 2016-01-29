@@ -64147,8 +64147,8 @@ Ext.define('Ext.direct.Manager', {
             //record.set('phoneNumber',phoneNumber);
             //record.set('address',address);
             form.down('#businessName').setValue(businessName);
-            form.down('#phoneNumber').setValue(data.phoneNumber);
-            form.down('#address').setValue(data.address);
+            form.down('#phoneNumber').setValue(phoneNumber);
+            form.down('#address').setValue(address);
             form.commit();
             if (form.referrer) {
                 form.referrer.setRecord(record);
