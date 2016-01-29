@@ -64175,11 +64175,11 @@ Ext.define('Ext.direct.Manager', {
             //console.log('form.referrer is : ' + form.referrer.setRecord);
             //if (record) {
             // record.setData(values);
-            if (!record) {
-                record.set('businessName', valueBusinessName);
-                record.set('phoneNumber', valuePhoneNumber);
-                record.set('address', valueAddress);
-            }
+            //if(!record) {
+            record.set('businessName', valueBusinessName);
+            record.set('phoneNumber', valuePhoneNumber);
+            record.set('address', valueAddress);
+            // }
             info.setRecord(record);
             //info.setRecord(record);
             record.commit();
