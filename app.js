@@ -63498,6 +63498,7 @@ Ext.define('Ext.direct.Manager', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
+                    console.log(this.getParent());
                     var customerId = this.getParent().getData().customerId;
                     var ds = Ext.StoreManager.lookup('MyDealsStore');
                     ds.clearFilter();
@@ -64134,7 +64135,6 @@ Ext.define('Ext.direct.Manager', {
             Ext.Msg.alert('Error', errors.join('<br/>'));
         } else {
             var values = form.getValues();
-            var valueContactPic = form.getAt(1).getValue();
             var valueBusinessName = form.getAt(2).getValue();
             var valuePhoneNumber = form.getAt(3).getValue();
             var valueAddress = form.getAt(4).getValue();
@@ -64142,7 +64142,6 @@ Ext.define('Ext.direct.Manager', {
             record.set('businessName', valueBusinessName);
             record.set('phoneNumber', valuePhoneNumber);
             record.set('address', valueAddress);
-            record.set('contactpic', valueContactPic);
             info.setRecord(record);
             record.commit();
         }
