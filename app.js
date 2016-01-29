@@ -63444,7 +63444,7 @@ Ext.define('Ext.direct.Manager', {
                                     'icon-phone',
                                     'customfield'
                                 ],
-                                disabled: true,
+                                disabled: false,
                                 height: '',
                                 html: '',
                                 itemId: 'phoneNumber',
@@ -63469,7 +63469,7 @@ Ext.define('Ext.direct.Manager', {
                                     'icon-location',
                                     'customfield'
                                 ],
-                                disabled: true,
+                                disabled: false,
                                 height: '100%',
                                 html: '',
                                 itemId: 'address',
@@ -63492,7 +63492,7 @@ Ext.define('Ext.direct.Manager', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    var customerId = this.getParent().getRecord().get('customerId');
+                    var customerId = this.getParent().getData().customerId;
                     var ds = Ext.StoreManager.lookup('MyDealsStore');
                     ds.clearFilter();
                     ds.filter('customerId', customerId);
