@@ -64162,6 +64162,7 @@ Ext.define('Ext.direct.Manager', {
 		}*/
         var form = this.getContactform();
         var errors = form.getValidationErrors();
+        var info = this.getContactinfo();
         if (errors.length) {
             Ext.Msg.alert('Error', errors.join('<br/>'));
         } else {
@@ -64171,10 +64172,11 @@ Ext.define('Ext.direct.Manager', {
             if (record) {
                 record.setData(values);
                 record.commit();
-                if (form.referrer.setRecord) {
-                    form.referrer.setRecord(record);
-                }
-            } else {}
+                // if (form.referrer.setRecord) {
+                form.referrer.setRecord(record);
+            }
+            // }
+            // } else {
             // Ext.StoreManager.lookup('ContactStore').add(values);
             Ext.Viewport.setActiveItem(form.referrer);
             delete form.referrer;
