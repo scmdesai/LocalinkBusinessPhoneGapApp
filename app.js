@@ -63279,8 +63279,9 @@ Ext.define('Ext.direct.Manager', {
                     //console.log(email);
                     var store = Ext.getStore('MyJsonPStore').findRecord('emailAddress', email, 0, true, false, false);
                     //console.log(store.getData());
+                    store.load();
                     var view = Ext.create('Contact.view.Info');
-                    view.setData(store.getData());
+                    view.setRecord(store.getRecord());
                     //console.log(view.getData());
                     Ext.Viewport.setActiveItem(view);
                 } else {
@@ -63509,7 +63510,7 @@ Ext.define('Ext.direct.Manager', {
         ]
     },
     setRecord: function(record) {
-        console.log('Inside Info setRecord Function');
+        //console.log('Inside Info setRecord Function');
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
         if (record) {
             var name = record.get('businessName');
