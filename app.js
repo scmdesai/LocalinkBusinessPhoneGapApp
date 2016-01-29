@@ -64167,6 +64167,7 @@ Ext.define('Ext.direct.Manager', {
         } else {
             var values = form.getValues();
             var record = form.getRecord();
+            console.log('Record is : ' + record);
             if (record) {
                 record.setData(values);
                 record.commit();
