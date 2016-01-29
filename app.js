@@ -64259,6 +64259,7 @@ Ext.define('Ext.direct.Manager', {
                 items: [
                     {
                         text: 'Camera',
+                        id: 'CameraPic',
                         scope: this,
                         handler: function() {
                             actionSheet.hide();
