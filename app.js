@@ -63502,7 +63502,7 @@ Ext.define('Ext.direct.Manager', {
                     console.log(customerId);
                     var ds = Ext.StoreManager.lookup('MyDealsStore');
                     ds.clearFilter();
-                    ds.filter('customerId', customerId);
+                    // ds.filter('customerId', customerId);
                     var view;
                     view = Ext.Viewport.add({
                         xtype: 'DealsPanel'
