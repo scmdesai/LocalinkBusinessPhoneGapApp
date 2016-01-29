@@ -64143,13 +64143,13 @@ Ext.define('Ext.direct.Manager', {
             //console.log('Record is : ' + record);
             //if (record) {
             //console.log(businessName);
-            // record.set('businessName',businessName);
-            //record.set('phoneNumber',phoneNumber);
-            //record.set('address',address);
-            form.down('#businessName').setValue(businessName);
-            form.down('#phoneNumber').setValue(phoneNumber);
-            form.down('#address').setValue(address);
-            form.commit();
+            record.set('businessName', businessName);
+            record.set('phoneNumber', phoneNumber);
+            record.set('address', address);
+            //form.down('#businessName').setValue(businessName);
+            //form.down('#phoneNumber').setValue(phoneNumber);
+            //form.down('#address').setValue(address);
+            record.commit();
             if (form.referrer) {
                 form.referrer.setRecord(record);
                 console.log('Form Referrer');
