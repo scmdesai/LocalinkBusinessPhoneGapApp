@@ -63825,7 +63825,7 @@ Ext.define('Ext.direct.Manager', {
                                 clearIcon: false,
                                 inputCls: 'customfield',
                                 name: 'phoneNumber',
-                                readOnly: true
+                                readOnly: false
                             },
                             {
                                 xtype: 'spacer',
@@ -63850,7 +63850,7 @@ Ext.define('Ext.direct.Manager', {
                                 clearIcon: false,
                                 inputCls: 'customfield',
                                 name: 'address',
-                                readOnly: true,
+                                readOnly: false,
                                 maxRows: 3
                             }
                         ]
@@ -64515,6 +64515,9 @@ Ext.define('Ext.direct.Manager', {
         var data = info.getData();
         //console.log(referrer.getData());
         form.referrer = referrer;
+        form.down('#phoneNumber').clearListeners();
+        form.down('#address').clearListeners();
+        form.down('#phoneNumber').enable();
         form.down('#businessName').setValue(data.businessName);
         form.down('#phoneNumber').setValue(data.phoneNumber);
         form.down('#address').setValue(data.address);
