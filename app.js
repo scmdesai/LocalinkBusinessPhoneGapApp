@@ -63652,7 +63652,7 @@ Ext.define('Ext.direct.Manager', {
         deselectOnContainerClick: false,
         mode: 'MULTI',
         deferEmptyText: false,
-        emptyText: 'No Deals Uploaded',
+        emptyText: 'No Deals',
         itemCls: 'listofdeals',
         store: 'MyDealsStore',
         onItemDisclosure: false,
