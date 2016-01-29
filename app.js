@@ -63979,9 +63979,6 @@ Ext.define('Ext.direct.Manager', {
             },
             "button#share": {
                 tap: 'onShareTap'
-            },
-            "#contactinfo": {
-                show: 'onContactinfoShow'
             }
         }
     },
@@ -64275,18 +64272,6 @@ Ext.define('Ext.direct.Manager', {
         }, function(errormsg) {
             alert(errormsg);
         });
-    },
-    onContactinfoShow: function(component, eOpts) {
-        //this.callParent(arguments);
-        console.log('On Info page');
-        var data = component.getData();
-        var businessName = data.businessName;
-        var customerId = data.customerId;
-        //console.log(this.getValues(true,true));
-        this.down('#nameTxt').setHtml(businessName);
-        this.down('#phoneNumber').setValue(data.phoneNumber);
-        this.down('#address').setValue(data.address);
-        this.down('contactpic').setHtml('<img src="' + data.picture + '"/>');
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.controller,
