@@ -64253,16 +64253,17 @@ Ext.define('Ext.direct.Manager', {
 
 		    Ext.Viewport.setActiveItem(form.referrer);
 		   delete form.referrer;*/
-        //var form = this.getContactform();
-        var form = Ext.getCmp('formpanel').getForm();
+        var form = this.getContactform();
+        //var form = Ext.getCmp('formpanel').getForm();
         var errors = form.getValidationErrors();
         if (errors.length) {
             Ext.Msg.alert('Error', errors.join('<br/>'));
         } else {
             var values = form.getValues();
             var record = form.getRecord();
+            var valueBusinessName = form.get('businessName').getValue();
+            console.log('Values are : ' + valueBusinessName);
             if (record) {
-                console.log('Values are : ' + values);
                 record.setData(values);
                 record.commit();
                 if (form.referrer.setRecord) {
