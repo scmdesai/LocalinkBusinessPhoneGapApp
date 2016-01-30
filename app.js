@@ -63944,6 +63944,9 @@ Ext.define('Ext.direct.Manager', {
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
         if (record) {
             this.child('contactpic').setData(record.data);
+            this.child('businessName').setData(record.data);
+            this.child('phoneNumber').setData(record.data);
+            this.child('address').setData(record.data);
         }
     }
 }, 0, [
