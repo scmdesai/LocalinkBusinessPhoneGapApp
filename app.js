@@ -64232,12 +64232,12 @@ Ext.define('Ext.direct.Manager', {
             record.set('businessName', valueBusinessName);
             record.set('phoneNumber', valuePhoneNumber);
             record.set('address', valueAddress);
-            info.setRecord(record);
             record.commit();
+            info.setRecord(record);
         }
         Ext.Viewport.setActiveItem(info);
-        delete form.referrer;
     },
+    // delete form.referrer;
     onCancelButtonTap: function(button, e, eOpts) {
         var form = this.getContactform();
         Ext.Viewport.setActiveItem(form.referrer);
@@ -64328,13 +64328,10 @@ Ext.define('Ext.direct.Manager', {
         el.setAttribute('class', 'checkbox_visible');
     },
     onShareTap: function(button, e, eOpts) {
-        window.plugins.socialsharing('Message via Facebook', null, /* img */
-        null, /* url */
-        function() {
-            console.log('share ok');
-        }, function(errormsg) {
-            alert(errormsg);
-        });
+        //window.plugins.socialsharing('Message via Facebook', null /* img */, null /* url */, function() {console.log('share ok');}, function(errormsg){alert(errormsg);});
+        var record = button.getParent().getParent().getData();
+        //console.log(businessName.customerId);
+        window.plugins.socialsharing.share('Hi!Check out the latest deal from ' + record.customerId, null, null, record.dealPictureURL);
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.controller,
