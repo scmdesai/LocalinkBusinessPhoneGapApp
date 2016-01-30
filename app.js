@@ -63795,7 +63795,8 @@ Ext.define('Ext.direct.Manager', {
  */
 (Ext.cmd.derive('Contact.view.Form', Ext.form.Panel, {
     config: {
-        itemId: 'myformpanel',
+        id: 'formpanel',
+        itemId: 'formpanel',
         modal: true,
         items: [
             {
@@ -63942,7 +63943,7 @@ Ext.define('Ext.direct.Manager', {
     },
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
-        var form = this.getContactform();
+        var form = Ext.getCmp('formpanel');
         if (record) {
             this.child('contactpic').setData(record.data);
             form.getForm().loadRecord(record);
