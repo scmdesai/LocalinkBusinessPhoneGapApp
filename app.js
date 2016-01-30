@@ -63222,12 +63222,26 @@ Ext.define('Ext.direct.Manager', {
  */
 (Ext.cmd.derive('Contact.view.Login', Ext.Container, {
     config: {
-        html: '<h1>Welcome to LocalLink!</h1>',
+        html: '<h3><b>Welcome to Local Link!</b></h3> <p>With this app you can stay in touch with your customers.In order to use Local Link, you must sign in with your Facebook account.</p>',
+        maxHeight: '',
+        styleHtmlContent: true,
+        layout: {
+            type: 'card',
+            animation: 'pop'
+        },
         items: [
             {
                 xtype: 'button',
+                centered: true,
+                cls: 'fbButton',
+                id: 'Login',
                 itemId: 'Login',
-                ui: 'confirm-small',
+                maxHeight: '10%',
+                maxWidth: '40%',
+                style: '',
+                styleHtmlCls: '',
+                ui: 'action-round',
+                width: '60%',
                 text: 'Login'
             }
         ],
@@ -63376,6 +63390,7 @@ Ext.define('Ext.direct.Manager', {
         items: [
             {
                 xtype: 'toolbar',
+                cls: 'x-toolbar-dark',
                 docked: 'top',
                 style: 'font-size:6vw',
                 ui: 'light',
