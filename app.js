@@ -63240,9 +63240,8 @@ Ext.define('Ext.direct.Manager', {
                 maxWidth: '40%',
                 style: '',
                 styleHtmlCls: '',
-                ui: 'action-round',
                 width: '60%',
-                text: 'Login'
+                iconCls: ''
             }
         ],
         listeners: [
@@ -63800,6 +63799,7 @@ Ext.define('Ext.direct.Manager', {
         items: [
             {
                 xtype: 'toolbar',
+                cls: 'x-toolbar-dark',
                 docked: 'top',
                 ui: 'light',
                 items: [
@@ -63826,6 +63826,7 @@ Ext.define('Ext.direct.Manager', {
             {
                 xtype: 'button',
                 centered: false,
+                cls: 'changePic',
                 docked: 'top',
                 itemId: 'changePicture',
                 maxHeight: '10%',
