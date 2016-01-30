@@ -64260,8 +64260,6 @@ Ext.define('Ext.direct.Manager', {
         } else {
             var values = form.getValues();
             var record = form.getRecord();
-            var fields = form.getFields().isArray();
-            console.log(fields);
             if (record) {
                 console.log('Values are : ' + values.data);
                 record.setData(values);
