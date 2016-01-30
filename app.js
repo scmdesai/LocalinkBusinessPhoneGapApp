@@ -64477,7 +64477,8 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 xtype: 'listofdeals',
-                ui: 'normal'
+                ui: 'normal',
+                itemCls: 'listofdealsScss'
             },
             {
                 xtype: 'container',
