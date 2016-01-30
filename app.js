@@ -64383,7 +64383,7 @@ Ext.define('Ext.direct.Manager', {
         actionSheet.show();
     },
     onDeleteDealTap: function(button, e, eOpts) {
-        var el = document.getElementById('chkbox');
+        var el = document.getElementById('chkbx');
         console.log(el.getAttribute('class'));
     },
     //el.setAttribute('display','normal'); //    ('class','checkbox_visible');
