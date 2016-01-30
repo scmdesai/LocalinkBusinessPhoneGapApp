@@ -63659,16 +63659,17 @@ Ext.define('Ext.direct.Manager', {
  */
 (Ext.cmd.derive('Contact.view.ListOfDeals', Ext.dataview.List, {
     config: {
-        cls: 'listofdeals',
+        cls: 'checkbox_hidden',
         height: '100%',
         id: 'ListOfDeals',
         itemId: 'ListOfDeals',
         style: 'font-size: 10px',
+        ui: 'round',
         deselectOnContainerClick: false,
         mode: 'MULTI',
         deferEmptyText: false,
         emptyText: 'No Deals',
-        itemCls: 'listofdeals',
+        itemCls: 'checkbox_hidden',
         store: 'MyDealsStore',
         onItemDisclosure: false,
         pinHeaders: false,
@@ -63677,7 +63678,7 @@ Ext.define('Ext.direct.Manager', {
         striped: true,
         useSimpleItems: false,
         itemTpl: [
-            '<div style="font-size:20px" >{dealName}<input type="checkbox"  class="checkbox_hidden" name="checkbox" style="zoom:2;float:right;" id= "chkbx" ></div>',
+            '<div style="font-size:20px" >{dealName}<input type="checkbox"  class="checkbox_hidden" name="checkbox" style="zoom:1.5;float:right;display:none;" id= "chkbx" ></div>',
             '',
             '',
             '<div style="color:#0000FF;font-size:12px;font-style:italics">{dealStartDate} - {dealEndDate}</div>',
@@ -64454,6 +64455,7 @@ Ext.define('Ext.direct.Manager', {
  */
 (Ext.cmd.derive('Contact.view.DealsPanel', Ext.Panel, {
     config: {
+        cls: 'listofdeals',
         itemId: 'dealsPanel',
         minHeight: '100%',
         padding: '5 5 5 5',
@@ -64473,7 +64475,8 @@ Ext.define('Ext.direct.Manager', {
                 ]
             },
             {
-                xtype: 'listofdeals'
+                xtype: 'listofdeals',
+                ui: 'normal'
             },
             {
                 xtype: 'container',
