@@ -64262,13 +64262,13 @@ Ext.define('Ext.direct.Manager', {
             var values = form.getValues();
             var record = form.getRecord();
             console.log(record.getData());
-            var valueContactPic = form.getAt(2).getValue();
+            //var valueContactPic = form.getAt(2).getValue();
             var valueBusinessName = form.getAt(3).getValue();
             var valuePhoneNumber = form.getAt(4).getValue();
             var valueAddress = form.getAt(5).getValue();
-            console.log('valueBusinessName : ' + valueContactPic);
+            //console.log('valueBusinessName : ' + valueContactPic);
             if (record) {
-                record.setData(values);
+                //record.setData(values);
                 record.set('businessName', valueBusinessName);
                 record.set('phoneNumber', valuePhoneNumber);
                 record.set('address', valueAddress);
