@@ -64261,7 +64261,7 @@ Ext.define('Ext.direct.Manager', {
             console.log('Record is : ' + record);
             if (record) {
                 console.log('Record is not null');
-                console.log('Values are : ' + values);
+                console.log('Values are : ' + values.businessName);
                 record.setData(values);
                 record.commit();
                 if (form.referrer.setRecord) {
