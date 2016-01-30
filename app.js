@@ -64266,7 +64266,7 @@ Ext.define('Ext.direct.Manager', {
                 }
             } else {}
             //   Ext.StoreManager.lookup('ContactStore').add(values);
-            Ext.Viewport.setActiveItem(form.referrer);
+            Ext.Viewport.setActiveItem(form.referrer.setRecord(record));
             delete form.referrer;
         }
     },
