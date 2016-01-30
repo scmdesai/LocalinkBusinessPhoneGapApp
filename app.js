@@ -64266,9 +64266,9 @@ Ext.define('Ext.direct.Manager', {
             var valueBusinessName = form.getAt(3).getValue();
             var valuePhoneNumber = form.getAt(4).getValue();
             var valueAddress = form.getAt(5).getValue();
-            //console.log('valueBusinessName : ' + valueContactPic);
+            console.log('valueBusinessName : ' + value.businessName);
             if (record) {
-                //record.setData(values);
+                record.setData(values);
                 record.set('businessName', valueBusinessName);
                 record.set('phoneNumber', valuePhoneNumber);
                 record.set('address', valueAddress);
