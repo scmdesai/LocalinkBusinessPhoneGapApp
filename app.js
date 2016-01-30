@@ -63943,10 +63943,9 @@ Ext.define('Ext.direct.Manager', {
     },
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
-        var form = Ext.getCmp('formpanel');
         if (record) {
             this.child('contactpic').setData(record.data);
-            form.getForm().loadRecord(record);
+            this.down('#businessName').setValue(record.data);
         }
     }
 }, 0, [
