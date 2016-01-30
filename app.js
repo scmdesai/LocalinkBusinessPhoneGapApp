@@ -64274,6 +64274,7 @@ Ext.define('Ext.direct.Manager', {
             var valuePicture = record.get('picture');
             var valueState = record.get('state');
             var valueZipcode = record.get('zipcode');
+            var valueId = record.get('id');
             //console.log('valueBusinessName : ' + values);
             if (record) {
                 record.setData(values);
@@ -64286,6 +64287,7 @@ Ext.define('Ext.direct.Manager', {
                 record.set('picture', valuePicture);
                 record.set('state', valueState);
                 record.set('zipcode', valueZipcode);
+                record.set('id', valueId);
                 record.commit();
                 if (form.referrer.setRecord) {
                     console.log(record.getData());
