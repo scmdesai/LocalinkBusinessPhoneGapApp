@@ -64261,7 +64261,7 @@ Ext.define('Ext.direct.Manager', {
         } else {
             var values = form.getValues();
             var record = form.getRecord();
-            var valueBusinessName = form.getAttribute('businessName');
+            var valueBusinessName = form.getField('businessName');
             console.log('valueBusinessName : ' + valueBusinessName);
             if (record) {
                 record.setData(values);
