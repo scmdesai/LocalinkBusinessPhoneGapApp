@@ -64218,26 +64218,58 @@ Ext.define('Ext.direct.Manager', {
         form.setRecord(info.getRecord());
     },
     onSaveContactButtonTap: function(button, e, eOpts) {
+        /*var form = this.getContactform();
+		var errors = form.getValidationErrors();
+		//var info = this.getContactinfo();
+
+		if (errors.length) {
+		    Ext.Msg.alert('Error', errors.join('<br/>'));
+		} else {
+		    var values = form.getValues();
+
+			var valueBusinessName = form.getAt(3).getValue();
+			var valuePhoneNumber = form.getAt(4).getValue();
+			var valueAddress = form.getAt(5).getValue();
+
+
+		    var record = form.getRecord();
+
+			      record.set('businessName',valueBusinessName);
+			      record.set('phoneNumber',valuePhoneNumber);
+			      record.set('address',valueAddress);
+		          record.commit();
+
+
+			    // info.setRecord(record);
+
+
+
+
+
+
+		   }
+
+		    Ext.Viewport.setActiveItem(form.referrer);
+		   delete form.referrer;*/
         var form = this.getContactform();
         var errors = form.getValidationErrors();
-        var info = this.getContactinfo();
         if (errors.length) {
             Ext.Msg.alert('Error', errors.join('<br/>'));
         } else {
             var values = form.getValues();
-            var valueBusinessName = form.getAt(3).getValue();
-            var valuePhoneNumber = form.getAt(4).getValue();
-            var valueAddress = form.getAt(5).getValue();
             var record = form.getRecord();
-            record.set('businessName', valueBusinessName);
-            record.set('phoneNumber', valuePhoneNumber);
-            record.set('address', valueAddress);
-            record.commit();
-            info.setRecord(record);
+            if (record) {
+                record.setData(values);
+                record.commit();
+                if (form.referrer.setRecord) {
+                    form.referrer.setRecord(record);
+                }
+            } else {}
+            //   Ext.StoreManager.lookup('ContactStore').add(values);
+            Ext.Viewport.setActiveItem(form.referrer);
+            delete form.referrer;
         }
-        Ext.Viewport.setActiveItem(info);
     },
-    // delete form.referrer;
     onCancelButtonTap: function(button, e, eOpts) {
         var form = this.getContactform();
         Ext.Viewport.setActiveItem(form.referrer);
