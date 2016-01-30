@@ -64258,7 +64258,7 @@ Ext.define('Ext.direct.Manager', {
         if (errors.length) {
             Ext.Msg.alert('Error', errors.join('<br/>'));
         } else {
-            var values = form.getValues();
+            var values = Ext.getCmp('formpanel').getValues();
             var record = form.getRecord();
             if (record) {
                 console.log('Values are : ' + values);
