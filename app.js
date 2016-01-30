@@ -64258,7 +64258,6 @@ Ext.define('Ext.direct.Manager', {
         } else {
             var values = form.getValues();
             var record = form.getRecord();
-            console.log('Record is : ' + record);
             if (record) {
                 console.log('Record is not null');
                 console.log('Values are : ' + values);
@@ -64266,6 +64265,7 @@ Ext.define('Ext.direct.Manager', {
                 record.commit();
                 if (form.referrer.setRecord) {
                     console.log('form.referrer.setRecord is not null');
+                    console.log('Record is : ' + record.getData());
                     form.referrer.setRecord(record);
                 }
             } else {
