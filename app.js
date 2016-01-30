@@ -64383,11 +64383,10 @@ Ext.define('Ext.direct.Manager', {
         actionSheet.show();
     },
     onDeleteDealTap: function(button, e, eOpts) {
-        var el = document.getElementById('chkbx');
-        console.log(el.getAttribute('display'));
-        el.setAttribute('display', 'normal');
+        var el = document.getElementById('ListOfDeals');
+        console.log(el.getAttribute('class'));
     },
-    //    ('class','checkbox_visible');
+    //el.setAttribute('display','normal'); //    ('class','checkbox_visible');
     onShareTap: function(button, e, eOpts) {
         //window.plugins.socialsharing('Message via Facebook', null /* img */, null /* url */, function() {console.log('share ok');}, function(errormsg){alert(errormsg);});
         var record = button.getParent().getParent().getData();
