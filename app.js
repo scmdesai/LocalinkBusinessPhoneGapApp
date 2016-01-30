@@ -64264,9 +64264,10 @@ Ext.define('Ext.direct.Manager', {
                 if (form.referrer.setRecord) {
                     form.referrer.setRecord(record);
                 }
-            } else {}
-            //   Ext.StoreManager.lookup('ContactStore').add(values);
-            Ext.Viewport.setActiveItem(form.referrer.setRecord(record));
+            } else {
+                Ext.StoreManager.lookup('MyJsonPStore').add(values);
+            }
+            Ext.Viewport.setActiveItem(form.referrer);
             delete form.referrer;
         }
     },
