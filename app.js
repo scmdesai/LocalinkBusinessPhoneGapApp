@@ -64253,7 +64253,8 @@ Ext.define('Ext.direct.Manager', {
 
 		    Ext.Viewport.setActiveItem(form.referrer);
 		   delete form.referrer;*/
-        var form = this.getContactform();
+        //var form = this.getContactform();
+        var form = Ext.getCmp('formpanel').getForm();
         var errors = form.getValidationErrors();
         if (errors.length) {
             Ext.Msg.alert('Error', errors.join('<br/>'));
