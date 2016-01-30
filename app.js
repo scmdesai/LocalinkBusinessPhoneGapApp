@@ -63659,7 +63659,7 @@ Ext.define('Ext.direct.Manager', {
  */
 (Ext.cmd.derive('Contact.view.ListOfDeals', Ext.dataview.List, {
     config: {
-        cls: 'tpl-29v0zg8q',
+        cls: 'listofdeals',
         height: '100%',
         id: 'ListOfDeals',
         itemId: 'ListOfDeals',
@@ -63677,7 +63677,7 @@ Ext.define('Ext.direct.Manager', {
         striped: true,
         useSimpleItems: false,
         itemTpl: [
-            '<div style="font-size:20px" >{dealName}<input type="checkbox" class="checkbox_hidden" name="checkbox" style="zoom:2;float:right;" id= "chkbx" ></div>',
+            '<div style="font-size:20px" >{dealName}<input type="checkbox"  class="checkbox_hidden" name="checkbox" style="zoom:2;float:right;" id= "chkbx" ></div>',
             '',
             '',
             '<div style="color:#0000FF;font-size:12px;font-style:italics">{dealStartDate} - {dealEndDate}</div>',
