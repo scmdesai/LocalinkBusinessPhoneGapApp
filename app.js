@@ -64257,6 +64257,8 @@ Ext.define('Ext.direct.Manager', {
         var form = this.getContactform();
         //var form = Ext.getCmp('formpanel').getForm();
         var errors = form.getValidationErrors();
+        console.log('On Save Button Tap');
+        console.log('Record is :' + record.getData());
         if (errors.length) {
             Ext.Msg.alert('Error', errors.join('<br/>'));
         } else {
