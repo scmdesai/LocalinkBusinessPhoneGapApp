@@ -64384,9 +64384,9 @@ Ext.define('Ext.direct.Manager', {
     },
     onDeleteDealTap: function(button, e, eOpts) {
         var el = document.getElementById('chkbx');
-        el.removeAttribute('class');
-        el.setAttribute('class', 'checkbox_visible');
-        console.log(el.getAttribute('style'));
+        //el.removeAttribute('class');
+        //el.setAttribute('class','checkbox_visible');
+        el.setAttribute('style', 'zoom:1.5;float:right;display:normal;');
     },
     //el.setAttribute('display','normal'); //    ('class','checkbox_visible');
     onShareTap: function(button, e, eOpts) {
