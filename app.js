@@ -64261,10 +64261,12 @@ Ext.define('Ext.direct.Manager', {
         } else {
             var values = form.getValues();
             var record = form.getRecord();
+            console.log(record.getData());
+            var valueContactPic = form.getAt(2).getValue();
             var valueBusinessName = form.getAt(3).getValue();
             var valuePhoneNumber = form.getAt(4).getValue();
             var valueAddress = form.getAt(5).getValue();
-            //console.log('valueBusinessName : ' + valueBusinessName);
+            console.log('valueBusinessName : ' + valueContactPic);
             if (record) {
                 record.setData(values);
                 record.set('businessName', valueBusinessName);
