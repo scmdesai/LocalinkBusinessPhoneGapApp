@@ -64262,7 +64262,7 @@ Ext.define('Ext.direct.Manager', {
         } else {
             var values = form.getValues();
             var record = form.getRecord();
-            console.log(record.getData());
+            console.log('Record is :' + record.getData());
             //var valueContactPic = form.getAt(2).getValue();
             var valueBusinessName = form.getAt(3).getValue();
             var valuePhoneNumber = form.getAt(4).getValue();
@@ -64290,9 +64290,8 @@ Ext.define('Ext.direct.Manager', {
                     console.log(record.getData());
                     form.referrer.setRecord(record);
                 }
-            } else {
-                Ext.StoreManager.lookup('MyJsonPStore').add(values);
-            }
+            } else {}
+            //Ext.StoreManager.lookup('MyJsonPStore').add(values);
             Ext.Viewport.setActiveItem(form.referrer);
             delete form.referrer;
         }
