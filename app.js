@@ -64261,10 +64261,11 @@ Ext.define('Ext.direct.Manager', {
             console.log('Record is : ' + record);
             if (record) {
                 console.log('Record is not null');
-                console.log('Values are : ' + values.businessName);
+                console.log('Values are : ' + values);
                 record.setData(values);
                 record.commit();
                 if (form.referrer.setRecord) {
+                    console.log('form.referrer.setRecord is not null');
                     form.referrer.setRecord(record);
                 }
             } else {
