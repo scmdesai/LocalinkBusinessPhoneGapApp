@@ -64261,17 +64261,24 @@ Ext.define('Ext.direct.Manager', {
         } else {
             var values = form.getValues();
             var record = form.getRecord();
-            if (record) {
-                //record.setData(values);
-                record.setValues(values);
-                record.commit();
-                if (form.referrer.setRecord) {
-                    console.log(record.getData());
-                    form.referrer.setRecord(record);
-                }
-            } else {
-                Ext.StoreManager.lookup('MyJsonPStore').add(values);
-            }
+            form.updateRecord(record);
+            /*if (record) {
+
+
+
+				record.setData(values);
+
+
+				record.commit();
+
+				if (form.referrer.setRecord) {
+					console.log(record.getData());
+
+					form.referrer.setRecord(record);
+				}
+			} else {
+				Ext.StoreManager.lookup('MyJsonPStore').add(values);
+			}*/
             Ext.Viewport.setActiveItem(form.referrer);
             delete form.referrer;
         }
