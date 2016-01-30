@@ -63942,9 +63942,10 @@ Ext.define('Ext.direct.Manager', {
     },
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
+        var form = this.getContactform();
         if (record) {
             this.child('contactpic').setData(record.data);
-            this.down('#businessName').setData(record.businessName);
+            form.getForm().loadRecord(record);
         }
     }
 }, 0, [
