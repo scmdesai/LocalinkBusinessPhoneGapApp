@@ -63948,6 +63948,8 @@ Ext.define('Ext.direct.Manager', {
         if (record) {
             this.child('contactpic').setData(record.data);
             this.down('#businessName').setValue(record.data.businessName);
+            this.down('#phoneNumber').setValue(record.data.phoneNumber);
+            this.down('#address').setValue(record.data.address);
         }
     }
 }, 0, [
