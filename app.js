@@ -64266,12 +64266,24 @@ Ext.define('Ext.direct.Manager', {
             var valueBusinessName = form.getAt(3).getValue();
             var valuePhoneNumber = form.getAt(4).getValue();
             var valueAddress = form.getAt(5).getValue();
-            console.log('valueBusinessName : ' + values[3]);
+            var valueCategory = record.get('category');
+            var valueCustomerId = record.get('customerId');
+            var valueEmailAddress = record.get('emailAddress');
+            var valuePicture = record.get('picture');
+            var valueState = record.get('state');
+            var valueZipcode = record.get('zipcode');
+            //console.log('valueBusinessName : ' + values);
             if (record) {
                 record.setData(values);
                 record.set('businessName', valueBusinessName);
                 record.set('phoneNumber', valuePhoneNumber);
                 record.set('address', valueAddress);
+                record.set('category', valueCategory);
+                record.set('customerId', valueCustomerId);
+                record.set('emailAddress', valueEmailAddress);
+                record.set('picture', valuePicture);
+                record.set('state', valueState);
+                record.set('zipcode', valueZipcode);
                 record.commit();
                 if (form.referrer.setRecord) {
                     console.log(record.getData());
