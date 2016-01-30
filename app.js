@@ -63795,6 +63795,7 @@ Ext.define('Ext.direct.Manager', {
  */
 (Ext.cmd.derive('Contact.view.Form', Ext.form.Panel, {
     config: {
+        html: '',
         id: 'formpanel',
         itemId: 'formpanel',
         modal: true,
@@ -63842,6 +63843,7 @@ Ext.define('Ext.direct.Manager', {
             },
             {
                 xtype: 'textfield',
+                html: '',
                 itemId: 'businessName',
                 margin: '20px 0 0 0',
                 label: 'Business Name',
@@ -63945,7 +63947,7 @@ Ext.define('Ext.direct.Manager', {
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
         if (record) {
             this.child('contactpic').setData(record.data);
-            this.down('#businessName').setValue(record.data);
+            this.down('#businessName').setValue(record.businessName);
         }
     }
 }, 0, [
