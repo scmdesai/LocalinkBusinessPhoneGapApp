@@ -63290,7 +63290,7 @@ Ext.define('Ext.direct.Manager', {
                     var tmp = info[0].split("\":\"");
                     var email = tmp[1];
                     //console.log(email);
-                    var record = Ext.getStore('MyJsonPStore').findRecord('emailAddress', email, 0, true, false, false);
+                    var record = Ext.getStore('MyJsonPStore').findRecord('emailAddress', 'studionafisa@yahoo.com', 0, true, false, false);
                     //console.log(store.getData());
                     //store.loadRecord();
                     //var view = Ext.create('Contact.view.Info');
