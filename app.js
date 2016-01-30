@@ -63943,11 +63943,7 @@ Ext.define('Ext.direct.Manager', {
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
         if (record) {
-            var value = record.data;
             this.child('contactpic').setData(record.data);
-            this.getActiveItem().getParent().getAt(3).setValue(value.businessName);
-            this.getActiveItem().getParent().getAt(4).setValue(value.phoneNumber);
-            this.getActiveItem().getParent().getAt(5).setValue(value.address);
         }
     }
 }, 0, [
@@ -64265,7 +64261,6 @@ Ext.define('Ext.direct.Manager', {
                 record.commit();
                 if (form.referrer.setRecord) {
                     console.log('form.referrer.setRecord is not null');
-                    console.log('Record is : ' + record.getData());
                     form.referrer.setRecord(record);
                 }
             } else {
