@@ -63233,15 +63233,16 @@ Ext.define('Ext.direct.Manager', {
             {
                 xtype: 'button',
                 centered: true,
-                cls: 'fbButton',
                 id: 'Login',
                 itemId: 'Login',
                 maxHeight: '10%',
                 maxWidth: '40%',
                 style: '',
                 styleHtmlCls: '',
+                ui: 'action-round',
                 width: '60%',
-                iconCls: ''
+                iconCls: '',
+                text: 'Login'
             }
         ],
         listeners: [
@@ -63826,7 +63827,6 @@ Ext.define('Ext.direct.Manager', {
             {
                 xtype: 'button',
                 centered: false,
-                cls: 'changePic',
                 docked: 'top',
                 itemId: 'changePicture',
                 maxHeight: '10%',
