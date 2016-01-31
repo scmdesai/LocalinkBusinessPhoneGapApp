@@ -67265,10 +67265,10 @@ Ext.define('Ext.picker.Picker', {
             var record = form.getRecord();
             console.log('Record is :' + record.getData());
             //var valueContactPic = form.getAt(2).getValue();
-            /*var valueBusinessName = form.getAt(3).getValue();
-			var valuePhoneNumber = form.getAt(4).getValue();
-			var valueAddress = form.getAt(5).getValue();
-			var valueCategory = record.get('category');
+            var valueBusinessName = form.getAt(3).getValue();
+            var valuePhoneNumber = form.getAt(4).getValue();
+            var valueAddress = form.getAt(5).getValue();
+            /*var valueCategory = record.get('category');
 			var valueCustomerId = record.get('customerId');
 			var valueEmailAddress = record.get('emailAddress');
 			var valuePicture = record.get('picture');
@@ -67279,12 +67279,10 @@ Ext.define('Ext.picker.Picker', {
 			//console.log('valueBusinessName : ' + values);*/
             if (record) {
                 record.setData(values);
-                /*record.set('businessName',valueBusinessName);
-				record.set('phoneNumber',valuePhoneNumber);
-		        record.set('address',valueAddress);
-
-
-				record.set('category',valueCategory);
+                record.set('businessName', valueBusinessName);
+                record.set('phoneNumber', valuePhoneNumber);
+                record.set('address', valueAddress);
+                /*record.set('category',valueCategory);
 				record.set('customerId',valueCustomerId);
 		        record.set('emailAddress',valueEmailAddress);
 
