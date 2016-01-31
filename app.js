@@ -67320,7 +67320,7 @@ Ext.define('Ext.picker.Picker', {
 			Ext.Viewport.setActiveItem(form.referrer);
 			delete form.referrer;
 		}*/
-        var form = this.getContctForm();
+        var form = this.getContactform();
         // get the form panel
         record = form.getRecord();
         // get the underlying model instance
