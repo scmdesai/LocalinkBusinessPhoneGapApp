@@ -67349,7 +67349,8 @@ Ext.define('Ext.picker.Picker', {
 		 });
 		Ext.Viewport.add(actionSheet);
 		        actionSheet.show();*/
-        Ext.Viewport.add('Contact.view.UploadDealForm');
+        var view = Ext.Viewport.add('Contact.view.UploadDealForm');
+        Ext.Viewport.setActiveItem(view);
     },
     onDeleteDealTap: function(button, e, eOpts) {
         var el = document.getElementById('ListOfDeals');
