@@ -66760,6 +66760,7 @@ Ext.define('Ext.picker.Picker', {
                             {
                                 fn: function(element, eOpts) {
                                     console.log('Save Button painted');
+                                    console.log(this.getListeners());
                                 },
                                 event: 'painted'
                             }
@@ -67218,7 +67219,6 @@ Ext.define('Ext.picker.Picker', {
                 record.set('zipcode', valueZipcode);
                 record.commit();
                 if (form.referrer.setRecord) {
-                    //console.log(record.getData());
                     form.referrer.setRecord(record);
                 }
             } else {}
