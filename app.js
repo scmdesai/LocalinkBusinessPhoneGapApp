@@ -66842,27 +66842,33 @@ Ext.define('Ext.picker.Picker', {
                 required: true
             },
             {
-                xtype: 'hiddenfield',
+                xtype: 'textfield',
+                hidden: true,
                 name: 'customerId'
             },
             {
-                xtype: 'hiddenfield',
+                xtype: 'textfield',
+                hidden: true,
                 name: 'category'
             },
             {
-                xtype: 'hiddenfield',
+                xtype: 'textfield',
+                hidden: true,
                 name: 'emailAddress'
             },
             {
-                xtype: 'hiddenfield',
+                xtype: 'textfield',
+                hidden: true,
                 name: 'city'
             },
             {
-                xtype: 'hiddenfield',
+                xtype: 'textfield',
+                hidden: true,
                 name: 'state'
             },
             {
-                xtype: 'hiddenfield',
+                xtype: 'textfield',
+                hidden: true,
                 name: 'zipcode'
             },
             {
