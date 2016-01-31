@@ -66470,6 +66470,11 @@ Ext.define('Ext.picker.Picker', {
                                 name: 'address',
                                 readOnly: true,
                                 maxRows: 3
+                            },
+                            {
+                                xtype: 'hiddenfield',
+                                itemId: 'customerId',
+                                name: 'customerId'
                             }
                         ]
                     }
@@ -66492,11 +66497,6 @@ Ext.define('Ext.picker.Picker', {
                 id: 'manageDeals',
                 itemId: 'manageDeals',
                 text: 'Manage Deals'
-            },
-            {
-                xtype: 'hiddenfield',
-                itemId: 'customerId',
-                name: 'customerId'
             }
         ]
     },
@@ -67202,35 +67202,40 @@ Ext.define('Ext.picker.Picker', {
         }, this);
     },
     onEditButtonTap: function(button, e, eOpts) {
+        /*var referrer = Ext.Viewport.getActiveItem();
+		var form = this.getContactform();
+		var info = this.getContactinfo();
+		var data = info.getData();
+
+
+
+		form.referrer = referrer;
+		//form.down('#phoneNumber').clearListeners();
+		//form.down('#address').clearListeners();
+		//form.down('#phoneNumber').enable();
+		form.down('#businessName').setValue(data.businessName);
+		form.down('#phoneNumber').setValue(data.phoneNumber);
+		form.down('#address').setValue(data.address);
+		//console.log('form.businessName: ' + form.businessName);
+		//form.down('contactpic').setHtml('<img src="' + data.picture + '"/>');
+
+
+		form.down('#customerId').setValue(data.customerId);
+
+			form.child('#category').setValue(data.category);
+			form.down('#emailAddress').setValue(data.emailAddress);
+			form.down('#city').setValue(data.city);
+			form.down('#state').setValue(data.state);
+			form.down('#zipcode').setValue(data.zipcode);
+			this.down('#picture').setValue(data.picture);*/
+        //Ext.Viewport.setActiveItem(form);
         var referrer = Ext.Viewport.getActiveItem();
         var form = this.getContactform();
         var info = this.getContactinfo();
-        var data = info.getData();
-        console.log(referrer.getData());
         form.referrer = referrer;
-        //form.down('#phoneNumber').clearListeners();
-        //form.down('#address').clearListeners();
-        //form.down('#phoneNumber').enable();
-        form.down('#businessName').setValue(data.businessName);
-        form.down('#phoneNumber').setValue(data.phoneNumber);
-        form.down('#address').setValue(data.address);
-        //console.log('form.businessName: ' + form.businessName);
-        //form.down('contactpic').setHtml('<img src="' + data.picture + '"/>');
-        form.down('#customerId').setValue(data.customerId);
-        form.child('#category').setValue(data.category);
-        form.down('#emailAddress').setValue(data.emailAddress);
-        form.down('#city').setValue(data.city);
-        form.down('#state').setValue(data.state);
-        form.down('#zipcode').setValue(data.zipcode);
-        this.down('#picture').setValue(data.picture);
+        Ext.Viewport.setActiveItem(form);
+        form.setRecord(info.getRecord());
     },
-    //Ext.Viewport.setActiveItem(form);
-    /*   var referrer = Ext.Viewport.getActiveItem();
-		        var form = this.getContactform();
-		        var info = this.getContactinfo();
-		        form.referrer = referrer;
-		        Ext.Viewport.setActiveItem(form);
-		        form.setRecord(info.getRecord());*/
     onSaveContactButtonTap: function(button, e, eOpts) {
         /*var form = this.getContactform();
 		var errors = form.getValidationErrors();
