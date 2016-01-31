@@ -66472,7 +66472,8 @@ Ext.define('Ext.picker.Picker', {
                                 maxRows: 3
                             },
                             {
-                                xtype: 'hiddenfield',
+                                xtype: 'textfield',
+                                hidden: true,
                                 itemId: 'customerId',
                                 name: 'customerId'
                             }
@@ -67233,7 +67234,6 @@ Ext.define('Ext.picker.Picker', {
         var form = this.getContactform();
         var info = this.getContactinfo();
         form.referrer = referrer;
-        form.down('#customerId').setValue(info.customerId);
         Ext.Viewport.setActiveItem(form);
         form.setRecord(info.getRecord());
     },
