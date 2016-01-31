@@ -67320,28 +67320,26 @@ Ext.define('Ext.picker.Picker', {
 			Ext.Viewport.setActiveItem(form.referrer);
 			delete form.referrer;
 		}*/
-        var form = this.up('contactform'),
-            // get the form panel
-            record = form.getRecord();
+        var form = this.getContctForm();
+        // get the form panel
+        record = form.getRecord();
         // get the underlying model instance
-        if (form.isValid()) {
-            // make sure the form contains valid data before submitting
-            form.updateRecord(record);
-            // update the record with the form data
-            record.save({
-                // save the record to the server
-                success: function(user) {
-                    Ext.Msg.alert('Success', 'User saved successfully.');
-                },
-                failure: function(user) {
-                    Ext.Msg.alert('Failure', 'Failed to save user.');
-                }
-            });
-        } else {
-            // display error alert if the data is invalid
-            Ext.Msg.alert('Invalid Data', 'Please correct form errors.');
-        }
+        // if (form.isValid()) { // make sure the form contains valid data before submitting
+        form.updateRecord(record);
+        // update the record with the form data
+        record.save({
+            // save the record to the server
+            success: function(user) {
+                Ext.Msg.alert('Success', 'User saved successfully.');
+            },
+            failure: function(user) {
+                Ext.Msg.alert('Failure', 'Failed to save user.');
+            }
+        });
     },
+    // } else { // display error alert if the data is invalid
+    //     Ext.Msg.alert('Invalid Data', 'Please correct form errors.');
+    // }
     onCancelButtonTap: function(button, e, eOpts) {
         var form = this.getContactform();
         Ext.Viewport.setActiveItem(form.referrer);
