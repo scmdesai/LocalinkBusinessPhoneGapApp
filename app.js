@@ -66478,8 +66478,7 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    //var customerId = this.getParent().getRecord().get('customerId');
-                    var customerId = this.up('customerId');
+                    var customerId = this.getParent().getRecord().get('customerId');
                     console.log(customerId);
                     var ds = Ext.StoreManager.lookup('MyDealsStore');
                     ds.clearFilter();
@@ -66834,6 +66833,34 @@ Ext.define('Ext.picker.Picker', {
                 label: 'Address',
                 labelAlign: 'top',
                 required: true
+            },
+            {
+                xtype: 'hiddenfield',
+                name: 'customerId'
+            },
+            {
+                xtype: 'hiddenfield',
+                name: 'category'
+            },
+            {
+                xtype: 'hiddenfield',
+                name: 'emailAddress'
+            },
+            {
+                xtype: 'hiddenfield',
+                name: 'city'
+            },
+            {
+                xtype: 'hiddenfield',
+                name: 'state'
+            },
+            {
+                xtype: 'hiddenfield',
+                name: 'zipcode'
+            },
+            {
+                xtype: 'hiddenfield',
+                name: 'picture'
             }
         ],
         listeners: [
@@ -66912,11 +66939,15 @@ Ext.define('Ext.picker.Picker', {
     },
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
+        /*if (record) {
+			this.child('contactpic').setData(record.data);
+			this.down('#businessName').setValue(record.data.businessName);
+			this.down('#phoneNumber').setValue(record.data.phoneNumber);
+			this.down('#address').setValue(record.data.address);
+
+		}*/
         if (record) {
-            this.child('contactpic').setData(record.data);
-            this.down('#businessName').setValue(record.data.businessName);
-            this.down('#phoneNumber').setValue(record.data.phoneNumber);
-            this.down('#address').setValue(record.data.address);
+            this.setRecord(record);
         }
     }
 }, 0, [
@@ -67231,29 +67262,33 @@ Ext.define('Ext.picker.Picker', {
             var record = form.getRecord();
             console.log('Record is :' + record.getData());
             //var valueContactPic = form.getAt(2).getValue();
-            var valueBusinessName = form.getAt(3).getValue();
-            var valuePhoneNumber = form.getAt(4).getValue();
-            var valueAddress = form.getAt(5).getValue();
-            var valueCategory = record.get('category');
-            var valueCustomerId = record.get('customerId');
-            var valueEmailAddress = record.get('emailAddress');
-            var valuePicture = record.get('picture');
-            var valueState = record.get('state');
-            var valueZipcode = record.get('zipcode');
-            //var valueId = record.get('id');
-            //console.log('valueBusinessName : ' + values);
+            /*var valueBusinessName = form.getAt(3).getValue();
+			var valuePhoneNumber = form.getAt(4).getValue();
+			var valueAddress = form.getAt(5).getValue();
+			var valueCategory = record.get('category');
+			var valueCustomerId = record.get('customerId');
+			var valueEmailAddress = record.get('emailAddress');
+			var valuePicture = record.get('picture');
+			var valueState = record.get('state');
+			var valueZipcode = record.get('zipcode');
+			//var valueId = record.get('id');
+
+			//console.log('valueBusinessName : ' + values);*/
             if (record) {
                 record.setData(values);
-                record.set('businessName', valueBusinessName);
-                record.set('phoneNumber', valuePhoneNumber);
-                record.set('address', valueAddress);
-                record.set('category', valueCategory);
-                record.set('customerId', valueCustomerId);
-                record.set('emailAddress', valueEmailAddress);
-                record.set('picture', valuePicture);
-                record.set('state', valueState);
-                record.set('zipcode', valueZipcode);
-                //record.set('id',valueId);
+                /*record.set('businessName',valueBusinessName);
+				record.set('phoneNumber',valuePhoneNumber);
+		        record.set('address',valueAddress);
+
+
+				record.set('category',valueCategory);
+				record.set('customerId',valueCustomerId);
+		        record.set('emailAddress',valueEmailAddress);
+
+				record.set('picture',valuePicture);
+				record.set('state',valueState);
+		        record.set('zipcode',valueZipcode);
+				//record.set('id',valueId);*/
                 record.commit();
                 if (form.referrer.setRecord) {
                     console.log(record.getData());
