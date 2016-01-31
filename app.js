@@ -67169,10 +67169,11 @@ Ext.define('Ext.picker.Picker', {
     onEditButtonTap: function(button, e, eOpts) {
         var referrer = Ext.Viewport.getActiveItem();
         var form = this.getContactform();
-        var info = this.getContactinfo();
+        // var info = this.getContactinfo();
+        var info = this.getRecord();
         form.referrer = referrer;
         Ext.Viewport.setActiveItem(form);
-        form.setRecord(info.getRecord());
+        form.setRecord(info);
     },
     onSaveContactButtonTap: function(button, e, eOpts) {
         var form = this.getContactform();
