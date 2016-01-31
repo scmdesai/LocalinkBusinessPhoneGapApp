@@ -67260,94 +67260,70 @@ Ext.define('Ext.picker.Picker', {
 
 		    Ext.Viewport.setActiveItem(form.referrer);
 		   delete form.referrer;*/
-        /*var form = this.getContactform();
-		//var form = Ext.getCmp('formpanel').getForm();
-		var errors = form.getValidationErrors();
-		console.log('On Save Button Tap');
-
-
-
-		if (errors.length) {
-			Ext.Msg.alert('Error', errors.join('<br/>'));
-		} else {
-			var values = form.getValues();
-			var record = form.getRecord();
-			console.log('Record is :' + record.getData());
-
-
-			//var valueContactPic = form.getAt(2).getValue();
-			var valueBusinessName = form.getAt(3).getValue();
-			var valuePhoneNumber = form.getAt(4).getValue();
-			var valueAddress = form.getAt(5).getValue();
-			var valueCategory = record.get('category');
-			var valueCustomerId = record.get('customerId');
-			var valueEmailAddress = record.get('emailAddress');
-			var valuePicture = record.get('picture');
-			var valueState = record.get('state');
-			var valueZipcode = record.get('zipcode');
-			//var valueId = record.get('id');
-
-			//console.log('valueBusinessName : ' + values);
-
-
-
-
-			if (record) {
-
-
-
-				record.setData(values);
-				record.set('businessName',valueBusinessName);
-				record.set('phoneNumber',valuePhoneNumber);
-		        record.set('address',valueAddress);
-
-
-				record.set('category',valueCategory);
-				record.set('customerId',valueCustomerId);
-		        record.set('emailAddress',valueEmailAddress);
-
-				record.set('picture',valuePicture);
-				record.set('state',valueState);
-		        record.set('zipcode',valueZipcode);
-				//record.set('id',valueId);
-
-
-
-				record.commit();
-
-				if (form.referrer.setRecord) {
-					console.log(record.getData());
-
-					form.referrer.setRecord(record);
-				}
-			} else {
-				//Ext.StoreManager.lookup('MyJsonPStore').add(values);
-			}
-			Ext.Viewport.setActiveItem(form.referrer);
-			delete form.referrer;
-		}*/
         var form = this.getContactform();
-        // get the form panel
-        record = form.getRecord();
-        // get the underlying model instance
-        // if (form.isValid()) { // make sure the form contains valid data before submitting
-        form.updateRecord(record);
-        // update the record with the form data
-        record.save({
-            // save the record to the server
-            success: function(user) {
-                //  Ext.Msg.alert('Success', 'User saved successfully.');
-                console.log('User saved successfully.');
-            },
-            failure: function(user) {
-                //  Ext.Msg.alert('Failure', 'Failed to save user.');
-                console.log('Failed to save user.');
-            }
-        });
+        //var form = Ext.getCmp('formpanel').getForm();
+        var errors = form.getValidationErrors();
+        console.log('On Save Button Tap');
+        if (errors.length) {
+            Ext.Msg.alert('Error', errors.join('<br/>'));
+        } else {
+            var values = form.getValues();
+            var record = form.getRecord();
+            console.log('Record is :' + record.getData());
+            //var valueContactPic = form.getAt(2).getValue();
+            var valueBusinessName = form.getAt(3).getValue();
+            var valuePhoneNumber = form.getAt(4).getValue();
+            var valueAddress = form.getAt(5).getValue();
+            var valueCategory = record.get('category');
+            var valueCustomerId = record.get('customerId');
+            var valueEmailAddress = record.get('emailAddress');
+            var valuePicture = record.get('picture');
+            var valueState = record.get('state');
+            var valueZipcode = record.get('zipcode');
+            //var valueId = record.get('id');
+            //console.log('valueBusinessName : ' + values);
+            if (record) {
+                record.setData(values);
+                record.set('businessName', valueBusinessName);
+                record.set('phoneNumber', valuePhoneNumber);
+                record.set('address', valueAddress);
+                record.set('category', valueCategory);
+                record.set('customerId', valueCustomerId);
+                record.set('emailAddress', valueEmailAddress);
+                record.set('picture', valuePicture);
+                record.set('state', valueState);
+                record.set('zipcode', valueZipcode);
+                //record.set('id',valueId);
+                record.commit();
+                if (form.referrer.setRecord) {
+                    console.log(record.getData());
+                    form.referrer.setRecord(record);
+                }
+            } else {}
+            //Ext.StoreManager.lookup('MyJsonPStore').add(values);
+            Ext.Viewport.setActiveItem(form.referrer);
+            delete form.referrer;
+        }
     },
-    // } else { // display error alert if the data is invalid
-    //     Ext.Msg.alert('Invalid Data', 'Please correct form errors.');
-    // }
+    /*var form = this.getContactform(); // get the form panel
+		                    record = form.getRecord(); // get the underlying model instance
+		               // if (form.isValid()) { // make sure the form contains valid data before submitting
+		                    form.updateRecord(record); // update the record with the form data
+		                    record.save({ // save the record to the server
+		                        success: function(user) {
+		                          //  Ext.Msg.alert('Success', 'User saved successfully.');
+									console.log('User saved successfully.');
+		                        },
+		                        failure: function(user) {
+		                          //  Ext.Msg.alert('Failure', 'Failed to save user.');
+									console.log('Failed to save user.');
+		                        }
+		                    });
+		               // } else { // display error alert if the data is invalid
+		               //     Ext.Msg.alert('Invalid Data', 'Please correct form errors.');
+		               // }
+
+		*/
     onCancelButtonTap: function(button, e, eOpts) {
         var form = this.getContactform();
         Ext.Viewport.setActiveItem(form.referrer);
