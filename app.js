@@ -67189,12 +67189,13 @@ Ext.define('Ext.picker.Picker', {
             var valueBusinessName = form.getAt(3).getValue();
             var valuePhoneNumber = form.getAt(4).getValue();
             var valueAddress = form.getAt(5).getValue();
-            var valueCategory = record.get('category');
-            var valueCustomerId = record.get('customerId');
-            var valueEmailAddress = record.get('emailAddress');
-            var valuePicture = record.get('picture');
-            var valueState = record.get('state');
-            var valueZipcode = record.get('zipcode');
+            var valueCategory = form.getAt(7).get('category');
+            var valueCustomerId = form.getAt(6).get('customerId');
+            var valueEmailAddress = form.getAt(8).get('emailAddress');
+            var valueCity = form.getAt(9).get('city');
+            var valuePicture = form.getAt(12).get('picture');
+            var valueState = form.getAt(10).get('state');
+            var valueZipcode = form.getAt(11).get('zipcode');
             if (record) {
                 record.setData(values);
                 record.set('businessName', valueBusinessName);
@@ -67204,6 +67205,7 @@ Ext.define('Ext.picker.Picker', {
                 record.set('customerId', valueCustomerId);
                 record.set('emailAddress', valueEmailAddress);
                 record.set('picture', valuePicture);
+                record.set('city', valueCity);
                 record.set('state', valueState);
                 record.set('zipcode', valueZipcode);
                 record.commit();
