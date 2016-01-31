@@ -66755,7 +66755,15 @@ Ext.define('Ext.picker.Picker', {
                         },
                         itemId: 'saveContactButton',
                         ui: 'confirm',
-                        text: 'Save'
+                        text: 'Save',
+                        listeners: [
+                            {
+                                fn: function(element, eOpts) {
+                                    console.log('Save Button painted');
+                                },
+                                event: 'painted'
+                            }
+                        ]
                     }
                 ]
             },
@@ -66841,19 +66849,11 @@ Ext.define('Ext.picker.Picker', {
         ],
         listeners: [
             {
-                fn: 'onSaveContactButtonShow',
-                event: 'show',
-                delegate: '#saveContactButton'
-            },
-            {
                 fn: 'onChangePictureTap',
                 event: 'tap',
                 delegate: '#changePicture'
             }
         ]
-    },
-    onSaveContactButtonShow: function(component, eOpts) {
-        console.log('Showing Save Button');
     },
     onChangePictureTap: function(button, e, eOpts) {
         var actionSheet = new Ext.ActionSheet({
