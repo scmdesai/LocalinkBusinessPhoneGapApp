@@ -66910,6 +66910,7 @@ Ext.define('Ext.picker.Picker', {
     },
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
+        console.log('Inside Form Panel');
         if (record) {
             this.child('contactpic').setData(record.data);
             this.down('#businessName').setValue(record.data.businessName);
@@ -66937,15 +66938,6 @@ Ext.define('Ext.picker.Picker', {
     Contact.view,
     'Form'
 ], 0));
-/*this.down('#customerId').setValue(record.data.customerId);
-
-			this.down('#category').setValue(record.data.category);
-			this.down('#emailAddress').setValue(record.data.emailAddress);
-			this.down('#city').setValue(record.data.city);
-			this.down('#state').setValue(record.data.state);
-			this.down('#zipcode').setValue(record.data.zipcode);
-			this.down('#picture').setValue(record.data.picture);
-		*/
 
 /*
  * File: app/controller/Contacts.js
@@ -67172,7 +67164,7 @@ Ext.define('Ext.picker.Picker', {
         var referrer = Ext.Viewport.getActiveItem();
         var form = this.getContactform();
         var info = this.getContactinfo().getRecord();
-        console.log('cust Id is: ' + info.get('customerId'));
+        //console.log('cust Id is: ' + info.get('customerId'));
         form.referrer = referrer;
         Ext.Viewport.setActiveItem(form);
         form.setRecord(info);
@@ -67186,7 +67178,7 @@ Ext.define('Ext.picker.Picker', {
         } else {
             var values = form.getValues();
             var record = form.getRecord();
-            console.log('Record is :' + record.getData());
+            //console.log('Record is :' + record.getData());
             //var valueContactPic = form.getAt(2).getValue();
             var valueBusinessName = form.getAt(3).getValue();
             var valuePhoneNumber = form.getAt(4).getValue();
@@ -67212,7 +67204,7 @@ Ext.define('Ext.picker.Picker', {
                 record.set('zipcode', valueZipcode);
                 record.commit();
                 if (form.referrer.setRecord) {
-                    console.log(record.getData());
+                    //console.log(record.getData());
                     form.referrer.setRecord(record);
                 }
             } else {}
@@ -67227,13 +67219,14 @@ Ext.define('Ext.picker.Picker', {
         delete form.referrer;
     },
     onBackFromDealsPanelTap: function(button, e, eOpts) {
+        console.log("Inside DealsPanelBack");
         var ds = Ext.StoreManager.lookup('MyJsonPStore');
         ds.clearFilter();
         var dealRecord = this.getContactinfo().getRecord();
         //console.log("Deal Record is:") ;
         //console.log(dealRecord) ;
         var customerId = dealRecord.get('customerId');
-        //console.log("Customer Id is " + customerId) ;
+        console.log("Customer Id is " + customerId);
         ds.filter('customerId', customerId);
         var customerData = ds.getData().getAt(0);
         //console.log("Customer Data is:") ;
@@ -67405,7 +67398,6 @@ Ext.define('Ext.picker.Picker', {
             },
             {
                 xtype: 'listofdeals',
-                ui: 'normal',
                 itemCls: 'listofdealsScss'
             },
             {
