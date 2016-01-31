@@ -67169,8 +67169,8 @@ Ext.define('Ext.picker.Picker', {
     onEditButtonTap: function(button, e, eOpts) {
         var referrer = Ext.Viewport.getActiveItem();
         var form = this.getContactform();
-        // var info = this.getContactinfo();
-        var info = this.getRecord();
+        var info = this.getContactinfo().getRecord();
+        console.log('cust Id is: ' + info.get('customerId'));
         form.referrer = referrer;
         Ext.Viewport.setActiveItem(form);
         form.setRecord(info);
