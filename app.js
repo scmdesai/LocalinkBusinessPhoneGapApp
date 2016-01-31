@@ -66729,6 +66729,7 @@ Ext.define('Ext.picker.Picker', {
         html: '',
         id: 'formpanel',
         itemId: 'formpanel',
+        autoDestroy: false,
         modal: true,
         items: [
             {
