@@ -4,6 +4,7 @@ if (!Contact.model) Contact.model = {};
 if (!Contact.store) Contact.store = {};
 if (!Contact.view) Contact.view = {};
 var Ext = Ext || {};
+if (!Ext.Picker) Ext.Picker = {};
 if (!Ext.app) Ext.app = {};
 if (!Ext.behavior) Ext.behavior = {};
 if (!Ext.data) Ext.data = {};
@@ -36,6 +37,7 @@ if (!Ext.layout) Ext.layout = {};
 if (!Ext.layout.wrapper) Ext.layout.wrapper = {};
 if (!Ext.lib) Ext.lib = {};
 if (!Ext.mixin) Ext.mixin = {};
+if (!Ext.picker) Ext.picker = {};
 if (!Ext.proxy) Ext.proxy = {};
 if (!Ext.scroll) Ext.scroll = {};
 if (!Ext.scroll.indicator) Ext.scroll.indicator = {};
@@ -35360,6 +35362,347 @@ function() {}));
 }));
 
 /**
+ * {@link Ext.TitleBar}'s are most commonly used as a docked item within an {@link Ext.Container}.
+ *
+ * The main difference between a {@link Ext.TitleBar} and an {@link Ext.Toolbar} is that
+ * the {@link #title} configuration is **always** centered horizontally in a {@link Ext.TitleBar} between
+ * any items aligned left or right.
+ *
+ * You can also give items of a {@link Ext.TitleBar} an `align` configuration of `left` or `right`
+ * which will dock them to the `left` or `right` of the bar.
+ *
+ * ## Examples
+ *
+ *     @example preview
+ *     Ext.Viewport.add({
+ *         xtype: 'titlebar',
+ *         docked: 'top',
+ *         title: 'Navigation',
+ *         items: [
+ *             {
+ *                 iconCls: 'add',
+ *                 align: 'left'
+ *             },
+ *             {
+ *                 iconCls: 'home',
+ *                 align: 'right'
+ *             }
+ *         ]
+ *     });
+ *
+ *     Ext.Viewport.setStyleHtmlContent(true);
+ *     Ext.Viewport.setHtml('This shows the title being centered and buttons using align <i>left</i> and <i>right</i>.');
+ *
+ * <br />
+ *
+ *     @example preview
+ *     Ext.Viewport.add({
+ *         xtype: 'titlebar',
+ *         docked: 'top',
+ *         title: 'Navigation',
+ *         items: [
+ *             {
+ *                 align: 'left',
+ *                 text: 'This button has a super long title'
+ *             },
+ *             {
+ *                 iconCls: 'home',
+ *                 align: 'right'
+ *             }
+ *         ]
+ *     });
+ *
+ *     Ext.Viewport.setStyleHtmlContent(true);
+ *     Ext.Viewport.setHtml('This shows how the title is automatically moved to the right when one of the aligned buttons is very wide.');
+ *
+ * <br />
+ *
+ *     @example preview
+ *     Ext.Viewport.add({
+ *         xtype: 'titlebar',
+ *         docked: 'top',
+ *         title: 'A very long title',
+ *         items: [
+ *             {
+ *                 align: 'left',
+ *                 text: 'This button has a super long title'
+ *             },
+ *             {
+ *                 align: 'right',
+ *                 text: 'Another button'
+ *             }
+ *         ]
+ *     });
+ *
+ *     Ext.Viewport.setStyleHtmlContent(true);
+ *     Ext.Viewport.setHtml('This shows how the title and buttons will automatically adjust their size when the width of the items are too wide..');
+ *
+ * The {@link #defaultType} of Toolbar's is {@link Ext.Button button}.
+ */
+(Ext.cmd.derive('Ext.TitleBar', Ext.Container, {
+    // @private
+    isToolbar: true,
+    config: {
+        /**
+         * @cfg
+         * @inheritdoc
+         */
+        baseCls: 'x-toolbar',
+        /**
+         * @cfg
+         * @inheritdoc
+         */
+        cls: 'x-navigation-bar',
+        /**
+         * @cfg {String} ui
+         * Style options for Toolbar. Either 'light' or 'dark'.
+         * @accessor
+         */
+        ui: 'dark',
+        /**
+         * @cfg {String} title
+         * The title of the toolbar.
+         * @accessor
+         */
+        title: null,
+        /**
+         * @cfg {String} titleAlign
+         * The alignment for the title of the toolbar.
+         * @accessor
+         */
+        titleAlign: 'center',
+        /**
+         * @cfg {String} defaultType
+         * The default xtype to create.
+         * @accessor
+         */
+        defaultType: 'button',
+        /**
+         * @cfg {String} minHeight
+         * The minimum height height of the Toolbar.
+         * @accessor
+         */
+        minHeight: null,
+        /**
+         * @cfg
+         * @hide
+         */
+        layout: {
+            type: 'hbox'
+        },
+        /**
+         * @cfg {Array/Object} items The child items to add to this TitleBar. The {@link #defaultType} of
+         * a TitleBar is {@link Ext.Button}, so you do not need to specify an `xtype` if you are adding
+         * buttons.
+         *
+         * You can also give items a `align` configuration which will align the item to the `left` or `right` of
+         * the TitleBar.
+         * @accessor
+         */
+        items: [],
+        /**
+         * @cfg {String} maxButtonWidth The maximum width of the button by percentage
+         * @accessor
+         */
+        maxButtonWidth: '40%'
+    },
+    platformConfig: [
+        {
+            theme: [
+                'Blackberry',
+                'Blackberry103',
+                'Tizen'
+            ],
+            titleAlign: 'left'
+        },
+        {
+            theme: [
+                'Cupertino'
+            ],
+            maxButtonWidth: '80%'
+        }
+    ],
+    hasCSSMinHeight: true,
+    beforeInitialize: function() {
+        this.applyItems = this.applyInitialItems;
+    },
+    initialize: function() {
+        delete this.applyItems;
+        this.add(this.initialItems);
+        delete this.initialItems;
+        this.on({
+            painted: 'refreshTitlePosition',
+            single: true
+        });
+    },
+    applyInitialItems: function(items) {
+        var me = this,
+            titleAlign = me.getTitleAlign(),
+            defaults = me.getDefaults() || {};
+        me.initialItems = items;
+        me.leftBox = me.add({
+            xtype: 'container',
+            style: 'position: relative',
+            layout: {
+                type: 'hbox',
+                align: 'center'
+            },
+            listeners: {
+                resize: 'refreshTitlePosition',
+                scope: me
+            }
+        });
+        me.spacer = me.add({
+            xtype: 'component',
+            style: 'position: relative',
+            flex: 1,
+            listeners: {
+                resize: 'refreshTitlePosition',
+                scope: me
+            }
+        });
+        me.rightBox = me.add({
+            xtype: 'container',
+            style: 'position: relative',
+            layout: {
+                type: 'hbox',
+                align: 'center'
+            },
+            listeners: {
+                resize: 'refreshTitlePosition',
+                scope: me
+            }
+        });
+        switch (titleAlign) {
+            case 'left':
+                me.titleComponent = me.leftBox.add({
+                    xtype: 'title',
+                    cls: 'x-title-align-left',
+                    hidden: defaults.hidden
+                });
+                me.refreshTitlePosition = Ext.emptyFn;
+                break;
+            case 'right':
+                me.titleComponent = me.rightBox.add({
+                    xtype: 'title',
+                    cls: 'x-title-align-right',
+                    hidden: defaults.hidden
+                });
+                me.refreshTitlePosition = Ext.emptyFn;
+                break;
+            default:
+                me.titleComponent = me.add({
+                    xtype: 'title',
+                    hidden: defaults.hidden,
+                    centered: true
+                });
+                break;
+        }
+        me.doAdd = me.doBoxAdd;
+        me.remove = me.doBoxRemove;
+        me.doInsert = me.doBoxInsert;
+    },
+    doBoxAdd: function(item) {
+        if (item.config.align == 'right') {
+            this.rightBox.add(item);
+        } else {
+            this.leftBox.add(item);
+        }
+    },
+    doBoxRemove: function(item, destroy) {
+        if (item.config.align == 'right') {
+            this.rightBox.remove(item, destroy);
+        } else {
+            this.leftBox.remove(item, destroy);
+        }
+    },
+    doBoxInsert: function(index, item) {
+        if (item.config.align == 'right') {
+            this.rightBox.insert(index, item);
+        } else {
+            this.leftBox.insert(index, item);
+        }
+    },
+    calculateMaxButtonWidth: function() {
+        var maxButtonWidth = this.getMaxButtonWidth();
+        //check if it is a percentage
+        if (Ext.isString(maxButtonWidth)) {
+            maxButtonWidth = parseInt(maxButtonWidth.replace('%', ''), 10);
+        }
+        maxButtonWidth = Math.round((this.element.getWidth() / 100) * maxButtonWidth);
+        return maxButtonWidth;
+    },
+    refreshTitlePosition: function() {
+        if (this.isDestroyed) {
+            return;
+        }
+        var titleElement = this.titleComponent.renderElement;
+        titleElement.setWidth(null);
+        titleElement.setLeft(null);
+        //set the min/max width of the left button
+        var leftBox = this.leftBox,
+            leftButton = leftBox.down('button'),
+            singleButton = leftBox.getItems().getCount() == 1,
+            leftBoxWidth, maxButtonWidth;
+        if (leftButton && singleButton) {
+            if (leftButton.getWidth() == null) {
+                leftButton.renderElement.setWidth('auto');
+            }
+            leftBoxWidth = leftBox.renderElement.getWidth();
+            maxButtonWidth = this.calculateMaxButtonWidth();
+            if (leftBoxWidth > maxButtonWidth) {
+                leftButton.renderElement.setWidth(maxButtonWidth);
+            }
+        }
+        var spacerBox = this.spacer.renderElement.getPageBox();
+        if (Ext.browser.is.IE) {
+            titleElement.setWidth(spacerBox.width);
+        }
+        var titleBox = titleElement.getPageBox(),
+            widthDiff = titleBox.width - spacerBox.width,
+            titleLeft = titleBox.left,
+            titleRight = titleBox.right,
+            halfWidthDiff, leftDiff, rightDiff;
+        if (widthDiff > 0) {
+            halfWidthDiff = widthDiff / 2;
+            titleLeft += halfWidthDiff;
+            titleRight -= halfWidthDiff;
+            titleElement.setWidth(spacerBox.width);
+        }
+        leftDiff = spacerBox.left - titleLeft;
+        rightDiff = titleRight - spacerBox.right;
+        if (leftDiff > 0) {
+            titleElement.setLeft(leftDiff);
+        } else if (rightDiff > 0) {
+            titleElement.setLeft(-rightDiff);
+        }
+        titleElement.repaint();
+    },
+    // @private
+    updateTitle: function(newTitle) {
+        this.titleComponent.setTitle(newTitle);
+        if (this.isPainted()) {
+            this.refreshTitlePosition();
+        }
+    }
+}, 0, [
+    "titlebar"
+], [
+    "component",
+    "container",
+    "titlebar"
+], {
+    "component": true,
+    "container": true,
+    "titlebar": true
+}, [
+    "widget.titlebar"
+], 0, [
+    Ext,
+    'TitleBar'
+], 0));
+
+/**
  * @author Ed Spencer
  * @private
  *
@@ -58999,6 +59342,2629 @@ Ext.define('Ext.direct.Manager', {
 ], 0));
 
 /**
+ * @private
+ *
+ * A general {@link Ext.picker.Picker} slot class.  Slots are used to organize multiple scrollable slots into
+ * a single {@link Ext.picker.Picker}.
+ *
+ *     {
+ *         name : 'limit_speed',
+ *         title: 'Speed Limit',
+ *         data : [
+ *             {text: '50 KB/s', value: 50},
+ *             {text: '100 KB/s', value: 100},
+ *             {text: '200 KB/s', value: 200},
+ *             {text: '300 KB/s', value: 300}
+ *         ]
+ *     }
+ *
+ * See the {@link Ext.picker.Picker} documentation on how to use slots.
+ */
+Ext.define('Ext.picker.Slot', {
+    extend: Ext.dataview.DataView,
+    xtype: 'pickerslot',
+    alternateClassName: 'Ext.Picker.Slot',
+    /**
+     * @event slotpick
+     * Fires whenever an slot is picked
+     * @param {Ext.picker.Slot} this
+     * @param {Mixed} value The value of the pick
+     * @param {HTMLElement} node The node element of the pick
+     */
+    isSlot: true,
+    config: {
+        /**
+         * @cfg {String} title The title to use for this slot, or `null` for no title.
+         * @accessor
+         */
+        title: null,
+        /**
+         * @private
+         * @cfg {Boolean} showTitle
+         * @accessor
+         */
+        showTitle: true,
+        /**
+         * @private
+         * @cfg {String} cls The main component class
+         * @accessor
+         */
+        cls: 'x-picker-slot',
+        /**
+         * @cfg {String} name (required) The name of this slot.
+         * @accessor
+         */
+        name: null,
+        /**
+         * @cfg {Number} value The value of this slot
+         * @accessor
+         */
+        value: null,
+        /**
+         * @cfg {Number} flex
+         * @accessor
+         * @private
+         */
+        flex: 1,
+        /**
+         * @cfg {String} align The horizontal alignment of the slot's contents.
+         *
+         * Valid values are: "left", "center", and "right".
+         * @accessor
+         */
+        align: 'left',
+        /**
+         * @cfg {String} displayField The display field in the store.
+         * @accessor
+         */
+        displayField: 'text',
+        /**
+         * @cfg {String} valueField The value field in the store.
+         * @accessor
+         */
+        valueField: 'value',
+        /**
+         * @cfg {String} itemTpl The template to be used in this slot.
+         * If you set this, {@link #displayField} will be ignored.
+         */
+        itemTpl: null,
+        /**
+         * @cfg {Object} scrollable
+         * @accessor
+         * @hide
+         */
+        scrollable: {
+            direction: 'vertical',
+            indicators: false,
+            momentumEasing: {
+                minVelocity: 2
+            },
+            slotSnapEasing: {
+                duration: 100
+            }
+        },
+        /**
+         * @cfg {Boolean} verticallyCenterItems
+         * @private
+         */
+        verticallyCenterItems: true
+    },
+    platformConfig: [
+        {
+            theme: [
+                'Windows'
+            ],
+            title: 'choose an item'
+        }
+    ],
+    // verticallyCenterItems: false
+    constructor: function() {
+        /**
+         * @property selectedIndex
+         * @type Number
+         * The current `selectedIndex` of the picker slot.
+         * @private
+         */
+        this.selectedIndex = 0;
+        /**
+         * @property picker
+         * @type Ext.picker.Picker
+         * A reference to the owner Picker.
+         * @private
+         */
+        Ext.dataview.DataView.prototype.constructor.apply(this, arguments);
+    },
+    /**
+     * Sets the title for this dataview by creating element.
+     * @param {String} title
+     * @return {String}
+     */
+    applyTitle: function(title) {
+        //check if the title isnt defined
+        if (title) {
+            //create a new title element
+            title = Ext.create('Ext.Component', {
+                cls: 'x-picker-slot-title',
+                docked: 'top',
+                html: title
+            });
+        }
+        return title;
+    },
+    updateTitle: function(newTitle, oldTitle) {
+        if (newTitle) {
+            this.add(newTitle);
+            this.setupBar();
+        }
+        if (oldTitle) {
+            this.remove(oldTitle);
+        }
+    },
+    updateShowTitle: function(showTitle) {
+        var title = this.getTitle(),
+            mode = showTitle ? 'show' : 'hide';
+        if (title) {
+            title.on(mode, this.setupBar, this, {
+                single: true,
+                delay: 50
+            });
+            title[showTitle ? 'show' : 'hide']();
+        }
+    },
+    updateDisplayField: function(newDisplayField) {
+        if (!this.config.itemTpl) {
+            this.setItemTpl('<div class="x-picker-item {cls} <tpl if="extra">x-picker-invalid</tpl>">{' + newDisplayField + '}</div>');
+        }
+    },
+    /**
+     * Updates the {@link #align} configuration
+     */
+    updateAlign: function(newAlign, oldAlign) {
+        var element = this.element;
+        element.addCls('x-picker-' + newAlign);
+        element.removeCls('x-picker-' + oldAlign);
+    },
+    /**
+     * Looks at the {@link #data} configuration and turns it into {@link #store}.
+     * @param {Object} data
+     * @return {Object}
+     */
+    applyData: function(data) {
+        var parsedData = [],
+            ln = data && data.length,
+            i, item, obj;
+        if (data && Ext.isArray(data) && ln) {
+            for (i = 0; i < ln; i++) {
+                item = data[i];
+                obj = {};
+                if (Ext.isArray(item)) {
+                    obj[this.valueField] = item[0];
+                    obj[this.displayField] = item[1];
+                } else if (Ext.isString(item)) {
+                    obj[this.valueField] = item;
+                    obj[this.displayField] = item;
+                } else if (Ext.isObject(item)) {
+                    obj = item;
+                }
+                parsedData.push(obj);
+            }
+        }
+        return data;
+    },
+    // @private
+    initialize: function() {
+        Ext.dataview.DataView.prototype.initialize.call(this);
+        var scroller = this.getScrollable().getScroller();
+        this.on({
+            scope: this,
+            painted: 'onPainted',
+            itemtap: 'doItemTap'
+        });
+        this.element.on({
+            scope: this,
+            touchstart: 'onTouchStart',
+            touchend: 'onTouchEnd'
+        });
+        scroller.on({
+            scope: this,
+            scrollend: 'onScrollEnd'
+        });
+    },
+    // @private
+    onPainted: function() {
+        this.setupBar();
+    },
+    /**
+     * Returns an instance of the owner picker.
+     * @return {Object}
+     * @private
+     */
+    getPicker: function() {
+        if (!this.picker) {
+            this.picker = this.getParent();
+        }
+        return this.picker;
+    },
+    // @private
+    setupBar: function() {
+        if (!this.rendered) {
+            //if the component isnt rendered yet, there is no point in calculating the padding just eyt
+            return;
+        }
+        var element = this.element,
+            innerElement = this.innerElement,
+            picker = this.getPicker(),
+            bar = picker.bar,
+            value = this.getValue(),
+            showTitle = this.getShowTitle(),
+            title = this.getTitle(),
+            scrollable = this.getScrollable(),
+            scroller = scrollable.getScroller(),
+            titleHeight = 0,
+            barHeight, padding;
+        barHeight = bar.dom.getBoundingClientRect().height;
+        if (showTitle && title) {
+            titleHeight = title.element.getHeight();
+        }
+        padding = Math.ceil((element.getHeight() - titleHeight - barHeight) / 2);
+        if (this.getVerticallyCenterItems()) {
+            innerElement.setStyle({
+                padding: padding + 'px 0 ' + padding + 'px'
+            });
+        }
+        scroller.refresh();
+        scroller.setSlotSnapSize(barHeight);
+        this.setValue(value);
+    },
+    // @private
+    doItemTap: function(list, index, item, e) {
+        var me = this;
+        me.selectedIndex = index;
+        me.selectedNode = item;
+        me.scrollToItem(item, true);
+    },
+    // @private
+    scrollToItem: function(item, animated) {
+        var y = item.getY(),
+            parentEl = item.parent(),
+            parentY = parentEl.getY(),
+            scrollView = this.getScrollable(),
+            scroller = scrollView.getScroller(),
+            difference;
+        difference = y - parentY;
+        scroller.scrollTo(0, difference, animated);
+    },
+    // @private
+    onTouchStart: function() {
+        this.element.addCls('x-scrolling');
+    },
+    // @private
+    onTouchEnd: function() {
+        this.element.removeCls('x-scrolling');
+    },
+    // @private
+    onScrollEnd: function(scroller, x, y) {
+        var me = this,
+            index = Math.round(y / me.picker.bar.dom.getBoundingClientRect().height),
+            viewItems = me.getViewItems(),
+            item = viewItems[index];
+        if (item) {
+            me.selectedIndex = index;
+            me.selectedNode = item;
+            me.fireEvent('slotpick', me, me.getValue(), me.selectedNode);
+        }
+    },
+    /**
+     * Returns the value of this slot
+     * @private
+     */
+    getValue: function(useDom) {
+        var store = this.getStore(),
+            record, value;
+        if (!store) {
+            return;
+        }
+        if (!this.rendered || !useDom) {
+            return this._value;
+        }
+        //if the value is ever false, that means we do not want to return anything
+        if (this._value === false) {
+            return null;
+        }
+        record = store.getAt(this.selectedIndex);
+        value = record ? record.get(this.getValueField()) : null;
+        return value;
+    },
+    /**
+     * Sets the value of this slot
+     * @private
+     */
+    setValue: function(value) {
+        return this.doSetValue(value);
+    },
+    /**
+     * Sets the value of this slot
+     * @private
+     */
+    setValueAnimated: function(value) {
+        return this.doSetValue(value, true);
+    },
+    doSetValue: function(value, animated) {
+        if (!this.rendered) {
+            //we don't want to call this until the slot has been rendered
+            this._value = value;
+            return;
+        }
+        var store = this.getStore(),
+            viewItems = this.getViewItems(),
+            valueField = this.getValueField(),
+            index, item;
+        index = store.findExact(valueField, value);
+        if (index == -1) {
+            index = 0;
+        }
+        item = Ext.get(viewItems[index]);
+        this.selectedIndex = index;
+        if (item) {
+            this.scrollToItem(item, (animated) ? {
+                duration: 100
+            } : false);
+            this.select(this.selectedIndex);
+        }
+        this._value = value;
+    }
+});
+
+/**
+ * A general picker class. {@link Ext.picker.Slot}s are used to organize multiple scrollable slots into a single picker. {@link #slots} is
+ * the only necessary configuration.
+ *
+ * The {@link #slots} configuration with a few key values:
+ *
+ * - `name`: The name of the slot (will be the key when using {@link #getValues} in this {@link Ext.picker.Picker}).
+ * - `title`: The title of this slot (if {@link #useTitles} is set to `true`).
+ * - `data`/`store`: The data or store to use for this slot.
+ *
+ * Remember, {@link Ext.picker.Slot} class extends from {@link Ext.dataview.DataView}.
+ *
+ * ## Examples
+ *
+ *     @example miniphone preview
+ *     var picker = Ext.create('Ext.Picker', {
+ *         slots: [
+ *             {
+ *                 name : 'limit_speed',
+ *                 title: 'Speed',
+ *                 data : [
+ *                     {text: '50 KB/s', value: 50},
+ *                     {text: '100 KB/s', value: 100},
+ *                     {text: '200 KB/s', value: 200},
+ *                     {text: '300 KB/s', value: 300}
+ *                 ]
+ *             }
+ *         ]
+ *     });
+ *     Ext.Viewport.add(picker);
+ *     picker.show();
+ *
+ * You can also customize the top toolbar on the {@link Ext.picker.Picker} by changing the {@link #doneButton} and {@link #cancelButton} configurations:
+ *
+ *     @example miniphone preview
+ *     var picker = Ext.create('Ext.Picker', {
+ *         doneButton: 'I\'m done!',
+ *         cancelButton: false,
+ *         slots: [
+ *             {
+ *                 name : 'limit_speed',
+ *                 title: 'Speed',
+ *                 data : [
+ *                     {text: '50 KB/s', value: 50},
+ *                     {text: '100 KB/s', value: 100},
+ *                     {text: '200 KB/s', value: 200},
+ *                     {text: '300 KB/s', value: 300}
+ *                 ]
+ *             }
+ *         ]
+ *     });
+ *     Ext.Viewport.add(picker);
+ *     picker.show();
+ *
+ * Or by passing a custom {@link #toolbar} configuration:
+ *
+ *     @example miniphone preview
+ *     var picker = Ext.create('Ext.Picker', {
+ *         doneButton: false,
+ *         cancelButton: false,
+ *         toolbar: {
+ *             ui: 'light',
+ *             title: 'My Picker!'
+ *         },
+ *         slots: [
+ *             {
+ *                 name : 'limit_speed',
+ *                 title: 'Speed',
+ *                 data : [
+ *                     {text: '50 KB/s', value: 50},
+ *                     {text: '100 KB/s', value: 100},
+ *                     {text: '200 KB/s', value: 200},
+ *                     {text: '300 KB/s', value: 300}
+ *                 ]
+ *             }
+ *         ]
+ *     });
+ *     Ext.Viewport.add(picker);
+ *     picker.show();
+ */
+Ext.define('Ext.picker.Picker', {
+    extend: Ext.Sheet,
+    alias: 'widget.picker',
+    alternateClassName: 'Ext.Picker',
+    isPicker: true,
+    /**
+     * @event pick
+     * Fired when a slot has been picked
+     * @param {Ext.Picker} this This Picker.
+     * @param {Object} The values of this picker's slots, in `{name:'value'}` format.
+     * @param {Ext.Picker.Slot} slot An instance of Ext.Picker.Slot that has been picked.
+     */
+    /**
+     * @event change
+     * Fired when the value of this picker has changed the Done button has been pressed.
+     * @param {Ext.picker.Picker} this This Picker.
+     * @param {Object} value The values of this picker's slots, in `{name:'value'}` format.
+     */
+    /**
+     * @event cancel
+     * Fired when the cancel button is tapped and the values are reverted back to
+     * what they were.
+     * @param {Ext.Picker} this This Picker.
+     */
+    config: {
+        /**
+         * @cfg
+         * @inheritdoc
+         */
+        baseCls: 'x-picker',
+        /**
+         * @cfg {String/Mixed} doneButton
+         * Can be either:
+         *
+         * - A {String} text to be used on the Done button.
+         * - An {Object} as config for {@link Ext.Button}.
+         * - `false` or `null` to hide it.
+         * @accessor
+         */
+        doneButton: true,
+        /**
+         * @cfg {String/Mixed} cancelButton
+         * Can be either:
+         *
+         * - A {String} text to be used on the Cancel button.
+         * - An {Object} as config for {@link Ext.Button}.
+         * - `false` or `null` to hide it.
+         * @accessor
+         */
+        cancelButton: true,
+        /**
+         * @cfg {Boolean} useTitles
+         * Generate a title header for each individual slot and use
+         * the title configuration of the slot.
+         * @accessor
+         */
+        useTitles: false,
+        /**
+         * @cfg {Array} slots
+         * An array of slot configurations.
+         *
+         * - `name` {String} - Name of the slot
+         * - `data` {Array} - An array of text/value pairs in the format `{text: 'myKey', value: 'myValue'}`
+         * - `title` {String} - Title of the slot. This is used in conjunction with `useTitles: true`.
+         *
+         * @accessor
+         */
+        slots: null,
+        /**
+         * @cfg {String/Number} value The value to initialize the picker with.
+         * @accessor
+         */
+        value: null,
+        /**
+         * @cfg {Number} height
+         * The height of the picker.
+         * @accessor
+         */
+        height: 220,
+        /**
+         * @cfg
+         * @inheritdoc
+         */
+        layout: {
+            type: 'hbox',
+            align: 'stretch'
+        },
+        /**
+         * @cfg
+         * @hide
+         */
+        centered: false,
+        /**
+         * @cfg
+         * @inheritdoc
+         */
+        left: 0,
+        /**
+         * @cfg
+         * @inheritdoc
+         */
+        right: 0,
+        /**
+         * @cfg
+         * @inheritdoc
+         */
+        bottom: 0,
+        // @private
+        defaultType: 'pickerslot',
+        toolbarPosition: 'top',
+        /**
+         * @cfg {Ext.TitleBar/Ext.Toolbar/Object} toolbar
+         * The toolbar which contains the {@link #doneButton} and {@link #cancelButton} buttons.
+         * You can override this if you wish, and add your own configurations. Just ensure that you take into account
+         * the {@link #doneButton} and {@link #cancelButton} configurations.
+         *
+         * The default xtype is a {@link Ext.TitleBar}:
+         *
+         *     toolbar: {
+         *         items: [
+         *             {
+         *                 xtype: 'button',
+         *                 text: 'Left',
+         *                 align: 'left'
+         *             },
+         *             {
+         *                 xtype: 'button',
+         *                 text: 'Right',
+         *                 align: 'left'
+         *             }
+         *         ]
+         *     }
+         *
+         * Or to use a {@link Ext.Toolbar instead}:
+         *
+         *     toolbar: {
+         *         xtype: 'toolbar',
+         *         items: [
+         *             {
+         *                 xtype: 'button',
+         *                 text: 'Left'
+         *             },
+         *             {
+         *                 xtype: 'button',
+         *                 text: 'Left Two'
+         *             }
+         *         ]
+         *     }
+         *
+         * @accessor
+         */
+        toolbar: {
+            xtype: 'titlebar'
+        }
+    },
+    platformConfig: [
+        {
+            theme: [
+                'Windows'
+            ],
+            height: '100%',
+            toolbarPosition: 'bottom',
+            toolbar: {
+                xtype: 'toolbar',
+                layout: {
+                    type: 'hbox',
+                    pack: 'center'
+                }
+            },
+            doneButton: {
+                iconCls: 'check2',
+                ui: 'round',
+                text: ''
+            },
+            cancelButton: {
+                iconCls: 'delete',
+                ui: 'round',
+                text: ''
+            }
+        },
+        {
+            theme: [
+                'CupertinoClassic'
+            ],
+            toolbar: {
+                ui: 'black'
+            }
+        },
+        {
+            theme: [
+                'MountainView'
+            ],
+            toolbarPosition: 'bottom',
+            toolbar: {
+                defaults: {
+                    flex: 1
+                }
+            }
+        }
+    ],
+    initialize: function() {
+        var me = this,
+            clsPrefix = 'x-',
+            innerElement = this.innerElement;
+        //insert the mask, and the picker bar
+        this.mask = innerElement.createChild({
+            cls: clsPrefix + 'picker-mask'
+        });
+        this.bar = this.mask.createChild({
+            cls: clsPrefix + 'picker-bar'
+        });
+        me.on({
+            scope: this,
+            delegate: 'pickerslot',
+            slotpick: 'onSlotPick'
+        });
+    },
+    /**
+     * @private
+     */
+    applyToolbar: function(config) {
+        if (config === true) {
+            config = {};
+        }
+        Ext.applyIf(config, {
+            docked: this.getToolbarPosition()
+        });
+        return Ext.factory(config, 'Ext.TitleBar', this.getToolbar());
+    },
+    /**
+     * @private
+     */
+    updateToolbar: function(newToolbar, oldToolbar) {
+        if (newToolbar) {
+            this.add(newToolbar);
+        }
+        if (oldToolbar) {
+            this.remove(oldToolbar);
+        }
+    },
+    /**
+     * Updates the {@link #doneButton} configuration. Will change it into a button when appropriate, or just update the text if needed.
+     * @param {Object} config
+     * @return {Object}
+     */
+    applyDoneButton: function(config) {
+        if (config) {
+            if (Ext.isBoolean(config)) {
+                config = {};
+            }
+            if (typeof config == "string") {
+                config = {
+                    text: config
+                };
+            }
+            Ext.applyIf(config, {
+                ui: 'action',
+                align: 'right',
+                text: 'Done'
+            });
+        }
+        return Ext.factory(config, 'Ext.Button', this.getDoneButton());
+    },
+    updateDoneButton: function(newDoneButton, oldDoneButton) {
+        var toolbar = this.getToolbar();
+        if (newDoneButton) {
+            toolbar.add(newDoneButton);
+            newDoneButton.on('tap', this.onDoneButtonTap, this);
+        } else if (oldDoneButton) {
+            toolbar.remove(oldDoneButton);
+        }
+    },
+    /**
+     * Updates the {@link #cancelButton} configuration. Will change it into a button when appropriate, or just update the text if needed.
+     * @param {Object} config
+     * @return {Object}
+     */
+    applyCancelButton: function(config) {
+        if (config) {
+            if (Ext.isBoolean(config)) {
+                config = {};
+            }
+            if (typeof config == "string") {
+                config = {
+                    text: config
+                };
+            }
+            Ext.applyIf(config, {
+                align: 'left',
+                text: 'Cancel'
+            });
+        }
+        return Ext.factory(config, 'Ext.Button', this.getCancelButton());
+    },
+    updateCancelButton: function(newCancelButton, oldCancelButton) {
+        var toolbar = this.getToolbar();
+        if (newCancelButton) {
+            toolbar.add(newCancelButton);
+            newCancelButton.on('tap', this.onCancelButtonTap, this);
+        } else if (oldCancelButton) {
+            toolbar.remove(oldCancelButton);
+        }
+    },
+    /**
+     * @private
+     */
+    updateUseTitles: function(useTitles) {
+        var innerItems = this.getInnerItems(),
+            ln = innerItems.length,
+            cls = 'x-use-titles',
+            i, innerItem;
+        //add a cls onto the picker
+        if (useTitles) {
+            this.addCls(cls);
+        } else {
+            this.removeCls(cls);
+        }
+        //show the time on each of the slots
+        for (i = 0; i < ln; i++) {
+            innerItem = innerItems[i];
+            if (innerItem.isSlot) {
+                innerItem.setShowTitle(useTitles);
+            }
+        }
+    },
+    applySlots: function(slots) {
+        //loop through each of the slots and add a reference to this picker
+        if (slots) {
+            var ln = slots.length,
+                i;
+            for (i = 0; i < ln; i++) {
+                slots[i].picker = this;
+            }
+        }
+        return slots;
+    },
+    /**
+     * Adds any new {@link #slots} to this picker, and removes existing {@link #slots}
+     * @private
+     */
+    updateSlots: function(newSlots) {
+        var bcss = 'x-',
+            innerItems;
+        this.removeAll();
+        if (newSlots) {
+            this.add(newSlots);
+        }
+        innerItems = this.getInnerItems();
+        if (innerItems.length > 0) {
+            innerItems[0].addCls(bcss + 'first');
+            innerItems[innerItems.length - 1].addCls(bcss + 'last');
+        }
+        this.updateUseTitles(this.getUseTitles());
+    },
+    /**
+     * @private
+     * Called when the done button has been tapped.
+     */
+    onDoneButtonTap: function() {
+        var oldValue = this._value,
+            newValue = this.getValue(true);
+        if (newValue != oldValue) {
+            this.fireEvent('change', this, newValue);
+        }
+        this.hide();
+        Ext.util.InputBlocker.unblockInputs();
+    },
+    /**
+     * @private
+     * Called when the cancel button has been tapped.
+     */
+    onCancelButtonTap: function() {
+        this.fireEvent('cancel', this);
+        this.hide();
+        Ext.util.InputBlocker.unblockInputs();
+    },
+    /**
+     * @private
+     * Called when a slot has been picked.
+     */
+    onSlotPick: function(slot) {
+        this.fireEvent('pick', this, this.getValue(true), slot);
+    },
+    show: function() {
+        if (this.getParent() === undefined) {
+            Ext.Viewport.add(this);
+        }
+        Ext.Sheet.prototype.show.apply(this, arguments);
+        if (!this.isHidden()) {
+            this.setValue(this._value);
+        }
+        Ext.util.InputBlocker.blockInputs();
+    },
+    /**
+     * Sets the values of the pickers slots.
+     * @param {Object} values The values in a {name:'value'} format.
+     * @param {Boolean} animated `true` to animate setting the values.
+     * @return {Ext.Picker} this This picker.
+     */
+    setValue: function(values, animated) {
+        var me = this,
+            slots = me.getInnerItems(),
+            ln = slots.length,
+            key, slot, loopSlot, i, value;
+        if (!values) {
+            values = {};
+            for (i = 0; i < ln; i++) {
+                //set the value to false so the slot will return null when getValue is called
+                values[slots[i].config.name] = null;
+            }
+        }
+        for (key in values) {
+            slot = null;
+            value = values[key];
+            for (i = 0; i < slots.length; i++) {
+                loopSlot = slots[i];
+                if (loopSlot.config.name == key) {
+                    slot = loopSlot;
+                    break;
+                }
+            }
+            if (slot) {
+                if (animated) {
+                    slot.setValueAnimated(value);
+                } else {
+                    slot.setValue(value);
+                }
+            }
+        }
+        me._values = me._value = values;
+        return me;
+    },
+    setValueAnimated: function(values) {
+        this.setValue(values, true);
+    },
+    /**
+     * Returns the values of each of the pickers slots
+     * @return {Object} The values of the pickers slots
+     */
+    getValue: function(useDom) {
+        var values = {},
+            items = this.getItems().items,
+            ln = items.length,
+            item, i;
+        if (useDom) {
+            for (i = 0; i < ln; i++) {
+                item = items[i];
+                if (item && item.isSlot) {
+                    values[item.getName()] = item.getValue(useDom);
+                }
+            }
+            this._values = values;
+        }
+        return this._values;
+    },
+    /**
+     * Returns the values of each of the pickers slots.
+     * @return {Object} The values of the pickers slots.
+     */
+    getValues: function() {
+        return this.getValue();
+    },
+    destroy: function() {
+        Ext.Sheet.prototype.destroy.call(this);
+        Ext.destroy(this.mask, this.bar);
+    }
+}, function() {});
+
+/**
+ * Simple Select field wrapper. Example usage:
+ *
+ *     @example
+ *     Ext.create('Ext.form.Panel', {
+ *         fullscreen: true,
+ *         items: [
+ *             {
+ *                 xtype: 'fieldset',
+ *                 title: 'Select',
+ *                 items: [
+ *                     {
+ *                         xtype: 'selectfield',
+ *                         label: 'Choose one',
+ *                         options: [
+ *                             {text: 'First Option',  value: 'first'},
+ *                             {text: 'Second Option', value: 'second'},
+ *                             {text: 'Third Option',  value: 'third'}
+ *                         ]
+ *                     }
+ *                 ]
+ *             }
+ *         ]
+ *     });
+ *
+ * For more information regarding forms and fields, please review [Using Forms in Sencha Touch Guide](../../../components/forms.html)
+ */
+(Ext.cmd.derive('Ext.field.Select', Ext.field.Text, {
+    alternateClassName: 'Ext.form.Select',
+    /**
+     * @event change
+     * Fires when an option selection has changed
+     * @param {Ext.field.Select} this
+     * @param {Mixed} newValue The new value
+     * @param {Mixed} oldValue The old value
+     */
+    /**
+     * @event focus
+     * Fires when this field receives input focus. This happens both when you tap on the field and when you focus on the field by using
+     * 'next' or 'tab' on a keyboard.
+     *
+     * Please note that this event is not very reliable on Android. For example, if your Select field is second in your form panel,
+     * you cannot use the Next button to get to this select field. This functionality works as expected on iOS.
+     * @param {Ext.field.Select} this This field
+     * @param {Ext.event.Event} e
+     */
+    config: {
+        /**
+         * @cfg
+         * @inheritdoc
+         */
+        ui: 'select',
+        /**
+         * @cfg {Boolean} useClearIcon
+         * @hide
+         */
+        /**
+         * @cfg {String/Number} valueField The underlying {@link Ext.data.Field#name data value name} (or numeric Array index) to bind to this
+         * Select control.
+         * @accessor
+         */
+        valueField: 'value',
+        /**
+         * @cfg {String/Number} displayField The underlying {@link Ext.data.Field#name data value name} (or numeric Array index) to bind to this
+         * Select control. This resolved value is the visibly rendered value of the available selection options.
+         * @accessor
+         */
+        displayField: 'text',
+        /**
+         * @cfg {Ext.data.Store/Object/String} store The store to provide selection options data.
+         * Either a Store instance, configuration object or store ID.
+         * @accessor
+         */
+        store: null,
+        /**
+         * @cfg {Array} options An array of select options.
+         *
+         *     [
+         *         {text: 'First Option',  value: 'first'},
+         *         {text: 'Second Option', value: 'second'},
+         *         {text: 'Third Option',  value: 'third'}
+         *     ]
+         *
+         * __Note:__ Option object member names should correspond with defined {@link #valueField valueField} and {@link #displayField displayField} values.
+         * This config will be ignored if a {@link #store store} instance is provided.
+         * @accessor
+         */
+        options: null,
+        /**
+         * @cfg {String} hiddenName Specify a `hiddenName` if you're using the {@link Ext.form.Panel#standardSubmit standardSubmit} option.
+         * This name will be used to post the underlying value of the select to the server.
+         * @accessor
+         */
+        hiddenName: null,
+        /**
+         * @cfg {Object} component
+         * @accessor
+         * @hide
+         */
+        component: {
+            useMask: true
+        },
+        /**
+         * @cfg {Boolean} clearIcon
+         * @hide
+         * @accessor
+         */
+        clearIcon: false,
+        /**
+         * @cfg {String/Boolean} usePicker
+         * `true` if you want this component to always use a {@link Ext.picker.Picker}.
+         * `false` if you want it to use a popup overlay {@link Ext.List}.
+         * `auto` if you want to show a {@link Ext.picker.Picker} only on phones.
+         */
+        usePicker: 'auto',
+        /**
+         * @cfg {Boolean} autoSelect
+         * `true` to auto select the first value in the {@link #store} or {@link #options} when they are changed. Only happens when
+         * the {@link #value} is set to `null`.
+         */
+        autoSelect: true,
+        /**
+         * @cfg {Object} defaultPhonePickerConfig
+         * The default configuration for the picker component when you are on a phone.
+         */
+        defaultPhonePickerConfig: null,
+        /**
+         * @cfg {Object} defaultTabletPickerConfig
+         * The default configuration for the picker component when you are on a tablet.
+         */
+        defaultTabletPickerConfig: null,
+        /**
+         * @cfg
+         * @inheritdoc
+         */
+        name: 'picker',
+        /**
+         * @cfg {String} pickerSlotAlign
+         * The alignment of text in the picker created by this Select
+         * @private
+         */
+        pickerSlotAlign: 'center'
+    },
+    platformConfig: [
+        {
+            theme: [
+                'Windows'
+            ],
+            pickerSlotAlign: 'left'
+        },
+        {
+            theme: [
+                'Tizen'
+            ],
+            usePicker: false
+        }
+    ],
+    // @private
+    initialize: function() {
+        var me = this,
+            component = me.getComponent();
+        Ext.field.Text.prototype.initialize.call(this);
+        component.on({
+            scope: me,
+            masktap: 'onMaskTap'
+        });
+        component.doMaskTap = Ext.emptyFn;
+        if (Ext.browser.is.AndroidStock2) {
+            component.input.dom.disabled = true;
+        }
+        if (Ext.theme.is.Blackberry || Ext.theme.is.Blackberry103) {
+            this.label.on({
+                scope: me,
+                tap: "onFocus"
+            });
+        }
+    },
+    getElementConfig: function() {
+        if (Ext.theme.is.Blackberry || Ext.theme.is.Blackberry103) {
+            var prefix = 'x-';
+            return {
+                reference: 'element',
+                className: 'x-container',
+                children: [
+                    {
+                        reference: 'innerElement',
+                        cls: prefix + 'component-outer',
+                        children: [
+                            {
+                                reference: 'label',
+                                cls: prefix + 'form-label',
+                                children: [
+                                    {
+                                        reference: 'labelspan',
+                                        tag: 'span'
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            };
+        } else {
+            return Ext.field.Text.prototype.getElementConfig.apply(this, arguments);
+        }
+    },
+    /**
+     * @private
+     */
+    updateDefaultPhonePickerConfig: function(newConfig) {
+        var picker = this.picker;
+        if (picker) {
+            picker.setConfig(newConfig);
+        }
+    },
+    /**
+     * @private
+     */
+    updateDefaultTabletPickerConfig: function(newConfig) {
+        var listPanel = this.listPanel;
+        if (listPanel) {
+            listPanel.setConfig(newConfig);
+        }
+    },
+    /**
+     * @private
+     * Checks if the value is `auto`. If it is, it only uses the picker if the current device type
+     * is a phone.
+     */
+    applyUsePicker: function(usePicker) {
+        if (usePicker == "auto") {
+            usePicker = (Ext.os.deviceType == 'Phone');
+        }
+        return Boolean(usePicker);
+    },
+    syncEmptyCls: Ext.emptyFn,
+    /**
+     * @private
+     */
+    applyValue: function(value) {
+        var record = value,
+            index, store;
+        //we call this so that the options configruation gets intiailized, so that a store exists, and we can
+        //find the correct value
+        this.getOptions();
+        store = this.getStore();
+        if ((value != undefined && !value.isModel) && store) {
+            index = store.find(this.getValueField(), value, null, null, null, true);
+            if (index == -1) {
+                index = store.find(this.getDisplayField(), value, null, null, null, true);
+            }
+            record = store.getAt(index);
+        }
+        return record;
+    },
+    updateValue: function(newValue, oldValue) {
+        this.record = newValue;
+        Ext.field.Text.prototype.updateValue.call(this, (newValue && newValue.isModel) ? newValue.get(this.getDisplayField()) : '');
+    },
+    getValue: function() {
+        var record = this.record;
+        return (record && record.isModel) ? record.get(this.getValueField()) : null;
+    },
+    /**
+     * Returns the current selected {@link Ext.data.Model record} instance selected in this field.
+     * @return {Ext.data.Model} the record.
+     */
+    getRecord: function() {
+        return this.record;
+    },
+    // @private
+    getPhonePicker: function() {
+        var config = this.getDefaultPhonePickerConfig();
+        if (!this.picker) {
+            this.picker = Ext.create('Ext.picker.Picker', Ext.apply({
+                slots: [
+                    {
+                        align: this.getPickerSlotAlign(),
+                        name: this.getName(),
+                        valueField: this.getValueField(),
+                        displayField: this.getDisplayField(),
+                        value: this.getValue(),
+                        store: this.getStore()
+                    }
+                ],
+                listeners: {
+                    change: this.onPickerChange,
+                    scope: this
+                }
+            }, config));
+        }
+        return this.picker;
+    },
+    // @private
+    getTabletPicker: function() {
+        var config = this.getDefaultTabletPickerConfig();
+        if (!this.listPanel) {
+            this.listPanel = Ext.create('Ext.Panel', Ext.apply({
+                left: 0,
+                top: 0,
+                modal: true,
+                cls: 'x-select-overlay',
+                layout: 'fit',
+                hideOnMaskTap: true,
+                width: Ext.os.is.Phone ? '14em' : '18em',
+                height: (Ext.os.is.BlackBerry && Ext.os.version.getMajor() === 10) ? '12em' : (Ext.os.is.Phone ? '12.5em' : '22em'),
+                items: {
+                    xtype: 'list',
+                    store: this.getStore(),
+                    itemTpl: '<span class="x-list-label">{' + this.getDisplayField() + ':htmlEncode}</span>',
+                    listeners: {
+                        select: this.onListSelect,
+                        itemtap: this.onListTap,
+                        scope: this
+                    }
+                }
+            }, config));
+        }
+        return this.listPanel;
+    },
+    // @private
+    onMaskTap: function() {
+        this.onFocus();
+        return false;
+    },
+    /**
+     * Shows the picker for the select field, whether that is a {@link Ext.picker.Picker} or a simple
+     * {@link Ext.List list}.
+     */
+    showPicker: function() {
+        var me = this,
+            store = me.getStore(),
+            value = me.getValue();
+        //check if the store is empty, if it is, return
+        if (!store || store.getCount() === 0) {
+            return;
+        }
+        if (me.getReadOnly()) {
+            return;
+        }
+        me.isFocused = true;
+        if (me.getUsePicker()) {
+            var picker = me.getPhonePicker(),
+                name = me.getName(),
+                pickerValue = {};
+            pickerValue[name] = value;
+            picker.setValue(pickerValue);
+            if (!picker.getParent()) {
+                Ext.Viewport.add(picker);
+            }
+            picker.show();
+        } else {
+            var listPanel = me.getTabletPicker(),
+                list = listPanel.down('list'),
+                index, record;
+            if (!listPanel.getParent()) {
+                Ext.Viewport.add(listPanel);
+            }
+            listPanel.showBy(me.getComponent(), null);
+            if (value || me.getAutoSelect()) {
+                store = list.getStore();
+                index = store.find(me.getValueField(), value, null, null, null, true);
+                record = store.getAt(index);
+                if (record) {
+                    list.select(record, null, true);
+                }
+            }
+        }
+    },
+    // @private
+    onListSelect: function(item, record) {
+        var me = this;
+        if (record) {
+            me.setValue(record);
+        }
+    },
+    onListTap: function() {
+        this.listPanel.hide({
+            type: 'fade',
+            out: true,
+            scope: this
+        });
+    },
+    // @private
+    onPickerChange: function(picker, value) {
+        var me = this,
+            newValue = value[me.getName()],
+            store = me.getStore(),
+            index = store.find(me.getValueField(), newValue, null, null, null, true),
+            record = store.getAt(index);
+        me.setValue(record);
+    },
+    onChange: function(component, newValue, oldValue) {
+        var me = this,
+            store = me.getStore(),
+            index = (store) ? store.find(me.getDisplayField(), oldValue, null, null, null, true) : -1,
+            valueField = me.getValueField(),
+            record = (store) ? store.getAt(index) : null;
+        oldValue = (record) ? record.get(valueField) : null;
+        me.fireEvent('change', me, me.getValue(), oldValue);
+    },
+    /**
+     * Updates the underlying `<options>` list with new values.
+     *
+     * @param {Array} newOptions An array of options configurations to insert or append.
+     *
+     *     selectBox.setOptions([
+     *         {text: 'First Option',  value: 'first'},
+     *         {text: 'Second Option', value: 'second'},
+     *         {text: 'Third Option',  value: 'third'}
+     *     ]).setValue('third');
+     *
+     * __Note:__ option object member names should correspond with defined {@link #valueField valueField} and
+     * {@link #displayField displayField} values.
+     *
+     * @return {Ext.field.Select} this
+     */
+    updateOptions: function(newOptions) {
+        var store = this.getStore();
+        if (!store) {
+            this.setStore(true);
+            store = this._store;
+        }
+        if (!newOptions) {
+            store.clearData();
+        } else {
+            store.setData(newOptions);
+            this.onStoreDataChanged(store);
+        }
+        return this;
+    },
+    applyStore: function(store) {
+        if (store === true) {
+            store = Ext.create('Ext.data.Store', {
+                fields: [
+                    this.getValueField(),
+                    this.getDisplayField()
+                ],
+                autoDestroy: true
+            });
+        }
+        if (store) {
+            store = Ext.data.StoreManager.lookup(store);
+            store.on({
+                scope: this,
+                addrecords: 'onStoreDataChanged',
+                removerecords: 'onStoreDataChanged',
+                updaterecord: 'onStoreDataChanged',
+                refresh: 'onStoreDataChanged'
+            });
+        }
+        return store;
+    },
+    updateStore: function(newStore) {
+        if (newStore) {
+            this.onStoreDataChanged(newStore);
+        }
+        if (this.getUsePicker() && this.picker) {
+            this.picker.down('pickerslot').setStore(newStore);
+        } else if (this.listPanel) {
+            this.listPanel.down('dataview').setStore(newStore);
+        }
+    },
+    /**
+     * Called when the internal {@link #store}'s data has changed.
+     */
+    onStoreDataChanged: function(store) {
+        var initialConfig = this.getInitialConfig(),
+            value = this.getValue();
+        if (value || value == 0) {
+            this.updateValue(this.applyValue(value));
+        }
+        if (this.getValue() === null) {
+            if (initialConfig.hasOwnProperty('value')) {
+                this.setValue(initialConfig.value);
+            }
+            if (this.getValue() === null && this.getAutoSelect()) {
+                if (store.getCount() > 0) {
+                    this.setValue(store.getAt(0));
+                }
+            }
+        }
+    },
+    /**
+     * @private
+     */
+    doSetDisabled: function(disabled) {
+        var component = this.getComponent();
+        if (component) {
+            component.setDisabled(disabled);
+        }
+        Ext.Component.prototype.doSetDisabled.apply(this, arguments);
+    },
+    /**
+     * @private
+     */
+    setDisabled: function() {
+        Ext.Component.prototype.setDisabled.apply(this, arguments);
+    },
+    // @private
+    updateLabelWidth: function() {
+        if (Ext.theme.is.Blackberry || Ext.theme.is.Blackberry103) {
+            return;
+        } else {
+            Ext.field.Text.prototype.updateLabelWidth.apply(this, arguments);
+        }
+    },
+    // @private
+    updateLabelAlign: function() {
+        if (Ext.theme.is.Blackberry || Ext.theme.is.Blackberry103) {
+            return;
+        } else {
+            Ext.field.Text.prototype.updateLabelAlign.apply(this, arguments);
+        }
+    },
+    /**
+     * Resets the Select field to the value of the first record in the store.
+     * @return {Ext.field.Select} this
+     * @chainable
+     */
+    reset: function() {
+        var me = this,
+            record;
+        if (me.getAutoSelect()) {
+            var store = me.getStore();
+            record = (me.originalValue) ? me.originalValue : store.getAt(0);
+        } else {
+            var usePicker = me.getUsePicker(),
+                picker = usePicker ? me.picker : me.listPanel;
+            if (picker) {
+                picker = picker.child(usePicker ? 'pickerslot' : 'dataview');
+                picker.deselectAll();
+            }
+            record = null;
+        }
+        me.setValue(record);
+        return me;
+    },
+    onFocus: function(e) {
+        if (this.getDisabled()) {
+            return false;
+        }
+        var component = this.getComponent();
+        this.fireEvent('focus', this, e);
+        if (Ext.os.is.Android4) {
+            component.input.dom.focus();
+        }
+        component.input.dom.blur();
+        this.isFocused = true;
+        this.showPicker();
+    },
+    destroy: function() {
+        Ext.field.Text.prototype.destroy.apply(this, arguments);
+        var store = this.getStore();
+        if (store && store.getAutoDestroy()) {
+            Ext.destroy(store);
+        }
+        Ext.destroy(this.listPanel, this.picker);
+    }
+}, 0, [
+    "selectfield"
+], [
+    "component",
+    "field",
+    "textfield",
+    "selectfield"
+], {
+    "component": true,
+    "field": true,
+    "textfield": true,
+    "selectfield": true
+}, [
+    "widget.selectfield"
+], 0, [
+    Ext.field,
+    'Select',
+    Ext.form,
+    'Select'
+], 0));
+
+/**
+ * A date picker component which shows a Date Picker on the screen. This class extends from {@link Ext.picker.Picker}
+ * and {@link Ext.Sheet} so it is a popup.
+ *
+ * This component has no required configurations.
+ *
+ * ## Examples
+ *
+ *     @example miniphone preview
+ *     var datePicker = Ext.create('Ext.picker.Date');
+ *     Ext.Viewport.add(datePicker);
+ *     datePicker.show();
+ *
+ * You may want to adjust the {@link #yearFrom} and {@link #yearTo} properties:
+ *
+ *     @example miniphone preview
+ *     var datePicker = Ext.create('Ext.picker.Date', {
+ *         yearFrom: 2000,
+ *         yearTo  : 2015
+ *     });
+ *     Ext.Viewport.add(datePicker);
+ *     datePicker.show();
+ *
+ * You can set the value of the {@link Ext.picker.Date} to the current date using `new Date()`:
+ *
+ *     @example miniphone preview
+ *     var datePicker = Ext.create('Ext.picker.Date', {
+ *         value: new Date()
+ *     });
+ *     Ext.Viewport.add(datePicker);
+ *     datePicker.show();
+ *
+ * And you can hide the titles from each of the slots by using the {@link #useTitles} configuration:
+ *
+ *     @example miniphone preview
+ *     var datePicker = Ext.create('Ext.picker.Date', {
+ *         useTitles: false
+ *     });
+ *     Ext.Viewport.add(datePicker);
+ *     datePicker.show();
+ */
+(Ext.cmd.derive('Ext.picker.Date', Ext.picker.Picker, {
+    alternateClassName: 'Ext.DatePicker',
+    /**
+     * @event change
+     * Fired when the value of this picker has changed and the done button is pressed.
+     * @param {Ext.picker.Date} this This Picker
+     * @param {Date} value The date value
+     */
+    config: {
+        /**
+         * @cfg {Number} yearFrom
+         * The start year for the date picker. If {@link #yearFrom} is greater than
+         * {@link #yearTo} then the order of years will be reversed.
+         * @accessor
+         */
+        yearFrom: 1980,
+        /**
+         * @cfg {Number} [yearTo=new Date().getFullYear()]
+         * The last year for the date picker. If {@link #yearFrom} is greater than
+         * {@link #yearTo} then the order of years will be reversed.
+         * @accessor
+         */
+        yearTo: new Date().getFullYear(),
+        /**
+         * @cfg {String} monthText
+         * The label to show for the month column.
+         * @accessor
+         */
+        monthText: 'Month',
+        /**
+         * @cfg {String} dayText
+         * The label to show for the day column.
+         * @accessor
+         */
+        dayText: 'Day',
+        /**
+         * @cfg {String} yearText
+         * The label to show for the year column.
+         * @accessor
+         */
+        yearText: 'Year',
+        /**
+         * @cfg {Array} slotOrder
+         * An array of strings that specifies the order of the slots.
+         * @accessor
+         */
+        slotOrder: [
+            'month',
+            'day',
+            'year'
+        ],
+        /**
+         * @cfg {Object/Date} value
+         * Default value for the field and the internal {@link Ext.picker.Date} component. Accepts an object of 'year',
+         * 'month' and 'day' values, all of which should be numbers, or a {@link Date}.
+         *
+         * Examples:
+         *
+         * - `{year: 1989, day: 1, month: 5}` = 1st May 1989
+         * - `new Date()` = current date
+         * @accessor
+         */
+        /**
+         * @cfg {Array} slots
+         * @hide
+         * @accessor
+         */
+        /**
+         * @cfg {String/Mixed} doneButton
+         * Can be either:
+         *
+         * - A {String} text to be used on the Done button.
+         * - An {Object} as config for {@link Ext.Button}.
+         * - `false` or `null` to hide it.
+         * @accessor
+         */
+        doneButton: true
+    },
+    platformConfig: [
+        {
+            theme: [
+                'Windows'
+            ],
+            doneButton: {
+                iconCls: 'check2',
+                ui: 'round',
+                text: ''
+            }
+        }
+    ],
+    initialize: function() {
+        Ext.picker.Picker.prototype.initialize.call(this);
+        this.on({
+            scope: this,
+            delegate: '> slot',
+            slotpick: this.onSlotPick
+        });
+        this.on({
+            scope: this,
+            show: this.onSlotPick
+        });
+    },
+    setValue: function(value, animated) {
+        if (Ext.isDate(value)) {
+            value = {
+                day: value.getDate(),
+                month: value.getMonth() + 1,
+                year: value.getFullYear()
+            };
+        }
+        (arguments.callee.$previous || Ext.picker.Picker.prototype.setValue).call(this, value, animated);
+        this.onSlotPick();
+    },
+    getValue: function(useDom) {
+        var values = {},
+            items = this.getItems().items,
+            ln = items.length,
+            daysInMonth, day, month, year, item, i;
+        for (i = 0; i < ln; i++) {
+            item = items[i];
+            if (item instanceof Ext.picker.Slot) {
+                values[item.getName()] = item.getValue(useDom);
+            }
+        }
+        //if all the slots return null, we should not return a date
+        if (values.year === null && values.month === null && values.day === null) {
+            return null;
+        }
+        year = Ext.isNumber(values.year) ? values.year : 1;
+        month = Ext.isNumber(values.month) ? values.month : 1;
+        day = Ext.isNumber(values.day) ? values.day : 1;
+        if (month && year && month && day) {
+            daysInMonth = this.getDaysInMonth(month, year);
+        }
+        day = (daysInMonth) ? Math.min(day, daysInMonth) : day;
+        return new Date(year, month - 1, day);
+    },
+    /**
+     * Updates the yearFrom configuration
+     */
+    updateYearFrom: function() {
+        if (this.initialized) {
+            this.createSlots();
+        }
+    },
+    /**
+     * Updates the yearTo configuration
+     */
+    updateYearTo: function() {
+        if (this.initialized) {
+            this.createSlots();
+        }
+    },
+    /**
+     * Updates the monthText configuration
+     */
+    updateMonthText: function(newMonthText, oldMonthText) {
+        var innerItems = this.getInnerItems,
+            ln = innerItems.length,
+            item, i;
+        //loop through each of the current items and set the title on the correct slice
+        if (this.initialized) {
+            for (i = 0; i < ln; i++) {
+                item = innerItems[i];
+                if ((typeof item.title == "string" && item.title == oldMonthText) || (item.title.html == oldMonthText)) {
+                    item.setTitle(newMonthText);
+                }
+            }
+        }
+    },
+    /**
+     * Updates the {@link #dayText} configuration.
+     */
+    updateDayText: function(newDayText, oldDayText) {
+        var innerItems = this.getInnerItems,
+            ln = innerItems.length,
+            item, i;
+        //loop through each of the current items and set the title on the correct slice
+        if (this.initialized) {
+            for (i = 0; i < ln; i++) {
+                item = innerItems[i];
+                if ((typeof item.title == "string" && item.title == oldDayText) || (item.title.html == oldDayText)) {
+                    item.setTitle(newDayText);
+                }
+            }
+        }
+    },
+    /**
+     * Updates the yearText configuration
+     */
+    updateYearText: function(yearText) {
+        var innerItems = this.getInnerItems,
+            ln = innerItems.length,
+            item, i;
+        //loop through each of the current items and set the title on the correct slice
+        if (this.initialized) {
+            for (i = 0; i < ln; i++) {
+                item = innerItems[i];
+                if (item.title == this.yearText) {
+                    item.setTitle(yearText);
+                }
+            }
+        }
+    },
+    // @private
+    constructor: function() {
+        Ext.picker.Picker.prototype.constructor.apply(this, arguments);
+        this.createSlots();
+    },
+    /**
+     * Generates all slots for all years specified by this component, and then sets them on the component
+     * @private
+     */
+    createSlots: function() {
+        var me = this,
+            slotOrder = me.getSlotOrder(),
+            yearsFrom = me.getYearFrom(),
+            yearsTo = me.getYearTo(),
+            years = [],
+            days = [],
+            months = [],
+            reverse = yearsFrom > yearsTo,
+            ln, i, daysInMonth;
+        while (yearsFrom) {
+            years.push({
+                text: yearsFrom,
+                value: yearsFrom
+            });
+            if (yearsFrom === yearsTo) {
+                break;
+            }
+            if (reverse) {
+                yearsFrom--;
+            } else {
+                yearsFrom++;
+            }
+        }
+        daysInMonth = me.getDaysInMonth(1, new Date().getFullYear());
+        for (i = 0; i < daysInMonth; i++) {
+            days.push({
+                text: i + 1,
+                value: i + 1
+            });
+        }
+        for (i = 0 , ln = Ext.Date.monthNames.length; i < ln; i++) {
+            months.push({
+                text: Ext.Date.monthNames[i],
+                value: i + 1
+            });
+        }
+        var slots = [];
+        slotOrder.forEach(function(item) {
+            slots.push(me.createSlot(item, days, months, years));
+        });
+        me.setSlots(slots);
+    },
+    /**
+     * Returns a slot config for a specified date.
+     * @private
+     */
+    createSlot: function(name, days, months, years) {
+        switch (name) {
+            case 'year':
+                return {
+                    name: 'year',
+                    align: 'center',
+                    data: years,
+                    title: this.getYearText(),
+                    flex: 3
+                };
+            case 'month':
+                return {
+                    name: name,
+                    align: 'right',
+                    data: months,
+                    title: this.getMonthText(),
+                    flex: 4
+                };
+            case 'day':
+                return {
+                    name: 'day',
+                    align: 'center',
+                    data: days,
+                    title: this.getDayText(),
+                    flex: 2
+                };
+        }
+    },
+    onSlotPick: function() {
+        var value = this.getValue(true),
+            slot = this.getDaySlot(),
+            year = value.getFullYear(),
+            month = value.getMonth(),
+            days = [],
+            daysInMonth, i;
+        if (!value || !Ext.isDate(value) || !slot) {
+            return;
+        }
+        Ext.picker.Picker.prototype.onSlotPick.apply(this, arguments);
+        //get the new days of the month for this new date
+        daysInMonth = this.getDaysInMonth(month + 1, year);
+        for (i = 0; i < daysInMonth; i++) {
+            days.push({
+                text: i + 1,
+                value: i + 1
+            });
+        }
+        // We don't need to update the slot days unless it has changed
+        if (slot.getStore().getCount() == days.length) {
+            return;
+        }
+        slot.getStore().setData(days);
+        // Now we have the correct amount of days for the day slot, lets update it
+        var store = slot.getStore(),
+            viewItems = slot.getViewItems(),
+            valueField = slot.getValueField(),
+            index, item;
+        index = store.find(valueField, value.getDate());
+        if (index == -1) {
+            return;
+        }
+        item = Ext.get(viewItems[index]);
+        slot.selectedIndex = index;
+        slot.scrollToItem(item);
+        slot.setValue(slot.getValue(true));
+    },
+    getDaySlot: function() {
+        var innerItems = this.getInnerItems(),
+            ln = innerItems.length,
+            i, slot;
+        if (this.daySlot) {
+            return this.daySlot;
+        }
+        for (i = 0; i < ln; i++) {
+            slot = innerItems[i];
+            if (slot.isSlot && slot.getName() == "day") {
+                this.daySlot = slot;
+                return slot;
+            }
+        }
+        return null;
+    },
+    // @private
+    getDaysInMonth: function(month, year) {
+        var daysInMonth = [
+                31,
+                28,
+                31,
+                30,
+                31,
+                30,
+                31,
+                31,
+                30,
+                31,
+                30,
+                31
+            ];
+        return month == 2 && this.isLeapYear(year) ? 29 : daysInMonth[month - 1];
+    },
+    // @private
+    isLeapYear: function(year) {
+        return !!((year & 3) === 0 && (year % 100 || (year % 400 === 0 && year)));
+    },
+    onDoneButtonTap: function() {
+        var oldValue = this._value,
+            newValue = this.getValue(true),
+            testValue = newValue;
+        if (Ext.isDate(newValue)) {
+            testValue = newValue.toDateString();
+        }
+        if (Ext.isDate(oldValue)) {
+            oldValue = oldValue.toDateString();
+        }
+        if (testValue != oldValue) {
+            this.fireEvent('change', this, newValue);
+        }
+        this.hide();
+        Ext.util.InputBlocker.unblockInputs();
+    }
+}, 1, [
+    "datepicker"
+], [
+    "component",
+    "container",
+    "panel",
+    "sheet",
+    "picker",
+    "datepicker"
+], {
+    "component": true,
+    "container": true,
+    "panel": true,
+    "sheet": true,
+    "picker": true,
+    "datepicker": true
+}, [
+    "widget.datepicker"
+], 0, [
+    Ext.picker,
+    'Date',
+    Ext,
+    'DatePicker'
+], 0));
+
+/**
+ * This is a specialized field which shows a {@link Ext.picker.Date} when tapped. If it has a predefined value,
+ * or a value is selected in the {@link Ext.picker.Date}, it will be displayed like a normal {@link Ext.field.Text}
+ * (but not selectable/changable).
+ *
+ *     Ext.create('Ext.field.DatePicker', {
+ *         label: 'Birthday',
+ *         value: new Date()
+ *     });
+ *
+ * {@link Ext.field.DatePicker} fields are very simple to implement, and have no required configurations.
+ *
+ * For more information regarding forms and fields, please review [Using Forms in Sencha Touch Guide](../../../components/forms.html)
+ * 
+ * ## Examples
+ *
+ * It can be very useful to set a default {@link #value} configuration on {@link Ext.field.DatePicker} fields. In
+ * this example, we set the {@link #value} to be the current date. You can also use the {@link #setValue} method to
+ * update the value at any time.
+ *
+ *     @example miniphone preview
+ *     Ext.create('Ext.form.Panel', {
+ *         fullscreen: true,
+ *         items: [
+ *             {
+ *                 xtype: 'fieldset',
+ *                 items: [
+ *                     {
+ *                         xtype: 'datepickerfield',
+ *                         label: 'Birthday',
+ *                         name: 'birthday',
+ *                         value: new Date()
+ *                     }
+ *                 ]
+ *             },
+ *             {
+ *                 xtype: 'toolbar',
+ *                 docked: 'bottom',
+ *                 items: [
+ *                     { xtype: 'spacer' },
+ *                     {
+ *                         text: 'setValue',
+ *                         handler: function() {
+ *                             var datePickerField = Ext.ComponentQuery.query('datepickerfield')[0];
+ *
+ *                             var randomNumber = function(from, to) {
+ *                                 return Math.floor(Math.random() * (to - from + 1) + from);
+ *                             };
+ *
+ *                             datePickerField.setValue({
+ *                                 month: randomNumber(0, 11),
+ *                                 day  : randomNumber(0, 28),
+ *                                 year : randomNumber(1980, 2011)
+ *                             });
+ *                         }
+ *                     },
+ *                     { xtype: 'spacer' }
+ *                 ]
+ *             }
+ *         ]
+ *     });
+ *
+ * When you need to retrieve the date from the {@link Ext.field.DatePicker}, you can either use the {@link #getValue} or
+ * {@link #getFormattedValue} methods:
+ *
+ *     @example preview
+ *     Ext.create('Ext.form.Panel', {
+ *         fullscreen: true,
+ *         items: [
+ *             {
+ *                 xtype: 'fieldset',
+ *                 items: [
+ *                     {
+ *                         xtype: 'datepickerfield',
+ *                         label: 'Birthday',
+ *                         name: 'birthday',
+ *                         value: new Date()
+ *                     }
+ *                 ]
+ *             },
+ *             {
+ *                 xtype: 'toolbar',
+ *                 docked: 'bottom',
+ *                 items: [
+ *                     {
+ *                         text: 'getValue',
+ *                         handler: function() {
+ *                             var datePickerField = Ext.ComponentQuery.query('datepickerfield')[0];
+ *                             Ext.Msg.alert(null, datePickerField.getValue());
+ *                         }
+ *                     },
+ *                     { xtype: 'spacer' },
+ *                     {
+ *                         text: 'getFormattedValue',
+ *                         handler: function() {
+ *                             var datePickerField = Ext.ComponentQuery.query('datepickerfield')[0];
+ *                             Ext.Msg.alert(null, datePickerField.getFormattedValue());
+ *                         }
+ *                     }
+ *                 ]
+ *             }
+ *         ]
+ *     });
+ *
+ *
+ */
+(Ext.cmd.derive('Ext.field.DatePicker', Ext.field.Select, {
+    alternateClassName: 'Ext.form.DatePicker',
+    /**
+     * @event change
+     * Fires when a date is selected
+     * @param {Ext.field.DatePicker} this
+     * @param {Date} newDate The new date
+     * @param {Date} oldDate The old date
+     */
+    config: {
+        ui: 'select',
+        /**
+         * @cfg {Object/Ext.picker.Date} picker
+         * An object that is used when creating the internal {@link Ext.picker.Date} component or a direct instance of {@link Ext.picker.Date}.
+         * @accessor
+         */
+        picker: true,
+        /**
+         * @cfg {Boolean}
+         * @hide
+         * @accessor
+         */
+        clearIcon: false,
+        /**
+         * @cfg {Object/Date} value
+         * Default value for the field and the internal {@link Ext.picker.Date} component. Accepts an object of 'year',
+         * 'month' and 'day' values, all of which should be numbers, or a {@link Date}.
+         *
+         * Example: {year: 1989, day: 1, month: 5} = 1st May 1989 or new Date()
+         * @accessor
+         */
+        /**
+         * @cfg {Boolean} destroyPickerOnHide
+         * Whether or not to destroy the picker widget on hide. This save memory if it's not used frequently,
+         * but increase delay time on the next show due to re-instantiation.
+         * @accessor
+         */
+        destroyPickerOnHide: false,
+        /**
+         * @cfg {String} [dateFormat=Ext.util.Format.defaultDateFormat] The format to be used when displaying the date in this field.
+         * Accepts any valid date format. You can view formats over in the {@link Ext.Date} documentation.
+         */
+        dateFormat: null,
+        /**
+         * @cfg {Object}
+         * @hide
+         */
+        component: {
+            useMask: true
+        }
+    },
+    initialize: function() {
+        var me = this,
+            component = me.getComponent();
+        Ext.field.Select.prototype.initialize.call(this);
+        component.on({
+            scope: me,
+            masktap: 'onMaskTap'
+        });
+        component.doMaskTap = Ext.emptyFn;
+        if (Ext.browser.is.AndroidStock2) {
+            component.input.dom.disabled = true;
+        }
+    },
+    syncEmptyCls: Ext.emptyFn,
+    applyValue: function(value) {
+        if (!Ext.isDate(value) && !Ext.isObject(value)) {
+            return null;
+        }
+        if (Ext.isObject(value)) {
+            return new Date(value.year, value.month - 1, value.day);
+        }
+        return value;
+    },
+    updateValue: function(newValue, oldValue) {
+        var me = this,
+            picker = me._picker;
+        if (picker && picker.isPicker) {
+            picker.setValue(newValue);
+        }
+        // Ext.Date.format expects a Date
+        if (newValue !== null) {
+            me.getComponent().setValue(Ext.Date.format(newValue, me.getDateFormat() || Ext.util.Format.defaultDateFormat));
+        } else {
+            me.getComponent().setValue('');
+        }
+        if (newValue !== oldValue) {
+            me.fireEvent('change', me, newValue, oldValue);
+        }
+    },
+    /**
+     * Updates the date format in the field.
+     * @private
+     */
+    updateDateFormat: function(newDateFormat, oldDateFormat) {
+        var value = this.getValue();
+        if (newDateFormat != oldDateFormat && Ext.isDate(value)) {
+            this.getComponent().setValue(Ext.Date.format(value, newDateFormat || Ext.util.Format.defaultDateFormat));
+        }
+    },
+    /**
+     * Returns the {@link Date} value of this field.
+     * If you wanted a formatted date use the {@link #getFormattedValue} method.
+     * @return {Date} The date selected
+     */
+    getValue: function() {
+        if (this._picker && this._picker instanceof Ext.picker.Date) {
+            return this._picker.getValue();
+        }
+        return this._value;
+    },
+    /**
+     * Returns the value of the field formatted using the specified format. If it is not specified, it will default to
+     * {@link #dateFormat} and then {@link Ext.util.Format#defaultDateFormat}.
+     * @param {String} format The format to be returned.
+     * @return {String} The formatted date.
+     */
+    getFormattedValue: function(format) {
+        var value = this.getValue();
+        return (Ext.isDate(value)) ? Ext.Date.format(value, format || this.getDateFormat() || Ext.util.Format.defaultDateFormat) : value;
+    },
+    applyPicker: function(picker, pickerInstance) {
+        if (pickerInstance && pickerInstance.isPicker) {
+            picker = pickerInstance.setConfig(picker);
+        }
+        return picker;
+    },
+    getPicker: function() {
+        var picker = this._picker,
+            value = this.getValue();
+        if (picker && !picker.isPicker) {
+            picker = Ext.factory(picker, Ext.picker.Date);
+            if (value != null) {
+                picker.setValue(value);
+            }
+        }
+        picker.on({
+            scope: this,
+            change: 'onPickerChange',
+            hide: 'onPickerHide'
+        });
+        this._picker = picker;
+        return picker;
+    },
+    /**
+     * @private
+     * Listener to the tap event of the mask element. Shows the internal DatePicker component when the button has been tapped.
+     */
+    onMaskTap: function() {
+        if (this.getDisabled()) {
+            return false;
+        }
+        this.onFocus();
+        return false;
+    },
+    /**
+     * Called when the picker changes its value.
+     * @param {Ext.picker.Date} picker The date picker.
+     * @param {Object} value The new value from the date picker.
+     * @private
+     */
+    onPickerChange: function(picker, value) {
+        var me = this,
+            oldValue = me.getValue();
+        me.setValue(value);
+        me.fireEvent('select', me, value);
+        me.onChange(me, value, oldValue);
+    },
+    /**
+     * Override this or change event will be fired twice. change event is fired in updateValue
+     * for this field. TOUCH-2861
+     */
+    onChange: Ext.emptyFn,
+    /**
+     * Destroys the picker when it is hidden, if
+     * {@link Ext.field.DatePicker#destroyPickerOnHide destroyPickerOnHide} is set to `true`.
+     * @private
+     */
+    onPickerHide: function() {
+        var me = this,
+            picker = me.getPicker();
+        if (me.getDestroyPickerOnHide() && picker) {
+            picker.destroy();
+            me._picker = me.getInitialConfig().picker || true;
+        }
+    },
+    reset: function() {
+        this.setValue(this.originalValue);
+    },
+    onFocus: function(e) {
+        var component = this.getComponent();
+        this.fireEvent('focus', this, e);
+        if (Ext.os.is.Android4) {
+            component.input.dom.focus();
+        }
+        component.input.dom.blur();
+        if (this.getReadOnly()) {
+            return false;
+        }
+        this.isFocused = true;
+        this.getPicker().show();
+    },
+    // @private
+    destroy: function() {
+        var picker = this._picker;
+        if (picker && picker.isPicker) {
+            picker.destroy();
+        }
+        Ext.field.Select.prototype.destroy.apply(this, arguments);
+    }
+}, 0, [
+    "datepickerfield"
+], [
+    "component",
+    "field",
+    "textfield",
+    "selectfield",
+    "datepickerfield"
+], {
+    "component": true,
+    "field": true,
+    "textfield": true,
+    "selectfield": true,
+    "datepickerfield": true
+}, [
+    "widget.datepickerfield"
+], 0, [
+    Ext.field,
+    'DatePicker',
+    Ext.form,
+    'DatePicker'
+], 0));
+
+/**
+ * @private
+ */
+(Ext.cmd.derive('Ext.field.FileInput', Ext.field.Input, {
+    /**
+     * @event change
+     * Fires just before the field blurs if the field value has changed
+     * @param {Ext.field.Text} this This field
+     * @param {Mixed} newValue The new value
+     * @param {Mixed} oldValue The original value
+     */
+    config: {
+        type: "file",
+        accept: null,
+        capture: null,
+        name: null,
+        multiple: false
+    },
+    /**
+     * @property {Object} Lookup of capture devices to accept types
+     * @private
+     */
+    captureLookup: {
+        video: "camcorder",
+        image: "camera",
+        audio: "microphone"
+    },
+    // @private
+    initialize: function() {
+        var me = this;
+        Ext.field.Input.prototype.initialize.call(this);
+        me.input.on({
+            scope: me,
+            change: 'onInputChange'
+        });
+    },
+    /**
+     * Returns the field data value.
+     * @return {String} value The field value.
+     */
+    getValue: function() {
+        var input = this.input;
+        if (input) {
+            this._value = input.dom.value;
+        }
+        return this._value;
+    },
+    /**
+     * Sets the internal value. Security restrictions prevent setting file values on the input element
+     * @cfg newValue {string} New Value
+     * @returns {String}
+     */
+    setValue: function(newValue) {
+        var oldValue = this._value;
+        this._value = newValue;
+        if (String(this._value) != String(oldValue) && this.initialized) {
+            this.onChange(this, this._value, oldValue);
+        }
+        return this;
+    },
+    /**
+     * Returns the field files.
+     * @return {FileList} List of the files selected.
+     */
+    getFiles: function() {
+        var input = this.input;
+        if (input) {
+            this.$files = input.dom.files;
+        }
+        return this.$files;
+    },
+    // @private
+    onInputChange: function(e) {
+        this.setValue(e.target.value);
+    },
+    /**
+     * Called when the value changes on this input item
+     * @cfg me {Ext.field.FileInput}
+     * @cfg value {String} new Value
+     * @cfg startValue {String} Original Value
+     */
+    onChange: function(me, value, startValue) {
+        this.fireEvent('change', me, value, startValue);
+    },
+    /**
+     * Called when the name being changed
+     * @cfg value   new value
+     * @returns {*}
+     */
+    applyName: function(value) {
+        if (this.getMultiple() && value.substr(-2, 2) !== "[]") {
+            value += "[]";
+        } else if ((!this.getMultiple()) && value.substr(-2, 2) === "[]") {
+            value = value.substr(0, value.length - 2);
+        }
+        return value;
+    },
+    /**
+     * Applies the multiple attribute to the input
+     * @cfg value {boolean}
+     * @returns {boolean}
+     */
+    applyMultiple: function(value) {
+        this.updateFieldAttribute('multiple', value ? '' : null);
+        return value;
+    },
+    /**
+     * Called when the multiple property is updated. The name will automatically be toggled to an array if needed.
+     */
+    updateMultiple: function() {
+        var name = this.getName();
+        if (!Ext.isEmpty(name)) {
+            this.setName(name);
+        }
+    },
+    /*
+     * Updates the accept attribute with the {@link #accept} configuration.
+     * 
+     */
+    applyAccept: function(value) {
+        switch (value) {
+            case "video":
+            case "audio":
+            case "image":
+                value = value + "/*";
+                break;
+        }
+        this.updateFieldAttribute('accept', value);
+    },
+    /**
+     * Updated the capture attribute with the {@ink capture} configuration
+     */
+    applyCapture: function(value) {
+        this.updateFieldAttribute('capture', value);
+        return value;
+    }
+}, 0, [
+    "fileinput"
+], [
+    "component",
+    "input",
+    "fileinput"
+], {
+    "component": true,
+    "input": true,
+    "fileinput": true
+}, [
+    "widget.fileinput"
+], 0, [
+    Ext.field,
+    'FileInput'
+], 0));
+
+/**
+ * Creates an HTML file input field on the page. This is usually used to upload files to remote server. File fields are usually
+ * created inside a form like this:
+ *
+ *     @example
+ *     Ext.create('Ext.form.Panel', {
+ *         fullscreen: true,
+ *         items: [
+ *             {
+ *                 xtype: 'fieldset',
+ *                 title: 'My Uploader',
+ *                 items: [
+ *                     {
+ *                         xtype: 'filefield',
+ *                         label: "MyPhoto:",
+ *                         name: 'photo',
+ *                         accept: 'image'
+ *                     }
+ *                 ]
+ *             }
+ *         ]
+ *     });
+ *
+ * For more information regarding forms and fields, please review [Using Forms in Sencha Touch Guide](../../../components/forms.html)
+ */
+(Ext.cmd.derive('Ext.field.File', Ext.field.Field, {
+    /**
+     * @event change
+     * Fires when a file has been selected
+     * @param {Ext.field.File} this This field
+     * @param {Mixed} newValue The new value
+     * @param {Mixed} oldValue The original value
+     */
+    config: {
+        component: {
+            xtype: 'fileinput',
+            fastFocus: false
+        }
+    },
+    proxyConfig: {
+        name: null,
+        value: null,
+        files: null,
+        /**
+         * @cfg {Boolean} multiple Allow selection of multiple files
+         *
+         * @accessor
+         */
+        multiple: false,
+        /**
+         * @cfg {String} accept File input accept attribute documented here (http://www.w3schools.com/tags/att_input_accept.asp)
+         * Also can be simple strings -- e.g. audio, video, image
+         *
+         * @accessor
+         */
+        accept: null,
+        /**
+         * @cfg {String} capture File input capture attribute. Accepts values such as "camera", "camcorder", "microphone"
+         *
+         * @accessor
+         */
+        capture: null
+    },
+    // @private
+    isFile: true,
+    // @private
+    initialize: function() {
+        var me = this;
+        Ext.field.Field.prototype.initialize.call(this);
+        me.getComponent().on({
+            scope: this,
+            change: 'onChange'
+        });
+    },
+    onChange: function(me, value, startValue) {
+        me.fireEvent('change', this, value, startValue);
+    }
+}, 0, [
+    "filefield"
+], [
+    "component",
+    "field",
+    "filefield"
+], {
+    "component": true,
+    "field": true,
+    "filefield": true
+}, [
+    "widget.filefield"
+], 0, [
+    Ext.field,
+    'File'
+], 0));
+
+/**
+ * Hidden fields allow you to easily inject additional data into a {@link Ext.form.Panel form} without displaying
+ * additional fields on the screen. This is often useful for sending dynamic or previously collected data back to the
+ * server in the same request as the normal form submission. For example, here is how we might set up a form to send
+ * back a hidden userId field:
+ *
+ *     @example
+ *     var form = Ext.create('Ext.form.Panel', {
+ *         fullscreen: true,
+ *         items: [
+ *             {
+ *                 xtype: 'fieldset',
+ *                 title: 'Enter your name',
+ *                 items: [
+ *                     {
+ *                         xtype: 'hiddenfield',
+ *                         name: 'userId',
+ *                         value: 123
+ *                     },
+ *                     {
+ *                         xtype: 'checkboxfield',
+ *                         label: 'Enable notifications',
+ *                         name: 'notifications'
+ *                     }
+ *                 ]
+ *             }
+ *         ]
+ *     });
+ *
+ * In the form above we created two fields - a hidden field and a {@link Ext.field.Checkbox check box field}. Only the
+ * check box will be visible, but both fields will be submitted. Hidden fields cannot be tabbed to - they are removed
+ * from the tab index so when your user taps the next/previous field buttons the hidden field is skipped over.
+ *
+ * It's easy to read and update the value of a hidden field within a form. Using the example above, we can get a
+ * reference to the hidden field and then set it to a new value in 2 lines of code:
+ *
+ *     var userId = form.down('hiddenfield')[0];
+ *     userId.setValue(1234);
+ *
+ * For more information regarding forms and fields, please review [Using Forms in Sencha Touch Guide](../../../components/forms.html)
+ */
+(Ext.cmd.derive('Ext.field.Hidden', Ext.field.Text, {
+    alternateClassName: 'Ext.form.Hidden',
+    config: {
+        /**
+         * @cfg
+         * @inheritdoc
+         */
+        component: {
+            xtype: 'input',
+            type: 'hidden'
+        },
+        /**
+         * @cfg
+         * @inheritdoc
+         */
+        ui: 'hidden',
+        /**
+         * @cfg hidden
+         * @hide
+         */
+        hidden: true,
+        /**
+         * @cfg {Number} tabIndex
+         * @hide
+         */
+        tabIndex: -1
+    }
+}, 0, [
+    "hiddenfield"
+], [
+    "component",
+    "field",
+    "textfield",
+    "hiddenfield"
+], {
+    "component": true,
+    "field": true,
+    "textfield": true,
+    "hiddenfield": true
+}, [
+    "widget.hiddenfield"
+], 0, [
+    Ext.field,
+    'Hidden',
+    Ext.form,
+    'Hidden'
+], 0));
+
+/**
  * The Form panel presents a set of form fields and provides convenient ways to load and save data. Usually a form
  * panel just contains the set of fields you want to display, ordered inside the items configuration like this:
  *
@@ -64326,62 +67292,64 @@ Ext.define('Ext.direct.Manager', {
         btn.destroy();
     },
     onUploadDealTap: function(button, e, eOpts) {
-        var cameraPic;
-        var actionSheet = new Ext.ActionSheet({
-                items: [
-                    {
-                        text: 'Camera',
-                        id: 'CameraPic',
-                        scope: this,
-                        handler: function() {
-                            actionSheet.hide();
-                            /* phonegap camera */
-                            navigator.camera.getPicture(uploadPhoto, null, {
-                                sourceType: 1,
-                                quality: 60
-                            });
-                            function uploadPhoto(data) {
-                                // this is where you would send the image file to server
-                                //output image to screen
-                                //var image = document.getElementById('CameraPic');
-                                //  image.src =  "data:image/jpeg;base64," + data;
-                                navigator.notification.alert('Your Photo has been uploaded', // message
-                                okay, // callback
-                                'Photo Uploaded', // title
-                                'OK');
-                                // buttonName
-                                function okay() {}
-                            }
-                        }
-                    },
-                    // Do something
-                    {
-                        text: 'Photo Album',
-                        scope: this,
-                        handler: function() {
-                            actionSheet.hide();
-                            navigator.camera.getPicture(uploadPhoto, null, {
-                                sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-                                quality: 60
-                            });
-                            function uploadPhoto(data) {
-                                // this is where you would send the image file to server
-                                //output image to screen
-                                // cameraPic.src = "data:image/jpeg;base64," + data;
-                                navigator.notification.alert('Your Photo has been uploaded', // message
-                                okay, // callback
-                                'Photo Uploaded', // title
-                                'OK');
-                                // buttonName
-                                function okay() {}
-                            }
-                        }
-                    }
-                ]
-            });
-        // Do something
-        Ext.Viewport.add(actionSheet);
-        actionSheet.show();
+        /*var cameraPic;
+		var actionSheet = new Ext.ActionSheet({
+				items: [{
+					text: 'Camera',
+					id:'CameraPic',
+					scope : this,
+					handler : function(){
+						actionSheet.hide();
+		                /* phonegap camera */
+        //  navigator.camera.getPicture(uploadPhoto,null,{sourceType:1,quality:60});
+        //   function uploadPhoto(data){
+        // this is where you would send the image file to server
+        //output image to screen
+        //var image = document.getElementById('CameraPic');
+        //  image.src =  "data:image/jpeg;base64," + data;
+        /*     navigator.notification.alert(
+		                    'Your Photo has been uploaded', // message
+		                       okay,                           // callback
+		                    'Photo Uploaded',               // title
+		                    'OK'                            // buttonName
+		                );
+
+		       /*        function okay(){
+		                    // Do something
+		                }
+		              }
+					}
+		        },{
+		        text : 'Photo Album',
+		        scope : this,
+		        handler : function(){
+		            actionSheet.hide();
+		            navigator.camera.getPicture(uploadPhoto,null,{sourceType:Camera.PictureSourceType.PHOTOLIBRARY,quality:60});
+		             function uploadPhoto(data){
+		                // this is where you would send the image file to server
+
+		                //output image to screen
+		               // cameraPic.src = "data:image/jpeg;base64," + data;
+
+		                navigator.notification.alert(
+		                    'Your Photo has been uploaded', // message
+		                       okay,                           // callback
+		                    'Photo Uploaded',               // title
+		                    'OK'                            // buttonName
+		                );
+
+		               function okay(){
+		                    // Do something
+		                }
+		              }
+		        }
+		     }
+		   ]
+
+		 });
+		Ext.Viewport.add(actionSheet);
+		        actionSheet.show();*/
+        Ext.Viewport.add(UploadDealForm);
     },
     onDeleteDealTap: function(button, e, eOpts) {
         var el = document.getElementById('ListOfDeals');
@@ -64530,6 +67498,94 @@ Ext.define('Ext.direct.Manager', {
 ], 0));
 
 /*
+ * File: app/view/UploadDealForm.js
+ *
+ * This file was generated by Sencha Architect version 3.2.0.
+ * http://www.sencha.com/products/architect/
+ *
+ * This file requires use of the Sencha Touch 2.4.x library, under independent license.
+ * License of Sencha Architect does not include license for Sencha Touch 2.4.x. For more
+ * details see http://www.sencha.com/license or contact license@sencha.com.
+ *
+ * This file will be auto-generated each and everytime you save your project.
+ *
+ * Do NOT hand edit this file.
+ */
+(Ext.cmd.derive('Contact.view.UploadDealForm', Ext.form.Panel, {
+    config: {
+        enctype: 'multipart/form-data',
+        standardSubmit: true,
+        url: 'http://services.appsonmobile.com/uploadS3',
+        items: [
+            {
+                xtype: 'textfield',
+                label: 'Deal Name',
+                name: 'DealName'
+            },
+            {
+                xtype: 'textfield',
+                label: 'Deal Status',
+                name: 'DealStatus'
+            },
+            {
+                xtype: 'datepickerfield',
+                label: 'Deal Start',
+                name: 'DealStartDate',
+                placeHolder: 'mm/dd/yyyy'
+            },
+            {
+                xtype: 'datepickerfield',
+                label: 'Deal End',
+                name: 'DealEndDate',
+                placeHolder: 'mm/dd/yyyy'
+            },
+            {
+                xtype: 'hiddenfield',
+                name: 'CustID',
+                value: '04'
+            },
+            {
+                xtype: 'hiddenfield',
+                name: 'BusinessName',
+                value: 'Studio Nafisa'
+            },
+            {
+                xtype: 'filefield',
+                label: 'Deal Image',
+                name: 'fileUpload',
+                capture: 'camera'
+            },
+            {
+                xtype: 'button',
+                itemId: 'submit',
+                text: 'Submit'
+            }
+        ],
+        listeners: [
+            {
+                fn: 'onMybutton15Tap',
+                event: 'tap',
+                delegate: '#submit'
+            }
+        ]
+    },
+    onMybutton15Tap: function(button, e, eOpts) {}
+}, 0, 0, [
+    "component",
+    "container",
+    "panel",
+    "formpanel"
+], {
+    "component": true,
+    "container": true,
+    "panel": true,
+    "formpanel": true
+}, 0, 0, [
+    Contact.view,
+    'UploadDealForm'
+], 0));
+
+/*
  * File: app.js
  *
  * This file was generated by Sencha Architect version 3.2.0.
@@ -64566,7 +67622,8 @@ Ext.application({
         'ListOfDeals',
         'Main',
         'DealsPanel',
-        'Login'
+        'Login',
+        'UploadDealForm'
     ],
     controllers: [
         'Contacts'
