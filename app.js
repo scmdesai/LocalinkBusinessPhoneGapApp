@@ -66495,6 +66495,7 @@ Ext.define('Ext.picker.Picker', {
             },
             {
                 xtype: 'hiddenfield',
+                itemId: 'customerId',
                 name: 'customerId'
             }
         ]
@@ -66517,6 +66518,7 @@ Ext.define('Ext.picker.Picker', {
 		   }*/
             //console.log(customerId + isFavorite );
             this.down('#nameTxt').setHtml(name);
+            this.down('#customerId').setValue(customerId);
             // console.log(store.getData());
             /* if(isFavorite===true) {
 		       this.down('#favbutton').setCls('fill-star');
