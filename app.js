@@ -66737,6 +66737,7 @@ Ext.define('Ext.picker.Picker', {
                 cls: 'x-toolbar-dark',
                 docked: 'top',
                 ui: 'light',
+                autoDestroy: false,
                 items: [
                     {
                         xtype: 'button',
