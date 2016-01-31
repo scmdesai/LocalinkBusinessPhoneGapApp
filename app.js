@@ -67562,20 +67562,14 @@ Ext.define('Ext.picker.Picker', {
                 xtype: 'button',
                 handler: function(button, e) {
                     var form = this.up('uploadDealForm');
-                    if (form.isValid()) {
-                        // make sure the form contains valid data before submitting
-                        form.submit({
-                            success: function(form, action) {
-                                Ext.Msg.alert('Success', action.result.msg);
-                            },
-                            failure: function(form, action) {
-                                Ext.Msg.alert('Failed', action.result.msg);
-                            }
-                        });
-                    } else {
-                        // display error alert if the data is invalid
-                        Ext.Msg.alert('Invalid Data', 'Please correct form errors.');
-                    }
+                    form.submit({
+                        success: function(form, action) {
+                            Ext.Msg.alert('Success', action.result.msg);
+                        },
+                        failure: function(form, action) {
+                            Ext.Msg.alert('Failed', action.result.msg);
+                        }
+                    });
                 },
                 itemId: 'submit',
                 text: 'Submit'
