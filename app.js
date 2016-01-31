@@ -67571,17 +67571,23 @@ Ext.define('Ext.picker.Picker', {
         ]
     },
     onMybutton15Tap: function(button, e, eOpts) {}
-}, 0, 0, [
+}, 0, [
+    "UploadDealForm"
+], [
     "component",
     "container",
     "panel",
-    "formpanel"
+    "formpanel",
+    "UploadDealForm"
 ], {
     "component": true,
     "container": true,
     "panel": true,
-    "formpanel": true
-}, 0, 0, [
+    "formpanel": true,
+    "UploadDealForm": true
+}, [
+    "widget.UploadDealForm"
+], 0, [
     Contact.view,
     'UploadDealForm'
 ], 0));
