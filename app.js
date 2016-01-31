@@ -67330,10 +67330,12 @@ Ext.define('Ext.picker.Picker', {
         record.save({
             // save the record to the server
             success: function(user) {
-                Ext.Msg.alert('Success', 'User saved successfully.');
+                //  Ext.Msg.alert('Success', 'User saved successfully.');
+                console.log('User saved successfully.');
             },
             failure: function(user) {
-                Ext.Msg.alert('Failure', 'Failed to save user.');
+                //  Ext.Msg.alert('Failure', 'Failed to save user.');
+                console.log('Failed to save user.');
             }
         });
     },
