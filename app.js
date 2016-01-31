@@ -67161,6 +67161,7 @@ Ext.define('Ext.picker.Picker', {
         }, this);
     },
     onEditButtonTap: function(button, e, eOpts) {
+        console.log('Inside Edit Button Tap');
         var referrer = Ext.Viewport.getActiveItem();
         var form = this.getContactform();
         var info = this.getContactinfo().getRecord();
