@@ -67349,7 +67349,7 @@ Ext.define('Ext.picker.Picker', {
 		 });
 		Ext.Viewport.add(actionSheet);
 		        actionSheet.show();*/
-        Ext.Viewport.add(UploadDealForm);
+        Ext.Viewport.add('Contact.view.UploadDealForm');
     },
     onDeleteDealTap: function(button, e, eOpts) {
         var el = document.getElementById('ListOfDeals');
