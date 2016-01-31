@@ -66263,6 +66263,7 @@ Ext.define('Ext.picker.Picker', {
                     //view.setRecord(record.getRecord());
                     //console.log(view.getData());
                     //Ext.Viewport.setActiveItem(view);
+                    console.log(record.getData());
                     view = Ext.Viewport.add({
                         xtype: 'contactinfo'
                     });
