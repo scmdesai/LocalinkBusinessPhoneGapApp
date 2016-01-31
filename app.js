@@ -66478,7 +66478,8 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    var customerId = this.getParent().getRecord().get('customerId');
+                    //var customerId = this.getParent().getRecord().get('customerId');
+                    var customerId = this.up('customerId');
                     console.log(customerId);
                     var ds = Ext.StoreManager.lookup('MyDealsStore');
                     ds.clearFilter();
