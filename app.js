@@ -66470,12 +66470,6 @@ Ext.define('Ext.picker.Picker', {
                                 name: 'address',
                                 readOnly: true,
                                 maxRows: 3
-                            },
-                            {
-                                xtype: 'textfield',
-                                hidden: true,
-                                itemId: 'customerId',
-                                name: 'customerId'
                             }
                         ]
                     }
@@ -66506,35 +66500,8 @@ Ext.define('Ext.picker.Picker', {
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
         if (record) {
             var name = record.get('businessName');
-            //var isFavorite = record.get('isFavorite');
             var customerId = record.get('customerId');
-            console.log('customerId is : ' + customerId);
-            // var store = Ext.getStore('UserPreferences');
-            /* if(store.getAllCount()!==0){
-		    store.each(function(rec) {
-		        if(rec.get('customerId')==customerId) {
-		            isFavorite = rec.get('isFavorite');
-		        }
-		    });
-		   }*/
-            //console.log(customerId + isFavorite );
             this.down('#nameTxt').setHtml(name);
-            this.down('#customerId').setValue(customerId);
-            // console.log(store.getData());
-            /* if(isFavorite===true) {
-		       this.down('#favbutton').setCls('fill-star');
-		        //store.setData({'isFavorite':isFavorite});
-		    }
-		    else {
-		        this.down('#favbutton').setCls('empty-star');
-
-
-
-
-
-		    }*/
-            // this.down('#favoriteview')[isFavorite ? 'addCls' : 'removeCls']('x-button-pressed');
-            //  this.down('#favbutton')[isFavorite ? 'addCls' : 'removeCls']('x-button-pressed');
             this.down('contactpic').setData(record.data);
         }
     }
@@ -66558,15 +66525,6 @@ Ext.define('Ext.picker.Picker', {
     Contact.view,
     'Info'
 ], 0));
-// var ds = Ext.StoreManager.lookup('MyDealsStore');
-// ds.clearFilter() ;
-// ds.filter('customerId', customerId);
-// this.down('listofdeals').setData(ds.getData()) ;
-/*dealsData  = ds.getData().getAt(0);
-		    var dealName = 'No Deals';
-		    if(dealsData) {
-		         dealName = dealsData.get('dealName');
-		    }*/
 
 /*
  * File: app/view/List.js
@@ -67209,33 +67167,6 @@ Ext.define('Ext.picker.Picker', {
         }, this);
     },
     onEditButtonTap: function(button, e, eOpts) {
-        /*var referrer = Ext.Viewport.getActiveItem();
-		var form = this.getContactform();
-		var info = this.getContactinfo();
-		var data = info.getData();
-
-
-
-		form.referrer = referrer;
-		//form.down('#phoneNumber').clearListeners();
-		//form.down('#address').clearListeners();
-		//form.down('#phoneNumber').enable();
-		form.down('#businessName').setValue(data.businessName);
-		form.down('#phoneNumber').setValue(data.phoneNumber);
-		form.down('#address').setValue(data.address);
-		//console.log('form.businessName: ' + form.businessName);
-		//form.down('contactpic').setHtml('<img src="' + data.picture + '"/>');
-
-
-		form.down('#customerId').setValue(data.customerId);
-
-			form.child('#category').setValue(data.category);
-			form.down('#emailAddress').setValue(data.emailAddress);
-			form.down('#city').setValue(data.city);
-			form.down('#state').setValue(data.state);
-			form.down('#zipcode').setValue(data.zipcode);
-			this.down('#picture').setValue(data.picture);*/
-        //Ext.Viewport.setActiveItem(form);
         var referrer = Ext.Viewport.getActiveItem();
         var form = this.getContactform();
         var info = this.getContactinfo();
@@ -67244,41 +67175,7 @@ Ext.define('Ext.picker.Picker', {
         form.setRecord(info.getRecord());
     },
     onSaveContactButtonTap: function(button, e, eOpts) {
-        /*var form = this.getContactform();
-		var errors = form.getValidationErrors();
-		//var info = this.getContactinfo();
-
-		if (errors.length) {
-		    Ext.Msg.alert('Error', errors.join('<br/>'));
-		} else {
-		    var values = form.getValues();
-
-			var valueBusinessName = form.getAt(3).getValue();
-			var valuePhoneNumber = form.getAt(4).getValue();
-			var valueAddress = form.getAt(5).getValue();
-
-
-		    var record = form.getRecord();
-
-			      record.set('businessName',valueBusinessName);
-			      record.set('phoneNumber',valuePhoneNumber);
-			      record.set('address',valueAddress);
-		          record.commit();
-
-
-			    // info.setRecord(record);
-
-
-
-
-
-
-		   }
-
-		    Ext.Viewport.setActiveItem(form.referrer);
-		   delete form.referrer;*/
         var form = this.getContactform();
-        //var form = Ext.getCmp('formpanel').getForm();
         var errors = form.getValidationErrors();
         console.log('On Save Button Tap');
         if (errors.length) {
@@ -67297,8 +67194,6 @@ Ext.define('Ext.picker.Picker', {
             var valuePicture = record.get('picture');
             var valueState = record.get('state');
             var valueZipcode = record.get('zipcode');
-            //var valueId = record.get('id');
-            //console.log('valueBusinessName : ' + values);
             if (record) {
                 record.setData(values);
                 record.set('businessName', valueBusinessName);
@@ -67310,7 +67205,6 @@ Ext.define('Ext.picker.Picker', {
                 record.set('picture', valuePicture);
                 record.set('state', valueState);
                 record.set('zipcode', valueZipcode);
-                //record.set('id',valueId);
                 record.commit();
                 if (form.referrer.setRecord) {
                     console.log(record.getData());
