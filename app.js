@@ -66951,7 +66951,7 @@ Ext.define('Ext.picker.Picker', {
             this.down('#phoneNumber').setValue(record.data.phoneNumber);
             this.down('#address').setValue(record.data.address);
             this.down('#customerId').setValue(record.data.customerId);
-            this.child('#category').setValue(record.data.category);
+            this.down('#category').setValue(record.data.category);
             this.down('#emailAddress').setValue(record.data.emailAddress);
             this.down('#city').setValue(record.data.city);
             this.down('#state').setValue(record.data.state);
@@ -67233,6 +67233,7 @@ Ext.define('Ext.picker.Picker', {
         var form = this.getContactform();
         var info = this.getContactinfo();
         form.referrer = referrer;
+        form.down('#customerId').setValue(info.customerId);
         Ext.Viewport.setActiveItem(form);
         form.setRecord(info.getRecord());
     },
