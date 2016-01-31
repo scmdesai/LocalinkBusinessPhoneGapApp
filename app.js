@@ -67206,7 +67206,7 @@ Ext.define('Ext.picker.Picker', {
         var form = this.getContactform();
         var info = this.getContactinfo();
         var data = info.getData();
-        //console.log(referrer.getData());
+        console.log(referrer.getData());
         form.referrer = referrer;
         //form.down('#phoneNumber').clearListeners();
         //form.down('#address').clearListeners();
