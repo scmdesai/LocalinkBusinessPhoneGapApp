@@ -66748,6 +66748,9 @@ Ext.define('Ext.picker.Picker', {
                     },
                     {
                         xtype: 'button',
+                        handler: function(button, e) {
+                            console.log('In On Save Button Handler Function');
+                        },
                         itemId: 'saveContactButton',
                         ui: 'confirm',
                         text: 'Save'
