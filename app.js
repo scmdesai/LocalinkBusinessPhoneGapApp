@@ -66760,7 +66760,7 @@ Ext.define('Ext.picker.Picker', {
                             {
                                 fn: function(element, eOpts) {
                                     console.log('Save Button painted');
-                                    this.addListener('tap', onSaveContactButtonTap());
+                                    this.addEvents('tap');
                                 },
                                 event: 'painted'
                             }
