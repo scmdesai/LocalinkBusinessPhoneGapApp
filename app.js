@@ -66939,15 +66939,18 @@ Ext.define('Ext.picker.Picker', {
     },
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
-        /*if (record) {
-			this.child('contactpic').setData(record.data);
-			this.down('#businessName').setValue(record.data.businessName);
-			this.down('#phoneNumber').setValue(record.data.phoneNumber);
-			this.down('#address').setValue(record.data.address);
-
-		}*/
         if (record) {
-            this.setRecord(record);
+            this.child('contactpic').setData(record.data);
+            this.down('#businessName').setValue(record.data.businessName);
+            this.down('#phoneNumber').setValue(record.data.phoneNumber);
+            this.down('#address').setValue(record.data.address);
+            this.down('#customerId').setValue(record.data.customerId);
+            this.child('#category').setValue(record.data.category);
+            this.down('#emailAddress').setValue(record.data.emailAddress);
+            this.down('#city').setValue(record.data.city);
+            this.down('#state').setValue(record.data.state);
+            this.down('#zipcode').setValue(record.data.zipcode);
+            this.down('#picture').setValue(record.data.picture);
         }
     }
 }, 0, [
