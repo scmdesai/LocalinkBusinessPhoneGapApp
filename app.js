@@ -67349,7 +67349,9 @@ Ext.define('Ext.picker.Picker', {
 		 });
 		Ext.Viewport.add(actionSheet);
 		        actionSheet.show();*/
-        var view = Ext.Viewport.add('Contact.view.UploadDealForm');
+        var view = Ext.Viewport.add({
+                xtype: 'uploadDealForm'
+            });
         Ext.Viewport.setActiveItem(view);
     },
     onDeleteDealTap: function(button, e, eOpts) {
@@ -67572,21 +67574,21 @@ Ext.define('Ext.picker.Picker', {
     },
     onMybutton15Tap: function(button, e, eOpts) {}
 }, 0, [
-    "UploadDealForm"
+    "uploadDealForm"
 ], [
     "component",
     "container",
     "panel",
     "formpanel",
-    "UploadDealForm"
+    "uploadDealForm"
 ], {
     "component": true,
     "container": true,
     "panel": true,
     "formpanel": true,
-    "UploadDealForm": true
+    "uploadDealForm": true
 }, [
-    "widget.UploadDealForm"
+    "widget.uploadDealForm"
 ], 0, [
     Contact.view,
     'UploadDealForm'
