@@ -67202,30 +67202,35 @@ Ext.define('Ext.picker.Picker', {
         }, this);
     },
     onEditButtonTap: function(button, e, eOpts) {
-        /*var referrer = Ext.Viewport.getActiveItem();
-		var form = this.getContactform();
-		var info = this.getContactinfo();
-		var data = info.getData();
-		//console.log(referrer.getData());
-
-
-		form.referrer = referrer;
-		form.down('#phoneNumber').clearListeners();
-		form.down('#address').clearListeners();
-		form.down('#phoneNumber').enable();
-		form.down('#businessName').setValue(data.businessName);
-		form.down('#phoneNumber').setValue(data.phoneNumber);
-		form.down('#address').setValue(data.address);
-		//console.log('form.businessName: ' + form.businessName);
-		form.down('contactpic').setHtml('<img src="' + data.picture + '"/>');
-		Ext.Viewport.setActiveItem(form);*/
         var referrer = Ext.Viewport.getActiveItem();
         var form = this.getContactform();
         var info = this.getContactinfo();
+        var data = info.getData();
+        //console.log(referrer.getData());
         form.referrer = referrer;
-        Ext.Viewport.setActiveItem(form);
-        form.setRecord(info.getRecord());
+        //form.down('#phoneNumber').clearListeners();
+        //form.down('#address').clearListeners();
+        //form.down('#phoneNumber').enable();
+        form.down('#businessName').setValue(data.businessName);
+        form.down('#phoneNumber').setValue(data.phoneNumber);
+        form.down('#address').setValue(data.address);
+        //console.log('form.businessName: ' + form.businessName);
+        //form.down('contactpic').setHtml('<img src="' + data.picture + '"/>');
+        form.down('#customerId').setValue(data.customerId);
+        form.child('#category').setValue(data.category);
+        form.down('#emailAddress').setValue(data.emailAddress);
+        form.down('#city').setValue(data.city);
+        form.down('#state').setValue(data.state);
+        form.down('#zipcode').setValue(data.zipcode);
+        this.down('#picture').setValue(data.picture);
     },
+    //Ext.Viewport.setActiveItem(form);
+    /*   var referrer = Ext.Viewport.getActiveItem();
+		        var form = this.getContactform();
+		        var info = this.getContactinfo();
+		        form.referrer = referrer;
+		        Ext.Viewport.setActiveItem(form);
+		        form.setRecord(info.getRecord());*/
     onSaveContactButtonTap: function(button, e, eOpts) {
         /*var form = this.getContactform();
 		var errors = form.getValidationErrors();
@@ -67305,25 +67310,6 @@ Ext.define('Ext.picker.Picker', {
             delete form.referrer;
         }
     },
-    /*var form = this.getContactform(); // get the form panel
-		                    record = form.getRecord(); // get the underlying model instance
-		               // if (form.isValid()) { // make sure the form contains valid data before submitting
-		                    form.updateRecord(record); // update the record with the form data
-		                    record.save({ // save the record to the server
-		                        success: function(user) {
-		                          //  Ext.Msg.alert('Success', 'User saved successfully.');
-									console.log('User saved successfully.');
-		                        },
-		                        failure: function(user) {
-		                          //  Ext.Msg.alert('Failure', 'Failed to save user.');
-									console.log('Failed to save user.');
-		                        }
-		                    });
-		               // } else { // display error alert if the data is invalid
-		               //     Ext.Msg.alert('Invalid Data', 'Please correct form errors.');
-		               // }
-
-		*/
     onCancelButtonTap: function(button, e, eOpts) {
         var form = this.getContactform();
         Ext.Viewport.setActiveItem(form.referrer);
