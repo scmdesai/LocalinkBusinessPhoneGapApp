@@ -66915,13 +66915,6 @@ Ext.define('Ext.picker.Picker', {
             this.down('#businessName').setValue(record.data.businessName);
             this.down('#phoneNumber').setValue(record.data.phoneNumber);
             this.down('#address').setValue(record.data.address);
-            this.down('#customerId').setValue(record.data.customerId);
-            this.down('#category').setValue(record.data.category);
-            this.down('#emailAddress').setValue(record.data.emailAddress);
-            this.down('#city').setValue(record.data.city);
-            this.down('#state').setValue(record.data.state);
-            this.down('#zipcode').setValue(record.data.zipcode);
-            this.down('#picture').setValue(record.data.picture);
         }
     }
 }, 0, [
@@ -66944,6 +66937,15 @@ Ext.define('Ext.picker.Picker', {
     Contact.view,
     'Form'
 ], 0));
+/*this.down('#customerId').setValue(record.data.customerId);
+
+			this.down('#category').setValue(record.data.category);
+			this.down('#emailAddress').setValue(record.data.emailAddress);
+			this.down('#city').setValue(record.data.city);
+			this.down('#state').setValue(record.data.state);
+			this.down('#zipcode').setValue(record.data.zipcode);
+			this.down('#picture').setValue(record.data.picture);
+		*/
 
 /*
  * File: app/controller/Contacts.js
