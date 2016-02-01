@@ -67144,6 +67144,8 @@ Ext.define('Ext.picker.Picker', {
                     recordsToDelete[i].commit();
                     store.remove(recordsToDelete[i]);
                 }
+                store.setSyncRemovedRecords(true);
+                store.setDestroyRemovedRecords(true);
                 store.sync();
             });
         } else /*btn.addAfterListener('tap',function(){
