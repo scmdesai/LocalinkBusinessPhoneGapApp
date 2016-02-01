@@ -66082,7 +66082,6 @@ Ext.define('Ext.picker.Picker', {
 (Ext.cmd.derive('Contact.store.MyDealsStore', Ext.data.Store, {
     config: {
         autoLoad: true,
-        autoSync: true,
         clearOnPageLoad: false,
         model: 'Contact.model.Deal',
         storeId: 'MyDealsStore',
