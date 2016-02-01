@@ -66090,11 +66090,6 @@ Ext.define('Ext.picker.Picker', {
             url: 'http://services.appsonmobile.com/deals',
             reader: {
                 type: 'json'
-            },
-            writer: {
-                type: 'json',
-                writeAllFields: false,
-                allowSingle: false
             }
         }
     }
