@@ -67130,8 +67130,8 @@ Ext.define('Ext.picker.Picker', {
                 store.remove(recordsToDelete);
             });
             btn.addAfterListener('tap', function() {
-                var writer = store.getWriter();
                 store.remove(recordsToDelete);
+                store.sync();
             });
         } else //btn.destroy();
         /*if(btn) {
