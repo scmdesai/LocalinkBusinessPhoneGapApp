@@ -67145,13 +67145,16 @@ Ext.define('Ext.picker.Picker', {
                     store.remove(recordsToDelete[i]);
                 }
                 store.sync();
-                store.load();
             });
-            btn.addAfterListener('tap', function() {
-                store.remove(recordsToDelete);
-                store.sync();
-            });
-        } else //btn.destroy();
+        } else /*btn.addAfterListener('tap',function(){
+
+
+
+			store.remove(recordsToDelete);
+		    store.sync();
+
+			//btn.destroy();
+		});*/
         /*if(btn) {
 		     btn.addAfterListener('tap',function(){
 			//store.loadPage(record)
