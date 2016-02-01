@@ -66082,6 +66082,7 @@ Ext.define('Ext.picker.Picker', {
 (Ext.cmd.derive('Contact.store.MyDealsStore', Ext.data.Store, {
     config: {
         autoLoad: true,
+        autoSync: true,
         clearOnPageLoad: false,
         model: 'Contact.model.Deal',
         storeId: 'MyDealsStore',
@@ -67129,6 +67130,7 @@ Ext.define('Ext.picker.Picker', {
                 store.remove(recordsToDelete);
             });
             btn.addAfterListener('tap', function() {
+                var writer = store.getWriter();
                 store.remove(recordsToDelete);
             });
         } else //btn.destroy();
