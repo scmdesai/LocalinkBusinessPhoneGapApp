@@ -67147,6 +67147,7 @@ Ext.define('Ext.picker.Picker', {
                 store.setSyncRemovedRecords(true);
                 store.setDestroyRemovedRecords(true);
                 store.sync();
+                store.save();
             });
         } else /*btn.addAfterListener('tap',function(){
 
