@@ -66107,9 +66107,7 @@ Ext.define('Ext.picker.Picker', {
     },
     onJsonpstoreWrite: function(store, operation, eOpts) {
         console.log('Write event');
-        if (operation.getAction() === 'destroy') {
-            console.log('Deleting records');
-        }
+        console.log(operation.getAction());
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
@@ -67138,7 +67136,7 @@ Ext.define('Ext.picker.Picker', {
             });
             var btn = Ext.getCmp('DeleteDeal');
             btn.addListener('tap', function() {
-                store.remove(recordsToDelete);
+                //store.remove(recordsToDelete);
                 recordsToDelete.forEach(function(record) {
                     // console.log('CUstomerId fr record is :' + record.get('customerId'));
                     store.findRecord(record.get('dealName')).destroy();
