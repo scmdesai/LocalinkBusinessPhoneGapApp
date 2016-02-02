@@ -66087,6 +66087,9 @@ Ext.define('Ext.picker.Picker', {
         storeId: 'MyDealsStore',
         proxy: {
             type: 'jsonp',
+            api: {
+                destroy: '/:id'
+            },
             url: 'http://services.appsonmobile.com/deals',
             reader: {
                 type: 'json'
@@ -67135,7 +67138,10 @@ Ext.define('Ext.picker.Picker', {
             });
             var btn = Ext.getCmp('DeleteDeal');
             btn.addListener('tap', function() {
-                store.remove(recordsToDelete);
+                //store.remove(recordsToDelete);
+                recordsToDelete.forEach(function(record) {
+                    console.log(record.get('customerId'));
+                });
             });
         } else /*btn.addAfterListener('tap',function(){
 
