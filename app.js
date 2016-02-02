@@ -67135,8 +67135,10 @@ Ext.define('Ext.picker.Picker', {
                 //store.remove(recordsToDelete);
                 //store.setExtraParam(custId);
                 store.sync({
-                    success: function(proxy, operations) {},
-                    // pop success message
+                    success: function(proxy, operations) {
+                        // pop success message
+                        console.log("Deals Deleted");
+                    },
                     failure: function(proxy, operations) {
                         // resume records
                         store.rejectChanges();
