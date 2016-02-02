@@ -66108,7 +66108,7 @@ Ext.define('Ext.picker.Picker', {
     },
     onJsonpstoreWrite: function(store, operation, eOpts) {
         console.log('Write event');
-        console.log(operation.getRequest().getMethod());
+        operation.getRequest().setMethod('POST');
         console.log(operation.wasSuccessful());
     }
 }, 0, 0, 0, 0, 0, 0, [
