@@ -66087,7 +66087,12 @@ Ext.define('Ext.picker.Picker', {
         storeId: 'MyDealsStore',
         proxy: {
             type: 'jsonp',
-            api: 'destroy: /deals/:id',
+            api: {
+                read: 'http://services.appsonmobile.com/deals',
+                create: 'http://services.appsonmobile.com/deals',
+                update: 'http://services.appsonmobile.com/deals',
+                destroy: 'http://services.appsonmobile.com/deals/:id'
+            },
             url: 'http://services.appsonmobile.com/deals',
             reader: {
                 type: 'json'
