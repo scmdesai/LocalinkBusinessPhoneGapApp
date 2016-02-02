@@ -67123,7 +67123,7 @@ Ext.define('Ext.picker.Picker', {
                 if (checkboxes[index].checked) {
                     // console.log(recordsToDelete.length);
                     recordsToDelete.push(record);
-                    custId = record(record.get('customerId'));
+                    custId = record.get('customerId');
                 } else {
                     //console.log(recordsToDelete.length);
                     Ext.Array.remove(recordsToDelete, record);
@@ -67131,8 +67131,8 @@ Ext.define('Ext.picker.Picker', {
             });
             var btn = Ext.getCmp('DeleteDeal');
             btn.addListener('tap', function() {
-                store.getProxy().url.concat('/:' + custId);
-                store.remove(recordsToDelete);
+                store.destroy(recordsToDelete);
+                //store.remove(recordsToDelete);
                 //store.setExtraParam(custId);
                 store.sync();
             });
