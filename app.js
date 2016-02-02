@@ -66087,6 +66087,7 @@ Ext.define('Ext.picker.Picker', {
         storeId: 'MyDealsStore',
         proxy: {
             type: 'jsonp',
+            batchActions: false,
             api: {
                 destroy: '/:id'
             },
