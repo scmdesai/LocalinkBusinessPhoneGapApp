@@ -67123,7 +67123,7 @@ Ext.define('Ext.picker.Picker', {
             var btn = Ext.getCmp('DeleteDeal');
             btn.addListener('tap', function() {
                 store.remove(recordsToDelete);
-                stre.sync();
+                store.sync();
             });
         } else /*btn.addAfterListener('tap',function(){
 
