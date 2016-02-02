@@ -67134,7 +67134,14 @@ Ext.define('Ext.picker.Picker', {
                 store.destroy(recordsToDelete);
                 //store.remove(recordsToDelete);
                 //store.setExtraParam(custId);
-                store.sync();
+                store.sync({
+                    success: function(proxy, operations) {},
+                    // pop success message
+                    failure: function(proxy, operations) {
+                        // resume records
+                        store.rejectChanges();
+                    }
+                });
             });
         } else /*btn.addAfterListener('tap',function(){
 
