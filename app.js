@@ -66094,18 +66094,18 @@ Ext.define('Ext.picker.Picker', {
         },
         listeners: [
             {
-                fn: 'onJsonpstoreRemoverecords',
-                event: 'removerecords'
+                fn: 'onJsonpstoreWrite',
+                event: 'write'
             }
         ]
     },
-    onJsonpstoreRemoverecords: function(store, records, indices, eOpts) {}
+    onJsonpstoreWrite: function(store, operation, eOpts) {
+        console.log(operation.getAction());
+    }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
     'MyDealsStore'
 ], 0));
-//console.log('Deleting the record:  ' + records.pop());
-//store.remove(records.pop());
 
 /*
  * File: app/store/UserPreferences.js
@@ -67129,11 +67129,7 @@ Ext.define('Ext.picker.Picker', {
             });
             var btn = Ext.getCmp('DeleteDeal');
             btn.addListener('tap', function() {
-                //store.remove(recordsToDelete);
-                recordsToDelete.forEach(function(record) {
-                    record.destroy();
-                });
-                store.sync();
+                store.remove(recordsToDelete);
             });
         } else /*btn.addAfterListener('tap',function(){
 
