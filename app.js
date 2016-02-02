@@ -66099,14 +66099,13 @@ Ext.define('Ext.picker.Picker', {
             }
         ]
     },
-    onJsonpstoreRemoverecords: function(store, records, indices, eOpts) {
-        console.log('Deleting the record:  ' + records.pop());
-        store.remove(records.pop());
-    }
+    onJsonpstoreRemoverecords: function(store, records, indices, eOpts) {}
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
     'MyDealsStore'
 ], 0));
+//console.log('Deleting the record:  ' + records.pop());
+//store.remove(records.pop());
 
 /*
  * File: app/store/UserPreferences.js
