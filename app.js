@@ -66087,17 +66087,22 @@ Ext.define('Ext.picker.Picker', {
         storeId: 'MyDealsStore',
         proxy: {
             type: 'jsonp',
-            api: {
-                read: 'http://services.appsonmobile.com/deals',
-                create: 'http://services.appsonmobile.com/deals',
-                update: 'http://services.appsonmobile.com/deals',
-                destroy: 'http://services.appsonmobile.com/deals/:id'
-            },
             url: 'http://services.appsonmobile.com/deals',
             reader: {
                 type: 'json'
             }
-        }
+        },
+        listeners: [
+            {
+                fn: 'onJsonpstoreRemoverecords',
+                event: 'removerecords'
+            }
+        ]
+    },
+    onJsonpstoreRemoverecords: function(store, records, indices, eOpts) {
+        console.log('Store count is : ' + store.getAllCount());
+        console.log('Records are : ' + records);
+        console.log('Indices are : ' + indices);
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
@@ -66362,7 +66367,6 @@ Ext.define('Ext.picker.Picker', {
         items: [
             {
                 xtype: 'toolbar',
-                cls: 'x-toolbar-dark',
                 docked: 'top',
                 style: 'font-size:6vw',
                 ui: 'light',
@@ -67127,6 +67131,7 @@ Ext.define('Ext.picker.Picker', {
             });
             var btn = Ext.getCmp('DeleteDeal');
             btn.addListener('tap', function() {
+                console.log(stor);
                 store.remove(recordsToDelete);
                 store.sync();
             });
