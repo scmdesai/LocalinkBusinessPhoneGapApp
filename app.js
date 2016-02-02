@@ -66092,10 +66092,7 @@ Ext.define('Ext.picker.Picker', {
                 'delete': 'http://services.appsonmobile.com/deals/:id'
             },
             extraParams: {
-                create: 'POST',
-                read: 'GET',
-                update: 'PUT',
-                destroy: 'DELETE'
+                id: 'custId'
             },
             url: 'http://services.appsonmobile.com/deals',
             reader: {
@@ -67120,12 +67117,14 @@ Ext.define('Ext.picker.Picker', {
             var el = dataview.getParent();
             Ext.Viewport.setActiveItem(el);
             var recordsToDelete = [];
+            var custId;
             var checkboxes = document.getElementsByName('checkbox');
             checkboxes[index].addEventListener('change', function() {
                 //console.log('Checkbox Changed' + index);
                 if (checkboxes[index].checked) {
                     // console.log(recordsToDelete.length);
                     recordsToDelete.push(record);
+                    custId = record(record.get('customerId'));
                 } else {
                     //console.log(recordsToDelete.length);
                     Ext.Array.remove(recordsToDelete, record);
@@ -67133,11 +67132,8 @@ Ext.define('Ext.picker.Picker', {
             });
             var btn = Ext.getCmp('DeleteDeal');
             btn.addListener('tap', function() {
-                //store.remove(recordsToDelete);
-                recordsToDelete.forEach(function(record) {
-                    // console.log('CUstomerId fr record is :' + record.get('customerId'));
-                    store.findRecord(record.get('dealName')).destroy();
-                });
+                store.remove(recordsToDelete);
+                store.setExtraParam(custId);
                 store.sync();
             });
         } else /*btn.addAfterListener('tap',function(){
