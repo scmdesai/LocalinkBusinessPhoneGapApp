@@ -66108,8 +66108,8 @@ Ext.define('Ext.picker.Picker', {
     },
     onJsonpstoreWrite: function(store, operation, eOpts) {
         console.log('Write event');
-        console.log(operation.getRequest());
-        console.log(operation.getResponse());
+        console.log(operation.getRequest().getMethod());
+        console.log(operation.wasSuccessful());
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
