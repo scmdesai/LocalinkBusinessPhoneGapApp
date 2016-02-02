@@ -67130,8 +67130,8 @@ Ext.define('Ext.picker.Picker', {
             var btn = Ext.getCmp('DeleteDeal');
             btn.addListener('tap', function() {
                 store.remove(recordsToDelete);
-                console.log(store.getRemovedRecords());
                 store.sync();
+                console.log(store.getRemovedRecords());
             });
         } else /*btn.addAfterListener('tap',function(){
 
