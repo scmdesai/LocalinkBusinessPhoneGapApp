@@ -67129,9 +67129,11 @@ Ext.define('Ext.picker.Picker', {
             });
             var btn = Ext.getCmp('DeleteDeal');
             btn.addListener('tap', function() {
-                store.remove(recordsToDelete);
+                //store.remove(recordsToDelete);
+                recordsToDelete.forEach(function(record) {
+                    record.destroy();
+                });
                 store.sync();
-                console.log(store.getRemovedRecords());
             });
         } else /*btn.addAfterListener('tap',function(){
 
