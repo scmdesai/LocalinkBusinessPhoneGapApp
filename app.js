@@ -67131,7 +67131,6 @@ Ext.define('Ext.picker.Picker', {
             });
             var btn = Ext.getCmp('DeleteDeal');
             btn.addListener('tap', function() {
-                console.log(stor);
                 store.remove(recordsToDelete);
                 store.sync();
             });
