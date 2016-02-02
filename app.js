@@ -66087,7 +66087,6 @@ Ext.define('Ext.picker.Picker', {
         storeId: 'MyDealsStore',
         proxy: {
             type: 'jsonp',
-            batchActions: false,
             api: {
                 'delete': 'http://services.appsonmobile.com/deals/:id'
             },
@@ -66099,7 +66098,10 @@ Ext.define('Ext.picker.Picker', {
                 type: 'json'
             },
             writer: {
-                type: 'json'
+                type: 'json',
+                nameProperty: 'customerId',
+                writeAllFields: false,
+                allowSingle: false
             }
         }
     }
