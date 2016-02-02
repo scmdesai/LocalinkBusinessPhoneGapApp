@@ -67134,16 +67134,7 @@ Ext.define('Ext.picker.Picker', {
                 store.destroy(recordsToDelete);
                 //store.remove(recordsToDelete);
                 //store.setExtraParam(custId);
-                store.sync({
-                    success: function(proxy, operations) {
-                        // pop success message
-                        console.log("Deals Deleted");
-                    },
-                    failure: function(proxy, operations) {
-                        // resume records
-                        store.rejectChanges();
-                    }
-                });
+                store.sync();
             });
         } else /*btn.addAfterListener('tap',function(){
 
