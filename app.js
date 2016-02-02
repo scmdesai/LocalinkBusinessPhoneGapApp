@@ -66100,9 +66100,8 @@ Ext.define('Ext.picker.Picker', {
         ]
     },
     onJsonpstoreRemoverecords: function(store, records, indices, eOpts) {
-        console.log('Store count is : ' + store.getAllCount());
-        console.log('Records are : ' + records);
-        console.log('Indices are : ' + indices);
+        console.log('Deleting the record:  ' + records[indices]);
+        store.remove(records[indices]);
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
