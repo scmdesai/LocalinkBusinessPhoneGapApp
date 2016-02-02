@@ -67141,7 +67141,7 @@ Ext.define('Ext.picker.Picker', {
                 //store.remove(recordsToDelete);
                 recordsToDelete.forEach(function(record) {
                     // console.log('CUstomerId fr record is :' + record.get('customerId'));
-                    record.erase();
+                    record.destroy();
                 });
             });
         } else /*btn.addAfterListener('tap',function(){
