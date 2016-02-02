@@ -66089,7 +66089,13 @@ Ext.define('Ext.picker.Picker', {
             type: 'jsonp',
             batchActions: false,
             api: {
-                destroy: '/:id'
+                'delete': 'http://services.appsonmobile.com/deals/:id'
+            },
+            extraParams: {
+                create: 'POST',
+                read: 'GET',
+                update: 'PUT',
+                destroy: 'DELETE'
             },
             url: 'http://services.appsonmobile.com/deals',
             reader: {
@@ -66098,18 +66104,7 @@ Ext.define('Ext.picker.Picker', {
             writer: {
                 type: 'json'
             }
-        },
-        listeners: [
-            {
-                fn: 'onJsonpstoreWrite',
-                event: 'write'
-            }
-        ]
-    },
-    onJsonpstoreWrite: function(store, operation, eOpts) {
-        console.log('Write event');
-        operation.getRequest().setMethod('POST');
-        console.log(operation.wasSuccessful());
+        }
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
