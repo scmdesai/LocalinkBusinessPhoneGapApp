@@ -67138,11 +67138,12 @@ Ext.define('Ext.picker.Picker', {
             });
             var btn = Ext.getCmp('DeleteDeal');
             btn.addListener('tap', function() {
-                //store.remove(recordsToDelete);
+                store.remove(recordsToDelete);
                 recordsToDelete.forEach(function(record) {
                     // console.log('CUstomerId fr record is :' + record.get('customerId'));
-                    record.destroy();
+                    store.findRecord(record.get('dealName')).destroy();
                 });
+                store.sync();
             });
         } else /*btn.addAfterListener('tap',function(){
 
