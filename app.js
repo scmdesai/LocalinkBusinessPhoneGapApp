@@ -66090,6 +66090,9 @@ Ext.define('Ext.picker.Picker', {
             url: 'http://services.appsonmobile.com/deals',
             reader: {
                 type: 'json'
+            },
+            writer: {
+                type: 'json'
             }
         },
         listeners: [
@@ -66100,7 +66103,10 @@ Ext.define('Ext.picker.Picker', {
         ]
     },
     onJsonpstoreWrite: function(store, operation, eOpts) {
-        console.log(operation.getAction());
+        console.log('Write event');
+        if (operation.getAction() === 'destroy') {
+            console.log('Deleting records');
+        }
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
