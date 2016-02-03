@@ -67141,9 +67141,10 @@ Ext.define('Ext.picker.Picker', {
                     id: 4
                 });
                 recordsToDelete.forEach(function(record) {
+                    console.log('Deleting record: ' + record.get('dealName'));
                     record.destroy();
+                    store.sync();
                 });
-                store.sync();
             });
         } else /*btn.addAfterListener('tap',function(){
 
