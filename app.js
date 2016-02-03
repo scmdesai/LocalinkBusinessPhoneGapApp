@@ -67154,7 +67154,25 @@ Ext.define('Ext.picker.Picker', {
             var btn = Ext.getCmp('DeleteDeal');
             btn.addListener('tap', function() {
                 store.remove(recordsToDelete);
-                store.sync();
+                store.sync({
+                    success: function(record, operation) {
+                        // erase the created record
+                        record.erase({
+                            failure: function(record, operation) {
+                                // do something if the erase failed
+                                console.log('Error deleting');
+                            },
+                            success: function(record, operation) {
+                                // do something if the erase succeeded
+                                console.log('Deal deleted');
+                            },
+                            callback: function(record, operation, success) {
+                                // do something if the erase succeeded or failed
+                                console.log('Callback function');
+                            }
+                        });
+                    }
+                });
             });
         } else /*btn.addAfterListener('tap',function(){
 
