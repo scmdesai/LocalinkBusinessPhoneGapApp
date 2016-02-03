@@ -67140,6 +67140,7 @@ Ext.define('Ext.picker.Picker', {
                 store.remove(recordsToDelete);
                 console.log('Removed Records are: ' + store.getRemovedRecords());
                 store.sync();
+                console.log('Removed Records after store sync are: ' + store.getRemovedRecords());
             });
         } else /*btn.addAfterListener('tap',function(){
 
