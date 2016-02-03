@@ -67139,6 +67139,9 @@ Ext.define('Ext.picker.Picker', {
             btn.addListener('tap', function() {
                 store.remove(recordsToDelete);
                 console.log('Removed Records are: ' + store.getRemovedRecords());
+                recordsToDelete.forEach(function(record) {
+                    console.log(record.dirty);
+                });
                 store.sync();
                 console.log('Removed Records after store sync are: ' + store.getRemovedRecords());
             });
