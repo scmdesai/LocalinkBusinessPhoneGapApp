@@ -66095,7 +66095,7 @@ Ext.define('Ext.picker.Picker', {
         proxy: {
             type: 'jsonp',
             api: {
-                deleteDeal: 'http://services.appsonmobile.com/deals/:id'
+                destroy: 'http://services.appsonmobile.com/deals/:id'
             },
             url: 'http://services.appsonmobile.com/deals',
             reader: {
@@ -67137,16 +67137,7 @@ Ext.define('Ext.picker.Picker', {
             });
             var btn = Ext.getCmp('DeleteDeal');
             btn.addListener('tap', function() {
-                //store.destroy(recordsToDelete);
-                //store.remove(recordsToDelete);
-                //store.setExtraParam(custId);
-                store.setParams({
-                    id: 4
-                });
-                recordsToDelete.forEach(function(record) {
-                    console.log('Deleting record: ' + record.get('dealName'));
-                    record.destroy();
-                });
+                store.remove(recordsToDelete);
                 store.sync();
             });
         } else /*btn.addAfterListener('tap',function(){
