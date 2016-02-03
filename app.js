@@ -65963,6 +65963,7 @@ Ext.define('Ext.picker.Picker', {
  */
 (Ext.cmd.derive('Contact.model.Deal', Ext.data.Model, {
     config: {
+        idProperty: 'itemName',
         fields: [
             {
                 name: 'customerId'
@@ -66121,8 +66122,8 @@ Ext.define('Ext.picker.Picker', {
         ]
     },
     onJsonpstoreWrite: function(store, operation, eOpts) {
-        operation.setAction = 'destroy';
-        console.log(store.getUpdatedRecords());
+        //operation.setAction='destroy';
+        console.log(operation.getAction());
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
