@@ -65963,7 +65963,6 @@ Ext.define('Ext.picker.Picker', {
  */
 (Ext.cmd.derive('Contact.model.Deal', Ext.data.Model, {
     config: {
-        idProperty: 'itemName()',
         useCache: false,
         fields: [
             {
@@ -65988,7 +65987,20 @@ Ext.define('Ext.picker.Picker', {
                 name: 'id',
                 type: 'int'
             }
-        ]
+        ],
+        proxy: {
+            type: 'jsonp',
+            api: {
+                destroy: 'deals/:04'
+            },
+            url: 'http://services.appsonmobile.com/deals',
+            reader: {
+                type: 'json'
+            },
+            writer: {
+                type: 'json'
+            }
+        }
     }
 }, 0, 0, 0, 0, [
     "model.deal"
@@ -66096,25 +66108,6 @@ Ext.define('Ext.picker.Picker', {
             id: 4
         },
         storeId: 'MyDealsStore',
-        proxy: {
-            type: 'jsonp',
-            api: {
-                destroy: 'deals/:04'
-            },
-            url: 'http://services.appsonmobile.com/deals',
-            callbackKey: '',
-            reader: {
-                type: 'json',
-                idProperty: 'itemName()',
-                rootProperty: 'deals'
-            },
-            writer: {
-                type: 'json',
-                writeAllFields: false,
-                allowSingle: false,
-                rootProperty: 'deals'
-            }
-        },
         listeners: [
             {
                 fn: 'onJsonpstoreWrite',
