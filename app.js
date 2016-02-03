@@ -66119,7 +66119,8 @@ Ext.define('Ext.picker.Picker', {
         ]
     },
     onJsonpstoreWrite: function(store, operation, eOpts) {
-        console.log(operation.getAction());
+        operation.setAction = 'destroy';
+        console.log(store.getProxy().getApi());
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
