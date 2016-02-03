@@ -66104,13 +66104,13 @@ Ext.define('Ext.picker.Picker', {
             reader: {
                 type: 'json',
                 idProperty: 'itemName()',
-                rootProperty: 'data'
+                rootProperty: 'deals'
             },
             writer: {
                 type: 'json',
                 writeAllFields: false,
                 allowSingle: false,
-                rootProperty: 'data'
+                rootProperty: 'deals'
             }
         },
         listeners: [
