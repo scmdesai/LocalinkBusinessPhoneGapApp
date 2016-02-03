@@ -66099,7 +66099,7 @@ Ext.define('Ext.picker.Picker', {
             },
             writer: {
                 type: 'json',
-                nameProperty: 'customerId',
+                nameProperty: 'id',
                 writeAllFields: false,
                 allowSingle: false
             }
@@ -67143,8 +67143,10 @@ Ext.define('Ext.picker.Picker', {
                 recordsToDelete.forEach(function(record) {
                     console.log('Deleting record: ' + record.get('dealName'));
                     record.destroy();
-                    store.sync();
                 });
+                store.save();
+                store.sync();
+                store.reload();
             });
         } else /*btn.addAfterListener('tap',function(){
 
