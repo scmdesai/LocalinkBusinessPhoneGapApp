@@ -66112,12 +66112,19 @@ Ext.define('Ext.picker.Picker', {
             {
                 fn: 'onJsonpstoreWrite',
                 event: 'write'
+            },
+            {
+                fn: 'onJsonpstoreRemoverecords',
+                event: 'removerecords'
             }
         ]
     },
     onJsonpstoreWrite: function(store, operation, eOpts) {
         //operation.setAction='destroy';
         console.log(operation.getAction());
+    },
+    onJsonpstoreRemoverecords: function(store, records, indices, eOpts) {
+        console.log(store.getRemovedRecords());
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
