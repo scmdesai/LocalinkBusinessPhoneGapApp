@@ -66103,12 +66103,14 @@ Ext.define('Ext.picker.Picker', {
             callbackKey: '',
             reader: {
                 type: 'json',
-                idProperty: 'itemName()'
+                idProperty: 'itemName()',
+                rootProperty: 'data'
             },
             writer: {
                 type: 'json',
                 writeAllFields: false,
-                allowSingle: false
+                allowSingle: false,
+                rootProperty: 'data'
             }
         },
         listeners: [
@@ -66120,7 +66122,7 @@ Ext.define('Ext.picker.Picker', {
     },
     onJsonpstoreWrite: function(store, operation, eOpts) {
         operation.setAction = 'destroy';
-        console.log(store.getProxy().destroy);
+        store.getProxy().getApi('destroy');
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
@@ -67154,10 +67156,10 @@ Ext.define('Ext.picker.Picker', {
             btn.addListener('tap', function() {
                 store.remove(recordsToDelete);
                 store.sync();
-                console.log('Removed Records after store sync are: ' + store.getRemovedRecords());
-                console.log('Destroy Records after store sync are: ' + store.getSyncRemovedRecords());
             });
-        } else /*btn.addAfterListener('tap',function(){
+        } else // console.log('Removed Records after store sync are: ' + store.getRemovedRecords());
+        //console.log('Destroy Records after store sync are: ' + store.getSyncRemovedRecords());
+        /*btn.addAfterListener('tap',function(){
 
 
 
