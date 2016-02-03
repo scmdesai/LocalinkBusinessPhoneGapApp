@@ -67468,7 +67468,8 @@ Ext.define('Ext.picker.Picker', {
                     {
                         xtype: 'button',
                         handler: function(button, e) {
-                            console.log(this.getRecord());
+                            var list = Ext.getCmp('ListOfDeals');
+                            console.log(list.getStoreId());
                         },
                         flex: 1,
                         id: 'DeleteDeal',
