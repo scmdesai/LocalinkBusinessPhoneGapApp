@@ -67156,21 +67156,13 @@ Ext.define('Ext.picker.Picker', {
                 store.remove(recordsToDelete);
                 store.sync({
                     success: function(record, operation) {
-                        // erase the created record
-                        record.erase({
-                            failure: function(record, operation) {
-                                // do something if the erase failed
-                                console.log('Error deleting');
-                            },
-                            success: function(record, operation) {
-                                // do something if the erase succeeded
-                                console.log('Deal deleted');
-                            },
-                            callback: function(record, operation, success) {
-                                // do something if the erase succeeded or failed
-                                console.log('Callback function');
-                            }
-                        });
+                        console.log('DeletedSuccessfully!');
+                    },
+                    failure: function(record, operation) {
+                        console.log('Error');
+                    },
+                    callback: function(record, operation) {
+                        console.log('Callback function');
                     }
                 });
             });
