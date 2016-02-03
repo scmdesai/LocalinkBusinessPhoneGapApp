@@ -67140,7 +67140,7 @@ Ext.define('Ext.picker.Picker', {
                 store.removeAll();
                 store.sync();
                 console.log('Removed Records after store sync are: ' + store.getRemovedRecords());
-                console.log('Destroy Records after store sync are: ' + store.getDestroyRemovedRecords());
+                console.log('Destroy Records after store sync are: ' + store.getSyncRemovedRecords());
             });
         } else /*btn.addAfterListener('tap',function(){
 
