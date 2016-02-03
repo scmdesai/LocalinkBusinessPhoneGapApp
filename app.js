@@ -65963,7 +65963,8 @@ Ext.define('Ext.picker.Picker', {
  */
 (Ext.cmd.derive('Contact.model.Deal', Ext.data.Model, {
     config: {
-        idProperty: 'itemName',
+        idProperty: 'itemName()',
+        useCache: false,
         fields: [
             {
                 name: 'customerId'
