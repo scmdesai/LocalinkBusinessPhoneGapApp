@@ -65987,20 +65987,7 @@ Ext.define('Ext.picker.Picker', {
                 name: 'id',
                 type: 'int'
             }
-        ],
-        proxy: {
-            type: 'jsonp',
-            api: {
-                destroy: 'deals/:04'
-            },
-            url: 'http://services.appsonmobile.com/deals',
-            reader: {
-                type: 'json'
-            },
-            writer: {
-                type: 'json'
-            }
-        }
+        ]
     }
 }, 0, 0, 0, 0, [
     "model.deal"
@@ -66113,10 +66100,27 @@ Ext.define('Ext.picker.Picker', {
                 fn: 'onJsonpstoreWrite',
                 event: 'write'
             }
-        ]
+        ],
+        proxy: {
+            type: 'jsonp',
+            api: {
+                destroy: 'deals/:id'
+            },
+            extraParams: {
+                id: 4
+            },
+            url: 'http://services.appsonmobile.com/deals',
+            reader: {
+                type: 'json'
+            },
+            writer: {
+                type: 'json',
+                writeAllFields: false
+            }
+        }
     },
     onJsonpstoreWrite: function(store, operation, eOpts) {
-        console.log(operation.getAction());
+        console.log(operation.getBatch());
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
@@ -67467,10 +67471,6 @@ Ext.define('Ext.picker.Picker', {
                     },
                     {
                         xtype: 'button',
-                        handler: function(button, e) {
-                            var list = Ext.getCmp('ListOfDeals');
-                            console.log(list.getBubbleEvents());
-                        },
                         flex: 1,
                         id: 'DeleteDeal',
                         itemId: 'DeleteDeal',
