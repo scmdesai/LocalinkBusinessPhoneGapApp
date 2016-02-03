@@ -66116,7 +66116,6 @@ Ext.define('Ext.picker.Picker', {
         ]
     },
     onJsonpstoreWrite: function(store, operation, eOpts) {
-        console.log(operation.getRequest());
         console.log(operation.getAction());
     }
 }, 0, 0, 0, 0, 0, 0, [
@@ -67152,9 +67151,7 @@ Ext.define('Ext.picker.Picker', {
                 store.remove(recordsToDelete);
                 store.sync();
             });
-        } else // console.log('Removed Records after store sync are: ' + store.getRemovedRecords());
-        //console.log('Destroy Records after store sync are: ' + store.getSyncRemovedRecords());
-        /*btn.addAfterListener('tap',function(){
+        } else /*btn.addAfterListener('tap',function(){
 
 
 
@@ -67470,6 +67467,9 @@ Ext.define('Ext.picker.Picker', {
                     },
                     {
                         xtype: 'button',
+                        handler: function(button, e) {
+                            console.log(this.getRecord());
+                        },
                         flex: 1,
                         id: 'DeleteDeal',
                         itemId: 'DeleteDeal',
