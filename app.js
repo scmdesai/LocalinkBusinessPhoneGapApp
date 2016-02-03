@@ -67137,11 +67137,12 @@ Ext.define('Ext.picker.Picker', {
             });
             var btn = Ext.getCmp('DeleteDeal');
             btn.addListener('tap', function() {
-                store.remove(recordsToDelete);
+                //store.remove(recordsToDelete);
                 console.log('Removed Records are: ' + store.getRemovedRecords());
                 recordsToDelete.forEach(function(record) {
-                    console.log(record.dirty);
+                    record.setDirty();
                 });
+                store.remove(recordsToDelete);
                 store.sync();
                 console.log('Removed Records after store sync are: ' + store.getRemovedRecords());
             });
