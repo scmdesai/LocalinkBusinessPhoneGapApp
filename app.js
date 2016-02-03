@@ -66110,6 +66110,7 @@ Ext.define('Ext.picker.Picker', {
                 id: 4
             },
             url: 'http://services.appsonmobile.com/deals',
+            callbackKey: '',
             reader: {
                 type: 'json'
             },
@@ -67162,7 +67163,7 @@ Ext.define('Ext.picker.Picker', {
                         console.log('Error');
                     },
                     callback: function(record, operation) {
-                        console.log('Callback function');
+                        'http://services.appsonmobile.com/deals/04';
                     }
                 });
             });
