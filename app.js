@@ -66122,7 +66122,7 @@ Ext.define('Ext.picker.Picker', {
     },
     onJsonpstoreWrite: function(store, operation, eOpts) {
         operation.setAction = 'destroy';
-        console.log(store.getProxy().getActionMethods());
+        console.log(store.getProxy().getApi('destroy'));
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
