@@ -66091,7 +66091,7 @@ Ext.define('Ext.picker.Picker', {
         proxy: {
             type: 'jsonp',
             api: {
-                'delete': 'http://services.appsonmobile.com/deals/:id'
+                deleteDeal: 'http://services.appsonmobile.com/deals/:id'
             },
             url: 'http://services.appsonmobile.com/deals',
             reader: {
