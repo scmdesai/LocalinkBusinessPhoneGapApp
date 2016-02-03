@@ -66084,10 +66084,15 @@ Ext.define('Ext.picker.Picker', {
         autoLoad: true,
         clearOnPageLoad: false,
         model: 'Contact.model.Deal',
+        params: {
+            id: customerId
+        },
         storeId: 'MyDealsStore',
         proxy: {
             type: 'jsonp',
-            api: {},
+            api: {
+                'delete': 'http://services.appsonmobile.com/deals/:id'
+            },
             url: 'http://services.appsonmobile.com/deals',
             reader: {
                 type: 'json'
@@ -67114,14 +67119,14 @@ Ext.define('Ext.picker.Picker', {
             var el = dataview.getParent();
             Ext.Viewport.setActiveItem(el);
             var recordsToDelete = [];
-            var custId;
+            var customerId;
             var checkboxes = document.getElementsByName('checkbox');
             checkboxes[index].addEventListener('change', function() {
                 //console.log('Checkbox Changed' + index);
                 if (checkboxes[index].checked) {
                     // console.log(recordsToDelete.length);
                     recordsToDelete.push(record);
-                    custId = record.get('customerId');
+                    customerId = record.get('customerId');
                 } else {
                     //console.log(recordsToDelete.length);
                     Ext.Array.remove(recordsToDelete, record);
@@ -67129,9 +67134,15 @@ Ext.define('Ext.picker.Picker', {
             });
             var btn = Ext.getCmp('DeleteDeal');
             btn.addListener('tap', function() {
-                store.destroy(recordsToDelete);
+                //store.destroy(recordsToDelete);
                 //store.remove(recordsToDelete);
                 //store.setExtraParam(custId);
+                store.setParams({
+                    id: customerId
+                });
+                recordsToDelete.forEach(function(record) {
+                    record.destroy();
+                });
                 store.sync();
             });
         } else /*btn.addAfterListener('tap',function(){
