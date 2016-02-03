@@ -66085,7 +66085,7 @@ Ext.define('Ext.picker.Picker', {
         clearOnPageLoad: false,
         model: 'Contact.model.Deal',
         params: {
-            id: customerId
+            id: 4
         },
         storeId: 'MyDealsStore',
         proxy: {
