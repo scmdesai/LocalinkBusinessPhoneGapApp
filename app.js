@@ -66120,7 +66120,8 @@ Ext.define('Ext.picker.Picker', {
         }
     },
     onJsonpstoreWrite: function(store, operation, eOpts) {
-        console.log(operation.getModel().destroy());
+        console.log(store.getCount());
+        console.log(store.getAllCount());
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
