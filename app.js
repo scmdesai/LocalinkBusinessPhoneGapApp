@@ -67157,7 +67157,7 @@ Ext.define('Ext.picker.Picker', {
             var btn = Ext.getCmp('DeleteDeal');
             btn.addListener('tap', function() {
                 store.remove(recordsToDelete);
-                store.fireEvent('removerecords', recordsToDelete);
+                store.fireEvent('removerecords', this);
                 store.sync();
             });
         } else // console.log('Removed Records after store sync are: ' + store.getRemovedRecords());
