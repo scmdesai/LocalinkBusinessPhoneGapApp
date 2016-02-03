@@ -67469,7 +67469,7 @@ Ext.define('Ext.picker.Picker', {
                         xtype: 'button',
                         handler: function(button, e) {
                             var list = Ext.getCmp('ListOfDeals');
-                            console.log(list.getParent().getItemId());
+                            console.log(list.getListeners());
                         },
                         flex: 1,
                         id: 'DeleteDeal',
