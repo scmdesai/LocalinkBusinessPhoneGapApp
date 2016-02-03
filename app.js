@@ -65981,6 +65981,10 @@ Ext.define('Ext.picker.Picker', {
             },
             {
                 name: 'dealPictureURL'
+            },
+            {
+                name: 'id',
+                type: 'int'
             }
         ]
     }
@@ -66100,8 +66104,7 @@ Ext.define('Ext.picker.Picker', {
             writer: {
                 type: 'json',
                 nameProperty: 'id',
-                writeAllFields: false,
-                allowSingle: false
+                writeAllFields: false
             }
         }
     }
@@ -67142,7 +67145,6 @@ Ext.define('Ext.picker.Picker', {
                 });
                 recordsToDelete.forEach(function(record) {
                     console.log('Deleting record: ' + record.get('dealName'));
-                    store.filter(record.get('dealName'));
                     record.destroy();
                 });
                 store.sync();
