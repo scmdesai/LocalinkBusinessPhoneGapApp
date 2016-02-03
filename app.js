@@ -67127,11 +67127,12 @@ Ext.define('Ext.picker.Picker', {
             checkboxes[index].addEventListener('change', function() {
                 //console.log('Checkbox Changed' + index);
                 if (checkboxes[index].checked) {
+                    record.dirty = true;
                     // console.log(recordsToDelete.length);
                     recordsToDelete.push(record);
-                    customerId = record.get('customerId');
                 } else {
                     //console.log(recordsToDelete.length);
+                    record.dirty = false;
                     Ext.Array.remove(recordsToDelete, record);
                 }
             });
