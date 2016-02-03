@@ -66112,21 +66112,12 @@ Ext.define('Ext.picker.Picker', {
             {
                 fn: 'onJsonpstoreWrite',
                 event: 'write'
-            },
-            {
-                fn: 'onJsonpstoreRemoverecords',
-                event: 'removerecords'
             }
         ]
     },
     onJsonpstoreWrite: function(store, operation, eOpts) {
-        //operation.setAction='destroy';
+        console.log(operation.getRequest());
         console.log(operation.getAction());
-    },
-    onJsonpstoreRemoverecords: function(store, records, indices, eOpts) {
-        //console.log('Indices: ' + indices);
-        //console.log('Records: ' + records);
-        store.getProxy().getWriter().erase(records);
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
@@ -67159,7 +67150,6 @@ Ext.define('Ext.picker.Picker', {
             var btn = Ext.getCmp('DeleteDeal');
             btn.addListener('tap', function() {
                 store.remove(recordsToDelete);
-                store.fireEvent('removerecords', this);
                 store.sync();
             });
         } else // console.log('Removed Records after store sync are: ' + store.getRemovedRecords());
