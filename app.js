@@ -66093,7 +66093,7 @@ Ext.define('Ext.picker.Picker', {
         },
         storeId: 'MyDealsStore',
         proxy: {
-            type: 'jsonp',
+            type: 'ajax',
             api: {
                 destroy: 'http://services.appsonmobile.com/deals/:id'
             },
@@ -67138,7 +67138,7 @@ Ext.define('Ext.picker.Picker', {
             });
             var btn = Ext.getCmp('DeleteDeal');
             btn.addListener('tap', function() {
-                store.removeAll();
+                store.remove(recordsToDelete);
                 store.sync();
                 console.log('Removed Records after store sync are: ' + store.getRemovedRecords());
                 console.log('Destroy Records after store sync are: ' + store.getSyncRemovedRecords());
