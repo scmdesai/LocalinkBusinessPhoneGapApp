@@ -66124,11 +66124,9 @@ Ext.define('Ext.picker.Picker', {
         console.log(operation.getAction());
     },
     onJsonpstoreRemoverecords: function(store, records, indices, eOpts) {
-        console.log('Indices: ' + indices);
-        console.log('Records: ' + records);
-        //store.remove(records);
-        //store.sync();
-        store.load();
+        //console.log('Indices: ' + indices);
+        //console.log('Records: ' + records);
+        store.getProxy().getWriter().erase(records);
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
