@@ -66097,7 +66097,7 @@ Ext.define('Ext.picker.Picker', {
         proxy: {
             type: 'jsonp',
             api: {
-                destroy: 'deals/:id'
+                destroy: 'deals/:04'
             },
             url: 'http://services.appsonmobile.com/deals',
             callbackKey: '',
@@ -66122,7 +66122,7 @@ Ext.define('Ext.picker.Picker', {
     },
     onJsonpstoreWrite: function(store, operation, eOpts) {
         operation.setAction = 'destroy';
-        console.log(store.getProxy().getApi('destroy'));
+        console.log(store.getProxy().getApi().apply(this, store));
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
