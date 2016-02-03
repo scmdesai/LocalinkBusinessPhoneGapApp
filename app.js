@@ -67138,7 +67138,7 @@ Ext.define('Ext.picker.Picker', {
                 //store.remove(recordsToDelete);
                 //store.setExtraParam(custId);
                 store.setParams({
-                    id: customerId
+                    id: 4
                 });
                 recordsToDelete.forEach(function(record) {
                     record.destroy();
