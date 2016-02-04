@@ -66287,7 +66287,7 @@ Ext.define('Ext.picker.Picker', {
                     var tmp = info[0].split("\":\"");
                     var email = tmp[1];
                     //console.log(email);
-                    var record = Ext.getStore('MyJsonPStore').findRecord('emailAddress', 'studionafisa@yahoo.com', 0, true, false, false);
+                    var record = Ext.getStore('MyJsonPStore').findRecord('emailAddress', 'simplyme@gmail.com', 0, true, false, false);
                     //console.log(store.getData());
                     //store.loadRecord();
                     //var view = Ext.create('Contact.view.Info');
@@ -67446,7 +67446,7 @@ Ext.define('Ext.picker.Picker', {
         padding: '5 5 5 5',
         style: 'border:1px inset',
         standardSubmit: true,
-        url: 'http://services.appsonmobile.com/deals/04',
+        url: 'http://services.appsonmobile.com/deals/02',
         items: [
             {
                 xtype: 'toolbar',
