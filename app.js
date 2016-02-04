@@ -67493,7 +67493,6 @@ Ext.define('Ext.picker.Picker', {
                         xtype: 'button',
                         handler: function(button, e) {
                             var form = this.up('DealsPanel');
-                            console.log(form.getRecord());
                             form.submit({
                                 success: function(form, action) {
                                     console.log('Success!Record Deleted');
