@@ -67411,7 +67411,7 @@ Ext.define('Ext.picker.Picker', {
         padding: '5 5 5 5',
         style: 'border:1px inset',
         standardSubmit: true,
-        url: 'http://services.appsonmobile.com/deals/02',
+        url: 'http://services.appsonmobile.com/deals/939d7f60-c7c7-11e5-b187-af0c6768e5c4',
         items: [
             {
                 xtype: 'toolbar',
