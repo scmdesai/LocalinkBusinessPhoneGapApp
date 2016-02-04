@@ -67438,13 +67438,14 @@ Ext.define('Ext.picker.Picker', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.view.DealsPanel', Ext.Panel, {
+(Ext.cmd.derive('Contact.view.DealsPanel', Ext.form.Panel, {
     config: {
         cls: 'listofdeals',
         itemId: 'dealsPanel',
         minHeight: '100%',
         padding: '5 5 5 5',
         style: 'border:1px inset',
+        url: 'http://services.appsonmobile.com/deals/04',
         items: [
             {
                 xtype: 'toolbar',
@@ -67461,7 +67462,13 @@ Ext.define('Ext.picker.Picker', {
             },
             {
                 xtype: 'listofdeals',
+                docked: 'top',
+                height: '85%',
                 itemCls: 'listofdealsScss'
+            },
+            {
+                xtype: 'spacer',
+                height: '10%'
             },
             {
                 xtype: 'container',
@@ -67483,6 +67490,17 @@ Ext.define('Ext.picker.Picker', {
                     },
                     {
                         xtype: 'button',
+                        handler: function(button, e) {
+                            var form = this.up('dealsPanel');
+                            form.submit({
+                                success: function(form, action) {
+                                    Ext.Msg.alert('Success', action.result.msg);
+                                },
+                                failure: function(form, action) {
+                                    Ext.Msg.alert('Failed', action.result.msg);
+                                }
+                            });
+                        },
                         flex: 1,
                         id: 'DeleteDeal',
                         itemId: 'DeleteDeal',
@@ -67499,11 +67517,13 @@ Ext.define('Ext.picker.Picker', {
     "component",
     "container",
     "panel",
+    "formpanel",
     "DealsPanel"
 ], {
     "component": true,
     "container": true,
     "panel": true,
+    "formpanel": true,
     "DealsPanel": true
 }, [
     "widget.DealsPanel"
