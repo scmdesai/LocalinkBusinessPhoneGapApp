@@ -67445,6 +67445,7 @@ Ext.define('Ext.picker.Picker', {
         minHeight: '100%',
         padding: '5 5 5 5',
         style: 'border:1px inset',
+        standardSubmit: true,
         url: 'http://services.appsonmobile.com/deals/04',
         items: [
             {
@@ -67494,10 +67495,12 @@ Ext.define('Ext.picker.Picker', {
                             var form = this.up('DealsPanel');
                             form.submit({
                                 success: function(form, action) {
+                                    console.log('Success!Record Deleted');
                                     Ext.Msg.alert('Success', action.result.msg);
                                 },
                                 failure: function(form, action) {
                                     Ext.Msg.alert('Failed', action.result.msg);
+                                    console.log('Error deleting record');
                                 }
                             });
                         },
