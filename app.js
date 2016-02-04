@@ -67491,7 +67491,7 @@ Ext.define('Ext.picker.Picker', {
                     {
                         xtype: 'button',
                         handler: function(button, e) {
-                            var form = this.up('dealsPanel');
+                            var form = this.up('DealsPanel');
                             form.submit({
                                 success: function(form, action) {
                                     Ext.Msg.alert('Success', action.result.msg);
