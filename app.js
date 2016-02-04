@@ -67463,7 +67463,7 @@ Ext.define('Ext.picker.Picker', {
                                     // Ext.Msg.alert('Success', action.result.msg);
                                     navigator.notification.alert('Success', // message
                                     okay, // callback
-                                    action.result.msg, // title
+                                    'Deal deleted successfully', // title
                                     'OK');
                                     // buttonName
                                     function okay() {}
@@ -67474,7 +67474,7 @@ Ext.define('Ext.picker.Picker', {
                                     //console.log('Error deleting record');
                                     navigator.notification.alert('Error', // message
                                     okay, // callback
-                                    action.result.msg, // title
+                                    'Could Not Delete Deal', // title
                                     'OK');
                                 }
                             });
