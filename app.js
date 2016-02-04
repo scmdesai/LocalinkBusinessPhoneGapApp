@@ -66091,38 +66091,14 @@ Ext.define('Ext.picker.Picker', {
         autoLoad: true,
         clearOnPageLoad: false,
         model: 'Contact.model.Deal',
-        params: {
-            id: 4
-        },
         storeId: 'MyDealsStore',
-        listeners: [
-            {
-                fn: 'onJsonpstoreWrite',
-                event: 'write'
-            }
-        ],
         proxy: {
             type: 'jsonp',
-            api: {
-                destroy: 'deals/:id'
-            },
-            extraParams: {
-                id: 4
-            },
             url: 'http://services.appsonmobile.com/deals',
-            callbackKey: '',
             reader: {
                 type: 'json'
-            },
-            writer: {
-                type: 'json',
-                writeAllFields: false
             }
         }
-    },
-    onJsonpstoreWrite: function(store, operation, eOpts) {
-        console.log(store.getCount());
-        console.log(store.getRemovedRecords());
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
@@ -67143,31 +67119,20 @@ Ext.define('Ext.picker.Picker', {
             checkboxes[index].addEventListener('change', function() {
                 //console.log('Checkbox Changed' + index);
                 if (checkboxes[index].checked) {
-                    record.dirty = true;
+                    //record.dirty= true;
                     // console.log(recordsToDelete.length);
                     recordsToDelete.push(record);
                 } else {
                     //console.log(recordsToDelete.length);
-                    record.dirty = false;
+                    // record.dirty= false;
                     Ext.Array.remove(recordsToDelete, record);
                 }
             });
             var btn = Ext.getCmp('DeleteDeal');
-            btn.addListener('tap', function() {
-                store.remove(recordsToDelete);
-                store.sync({
-                    success: function(record, operation) {
-                        console.log('DeletedSuccessfully!');
-                    },
-                    failure: function(record, operation) {
-                        console.log('Error');
-                    },
-                    callback: function(record, operation) {
-                        'http://services.appsonmobile.com/deals/04';
-                    }
-                });
-            });
-        } else /*btn.addAfterListener('tap',function(){
+            btn.addListener('tap', function() {});
+        } else //  store.remove(recordsToDelete);
+        //	store.sync();
+        /*btn.addAfterListener('tap',function(){
 
 
 
