@@ -67470,7 +67470,7 @@ Ext.define('Ext.picker.Picker', {
                                 },
                                 // Do something
                                 failure: function(form, action) {
-                                    Ext.Msg.alert('Failed', action.result.msg);
+                                    // Ext.Msg.alert('Failed', action.result.msg);
                                     //console.log('Error deleting record');
                                     navigator.notification.alert('Error', // message
                                     okay, // callback
