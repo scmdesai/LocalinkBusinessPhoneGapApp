@@ -66832,11 +66832,10 @@ Ext.define('Ext.picker.Picker', {
                 }
             });
             var btn = Ext.getCmp('DeleteDeal');
-            btn.addListener('tap', function() {
-                store.remove(recordsToDelete);
-                store.sync();
-            });
-        } else /*btn.addAfterListener('tap',function(){
+            btn.addListener('tap', function() {});
+        } else //	store.remove(recordsToDelete);
+        //	store.sync();
+        /*btn.addAfterListener('tap',function(){
 
 
 
@@ -67160,25 +67159,21 @@ Ext.define('Ext.picker.Picker', {
                     },
                     {
                         xtype: 'button',
-                        handler: function(button, e) {},
-                        /*  var form = this.up('DealsPanel') ;
-
-
-
-							form.submit({
-							success: function(form, action) {
-
-
-							console.log('Deal Deleted');
-							// Ext.Msg.alert('Success', action.result.msg);
-
-						},
-						failure: function(form, action) {
-							Ext.Msg.alert('Failed', action.result.msg);
-							//console.log('Error deleting record');
-
-						}
-					});*/
+                        handler: function(button, e) {
+                            var form = this.up('DealsPanel');
+                            var store = this.up('MyDealsStore');
+                            console.log('Store is : ' + store);
+                            form.submit({
+                                success: function(form, action) {
+                                    console.log('Deal Deleted');
+                                },
+                                // Ext.Msg.alert('Success', action.result.msg);
+                                failure: function(form, action) {
+                                    Ext.Msg.alert('Failed', action.result.msg);
+                                }
+                            });
+                        },
+                        //console.log('Error deleting record');
                         flex: 1,
                         id: 'DeleteDeal',
                         itemId: 'DeleteDeal',
