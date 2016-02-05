@@ -67140,14 +67140,15 @@ Ext.define('Ext.picker.Picker', {
                 store.remove(recordsToDelete);
                 store.sync({
                     success: function(form, action) {
-                        Ext.Msg.alert('Success', action.result.msg);
+                        Ext.Msg.alert('Success', "Success!");
                     },
                     failure: function(form, action) {
-                        Ext.Msg.alert('Failed', action.result.msg);
+                        Ext.Msg.alert('Failed', "Error!");
                     }
                 });
             });
-        } else /*btn.addAfterListener('tap',function(){
+        } else /*action.result.msg*/
+        /*btn.addAfterListener('tap',function(){
 
 
 
