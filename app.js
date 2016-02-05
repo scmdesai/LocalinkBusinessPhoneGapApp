@@ -67163,29 +67163,16 @@ Ext.define('Ext.picker.Picker', {
                             var form = this.up('DealsPanel');
                             form.submit(Ext.Ajax.request({
                                 type: "POST",
-                                url: "http://services.appsonmobile.com/deals/f4204100-be4a-11e5-a022-316820a42474",
+                                url: "http://services.appsonmobile.com/deals/93446aa0-be4a-11e5-a022-316820a42474",
                                 dataType: "json",
-                                callback: function(options, success, response) {
-                                    alert("The server says: " + response.responseText);
+                                success: function(response) {
+                                    alert("Success!");
+                                },
+                                failure: function(response) {
+                                    alert("Error!");
                                 }
                             }));
                         },
-                        /* error: function () {
-								alert('loading Ajax failure');
-								},
-								onFailure: function () {
-								alert('Ajax Failure');
-								},
-								statusCode: {
-								404: function() {
-								alert("missing info");
-								}
-								},
-								success : function (success,msg) {
-
-
-								alert("The server says: " + JSON.parse(JSON.stringify(msg)));
-								}*/
                         flex: 1,
                         id: 'DeleteDeal',
                         itemId: 'DeleteDeal',
