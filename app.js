@@ -66124,10 +66124,10 @@ Ext.define('Ext.picker.Picker', {
     },
     onJsonpstoreRemoverecords: function(store, records, indices, eOpts) {
         console.log('Records Removed');
-        console.log(eOpts);
-        console.log(store.getProxy().getApi());
+        console.log(store.getRemovedRecords());
     },
     onJsonpstoreWrite: function(store, operation, eOpts) {
+        console.log(operation.getRequest().getMethod());
         console.log(eOpts);
     }
 }, 0, 0, 0, 0, 0, 0, [
