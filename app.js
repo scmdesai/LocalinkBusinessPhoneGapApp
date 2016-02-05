@@ -65835,6 +65835,7 @@ Ext.define('Ext.picker.Picker', {
  */
 (Ext.cmd.derive('Contact.store.MyDealsStore', Ext.data.Store, {
     config: {
+        autoLoad: true,
         model: 'Contact.model.Deal',
         storeId: 'MyDealsStore',
         proxy: {
@@ -65843,12 +65844,6 @@ Ext.define('Ext.picker.Picker', {
                 destroy: 'deleteDeal/c1d3f8f0-c268-11e5-96e2-21d5499de2fb'
             },
             url: 'http://services.appsonmobile.com/deals',
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE',
-                'Access-Control-Allow-Headers': 'Content-Type,X-Requested-With'
-            },
-            useDefaultXhrHeader: false,
             reader: {
                 type: 'json',
                 messageProperty: 'msg'
