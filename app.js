@@ -66097,7 +66097,6 @@ Ext.define('Ext.picker.Picker', {
             api: {
                 destroy: 'http://services.appsonmobile.com/deals/93446aa0-be4a-11e5-a022-316820a42474'
             },
-            extraParams: '{id:c1d3f8f0-c268-11e5-96e2-21d5499de2fb}',
             url: 'http://services.appsonmobile.com/deals',
             reader: {
                 type: 'json'
@@ -67137,15 +67136,16 @@ Ext.define('Ext.picker.Picker', {
             btn.addListener('tap', function() {
                 store.remove(recordsToDelete);
                 store.sync({
-                    success: function(form, action) {
-                        Ext.Msg.alert('Success', "Success!");
+                    success: function(record, operation) {
+                        console.log(operation.response);
                     },
-                    failure: function(form, action) {
-                        Ext.Msg.alert('Failed', "Error!");
+                    // I can get server response in success
+                    failure: function(record, operation) {
+                        console.log(operation.response);
                     }
                 });
             });
-        } else /*action.result.msg*/
+        } else // undefined
         /*btn.addAfterListener('tap',function(){
 
 
