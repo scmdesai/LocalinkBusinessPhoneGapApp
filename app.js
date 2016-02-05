@@ -66122,7 +66122,8 @@ Ext.define('Ext.picker.Picker', {
         console.log('Records Removed');
     },
     onJsonpstoreWrite: function(store, operation, eOpts) {
-        console.log(operation.getRequest().getMethod());
+        operation.getRequest().setMethod('POST');
+        console.log(operation.getRequest().getUrl());
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
