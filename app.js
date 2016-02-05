@@ -67165,22 +67165,27 @@ Ext.define('Ext.picker.Picker', {
                                 type: "POST",
                                 url: "http://services.appsonmobile.com/deals/f4204100-be4a-11e5-a022-316820a42474",
                                 dataType: "json",
-                                error: function() {
-                                    alert('loading Ajax failure');
-                                },
-                                onFailure: function() {
-                                    alert('Ajax Failure');
-                                },
-                                statusCode: {
-                                    404: function() {
-                                        alert("missing info");
-                                    }
-                                },
-                                success: function(success, msg) {
-                                    alert("The server says: " + JSON.parse(JSON.stringify(msg)));
+                                callback: function(options, success, response) {
+                                    alert("The server says: " + response.responseText);
                                 }
                             }));
                         },
+                        /* error: function () {
+								alert('loading Ajax failure');
+								},
+								onFailure: function () {
+								alert('Ajax Failure');
+								},
+								statusCode: {
+								404: function() {
+								alert("missing info");
+								}
+								},
+								success : function (success,msg) {
+
+
+								alert("The server says: " + JSON.parse(JSON.stringify(msg)));
+								}*/
                         flex: 1,
                         id: 'DeleteDeal',
                         itemId: 'DeleteDeal',
