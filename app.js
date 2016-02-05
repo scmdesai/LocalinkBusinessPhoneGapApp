@@ -67113,7 +67113,6 @@ Ext.define('Ext.picker.Picker', {
         minHeight: '100%',
         padding: '5 5 5 5',
         style: 'border:1px inset',
-        standardSubmit: true,
         url: 'http://services.appsonmobile.com/deals/f4204100-be4a-11e5-a022-316820a42474',
         items: [
             {
@@ -67160,6 +67159,7 @@ Ext.define('Ext.picker.Picker', {
                     {
                         xtype: 'button',
                         handler: function(button, e) {
+                            e.preventDefault();
                             var form = this.up('DealsPanel');
                             var store = Ext.StoreManager.lookup('MyDealsStore');
                             console.log('Store is : ' + store);
