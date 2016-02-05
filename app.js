@@ -66108,7 +66108,7 @@ Ext.define('Ext.picker.Picker', {
             },
             writer: {
                 type: 'json',
-                writeAllFields: false
+                encode: true
             }
         },
         listeners: [
@@ -66127,7 +66127,8 @@ Ext.define('Ext.picker.Picker', {
         console.log(store.getRemovedRecords());
     },
     onJsonpstoreWrite: function(store, operation, eOpts) {
-        console.log(operation.getResultSet().getTotal());
+        console.log(operation.getResultSet().getSuccess());
+        console.log(operation.getResponse().keys);
         console.log(eOpts);
     }
 }, 0, 0, 0, 0, 0, 0, [
