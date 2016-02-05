@@ -66099,7 +66099,8 @@ Ext.define('Ext.picker.Picker', {
             },
             url: 'http://services.appsonmobile.com/deals',
             reader: {
-                type: 'json'
+                type: 'json',
+                messageProperty: 'msg'
             },
             writer: {
                 type: 'json',
@@ -67140,17 +67141,15 @@ Ext.define('Ext.picker.Picker', {
             btn.addListener('tap', function() {
                 store.remove(recordsToDelete);
                 store.sync({
-                    success: function(record, operation) {
-                        console.log(operation.response);
+                    success: function(batch, options) {
+                        alert(batch.proxy.getReader().rawData.msg);
                     },
-                    // I can get server response in success
-                    failure: function(record, operation) {
-                        console.log(operation.response);
+                    failure: function(batch, options) {
+                        alert(batch.proxy.getReader().rawData.msg);
                     }
                 });
             });
-        } else // undefined
-        /*btn.addAfterListener('tap',function(){
+        } else /*btn.addAfterListener('tap',function(){
 
 
 
