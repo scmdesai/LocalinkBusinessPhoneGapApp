@@ -66094,6 +66094,7 @@ Ext.define('Ext.picker.Picker', {
         storeId: 'MyDealsStore',
         proxy: {
             type: 'jsonp',
+            batchActions: false,
             api: {
                 destroy: 'deleteDeal/c1d3f8f0-c268-11e5-96e2-21d5499de2fb'
             },
@@ -66124,7 +66125,7 @@ Ext.define('Ext.picker.Picker', {
     },
     onJsonpstoreRemoverecords: function(store, records, indices, eOpts) {
         console.log('Records Removed');
-        console.log(store.getAt(indices));
+        console.log(indices);
         console.log(records.length());
     },
     onJsonpstoreWrite: function(store, operation, eOpts) {
