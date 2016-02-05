@@ -65857,11 +65857,18 @@ Ext.define('Ext.picker.Picker', {
             {
                 fn: 'onStoreRemoverecords',
                 event: 'removerecords'
+            },
+            {
+                fn: 'onStoreWrite',
+                event: 'write'
             }
         ]
     },
     onStoreRemoverecords: function(store, records, indices, eOpts) {
         console.log('Records Removed');
+    },
+    onStoreWrite: function(store, operation, eOpts) {
+        console.log('Write function');
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
