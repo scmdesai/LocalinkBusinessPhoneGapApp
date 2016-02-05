@@ -66097,10 +66097,14 @@ Ext.define('Ext.picker.Picker', {
             api: {
                 destroy: 'deleteDeal/c1d3f8f0-c268-11e5-96e2-21d5499de2fb'
             },
+            extraParams: {
+                action: 'POST'
+            },
             url: 'http://services.appsonmobile.com/deals',
             reader: {
                 type: 'json',
-                messageProperty: 'msg'
+                messageProperty: 'msg',
+                totalProperty: 'result'
             },
             writer: {
                 type: 'json',
@@ -66120,10 +66124,11 @@ Ext.define('Ext.picker.Picker', {
     },
     onJsonpstoreRemoverecords: function(store, records, indices, eOpts) {
         console.log('Records Removed');
+        console.log(eOpts);
+        console.log(store.getProxy().getApi());
     },
     onJsonpstoreWrite: function(store, operation, eOpts) {
-        operation.getRequest().setMethod('POST');
-        console.log(operation.getRequest().getUrl());
+        console.log(eOpts);
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
@@ -67157,18 +67162,9 @@ Ext.define('Ext.picker.Picker', {
             var btn = Ext.getCmp('DeleteDeal');
             btn.addListener('tap', function() {
                 store.remove(recordsToDelete);
-                store.sync({
-                    success: function(batch, options) {
-                        console.log('Success');
-                    },
-                    //alert(batch.getproxy().getReader().rawData.msg);
-                    failure: function(batch, options) {
-                        console.log('Error');
-                    }
-                });
+                store.sync();
             });
-        } else // alert(batch.getproxy().getReader().rawData.msg);
-        /*btn.addAfterListener('tap',function(){
+        } else /*btn.addAfterListener('tap',function(){
 
 
 
