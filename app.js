@@ -67164,7 +67164,7 @@ Ext.define('Ext.picker.Picker', {
                             form.submit(Ext.Ajax.request({
                                 type: "POST",
                                 url: "http://services.appsonmobile.com/deals/f4204100-be4a-11e5-a022-316820a42474",
-                                //dataType : "json",
+                                dataType: "json",
                                 error: function() {
                                     alert('loading Ajax failure');
                                 },
@@ -67176,8 +67176,7 @@ Ext.define('Ext.picker.Picker', {
                                         alert("missing info");
                                     }
                                 },
-                                success: function(response) {
-                                    var msg = response.responseText;
+                                success: function(success, msg) {
                                     alert("The server says: " + msg);
                                 }
                             }));
