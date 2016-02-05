@@ -67113,6 +67113,7 @@ Ext.define('Ext.picker.Picker', {
         minHeight: '100%',
         padding: '5 5 5 5',
         style: 'border:1px inset',
+        standardSubmit: true,
         url: 'http://services.appsonmobile.com/deals/f4204100-be4a-11e5-a022-316820a42474',
         items: [
             {
@@ -67168,11 +67169,10 @@ Ext.define('Ext.picker.Picker', {
                                     console.log('Deal Deleted');
                                 },
                                 // Ext.Msg.alert('Success', action.result.msg);
-                                failure: function(form, action) {
-                                    Ext.Msg.alert('Failed', action.result.msg);
-                                }
+                                failure: function(form, action) {}
                             });
                         },
+                        //  Ext.Msg.alert('Failed', action.result.msg);
                         //console.log('Error deleting record');
                         flex: 1,
                         id: 'DeleteDeal',
