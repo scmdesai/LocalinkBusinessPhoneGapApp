@@ -67656,8 +67656,7 @@ Ext.application({
         'Main',
         'DealsPanel',
         'Login',
-        'UploadDealForm',
-        'DealDetails'
+        'UploadDealForm'
     ],
     controllers: [
         'Contacts'
