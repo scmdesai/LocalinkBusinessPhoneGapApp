@@ -67109,7 +67109,6 @@ Ext.define('Ext.picker.Picker', {
 (Ext.cmd.derive('Contact.view.DealsPanel', Ext.form.Panel, {
     config: {
         cls: 'listofdeals',
-        html: '<head><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script></head>',
         itemId: 'dealsPanel',
         minHeight: '100%',
         padding: '5 5 5 5',
@@ -67162,7 +67161,29 @@ Ext.define('Ext.picker.Picker', {
                         handler: function(button, e) {
                             //e.preventDefault();
                             var form = this.up('DealsPanel');
-                            form.submitform();
+                            Ext.Ajax.request({
+                                headers: {
+                                    'Accept': 'application/json',
+                                    'Content-Type': 'application/json'
+                                },
+                                type: "POST",
+                                url: "http://services.appsonmobile.com/deals/f4204100-be4a-11e5-a022-316820a42474",
+                                dataType: "json",
+                                error: function() {
+                                    alert('loading Ajax failure');
+                                },
+                                onFailure: function() {
+                                    alert('Ajax Failure');
+                                },
+                                statusCode: {
+                                    404: function() {
+                                        alert("missing info");
+                                    }
+                                },
+                                success: function(response) {
+                                    alert("The server says: " + JSON.stringify(response));
+                                }
+                            });
                         },
                         flex: 1,
                         id: 'DeleteDeal',
@@ -67173,32 +67194,6 @@ Ext.define('Ext.picker.Picker', {
                 ]
             }
         ]
-    },
-    submitform: function() {
-        $.ajax({
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            type: "POST",
-            url: "http://services.appsonmobile.com/deals/f4204100-be4a-11e5-a022-316820a42474",
-            dataType: "json",
-            // data : JSON.stringify({"hello_name": "hello"}),
-            error: function() {
-                alert('loading Ajax failure');
-            },
-            onFailure: function() {
-                alert('Ajax Failure');
-            },
-            statusCode: {
-                404: function() {
-                    alert("missing info");
-                }
-            },
-            success: function(response) {
-                alert("The server says: " + JSON.stringify(response));
-            }
-        });
     }
 }, 0, [
     "DealsPanel"
@@ -67220,10 +67215,6 @@ Ext.define('Ext.picker.Picker', {
     Contact.view,
     'DealsPanel'
 ], 0));
-/* // .done(function( data ) {
-		     //   $("#result").text(data['hello']);
-
-					});*/
 
 /*
  * File: app/view/UploadDealForm.js
