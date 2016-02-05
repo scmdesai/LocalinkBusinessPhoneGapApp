@@ -66304,13 +66304,12 @@ Ext.define('Ext.picker.Picker', {
             }
         ]
     },
-    onJsonpstoreWrite: function(store, operation, eOpts) {
-        console.log(operation.getRequest().getMethod());
-    }
+    onJsonpstoreWrite: function(store, operation, eOpts) {}
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
     'MyDealsStore'
 ], 0));
+//console.log(operation.getRequest().getMethod());
 
 /*
  * File: app/store/UserPreferences.js
