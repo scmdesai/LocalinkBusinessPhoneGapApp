@@ -66099,7 +66099,12 @@ Ext.define('Ext.picker.Picker', {
                 destroy: 'deleteDeal/c1d3f8f0-c268-11e5-96e2-21d5499de2fb'
             },
             extraParams: {
-                action: 'POST'
+                actionMethods: {
+                    create: 'POST',
+                    read: 'GET',
+                    update: 'POST',
+                    destroy: 'POST'
+                }
             },
             url: 'http://services.appsonmobile.com/deals',
             reader: {
@@ -66114,23 +66119,13 @@ Ext.define('Ext.picker.Picker', {
         },
         listeners: [
             {
-                fn: 'onJsonpstoreRemoverecords',
-                event: 'removerecords'
-            },
-            {
                 fn: 'onJsonpstoreWrite',
                 event: 'write'
             }
         ]
     },
-    onJsonpstoreRemoverecords: function(store, records, indices, eOpts) {
-        console.log('Records Removed');
-        store.remove(records);
-        store.sync();
-    },
     onJsonpstoreWrite: function(store, operation, eOpts) {
-        console.log(operation.getResultSet().getMessage());
-        console.log(operation.getBatch().isComplete);
+        console.log(operation.getStart());
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
