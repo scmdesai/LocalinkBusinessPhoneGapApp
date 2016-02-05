@@ -66095,7 +66095,7 @@ Ext.define('Ext.picker.Picker', {
         proxy: {
             type: 'jsonp',
             api: {
-                destroy: 'http://services.appsonmobile.com/deals/93446aa0-be4a-11e5-a022-316820a42474'
+                destroy: 'deleteDeal/c1d3f8f0-c268-11e5-96e2-21d5499de2fb'
             },
             url: 'http://services.appsonmobile.com/deals',
             reader: {
@@ -66106,7 +66106,23 @@ Ext.define('Ext.picker.Picker', {
                 type: 'json',
                 writeAllFields: false
             }
-        }
+        },
+        listeners: [
+            {
+                fn: 'onJsonpstoreRemoverecords',
+                event: 'removerecords'
+            },
+            {
+                fn: 'onJsonpstoreWrite',
+                event: 'write'
+            }
+        ]
+    },
+    onJsonpstoreRemoverecords: function(store, records, indices, eOpts) {
+        console.log('Records Removed');
+    },
+    onJsonpstoreWrite: function(store, operation, eOpts) {
+        console.log(operation.getRequest().getMethod());
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
