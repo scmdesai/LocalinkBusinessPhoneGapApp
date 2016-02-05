@@ -67113,7 +67113,6 @@ Ext.define('Ext.picker.Picker', {
         minHeight: '100%',
         padding: '5 5 5 5',
         style: 'border:1px inset',
-        standardSubmit: true,
         url: 'http://services.appsonmobile.com/deals/f4204100-be4a-11e5-a022-316820a42474',
         items: [
             {
@@ -67160,20 +67159,10 @@ Ext.define('Ext.picker.Picker', {
                     {
                         xtype: 'button',
                         handler: function(button, e) {
-                            e.preventDefault();
+                            //e.preventDefault();
                             var form = this.up('DealsPanel');
-                            var store = Ext.StoreManager.lookup('MyDealsStore');
-                            console.log('Store is : ' + store);
-                            form.submit({
-                                success: function(form, action) {
-                                    console.log('Deal Deleted');
-                                },
-                                // Ext.Msg.alert('Success', action.result.msg);
-                                failure: function(form, action) {}
-                            });
+                            form.submitform();
                         },
-                        //  Ext.Msg.alert('Failed', action.result.msg);
-                        //console.log('Error deleting record');
                         flex: 1,
                         id: 'DeleteDeal',
                         itemId: 'DeleteDeal',
@@ -67183,6 +67172,36 @@ Ext.define('Ext.picker.Picker', {
                 ]
             }
         ]
+    },
+    submitform: function() {
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "POST",
+            url: "/hello.hello",
+            dataType: "json",
+            data: JSON.stringify({
+                "hello_name": "hello"
+            }),
+            error: function() {
+                alert('loading Ajax failure');
+            },
+            onFailure: function() {
+                alert('Ajax Failure');
+            },
+            statusCode: {
+                404: function() {
+                    alert("missing info");
+                }
+            },
+            success: function(response) {
+                alert("The server says: " + JSON.stringify(response));
+            }
+        }).done(function(data) {
+            $("#result").text(data['hello']);
+        });
     }
 }, 0, [
     "DealsPanel"
