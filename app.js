@@ -66094,6 +66094,12 @@ Ext.define('Ext.picker.Picker', {
         storeId: 'MyDealsStore',
         proxy: {
             type: 'jsonp',
+            api: {
+                destroy: '/id'
+            },
+            extraParams: {
+                id: 4
+            },
             url: 'http://services.appsonmobile.com/deals',
             reader: {
                 type: 'json'
@@ -66484,6 +66490,7 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
+                    e.preventDefault();
                     var customerId = this.getParent().getRecord().get('customerId');
                     console.log(customerId);
                     var ds = Ext.StoreManager.lookup('MyDealsStore');
@@ -67129,10 +67136,18 @@ Ext.define('Ext.picker.Picker', {
                 }
             });
             var btn = Ext.getCmp('DeleteDeal');
-            btn.addListener('tap', function() {});
-        } else //  store.remove(recordsToDelete);
-        //	store.sync();
-        /*btn.addAfterListener('tap',function(){
+            btn.addListener('tap', function() {
+                store.remove(recordsToDelete);
+                store.sync({
+                    success: function(form, action) {
+                        Ext.Msg.alert('Success', action.result.msg);
+                    },
+                    failure: function(form, action) {
+                        Ext.Msg.alert('Failed', action.result.msg);
+                    }
+                });
+            });
+        } else /*btn.addAfterListener('tap',function(){
 
 
 
@@ -67456,30 +67471,25 @@ Ext.define('Ext.picker.Picker', {
                     },
                     {
                         xtype: 'button',
-                        handler: function(button, e) {
-                            var form = this.up('DealsPanel');
-                            form.submit({
-                                success: function(form, action) {
-                                    // Ext.Msg.alert('Success', action.result.msg);
-                                    navigator.notification.alert('Success', // message
-                                    okay, // callback
-                                    'Deal deleted successfully', // title
-                                    'OK');
-                                    // buttonName
-                                    function okay() {}
-                                },
-                                // Do something
-                                failure: function(form, action) {
-                                    // Ext.Msg.alert('Failed', action.result.msg);
-                                    //console.log('Error deleting record');
-                                    navigator.notification.alert('Error', // message
-                                    okay, // callback
-                                    'Could Not Delete Deal', // title
-                                    'OK');
-                                }
-                            });
-                        },
-                        // buttonName
+                        handler: function(button, e) {},
+                        /*  var form = this.up('DealsPanel') ;
+
+
+
+							form.submit({
+							success: function(form, action) {
+
+
+							console.log('Deal Deleted');
+							// Ext.Msg.alert('Success', action.result.msg);
+
+						},
+						failure: function(form, action) {
+							Ext.Msg.alert('Failed', action.result.msg);
+							//console.log('Error deleting record');
+
+						}
+					});*/
                         flex: 1,
                         id: 'DeleteDeal',
                         itemId: 'DeleteDeal',
@@ -67647,7 +67657,7 @@ Ext.application({
         'DealsPanel',
         'Login',
         'UploadDealForm',
-        null
+        'DealDetails'
     ],
     controllers: [
         'Contacts'
