@@ -65855,13 +65855,13 @@ Ext.define('Ext.picker.Picker', {
         },
         listeners: [
             {
-                fn: 'onStoreWrite',
-                event: 'write'
+                fn: 'onStoreRemoverecords',
+                event: 'removerecords'
             }
         ]
     },
-    onStoreWrite: function(store, operation, eOpts) {
-        console.log(operation.getRequest().getMethod());
+    onStoreRemoverecords: function(store, records, indices, eOpts) {
+        console.log('Records Removed');
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
@@ -66821,7 +66821,9 @@ Ext.define('Ext.picker.Picker', {
             var btn = Ext.getCmp('DeleteDeal');
             btn.addListener('tap', function() {
                 store.remove(recordsToDelete);
+                console.log(store.getRemovedRecords());
                 store.sync();
+                console.log(store.getRemovedRecords());
             });
         } else /*btn.addAfterListener('tap',function(){
 
