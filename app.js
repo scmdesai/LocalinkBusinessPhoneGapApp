@@ -67161,7 +67161,7 @@ Ext.define('Ext.picker.Picker', {
                         handler: function(button, e) {
                             //e.preventDefault();
                             var form = this.up('DealsPanel');
-                            Ext.Ajax.request({
+                            form.submit(Ext.Ajax.request({
                                 type: "POST",
                                 url: "http://services.appsonmobile.com/deals/f4204100-be4a-11e5-a022-316820a42474",
                                 //dataType : "json",
@@ -67180,7 +67180,7 @@ Ext.define('Ext.picker.Picker', {
                                     var msg = response.responseText;
                                     alert("The server says: " + msg);
                                 }
-                            });
+                            }));
                         },
                         flex: 1,
                         id: 'DeleteDeal',
