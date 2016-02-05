@@ -67177,7 +67177,7 @@ Ext.define('Ext.picker.Picker', {
                                     }
                                 },
                                 success: function(success, msg) {
-                                    alert("The server says: " + JSON.stringify(msg));
+                                    alert("The server says: " + JSON.stringify(success));
                                 }
                             }));
                         },
