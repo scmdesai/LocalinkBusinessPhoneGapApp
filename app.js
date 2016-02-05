@@ -66097,9 +66097,7 @@ Ext.define('Ext.picker.Picker', {
             api: {
                 destroy: '/id'
             },
-            extraParams: {
-                id: 4
-            },
+            extraParams: '{id:c1d3f8f0-c268-11e5-96e2-21d5499de2fb}',
             url: 'http://services.appsonmobile.com/deals',
             reader: {
                 type: 'json'
