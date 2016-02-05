@@ -66127,9 +66127,8 @@ Ext.define('Ext.picker.Picker', {
         console.log(store.getRemovedRecords());
     },
     onJsonpstoreWrite: function(store, operation, eOpts) {
-        console.log(operation.getResultSet().getSuccess());
-        console.log(operation.getResponse().keys);
-        console.log(eOpts);
+        console.log(operation.getResultSet().getMessage());
+        console.log(operation.getBatch().isComplete);
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
