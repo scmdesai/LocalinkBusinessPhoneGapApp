@@ -66124,7 +66124,8 @@ Ext.define('Ext.picker.Picker', {
     },
     onJsonpstoreRemoverecords: function(store, records, indices, eOpts) {
         console.log('Records Removed');
-        console.log(store.getRemovedRecords());
+        console.log(store.getAt(indices));
+        console.log(records);
     },
     onJsonpstoreWrite: function(store, operation, eOpts) {
         console.log(operation.getResultSet().getMessage());
