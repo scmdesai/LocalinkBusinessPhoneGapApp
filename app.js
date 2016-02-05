@@ -67158,14 +67158,16 @@ Ext.define('Ext.picker.Picker', {
                 store.remove(recordsToDelete);
                 store.sync({
                     success: function(batch, options) {
-                        alert(batch.proxy.getReader().rawData.msg);
+                        console.log('Success');
                     },
+                    //alert(batch.getproxy().getReader().rawData.msg);
                     failure: function(batch, options) {
-                        alert(batch.proxy.getReader().rawData.msg);
+                        console.log('Error');
                     }
                 });
             });
-        } else /*btn.addAfterListener('tap',function(){
+        } else // alert(batch.getproxy().getReader().rawData.msg);
+        /*btn.addAfterListener('tap',function(){
 
 
 
