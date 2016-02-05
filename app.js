@@ -67161,7 +67161,7 @@ Ext.define('Ext.picker.Picker', {
                         xtype: 'button',
                         handler: function(button, e) {
                             var form = this.up('DealsPanel');
-                            var store = this.up('MyDealsStore');
+                            var store = Ext.lookup('MyDealsStore');
                             console.log('Store is : ' + store);
                             form.submit({
                                 success: function(form, action) {
