@@ -65837,13 +65837,26 @@ Ext.define('Ext.picker.Picker', {
     config: {
         autoLoad: true,
         model: 'Contact.model.Deal',
+        remoteFilter: true,
+        remoteGroup: true,
+        remoteSort: true,
         storeId: 'MyDealsStore',
         proxy: {
             type: 'rest',
             api: {
-                destroy: 'deleteDeal/c1d3f8f0-c268-11e5-96e2-21d5499de2fb'
+                destroy: '/c1d3f8f0-c268-11e5-96e2-21d5499de2fb'
+            },
+            extraParams: {
+                actionMethods: {
+                    create: 'POST',
+                    read: 'GET',
+                    // defaults to GET
+                    update: 'PUT',
+                    destroy: 'DELETE'
+                }
             },
             url: 'http://services.appsonmobile.com/deals',
+            useDefaultXhrHeader: false,
             reader: {
                 type: 'json',
                 messageProperty: 'msg'
@@ -65857,18 +65870,11 @@ Ext.define('Ext.picker.Picker', {
             {
                 fn: 'onStoreRemoverecords',
                 event: 'removerecords'
-            },
-            {
-                fn: 'onStoreWrite',
-                event: 'write'
             }
         ]
     },
     onStoreRemoverecords: function(store, records, indices, eOpts) {
         console.log('Records Removed');
-    },
-    onStoreWrite: function(store, operation, eOpts) {
-        console.log('Write function');
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
@@ -66828,9 +66834,7 @@ Ext.define('Ext.picker.Picker', {
             var btn = Ext.getCmp('DeleteDeal');
             btn.addListener('tap', function() {
                 store.remove(recordsToDelete);
-                console.log(store.getRemovedRecords());
                 store.sync();
-                console.log(store.getRemovedRecords());
             });
         } else /*btn.addAfterListener('tap',function(){
 
