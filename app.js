@@ -67412,7 +67412,7 @@ Ext.define('Ext.picker.Picker', {
         minHeight: '100%',
         padding: '5 5 5 5',
         style: 'border:1px inset',
-        url: 'http://services.appsonmobile.com/deals/f8b70140-cc6e-11e5-9018-e5e40a07482a',
+        url: 'http://services.appsonmobile.com/deals/69076be0-cc67-11e5-9018-e5e40a07482a',
         items: [
             {
                 xtype: 'toolbar',
@@ -67462,12 +67462,10 @@ Ext.define('Ext.picker.Picker', {
                             var form = this.up('DealsPanel');
                             form.submit({
                                 success: function(form, action) {
-                                    Ext.Msg.alert('Success', msg);
-                                    return false;
+                                    Ext.Msg.alert('Success');
                                 },
                                 failure: function(form, action) {
                                     Ext.Msg.alert('Failed', msg);
-                                    return false;
                                 }
                             });
                         },
@@ -67566,11 +67564,9 @@ Ext.define('Ext.picker.Picker', {
                     form.submit({
                         success: function(form, action) {
                             Ext.Msg.alert('Success');
-                            return false;
                         },
                         failure: function(form, action) {
                             Ext.Msg.alert('Failed');
-                            return false;
                         }
                     });
                 },
