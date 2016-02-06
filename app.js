@@ -67584,7 +67584,7 @@ Ext.define('Ext.picker.Picker', {
 					}
 					});*/
                     var store = Ext.getStore('MyDealsStore');
-                    store.refresh();
+                    store.load();
                 },
                 itemId: 'submit',
                 text: 'Submit'
