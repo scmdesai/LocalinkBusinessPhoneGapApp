@@ -67469,18 +67469,16 @@ Ext.define('Ext.picker.Picker', {
                             //e.preventDefault();
                             var form = this.up('DealsPanel');
                             form.submit({
-                                success: function(form, action) {
-                                    Ext.Msg.alert('Success');
-                                },
+                                success: function(form, action) {},
+                                // Ext.Msg.alert('Success');
                                 //return true;
-                                failure: function(form, action) {
-                                    Ext.Msg.alert('Failed');
-                                }
+                                failure: function(form, action) {}
                             });
-                            //return true;
-                            var store = Ext.getStore('MyDealsStore');
-                            store.refresh();
                         },
+                        // Ext.Msg.alert('Failed');
+                        //return true;
+                        //var store = Ext.getStore('MyDealsStore');
+                        //store.refresh();
                         flex: 1,
                         id: 'DeleteDeal',
                         itemId: 'DeleteDeal',
@@ -67574,18 +67572,16 @@ Ext.define('Ext.picker.Picker', {
                 handler: function(button, e) {
                     var form = this.up('uploadDealForm');
                     form.submit({
-                        success: function(form, action) {
-                            Ext.Msg.alert('Success');
-                        },
+                        success: function(form, action) {},
+                        // Ext.Msg.alert('Success');
                         //return true;
-                        failure: function(form, action) {
-                            Ext.Msg.alert('Failed');
-                        }
+                        failure: function(form, action) {}
                     });
-                    //return true;
-                    var store = Ext.getStore('MyDealsStore');
-                    store.refresh();
                 },
+                //   Ext.Msg.alert('Failed');
+                //return true;
+                //var store = Ext.getStore('MyDealsStore');
+                //store.refresh();
                 itemId: 'submit',
                 text: 'Submit'
             }
