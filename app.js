@@ -67569,18 +67569,23 @@ Ext.define('Ext.picker.Picker', {
                 handler: function(button, e) {
                     var form = this.up('uploadDealForm');
                     form.submit({
-                        success: function(form, action) {
-                            Ext.Msg.alert('Success');
-                            return true;
-                        },
-                        failure: function(form, action) {
-                            Ext.Msg.alert('Failed');
-                            return true;
-                        }
+                        url: 'uploadDealForm'
                     });
+                    /*success: function(form, action) {
+					Ext.Msg.alert('Success');
+					return true;
+
+					},
+					failure: function(form, action) {
+					Ext.Msg.alert('Failed');
+					return true;
+
+
+					}
+					});*/
+                    var store = Ext.getStore('MyDealsStore');
+                    store.refresh();
                 },
-                //var store = Ext.getStore('MyDealsStore');
-                //store.refresh();
                 itemId: 'submit',
                 text: 'Submit'
             }
