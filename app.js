@@ -66485,11 +66485,10 @@ Ext.define('Ext.picker.Picker', {
                 handler: function(button, e) {
                     e.preventDefault();
                     var customerId = this.getParent().getRecord().get('customerId');
-                    console.log(customerId);
-                    var ds = Ext.StoreManager.lookup('MyDealsStore');
-                    ds.load();
-                    ds.clearFilter();
-                    ds.filter('customerId', customerId);
+                    var store = Ext.getStore('MyDealsStore');
+                    store.load();
+                    store.clearFilter();
+                    store.filter('customerId', customerId);
                     var view;
                     view = Ext.Viewport.add({
                         xtype: 'DealsPanel'
@@ -66980,9 +66979,9 @@ Ext.define('Ext.picker.Picker', {
     config: {
         stores: [
             'MyJsonPStore',
-            null,
-            null,
-            'UserPreferences'
+            'MyJsonPStore1',
+            'UserPreferences',
+            'MyDealsStore'
         ],
         refs: {
             contactinfo: {
