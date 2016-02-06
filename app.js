@@ -66129,7 +66129,16 @@ Ext.define('Ext.picker.Picker', {
             reader: {
                 type: 'json'
             }
-        }
+        },
+        listeners: [
+            {
+                fn: 'onJsonstoreRemoverecords',
+                event: 'removerecords'
+            }
+        ]
+    },
+    onJsonstoreRemoverecords: function(store, records, indices, eOpts) {
+        console.log('Removed record:' + store.getRemovedRecords());
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
@@ -66483,10 +66492,9 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    e.preventDefault();
                     var customerId = this.getParent().getRecord().get('customerId');
                     var store = Ext.getStore('MyDealsStore');
-                    store.load();
+                    store.refresh();
                     store.clearFilter();
                     store.filter('customerId', customerId);
                     var view;
@@ -67412,7 +67420,7 @@ Ext.define('Ext.picker.Picker', {
         minHeight: '100%',
         padding: '5 5 5 5',
         style: 'border:1px inset',
-        url: 'http://services.appsonmobile.com/deals/e1d05b00-cc70-11e5-9018-e5e40a07482a',
+        url: 'http://services.appsonmobile.com/deals/e83445d0-c7eb-11e5-8fbc-4de41da53525',
         items: [
             {
                 xtype: 'toolbar',
@@ -67470,8 +67478,8 @@ Ext.define('Ext.picker.Picker', {
                                     return false;
                                 }
                             });
-                            var store = Ext.StoreManager.lookup('MyDealsStore');
-                            store.load();
+                            var store = Ext.getStore('MyDealsStore');
+                            store.refresh();
                         },
                         flex: 1,
                         id: 'DeleteDeal',
@@ -67575,6 +67583,8 @@ Ext.define('Ext.picker.Picker', {
                             return false;
                         }
                     });
+                    var store = Ext.getStore('MyDealsStore');
+                    store.refresh();
                 },
                 itemId: 'submit',
                 text: 'Submit'
