@@ -67471,13 +67471,13 @@ Ext.define('Ext.picker.Picker', {
                             form.submit({
                                 success: function(form, action) {
                                     Ext.Msg.alert('Success');
-                                    return true;
                                 },
+                                //return true;
                                 failure: function(form, action) {
                                     Ext.Msg.alert('Failed');
-                                    return true;
                                 }
                             });
+                            //return true;
                             var store = Ext.getStore('MyDealsStore');
                             store.refresh();
                         },
@@ -67576,13 +67576,13 @@ Ext.define('Ext.picker.Picker', {
                     form.submit({
                         success: function(form, action) {
                             Ext.Msg.alert('Success');
-                            return true;
                         },
+                        //return true;
                         failure: function(form, action) {
                             Ext.Msg.alert('Failed');
-                            return true;
                         }
                     });
+                    //return true;
                     var store = Ext.getStore('MyDealsStore');
                     store.refresh();
                 },
