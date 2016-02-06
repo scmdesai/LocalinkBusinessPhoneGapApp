@@ -66494,7 +66494,7 @@ Ext.define('Ext.picker.Picker', {
                 handler: function(button, e) {
                     var customerId = this.getParent().getRecord().get('customerId');
                     var store = Ext.getStore('MyDealsStore');
-                    store.refresh();
+                    store.load();
                     store.clearFilter();
                     store.filter('customerId', customerId);
                     var view;
@@ -67471,11 +67471,11 @@ Ext.define('Ext.picker.Picker', {
                             form.submit({
                                 success: function(form, action) {
                                     Ext.Msg.alert('Success');
-                                    return false;
+                                    return true;
                                 },
                                 failure: function(form, action) {
                                     Ext.Msg.alert('Failed');
-                                    return false;
+                                    return true;
                                 }
                             });
                             var store = Ext.getStore('MyDealsStore');
@@ -67576,11 +67576,11 @@ Ext.define('Ext.picker.Picker', {
                     form.submit({
                         success: function(form, action) {
                             Ext.Msg.alert('Success');
-                            return false;
+                            return true;
                         },
                         failure: function(form, action) {
                             Ext.Msg.alert('Failed');
-                            return false;
+                            return true;
                         }
                     });
                     var store = Ext.getStore('MyDealsStore');
