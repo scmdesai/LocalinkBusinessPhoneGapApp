@@ -67470,16 +67470,9 @@ Ext.define('Ext.picker.Picker', {
                             //e.preventDefault();
                             var form = this.up('DealsPanel');
                             form.submit({
-                                success: function(form, action) {
-                                    Ext.Msg.alert('Success');
-                                },
-                                //return false;
-                                failure: function(form, action) {
-                                    Ext.Msg.alert('Failed');
-                                }
+                                url: 'DealsPanel'
                             });
                         },
-                        //return false;
                         //var store = Ext.getStore('MyDealsStore');
                         //store.refresh();
                         flex: 1,
