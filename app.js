@@ -67420,6 +67420,7 @@ Ext.define('Ext.picker.Picker', {
         minHeight: '100%',
         padding: '5 5 5 5',
         style: 'border:1px inset',
+        standardSubmit: true,
         url: 'http://services.appsonmobile.com/deals/e83445d0-c7eb-11e5-8fbc-4de41da53525',
         items: [
             {
@@ -67469,14 +67470,16 @@ Ext.define('Ext.picker.Picker', {
                             //e.preventDefault();
                             var form = this.up('DealsPanel');
                             form.submit({
-                                success: function(form, action) {},
-                                // Ext.Msg.alert('Success');
-                                //return true;
-                                failure: function(form, action) {}
+                                success: function(form, action) {
+                                    Ext.Msg.alert('Success');
+                                    return false;
+                                },
+                                failure: function(form, action) {
+                                    Ext.Msg.alert('Failed');
+                                    return false;
+                                }
                             });
                         },
-                        // Ext.Msg.alert('Failed');
-                        //return true;
                         //var store = Ext.getStore('MyDealsStore');
                         //store.refresh();
                         flex: 1,
@@ -67527,6 +67530,7 @@ Ext.define('Ext.picker.Picker', {
 (Ext.cmd.derive('Contact.view.UploadDealForm', Ext.form.Panel, {
     config: {
         enctype: 'multipart/form-data',
+        standardSubmit: true,
         url: 'http://services.appsonmobile.com/uploadS3',
         items: [
             {
@@ -67572,14 +67576,16 @@ Ext.define('Ext.picker.Picker', {
                 handler: function(button, e) {
                     var form = this.up('uploadDealForm');
                     form.submit({
-                        success: function(form, action) {},
-                        // Ext.Msg.alert('Success');
-                        //return true;
-                        failure: function(form, action) {}
+                        success: function(form, action) {
+                            Ext.Msg.alert('Success');
+                            return true;
+                        },
+                        failure: function(form, action) {
+                            Ext.Msg.alert('Failed');
+                            return true;
+                        }
                     });
                 },
-                //   Ext.Msg.alert('Failed');
-                //return true;
                 //var store = Ext.getStore('MyDealsStore');
                 //store.refresh();
                 itemId: 'submit',
