@@ -67412,7 +67412,7 @@ Ext.define('Ext.picker.Picker', {
         minHeight: '100%',
         padding: '5 5 5 5',
         style: 'border:1px inset',
-        url: 'http://services.appsonmobile.com/deals/c1d3f8f0-c268-11e5-96e2-21d5499de2fb',
+        url: 'http://services.appsonmobile.com/deals/f8b70140-cc6e-11e5-9018-e5e40a07482a',
         items: [
             {
                 xtype: 'toolbar',
@@ -67462,11 +67462,11 @@ Ext.define('Ext.picker.Picker', {
                             var form = this.up('DealsPanel');
                             form.submit({
                                 success: function(form, action) {
-                                    Ext.Msg.alert('Success', action.result.msg);
+                                    Ext.Msg.alert('Success', msg);
                                     return false;
                                 },
                                 failure: function(form, action) {
-                                    Ext.Msg.alert('Failed', action.result.msg);
+                                    Ext.Msg.alert('Failed', msg);
                                     return false;
                                 }
                             });
@@ -67519,7 +67519,6 @@ Ext.define('Ext.picker.Picker', {
 (Ext.cmd.derive('Contact.view.UploadDealForm', Ext.form.Panel, {
     config: {
         enctype: 'multipart/form-data',
-        standardSubmit: true,
         url: 'http://services.appsonmobile.com/uploadS3',
         items: [
             {
@@ -67566,11 +67565,11 @@ Ext.define('Ext.picker.Picker', {
                     var form = this.up('uploadDealForm');
                     form.submit({
                         success: function(form, action) {
-                            Ext.Msg.alert('Success', action.result.msg);
+                            Ext.Msg.alert('Success');
                             return false;
                         },
                         failure: function(form, action) {
-                            Ext.Msg.alert('Failed', action.result.msg);
+                            Ext.Msg.alert('Failed');
                             return false;
                         }
                     });
