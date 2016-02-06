@@ -67472,14 +67472,14 @@ Ext.define('Ext.picker.Picker', {
                             form.submit({
                                 success: function(form, action) {
                                     Ext.Msg.alert('Success');
-                                    return false;
                                 },
+                                //return false;
                                 failure: function(form, action) {
                                     Ext.Msg.alert('Failed');
-                                    return false;
                                 }
                             });
                         },
+                        //return false;
                         //var store = Ext.getStore('MyDealsStore');
                         //store.refresh();
                         flex: 1,
