@@ -67470,7 +67470,14 @@ Ext.define('Ext.picker.Picker', {
                             //e.preventDefault();
                             var form = this.up('DealsPanel');
                             form.submit({
-                                url: 'DealsPanel'
+                                success: function(form, action) {
+                                    Ext.Msg.alert('Success');
+                                    return true;
+                                },
+                                failure: function(form, action) {
+                                    Ext.Msg.alert('Failed');
+                                    return true;
+                                }
                             });
                         },
                         //var store = Ext.getStore('MyDealsStore');
@@ -67569,22 +67576,15 @@ Ext.define('Ext.picker.Picker', {
                 handler: function(button, e) {
                     var form = this.up('uploadDealForm');
                     form.submit({
-                        url: 'uploadDealForm'
+                        success: function(form, action) {
+                            Ext.Msg.alert('Success');
+                            return true;
+                        },
+                        failure: function(form, action) {
+                            Ext.Msg.alert('Failed');
+                            return true;
+                        }
                     });
-                    /*success: function(form, action) {
-					Ext.Msg.alert('Success');
-					return true;
-
-					},
-					failure: function(form, action) {
-					Ext.Msg.alert('Failed');
-					return true;
-
-
-					}
-					});*/
-                    var store = Ext.getStore('MyDealsStore');
-                    store.load();
                 },
                 itemId: 'submit',
                 text: 'Submit'
