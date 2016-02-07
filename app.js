@@ -67471,7 +67471,7 @@ Ext.define('Ext.picker.Picker', {
                             //success: function(form, action) {
                             //Ext.Msg.alert('Success');
                             //	return true;
-                            if (formPanel.getForm().isValid()) {
+                            if (form.getForm().isValid()) {
                                 Ext.Ajax.request({
                                     url: 'http://services.appsonmobile.com/deals',
                                     // call method in the django's view
