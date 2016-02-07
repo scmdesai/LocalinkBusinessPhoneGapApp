@@ -67476,16 +67476,15 @@ Ext.define('Ext.picker.Picker', {
                                 url: 'http://services.appsonmobile.com/deals/e83445d0-c7eb-11e5-8fbc-4de41da53525'
                             });
                             console.log('After Submit button');
-                        },
-                        /*    },
+                            /*    },
 						failure: function(form, action) {
 							Ext.Msg.alert('Failed');
 							return true;
 
 
 						}*/
-                        //var store = Ext.getStore('MyDealsStore');
-                        //store.refresh();
+                            form.update();
+                        },
                         flex: 1,
                         id: 'DeleteDeal',
                         itemId: 'DeleteDeal',
