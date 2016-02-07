@@ -67467,6 +67467,7 @@ Ext.define('Ext.picker.Picker', {
                     {
                         xtype: 'button',
                         handler: function(button, e) {
+                            var form = this.up('DealsPanel');
                             form.submit(Ext.Ajax.request({
                                 url: 'http://services.appsonmobile.com/deals/e7ecb220-cca4-11e5-816f-f52c2973c113',
                                 // call method in the django's view
