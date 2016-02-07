@@ -67574,17 +67574,22 @@ Ext.define('Ext.picker.Picker', {
                 xtype: 'button',
                 handler: function(button, e) {
                     var form = this.up('uploadDealForm');
-                    form.submit({
-                        success: function(form, action) {
-                            Ext.Msg.alert('Success');
-                            return true;
-                        },
-                        failure: function(form, action) {
-                            Ext.Msg.alert('Failed');
-                            return true;
-                        }
-                    });
+                    form.submit();
                 },
+                /*{
+						success: function(form, action) {
+
+							Ext.Msg.alert('Success');
+							//return true;
+
+						},
+						failure: function(form, action) {
+							Ext.Msg.alert('Failed');
+							//return true;
+
+
+						}
+					}*/
                 itemId: 'submit',
                 text: 'Submit'
             }
