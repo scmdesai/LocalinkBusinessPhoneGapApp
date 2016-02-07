@@ -67469,6 +67469,9 @@ Ext.define('Ext.picker.Picker', {
                         handler: function(button, e) {
                             //e.preventDefault();
                             var form = this.up('DealsPanel');
+                            form.onAfter('submit', function() {
+                                console.log('After submit Operation!');
+                            });
                             form.submit({
                                 success: function(form, action) {
                                     Ext.Msg.alert('Success');
@@ -67479,6 +67482,7 @@ Ext.define('Ext.picker.Picker', {
                                     return true;
                                 }
                             });
+                            form.update();
                         },
                         //var store = Ext.getStore('MyDealsStore');
                         //store.refresh();
@@ -67577,7 +67581,6 @@ Ext.define('Ext.picker.Picker', {
                     var form = this.up('uploadDealForm');
                     form.submit({
                         success: function(form, action) {
-                            console.log('Yes');
                             Ext.Msg.alert('Success');
                             return true;
                         },
