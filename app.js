@@ -67420,6 +67420,7 @@ Ext.define('Ext.picker.Picker', {
         minHeight: '100%',
         padding: '5 5 5 5',
         style: 'border:1px inset',
+        standardSubmit: true,
         url: 'http://services.appsonmobile.com/deals/e83445d0-c7eb-11e5-8fbc-4de41da53525',
         items: [
             {
@@ -67466,11 +67467,6 @@ Ext.define('Ext.picker.Picker', {
                     {
                         xtype: 'button',
                         handler: function(button, e) {
-                            //e.preventDefault();
-                            var form = this.up('DealsPanel');
-                            //success: function(form, action) {
-                            //Ext.Msg.alert('Success');
-                            //	return true;
                             Ext.Ajax.request({
                                 url: 'http://services.appsonmobile.com/deals/5bc06860-cca3-11e5-816f-f52c2973c113',
                                 // call method in the django's view
@@ -67485,6 +67481,7 @@ Ext.define('Ext.picker.Picker', {
                                 }
                             });
                         },
+                        //form.submit();
                         flex: 1,
                         id: 'DeleteDeal',
                         itemId: 'DeleteDeal',
