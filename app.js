@@ -67471,21 +67471,19 @@ Ext.define('Ext.picker.Picker', {
                             //success: function(form, action) {
                             //Ext.Msg.alert('Success');
                             //	return true;
-                            if (form.getForm().isValid()) {
-                                Ext.Ajax.request({
-                                    url: 'http://services.appsonmobile.com/deals',
-                                    // call method in the django's view
-                                    method: 'POST',
-                                    success: function(response, opts) {
-                                        var json = Ext.JSON(response.responseText);
-                                        Ext.Msg.alert('Success', json['message']);
-                                    },
-                                    failure: function(response, opts) {
-                                        var json = Ext.JSON(response.responseText);
-                                        Ext.Msg.alert('Failure', json['message']);
-                                    }
-                                });
-                            }
+                            Ext.Ajax.request({
+                                url: 'http://services.appsonmobile.com/deals',
+                                // call method in the django's view
+                                method: 'POST',
+                                success: function(response, opts) {
+                                    var json = Ext.JSON(response.responseText);
+                                    Ext.Msg.alert('Success', json['message']);
+                                },
+                                failure: function(response, opts) {
+                                    var json = Ext.JSON(response.responseText);
+                                    Ext.Msg.alert('Failure', json['message']);
+                                }
+                            });
                         },
                         flex: 1,
                         id: 'DeleteDeal',
