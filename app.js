@@ -67420,7 +67420,6 @@ Ext.define('Ext.picker.Picker', {
         minHeight: '100%',
         padding: '5 5 5 5',
         style: 'border:1px inset',
-        standardSubmit: true,
         url: 'http://services.appsonmobile.com/deals/e83445d0-c7eb-11e5-8fbc-4de41da53525',
         items: [
             {
