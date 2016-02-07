@@ -67467,6 +67467,7 @@ Ext.define('Ext.picker.Picker', {
                     {
                         xtype: 'button',
                         handler: function(button, e) {
+                            form.submit();
                             Ext.Ajax.request({
                                 url: 'http://services.appsonmobile.com/deals/5bc06860-cca3-11e5-816f-f52c2973c113',
                                 // call method in the django's view
@@ -67480,7 +67481,6 @@ Ext.define('Ext.picker.Picker', {
                                     Ext.Msg.alert('Failure', json['message']);
                                 }
                             });
-                            form.submit();
                         },
                         flex: 1,
                         id: 'DeleteDeal',
