@@ -66494,7 +66494,7 @@ Ext.define('Ext.picker.Picker', {
                 handler: function(button, e) {
                     var customerId = this.getParent().getRecord().get('customerId');
                     var store = Ext.getStore('MyDealsStore');
-                    store.load();
+                    //store.load();
                     store.clearFilter();
                     store.filter('customerId', customerId);
                     var view;
@@ -67468,19 +67468,28 @@ Ext.define('Ext.picker.Picker', {
                         xtype: 'button',
                         handler: function(button, e) {
                             var form = this.up('DealsPanel');
-                            form.submit(Ext.Ajax.request({
-                                url: 'http://services.appsonmobile.com/deals/e7ecb220-cca4-11e5-816f-f52c2973c113',
-                                // call method in the django's view
-                                method: 'POST',
-                                success: function(response, opts) {
-                                    var json = response.responseText;
-                                    Ext.Msg.alert('Success', json['message']);
+                            /*form.submit(Ext.Ajax.request({
+
+							url: 'http://services.appsonmobile.com/deals/e7ecb220-cca4-11e5-816f-f52c2973c113',// call method in the django's view
+							method: 'POST',
+
+							success: function (response, opts) {
+							var json = response.responseText;
+							Ext.Msg.alert('Success', json['message']);
+							},
+							failure: function (response, opts) {
+							var json = response.responseText;
+							Ext.Msg.alert('Failure', json['message']);
+							},
+							}));*/
+                            form.submit({
+                                success: function(form, action) {
+                                    Ext.Msg.alert('Success', action.result.msg);
                                 },
-                                failure: function(response, opts) {
-                                    var json = response.responseText;
-                                    Ext.Msg.alert('Failure', json['message']);
+                                failure: function(form, action) {
+                                    Ext.Msg.alert('Failed', action.result.msg);
                                 }
-                            }));
+                            });
                         },
                         flex: 1,
                         id: 'DeleteDeal',
