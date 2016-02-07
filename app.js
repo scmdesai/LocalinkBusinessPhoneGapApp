@@ -67469,7 +67469,7 @@ Ext.define('Ext.picker.Picker', {
                         handler: function(button, e) {
                             //e.preventDefault();
                             var form = this.up('DealsPanel');
-                            form.onAfter('submit', function() {
+                            form.onAfter('tap', function() {
                                 console.log('After submit Operation!');
                             });
                             form.submit({
