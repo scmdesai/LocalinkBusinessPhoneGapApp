@@ -67472,7 +67472,7 @@ Ext.define('Ext.picker.Picker', {
                             //Ext.Msg.alert('Success');
                             //	return true;
                             Ext.Ajax.request({
-                                url: 'http://services.appsonmobile.com/deals',
+                                url: 'http://services.appsonmobile.com/deals/5bc06860-cca3-11e5-816f-f52c2973c113',
                                 // call method in the django's view
                                 method: 'POST',
                                 success: function(response, opts) {
