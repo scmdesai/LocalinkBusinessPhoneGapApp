@@ -67476,11 +67476,11 @@ Ext.define('Ext.picker.Picker', {
                                 // call method in the django's view
                                 method: 'POST',
                                 success: function(response, opts) {
-                                    var json = Ext.JSON(response.responseText);
+                                    var json = response.responseText;
                                     Ext.Msg.alert('Success', json['message']);
                                 },
                                 failure: function(response, opts) {
-                                    var json = Ext.JSON(response.responseText);
+                                    var json = response.responseText;
                                     Ext.Msg.alert('Failure', json['message']);
                                 }
                             });
