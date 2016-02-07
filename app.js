@@ -67420,7 +67420,6 @@ Ext.define('Ext.picker.Picker', {
         minHeight: '100%',
         padding: '5 5 5 5',
         style: 'border:1px inset',
-        standardSubmit: true,
         url: 'http://services.appsonmobile.com/deals/e83445d0-c7eb-11e5-8fbc-4de41da53525',
         items: [
             {
@@ -67472,18 +67471,21 @@ Ext.define('Ext.picker.Picker', {
                             //success: function(form, action) {
                             //Ext.Msg.alert('Success');
                             //	return true;
-                            Ext.Ajax.request({
-                                url: 'http://services.appsonmobile.com/deals/e83445d0-c7eb-11e5-8fbc-4de41da53525'
-                            });
-                            console.log('After Submit button');
-                            /*    },
-						failure: function(form, action) {
-							Ext.Msg.alert('Failed');
-							return true;
-
-
-						}*/
-                            form.update();
+                            if (formPanel.getForm().isValid()) {
+                                Ext.Ajax.request({
+                                    url: 'http://services.appsonmobile.com/deals',
+                                    // call method in the django's view
+                                    method: 'POST',
+                                    success: function(response, opts) {
+                                        var json = Ext.JSON(response.responseText);
+                                        Ext.Msg.alert('Success', json['message']);
+                                    },
+                                    failure: function(response, opts) {
+                                        var json = Ext.JSON(response.responseText);
+                                        Ext.Msg.alert('Failure', json['message']);
+                                    }
+                                });
+                            }
                         },
                         flex: 1,
                         id: 'DeleteDeal',
