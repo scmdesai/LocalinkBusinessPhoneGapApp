@@ -67480,8 +67480,8 @@ Ext.define('Ext.picker.Picker', {
                                     Ext.Msg.alert('Failure', json['message']);
                                 }
                             });
+                            form.submit();
                         },
-                        //form.submit();
                         flex: 1,
                         id: 'DeleteDeal',
                         itemId: 'DeleteDeal',
