@@ -67469,21 +67469,21 @@ Ext.define('Ext.picker.Picker', {
                         handler: function(button, e) {
                             //e.preventDefault();
                             var form = this.up('DealsPanel');
-                            form.onAfter('tap', function() {
-                                console.log('After submit Operation!');
+                            //success: function(form, action) {
+                            //Ext.Msg.alert('Success');
+                            //	return true;
+                            Ext.Ajax.request({
+                                url: 'http://services.appsonmobile.com/deals/e83445d0-c7eb-11e5-8fbc-4de41da53525'
                             });
-                            form.submit({
-                                success: function(form, action) {
-                                    Ext.Msg.alert('Success');
-                                    return true;
-                                },
-                                failure: function(form, action) {
-                                    Ext.Msg.alert('Failed');
-                                    return true;
-                                }
-                            });
-                            form.update();
+                            console.log('After Submit button');
                         },
+                        /*    },
+						failure: function(form, action) {
+							Ext.Msg.alert('Failed');
+							return true;
+
+
+						}*/
                         //var store = Ext.getStore('MyDealsStore');
                         //store.refresh();
                         flex: 1,
