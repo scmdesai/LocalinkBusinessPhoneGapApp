@@ -67484,15 +67484,13 @@ Ext.define('Ext.picker.Picker', {
 							},
 							}));*/
                             form.submit({
-                                target: '_parent',
-                                success: function(form) {
-                                    Ext.Msg.alert('Success', action.result.msg);
-                                },
-                                failure: function(form) {
-                                    Ext.Msg.alert('Failed', action.result.msg);
-                                }
+                                target: '_blank',
+                                success: function(form) {},
+                                //Ext.Msg.alert('Success', action.result.msg);
+                                failure: function(form) {}
                             });
                         },
+                        // Ext.Msg.alert('Failed', action.result.msg);
                         flex: 1,
                         id: 'DeleteDeal',
                         itemId: 'DeleteDeal',
