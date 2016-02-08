@@ -67422,7 +67422,7 @@ Ext.define('Ext.picker.Picker', {
         padding: '5 5 5 5',
         style: 'border:1px inset',
         standardSubmit: true,
-        url: 'http://services.appsonmobile.com/deals/accb7ad0-ce9a-11e5-80fe-c5a6dfa37bef',
+        url: 'http://services.appsonmobile.com/deals/2b61a2e0-cd68-11e5-adc2-ff0b2b64d93f',
         items: [
             {
                 xtype: 'toolbar',
@@ -67587,16 +67587,13 @@ Ext.define('Ext.picker.Picker', {
                 xtype: 'button',
                 handler: function(button, e) {
                     var form = this.up('uploadDealForm');
-                    form.submit();
+                    form.submit({
+                        success: function(form, action) {},
+                        // Ext.Msg.alert('Success', action.result.msg);
+                        failure: function(form, action) {}
+                    });
                 },
-                /*{
-						success: function(form, action) {
-							Ext.Msg.alert('Success', action.result.msg);
-						},
-						failure: function(form, action) {
-							Ext.Msg.alert('Failed', action.result.msg);
-						}
-					}*/
+                // Ext.Msg.alert('Failed', action.result.msg);
                 itemId: 'submit',
                 text: 'Submit'
             }
