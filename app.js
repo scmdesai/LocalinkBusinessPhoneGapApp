@@ -67483,17 +67483,17 @@ Ext.define('Ext.picker.Picker', {
 							Ext.Msg.alert('Failure', json['message']);
 							},
 							}));*/
-                            form.submit({
-                                target: Ext.get('dealsPanel')
-                            }, {
-                                success: function(form, action) {
-                                    Ext.Msg.alert('Success', action.result.msg);
-                                },
-                                failure: function(form, action) {
-                                    Ext.Msg.alert('Failed', action.result.msg);
-                                }
+                            form.form.submit({
+                                target: '_parent'
                             });
                         },
+                        /*success: function(form, action) {
+
+								Ext.Msg.alert('Success', action.result.msg);
+								},
+								failure: function(form, action) {
+								Ext.Msg.alert('Failed', action.result.msg);
+								}*/
                         flex: 1,
                         id: 'DeleteDeal',
                         itemId: 'DeleteDeal',
