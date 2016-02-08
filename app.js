@@ -67483,7 +67483,7 @@ Ext.define('Ext.picker.Picker', {
 							Ext.Msg.alert('Failure', json['message']);
 							},
 							}));*/
-                            form.form.submit({
+                            form.submit({
                                 target: '_parent'
                             });
                         },
