@@ -67484,11 +67484,11 @@ Ext.define('Ext.picker.Picker', {
 							},
 							}));*/
                             form.submit({
-                                //target : '_parent'
-                                success: function(form, action) {
+                                target: '_parent',
+                                success: function(form) {
                                     Ext.Msg.alert('Success', action.result.msg);
                                 },
-                                failure: function(form, action) {
+                                failure: function(form) {
                                     Ext.Msg.alert('Failed', action.result.msg);
                                 }
                             });
