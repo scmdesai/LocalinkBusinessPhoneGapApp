@@ -67416,6 +67416,7 @@ Ext.define('Ext.picker.Picker', {
 (Ext.cmd.derive('Contact.view.DealsPanel', Ext.form.Panel, {
     config: {
         cls: 'listofdeals',
+        id: 'dealsPanel',
         itemId: 'dealsPanel',
         minHeight: '100%',
         padding: '5 5 5 5',
@@ -67483,6 +67484,8 @@ Ext.define('Ext.picker.Picker', {
 							},
 							}));*/
                             form.submit({
+                                target: Ext.get('dealsPanel')
+                            }, {
                                 success: function(form, action) {
                                     Ext.Msg.alert('Success', action.result.msg);
                                 },
