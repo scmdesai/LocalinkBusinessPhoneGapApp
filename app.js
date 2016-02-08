@@ -67484,16 +67484,15 @@ Ext.define('Ext.picker.Picker', {
 							},
 							}));*/
                             form.submit({
-                                target: '_parent'
+                                //target : '_parent'
+                                success: function(form, action) {
+                                    Ext.Msg.alert('Success', action.result.msg);
+                                },
+                                failure: function(form, action) {
+                                    Ext.Msg.alert('Failed', action.result.msg);
+                                }
                             });
                         },
-                        /*success: function(form, action) {
-
-								Ext.Msg.alert('Success', action.result.msg);
-								},
-								failure: function(form, action) {
-								Ext.Msg.alert('Failed', action.result.msg);
-								}*/
                         flex: 1,
                         id: 'DeleteDeal',
                         itemId: 'DeleteDeal',
@@ -67588,9 +67587,9 @@ Ext.define('Ext.picker.Picker', {
                 handler: function(button, e) {
                     var form = this.up('uploadDealForm');
                     form.submit({
-                        success: function(form, action) {},
+                        success: function() {},
                         // Ext.Msg.alert('Success', action.result.msg);
-                        failure: function(form, action) {}
+                        failure: function() {}
                     });
                 },
                 // Ext.Msg.alert('Failed', action.result.msg);
