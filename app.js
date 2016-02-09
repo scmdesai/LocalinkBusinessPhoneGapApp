@@ -67484,23 +67484,17 @@ Ext.define('Ext.picker.Picker', {
                                     Ext.Msg.alert('Failed');
                                 }
                             });
+                            var customerId = this.getParent().getRecord().get('customerId');
+                            var store = Ext.getStore('MyDealsStore');
+                            store.load();
+                            store.clearFilter();
+                            store.filter('customerId', customerId);
+                            var view;
+                            view = Ext.Viewport.add({
+                                xtype: 'DealsPanel'
+                            });
+                            Ext.Viewport.setActiveItem(view);
                         },
-                        /*var store = Ext.getStore("MyDealsStore");
-						store.sync();
-						*/
-                        /*form.submit({
-
-
-
-
-						success: function(form) {
-
-						//Ext.Msg.alert('Success', action.result.msg);
-					},
-					failure: function(form) {
-						// Ext.Msg.alert('Failed', action.result.msg);
-					}
-				});*/
                         flex: 1,
                         id: 'DeleteDeal',
                         itemId: 'DeleteDeal',
@@ -67592,22 +67586,6 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    /*Ext.Ajax.request({
-
-					url: 'http://services.appsonmobile.com/uploadS3',// call method in the django's view
-					method: 'POST',
-
-					success: function (response, opts) {
-					var json = response.responseText;
-					console.log(response.responseText);
-					Ext.Msg.alert('Success', json['message']);
-					},
-					failure: function (response, opts) {
-					var json = response.responseText;
-					console.log(response.responseText+" " + json['message']);
-					Ext.Msg.alert('Failure', json['message']);
-					},
-					});*/
                     var form = this.up('uploadDealForm');
                     form.submit({
                         success: function() {
@@ -67617,6 +67595,16 @@ Ext.define('Ext.picker.Picker', {
                             Ext.Msg.alert('Failed');
                         }
                     });
+                    var customerId = this.getParent().getRecord().get('customerId');
+                    var store = Ext.getStore('MyDealsStore');
+                    store.load();
+                    store.clearFilter();
+                    store.filter('customerId', customerId);
+                    var view;
+                    view = Ext.Viewport.add({
+                        xtype: 'DealsPanel'
+                    });
+                    Ext.Viewport.setActiveItem(view);
                 },
                 itemId: 'submit',
                 text: 'Submit'
