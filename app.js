@@ -67592,14 +67592,12 @@ Ext.define('Ext.picker.Picker', {
                 handler: function(button, e) {
                     var form = this.up('uploadDealForm');
                     form.submit({
-                        success: function(form, action) {
-                            Ext.Msg.alert('Success', action.result.msg);
-                        },
-                        failure: function(form, action) {
-                            Ext.Msg.alert('Failed', action.result.msg);
-                        }
+                        success: function(form) {},
+                        // Ext.Msg.alert('Success', action.result.msg);
+                        failure: function(form) {}
                     });
                 },
+                //    Ext.Msg.alert('Failed', action.result.msg);
                 itemId: 'submit',
                 text: 'Submit'
             }
