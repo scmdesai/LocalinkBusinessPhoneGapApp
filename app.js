@@ -67421,7 +67421,7 @@ Ext.define('Ext.picker.Picker', {
         minHeight: '100%',
         padding: '5 5 5 5',
         style: 'border:1px inset',
-        url: 'http://services.appsonmobile.com/deals/93d77430-cea3-11e5-9d29-ef2dea670cbf',
+        url: 'http://services.appsonmobile.com/deals/196b22c0-cef1-11e5-be8a-45dd1805ed73',
         items: [
             {
                 xtype: 'toolbar',
@@ -67468,7 +67468,7 @@ Ext.define('Ext.picker.Picker', {
                         xtype: 'button',
                         handler: function(button, e) {
                             Ext.Ajax.request({
-                                url: 'http://services.appsonmobile.com/deals/6d0f0f10-cea4-11e5-b66e-5796b9642c64',
+                                url: 'http://services.appsonmobile.com/deals/196b22c0-cef1-11e5-be8a-45dd1805ed73',
                                 // call method in the django's view
                                 method: 'POST',
                                 // form: myForm,
@@ -67608,14 +67608,12 @@ Ext.define('Ext.picker.Picker', {
 					});*/
                     var form = this.up('uploadDealForm');
                     form.submit({
-                        success: function(action) {
-                            Ext.Msg.alert('Success', action.result.msg);
-                        },
-                        failure: function(action) {
-                            Ext.Msg.alert('Failed', action.result.msg);
-                        }
+                        success: function(action) {},
+                        // Ext.Msg.alert('Success', action.result.msg);
+                        failure: function(action) {}
                     });
                 },
+                // Ext.Msg.alert('Failed', action.result.msg);
                 itemId: 'submit',
                 text: 'Submit'
             }
