@@ -67412,7 +67412,8 @@ Ext.define('Ext.picker.Picker', {
         minHeight: '100%',
         padding: '5 5 5 5',
         style: 'border:1px inset',
-        url: 'http://services.appsonmobile.com/deals/98da6770-cf58-11e5-a053-056b986b2d22',
+        standardSubmit: true,
+        url: 'http://services.appsonmobile.com/deals/ce2326b0-cf58-11e5-a053-056b986b2d22',
         items: [
             {
                 xtype: 'toolbar',
@@ -67459,21 +67460,23 @@ Ext.define('Ext.picker.Picker', {
                         xtype: 'button',
                         handler: function(button, e) {
                             var myForm = this.up('DealsPanel');
-                            Ext.Ajax.request({
-                                url: 'http://services.appsonmobile.com/deals',
-                                // call method in the django's view
-                                method: 'POST',
-                                // form: myForm,
-                                success: function(response, opts) {
-                                    var json = response.responseText;
-                                    Ext.Msg.alert('Success', json['message']);
-                                    console.log('Opts is : ' + opts);
-                                },
-                                failure: function(response, opts) {
-                                    var json = response.responseText;
-                                    Ext.Msg.alert('Failure', json['message']);
-                                }
-                            });
+                            /*Ext.Ajax.request({
+
+							url: 'http://services.appsonmobile.com/deals/98da6770-cf58-11e5-a053-056b986b2d22',// call method in the django's view
+							method: 'POST',
+							// form: myForm,
+
+							success: function (response, opts) {
+								var json = response.responseText;
+
+								Ext.Msg.alert('Success', json['message']);
+								console.log('Opts is : ' + opts);
+							},
+							failure: function (response, opts) {
+								var json = response.responseText;
+								Ext.Msg.alert('Failure', json['message']);
+							},
+						});*/
                             myForm.submit({
                                 success: function(action) {
                                     // Ext.Msg.alert('Success', action.result.msg);
@@ -67486,21 +67489,21 @@ Ext.define('Ext.picker.Picker', {
                             });
                         },
                         /*var store = Ext.getStore("MyDealsStore");
-							store.sync();
-							*/
+						store.sync();
+						*/
                         /*form.submit({
 
 
 
 
-							success: function(form) {
+						success: function(form) {
 
-							//Ext.Msg.alert('Success', action.result.msg);
-						},
-						failure: function(form) {
-							// Ext.Msg.alert('Failed', action.result.msg);
-						}
-					});*/
+						//Ext.Msg.alert('Success', action.result.msg);
+					},
+					failure: function(form) {
+						// Ext.Msg.alert('Failed', action.result.msg);
+					}
+				});*/
                         flex: 1,
                         id: 'DeleteDeal',
                         itemId: 'DeleteDeal',
