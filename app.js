@@ -67484,16 +67484,17 @@ Ext.define('Ext.picker.Picker', {
                                     Ext.Msg.alert('Failed');
                                 }
                             });
-                            var customerId = this.getParent().getRecord().get('customerId');
+                            //var customerId = this.getParent().getRecord().get('customerId');
                             var store = Ext.getStore('MyDealsStore');
                             store.load();
                             store.clearFilter();
-                            store.filter('customerId', customerId);
+                            store.filter('customerId', 4);
                             var view;
                             view = Ext.Viewport.add({
                                 xtype: 'DealsPanel'
                             });
                             Ext.Viewport.setActiveItem(view);
+                            console.log(customerId);
                         },
                         flex: 1,
                         id: 'DeleteDeal',
@@ -67502,6 +67503,10 @@ Ext.define('Ext.picker.Picker', {
                         text: 'Delete'
                     }
                 ]
+            },
+            {
+                xtype: 'hiddenfield',
+                name: 'customerId'
             }
         ]
     }
@@ -67595,19 +67600,24 @@ Ext.define('Ext.picker.Picker', {
                             Ext.Msg.alert('Failed');
                         }
                     });
-                    var customerId = this.getParent().getRecord().get('customerId');
+                    //var customerId = this.getParent().getRecord().get('customerId');
                     var store = Ext.getStore('MyDealsStore');
                     store.load();
                     store.clearFilter();
-                    store.filter('customerId', customerId);
+                    store.filter('customerId', 4);
                     var view;
                     view = Ext.Viewport.add({
                         xtype: 'DealsPanel'
                     });
                     Ext.Viewport.setActiveItem(view);
+                    console.log(customerId);
                 },
                 itemId: 'submit',
                 text: 'Submit'
+            },
+            {
+                xtype: 'hiddenfield',
+                name: 'customerId'
             }
         ]
     }
