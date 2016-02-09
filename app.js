@@ -66501,7 +66501,8 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    var customerId = this.getParent().getRecord().get('customerId');
+                    var customerId = '04';
+                    //this.getParent().getRecord().get('customerId');
                     var store = Ext.getStore('MyDealsStore');
                     store.load();
                     store.clearFilter();
@@ -67502,9 +67503,8 @@ Ext.define('Ext.picker.Picker', {
                                     Ext.Msg.alert('Failed');
                                 }
                             });
-                            //var customerId = this.getParent().getRecord().get('customerId');
-                            myForm.update();
                         },
+                        //var customerId = this.getParent().getRecord().get('customerId');
                         flex: 1,
                         id: 'DeleteDeal',
                         itemId: 'DeleteDeal',
