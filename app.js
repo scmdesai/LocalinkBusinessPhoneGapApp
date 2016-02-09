@@ -67545,8 +67545,6 @@ Ext.define('Ext.picker.Picker', {
  */
 (Ext.cmd.derive('Contact.view.UploadDealForm', Ext.form.Panel, {
     config: {
-        id: 'uploadDealPanel',
-        itemId: 'uploadDealPanel',
         enctype: 'multipart/form-data',
         standardSubmit: true,
         url: 'http://services.appsonmobile.com/uploadS3',
@@ -67608,7 +67606,7 @@ Ext.define('Ext.picker.Picker', {
 					Ext.Msg.alert('Failure', json['message']);
 					},
 					});*/
-                    var form = this.up('uploadDealPanel');
+                    var form = this.up('uploadDealForm');
                     form.submit();
                 },
                 itemId: 'submit',
