@@ -67458,8 +67458,10 @@ Ext.define('Ext.picker.Picker', {
                     {
                         xtype: 'button',
                         handler: function(button, e) {
+                            var myForm = this.up('DealsPanel');
                             Ext.Ajax.request({
-                                //url: 'http://services.appsonmobile.com/deals/58f94890-cf55-11e5-9211-05ba7e5acf49',// call method in the django's view
+                                url: 'http://services.appsonmobile.com/deals',
+                                // call method in the django's view
                                 method: 'POST',
                                 // form: myForm,
                                 success: function(response, opts) {
@@ -67472,7 +67474,6 @@ Ext.define('Ext.picker.Picker', {
                                     Ext.Msg.alert('Failure', json['message']);
                                 }
                             });
-                            var myForm = this.up('DealsPanel');
                             myForm.submit({
                                 success: function(action) {
                                     // Ext.Msg.alert('Success', action.result.msg);
