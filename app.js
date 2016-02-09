@@ -67473,40 +67473,34 @@ Ext.define('Ext.picker.Picker', {
                                     Ext.Msg.alert('Failure', json['message']);
                                 }
                             });
+                            var myForm = this.up('DealsPanel');
+                            myForm.submit({
+                                success: function(action) {
+                                    // Ext.Msg.alert('Success', action.result.msg);
+                                    console.log('Success');
+                                },
+                                failure: function(action) {
+                                    // Ext.Msg.alert('Failed', action.result.msg);
+                                    console.log('Failed');
+                                }
+                            });
                         },
-                        /*var myForm = this.up('DealsPanel');
-							myForm.submit({
-
-
-
-
-							success: function(action) {
-
-							// Ext.Msg.alert('Success', action.result.msg);
-							console.log('Success');
-						},
-						failure: function(action) {
-							// Ext.Msg.alert('Failed', action.result.msg);
-							console.log('Failed');
-						}
-					});
-
-					var store = Ext.getStore("MyDealsStore");
-					store.sync();
-					*/
+                        /*var store = Ext.getStore("MyDealsStore");
+							store.sync();
+							*/
                         /*form.submit({
 
 
 
 
-					success: function(form) {
+							success: function(form) {
 
-					//Ext.Msg.alert('Success', action.result.msg);
-				},
-				failure: function(form) {
-					// Ext.Msg.alert('Failed', action.result.msg);
-				}
-			});*/
+							//Ext.Msg.alert('Success', action.result.msg);
+						},
+						failure: function(form) {
+							// Ext.Msg.alert('Failed', action.result.msg);
+						}
+					});*/
                         flex: 1,
                         id: 'DeleteDeal',
                         itemId: 'DeleteDeal',
