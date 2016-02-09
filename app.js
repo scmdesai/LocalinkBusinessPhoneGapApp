@@ -67459,7 +67459,7 @@ Ext.define('Ext.picker.Picker', {
                         xtype: 'button',
                         handler: function(button, e) {
                             Ext.Ajax.request({
-                                url: 'http://services.appsonmobile.com/deals/00bd0d80-cef4-11e5-be8a-45dd1805ed73',
+                                url: 'http://services.appsonmobile.com/deals/2bf501c0-cef3-11e5-be8a-45dd1805ed73',
                                 // call method in the django's view
                                 method: 'POST',
                                 // form: myForm,
@@ -67473,24 +67473,40 @@ Ext.define('Ext.picker.Picker', {
                                     Ext.Msg.alert('Failure', json['message']);
                                 }
                             });
-                            var myForm = this.up('DealsPanel');
-                            myForm.submit();
-                            var store = Ext.getStore("MyDealsStore");
-                            store.sync();
                         },
+                        /*var myForm = this.up('DealsPanel');
+							myForm.submit({
+
+
+
+
+							success: function(action) {
+
+							// Ext.Msg.alert('Success', action.result.msg);
+							console.log('Success');
+						},
+						failure: function(action) {
+							// Ext.Msg.alert('Failed', action.result.msg);
+							console.log('Failed');
+						}
+					});
+
+					var store = Ext.getStore("MyDealsStore");
+					store.sync();
+					*/
                         /*form.submit({
 
 
 
 
-							success: function(form) {
+					success: function(form) {
 
-							//Ext.Msg.alert('Success', action.result.msg);
-						},
-						failure: function(form) {
-							// Ext.Msg.alert('Failed', action.result.msg);
-						}
-					});*/
+					//Ext.Msg.alert('Success', action.result.msg);
+				},
+				failure: function(form) {
+					// Ext.Msg.alert('Failed', action.result.msg);
+				}
+			});*/
                         flex: 1,
                         id: 'DeleteDeal',
                         itemId: 'DeleteDeal',
