@@ -67608,9 +67608,9 @@ Ext.define('Ext.picker.Picker', {
 					});*/
                     var form = this.up('uploadDealForm');
                     form.submit({
-                        success: function(form) {},
+                        success: function(action) {},
                         //Ext.Msg.alert('Success', action.result.msg);
-                        failure: function(form) {}
+                        failure: function(action) {}
                     });
                 },
                 // Ext.Msg.alert('Failed', action.result.msg);
