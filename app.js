@@ -67459,7 +67459,7 @@ Ext.define('Ext.picker.Picker', {
                         xtype: 'button',
                         handler: function(button, e) {
                             Ext.Ajax.request({
-                                url: 'http://services.appsonmobile.com/deals/2bf501c0-cef3-11e5-be8a-45dd1805ed73',
+                                url: 'http://services.appsonmobile.com/deals/58f94890-cf55-11e5-9211-05ba7e5acf49',
                                 // call method in the django's view
                                 method: 'POST',
                                 // form: myForm,
