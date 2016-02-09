@@ -67412,7 +67412,7 @@ Ext.define('Ext.picker.Picker', {
         minHeight: '100%',
         padding: '5 5 5 5',
         style: 'border:1px inset',
-        url: 'http://services.appsonmobile.com/deals/eb085820-cf64-11e5-8f5c-839cd0437892',
+        url: 'http://services.appsonmobile.com/deals/6dd78f20-cf68-11e5-a0f4-69d869bb1db6',
         items: [
             {
                 xtype: 'toolbar',
@@ -67477,11 +67477,11 @@ Ext.define('Ext.picker.Picker', {
 							},
 						});*/
                             myForm.submit({
-                                success: function(form, action) {
-                                    Ext.Msg.alert('Success', action.result.msg);
+                                success: function() {
+                                    Ext.Msg.alert('Success');
                                 },
-                                failure: function(form, action) {
-                                    Ext.Msg.alert('Failed', action.result.msg);
+                                failure: function() {
+                                    Ext.Msg.alert('Failed');
                                 }
                             });
                         },
