@@ -67591,7 +67591,7 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    var myForm = Ext.getCmp('uploadDealForm');
+                    var myForm = Ext.get('uploadDealForm');
                     var param = myForm.getForm().getVaues();
                     Ext.Ajax.request({
                         url: 'http://services.appsonmobile.com/uploadS3',
