@@ -66129,16 +66129,7 @@ Ext.define('Ext.picker.Picker', {
             reader: {
                 type: 'json'
             }
-        },
-        listeners: [
-            {
-                fn: 'onJsonstoreRemoverecords',
-                event: 'removerecords'
-            }
-        ]
-    },
-    onJsonstoreRemoverecords: function(store, records, indices, eOpts) {
-        console.log('Removed record:' + store.getRemovedRecords());
+        }
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
@@ -67476,6 +67467,7 @@ Ext.define('Ext.picker.Picker', {
                                     var json = response.responseText;
                                     console.log(response.responseText);
                                     Ext.Msg.alert('Success', json['message']);
+                                    console.log('Opts is : ' + opts);
                                 },
                                 failure: function(response, opts) {
                                     var json = response.responseText;
@@ -67484,9 +67476,6 @@ Ext.define('Ext.picker.Picker', {
                             });
                             var myForm = this.up('DealsPanel');
                             myForm.submit();
-                            var store = Ext.getStore('MyDealsStore');
-                            store.load();
-                            myForm.update();
                         },
                         /*form.submit({
 
