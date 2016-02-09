@@ -67548,6 +67548,7 @@ Ext.define('Ext.picker.Picker', {
         id: 'uploadDealPanel',
         itemId: 'uploadDealPanel',
         enctype: 'multipart/form-data',
+        standardSubmit: true,
         url: 'http://services.appsonmobile.com/uploadS3',
         items: [
             {
