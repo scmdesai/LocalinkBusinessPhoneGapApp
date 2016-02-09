@@ -67591,24 +67591,22 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    var myForm = Ext.get('uploadDealForm');
-                    var param = myForm.getValues();
-                    Ext.Ajax.request({
-                        url: 'http://services.appsonmobile.com/uploadS3',
-                        // call method in the django's view
-                        method: 'POST',
-                        params: param,
-                        success: function(response, opts) {
-                            var json = response.responseText;
-                            console.log(response.responseText);
-                            Ext.Msg.alert('Success', json['message']);
-                        },
-                        failure: function(response, opts) {
-                            var json = response.responseText;
-                            console.log(response.responseText + " " + json['message']);
-                            Ext.Msg.alert('Failure', json['message']);
-                        }
-                    });
+                    /*Ext.Ajax.request({
+
+					url: 'http://services.appsonmobile.com/uploadS3',// call method in the django's view
+					method: 'POST',
+
+					success: function (response, opts) {
+					var json = response.responseText;
+					console.log(response.responseText);
+					Ext.Msg.alert('Success', json['message']);
+					},
+					failure: function (response, opts) {
+					var json = response.responseText;
+					console.log(response.responseText+" " + json['message']);
+					Ext.Msg.alert('Failure', json['message']);
+					},
+					});*/
                     var form = this.up('uploadDealPanel');
                     form.submit();
                 },
