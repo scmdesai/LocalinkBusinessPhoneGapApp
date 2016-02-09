@@ -67592,7 +67592,7 @@ Ext.define('Ext.picker.Picker', {
                 xtype: 'button',
                 handler: function(button, e) {
                     var myForm = Ext.get('uploadDealForm');
-                    var param = myForm.getForm().getVaues();
+                    var param = myForm.getVaues();
                     Ext.Ajax.request({
                         url: 'http://services.appsonmobile.com/uploadS3',
                         // call method in the django's view
