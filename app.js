@@ -67600,8 +67600,8 @@ Ext.define('Ext.picker.Picker', {
                             Ext.Msg.alert('Failed');
                         }
                     });
-                    var store = Ext.getStore('MyDealsStore');
-                    store.load();
+                    //var store = Ext.getStore('MyDealsStore');
+                    //store.load();
                     var view;
                     view = Ext.Viewport.add({
                         xtype: 'DealsPanel'
