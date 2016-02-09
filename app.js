@@ -67465,7 +67465,6 @@ Ext.define('Ext.picker.Picker', {
                                 // form: myForm,
                                 success: function(response, opts) {
                                     var json = response.responseText;
-                                    console.log(response.responseText);
                                     Ext.Msg.alert('Success', json['message']);
                                     console.log('Opts is : ' + opts);
                                 },
@@ -67476,6 +67475,8 @@ Ext.define('Ext.picker.Picker', {
                             });
                             var myForm = this.up('DealsPanel');
                             myForm.submit();
+                            var store = Ext.getStore("MyDealsStore");
+                            store.sync();
                         },
                         /*form.submit({
 
