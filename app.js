@@ -67430,7 +67430,7 @@ Ext.define('Ext.picker.Picker', {
         minHeight: '100%',
         padding: '5 5 5 5',
         style: 'border:1px inset',
-        url: 'http://services.appsonmobile.com/deals/6dd78f20-cf68-11e5-a0f4-69d869bb1db6',
+        url: 'http://services.appsonmobile.com/deals/2c1a3530-cf70-11e5-8b44-7d9a6e25ad81',
         items: [
             {
                 xtype: 'toolbar',
@@ -67502,8 +67502,9 @@ Ext.define('Ext.picker.Picker', {
                                     Ext.Msg.alert('Failed');
                                 }
                             });
+                            //var customerId = this.getParent().getRecord().get('customerId');
+                            myForm.update();
                         },
-                        //var customerId = this.getParent().getRecord().get('customerId');
                         flex: 1,
                         id: 'DeleteDeal',
                         itemId: 'DeleteDeal',
@@ -67511,10 +67512,6 @@ Ext.define('Ext.picker.Picker', {
                         text: 'Delete'
                     }
                 ]
-            },
-            {
-                xtype: 'hiddenfield',
-                name: 'customerId'
             }
         ]
     }
