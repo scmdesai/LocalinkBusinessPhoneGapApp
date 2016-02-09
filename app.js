@@ -67610,8 +67610,8 @@ Ext.define('Ext.picker.Picker', {
                         xtype: 'DealsPanel'
                     });
                     Ext.Viewport.setActiveItem(view);
-                    console.log(customerId);
                 },
+                //console.log(customerId);
                 itemId: 'submit',
                 text: 'Submit'
             },
