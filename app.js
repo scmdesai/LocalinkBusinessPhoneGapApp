@@ -67549,7 +67549,6 @@ Ext.define('Ext.picker.Picker', {
 (Ext.cmd.derive('Contact.view.UploadDealForm', Ext.form.Panel, {
     config: {
         enctype: 'multipart/form-data',
-        standardSubmit: true,
         url: 'http://services.appsonmobile.com/uploadS3',
         items: [
             {
@@ -67611,12 +67610,14 @@ Ext.define('Ext.picker.Picker', {
 					});*/
                     var form = this.up('uploadDealForm');
                     form.submit({
-                        success: function(action) {},
-                        // Ext.Msg.alert('Success', action.result.msg);
-                        failure: function(action) {}
+                        success: function() {
+                            Ext.Msg.alert('Success');
+                        },
+                        failure: function() {
+                            Ext.Msg.alert('Failed');
+                        }
                     });
                 },
-                // Ext.Msg.alert('Failed', action.result.msg);
                 itemId: 'submit',
                 text: 'Submit'
             }
