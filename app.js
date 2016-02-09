@@ -67545,6 +67545,8 @@ Ext.define('Ext.picker.Picker', {
  */
 (Ext.cmd.derive('Contact.view.UploadDealForm', Ext.form.Panel, {
     config: {
+        id: 'uploadDealPanel',
+        itemId: 'uploadDealPanel',
         enctype: 'multipart/form-data',
         url: 'http://services.appsonmobile.com/uploadS3',
         items: [
@@ -67589,12 +67591,13 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    var myForm = this.up('uploadDealForm');
+                    var myForm = Ext.getCmp('uploadDealForm');
+                    var param = myForm.getForm().getVaues();
                     Ext.Ajax.request({
                         url: 'http://services.appsonmobile.com/uploadS3',
                         // call method in the django's view
                         method: 'POST',
-                        //params : myForm.getForm().getValues(),
+                        params: param,
                         success: function(response, opts) {
                             var json = response.responseText;
                             console.log(response.responseText);
@@ -67602,6 +67605,7 @@ Ext.define('Ext.picker.Picker', {
                         },
                         failure: function(response, opts) {
                             var json = response.responseText;
+                            console.log(response.responseText + " " + json['message']);
                             Ext.Msg.alert('Failure', json['message']);
                         }
                     });
