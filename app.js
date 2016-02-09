@@ -67608,12 +67608,14 @@ Ext.define('Ext.picker.Picker', {
 					});*/
                     var form = this.up('uploadDealForm');
                     form.submit({
-                        success: function(action) {},
-                        //Ext.Msg.alert('Success', action.result.msg);
-                        failure: function(action) {}
+                        success: function(action) {
+                            Ext.Msg.alert('Success', action.result.msg);
+                        },
+                        failure: function(action) {
+                            Ext.Msg.alert('Failed', action.result.msg);
+                        }
                     });
                 },
-                // Ext.Msg.alert('Failed', action.result.msg);
                 itemId: 'submit',
                 text: 'Submit'
             }
