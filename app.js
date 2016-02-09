@@ -67594,7 +67594,7 @@ Ext.define('Ext.picker.Picker', {
                         url: 'http://services.appsonmobile.com/uploadS3',
                         // call method in the django's view
                         method: 'POST',
-                        params: myForm.getForm().getValues(),
+                        //params : myForm.getForm().getValues(),
                         success: function(response, opts) {
                             var json = response.responseText;
                             console.log(response.responseText);
