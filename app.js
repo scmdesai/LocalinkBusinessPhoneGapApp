@@ -66129,7 +66129,25 @@ Ext.define('Ext.picker.Picker', {
             reader: {
                 type: 'json'
             }
-        }
+        },
+        listeners: [
+            {
+                fn: 'onJsonstoreAddrecords',
+                event: 'addrecords'
+            },
+            {
+                fn: 'onJsonstoreRemoverecords',
+                event: 'removerecords'
+            }
+        ]
+    },
+    onJsonstoreAddrecords: function(store, records, eOpts) {
+        console.log('Records Added');
+        store.sync();
+    },
+    onJsonstoreRemoverecords: function(store, records, indices, eOpts) {
+        console.log('Records Deleted');
+        store.sync();
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
@@ -67484,18 +67502,8 @@ Ext.define('Ext.picker.Picker', {
                                     Ext.Msg.alert('Failed');
                                 }
                             });
-                            //var customerId = this.getParent().getRecord().get('customerId');
-                            var store = Ext.getStore('MyDealsStore');
-                            store.load();
-                            store.clearFilter();
-                            store.filter('customerId', 4);
-                            var view;
-                            view = Ext.Viewport.add({
-                                xtype: 'DealsPanel'
-                            });
-                            Ext.Viewport.setActiveItem(view);
-                            console.log(customerId);
                         },
+                        //var customerId = this.getParent().getRecord().get('customerId');
                         flex: 1,
                         id: 'DeleteDeal',
                         itemId: 'DeleteDeal',
@@ -67600,13 +67608,6 @@ Ext.define('Ext.picker.Picker', {
                             Ext.Msg.alert('Failed');
                         }
                     });
-                    //var store = Ext.getStore('MyDealsStore');
-                    //store.load();
-                    var view;
-                    view = Ext.Viewport.add({
-                        xtype: 'DealsPanel'
-                    });
-                    Ext.Viewport.setActiveItem(view);
                 },
                 itemId: 'submit',
                 text: 'Submit'
