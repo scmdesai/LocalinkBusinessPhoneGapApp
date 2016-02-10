@@ -67611,25 +67611,7 @@ Ext.define('Ext.picker.Picker', {
                     }
                 ]
             }
-        ],
-        listeners: [
-            {
-                fn: 'onDealsPanelPainted',
-                event: 'painted'
-            }
         ]
-    },
-    onDealsPanelPainted: function(element, eOpts) {
-        var storeUserDetails = Ext.getStore('UserDetails');
-        storeUserDetails.load();
-        var customerId;
-        storeUserDetails.each(function(record) {
-            customerId = record.get('customerId');
-        });
-        var store = Ext.getStore('MyDealsStore');
-        store.load();
-        store.clearFilter();
-        store.filter('customerId', customerId);
     }
 }, 0, [
     "DealsPanel"
@@ -67669,6 +67651,7 @@ Ext.define('Ext.picker.Picker', {
 (Ext.cmd.derive('Contact.view.UploadDealForm', Ext.form.Panel, {
     config: {
         enctype: 'multipart/form-data',
+        trackResetOnLoad: true,
         url: 'http://services.appsonmobile.com/uploadS3',
         items: [
             {
@@ -67721,6 +67704,8 @@ Ext.define('Ext.picker.Picker', {
                             Ext.Msg.alert('Failed');
                         }
                     });
+                    form.setMethod('GET');
+                    form.load();
                     var storeUserDetails = Ext.getStore('UserDetails');
                     storeUserDetails.load();
                     var customerId;
