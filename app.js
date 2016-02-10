@@ -66045,7 +66045,6 @@ Ext.define('Ext.picker.Picker', {
  * Do NOT hand edit this file.
  */
 (Ext.cmd.derive('Contact.model.UserDetails', Ext.data.Model, {
-    singleton: true,
     config: {
         fields: [
             {
