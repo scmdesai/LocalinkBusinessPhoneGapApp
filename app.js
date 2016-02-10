@@ -67710,9 +67710,7 @@ Ext.define('Ext.picker.Picker', {
                         customerId = record.get('customerId');
                     });
                     var store = Ext.getStore('MyDealsStore');
-                    store.load({
-                        url: 'http://services.appsonmobile.com/deals'
-                    });
+                    store.load();
                     store.clearFilter();
                     store.filter('customerId', customerId);
                     var view;
@@ -67724,7 +67722,18 @@ Ext.define('Ext.picker.Picker', {
                 itemId: 'submit',
                 text: 'Submit'
             }
+        ],
+        listeners: [
+            {
+                fn: 'onSubmitUpdatedata',
+                event: 'updatedata',
+                delegate: '#submit'
+            }
         ]
+    },
+    onSubmitUpdatedata: function(component, newData, eOpts) {
+        console.log(component.getItemId);
+        console.log(newData);
     }
 }, 0, [
     "uploadDealForm"
