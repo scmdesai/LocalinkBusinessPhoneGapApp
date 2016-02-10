@@ -66171,25 +66171,7 @@ Ext.define('Ext.picker.Picker', {
             reader: {
                 type: 'json'
             }
-        },
-        listeners: [
-            {
-                fn: 'onJsonstoreAddrecords',
-                event: 'addrecords'
-            },
-            {
-                fn: 'onJsonstoreRemoverecords',
-                event: 'removerecords'
-            }
-        ]
-    },
-    onJsonstoreAddrecords: function(store, records, eOpts) {
-        console.log('Records Added');
-        store.sync();
-    },
-    onJsonstoreRemoverecords: function(store, records, indices, eOpts) {
-        console.log('Records Deleted');
-        store.sync();
+        }
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
@@ -67532,7 +67514,7 @@ Ext.define('Ext.picker.Picker', {
         minHeight: '100%',
         padding: '5 5 5 5',
         style: 'border:1px inset',
-        url: 'http://services.appsonmobile.com/deals/2c1a3530-cf70-11e5-8b44-7d9a6e25ad81',
+        url: 'http://services.appsonmobile.com/deals/d68d9870-cfcc-11e5-8b44-7d9a6e25ad81',
         items: [
             {
                 xtype: 'toolbar',
@@ -67629,7 +67611,25 @@ Ext.define('Ext.picker.Picker', {
                     }
                 ]
             }
+        ],
+        listeners: [
+            {
+                fn: 'onDealsPanelPainted',
+                event: 'painted'
+            }
         ]
+    },
+    onDealsPanelPainted: function(element, eOpts) {
+        var storeUserDetails = Ext.getStore('UserDetails');
+        storeUserDetails.load();
+        var customerId;
+        storeUserDetails.each(function(record) {
+            customerId = record.get('customerId');
+        });
+        var store = Ext.getStore('MyDealsStore');
+        store.load();
+        store.clearFilter();
+        store.filter('customerId', customerId);
     }
 }, 0, [
     "DealsPanel"
@@ -67728,7 +67728,6 @@ Ext.define('Ext.picker.Picker', {
                         customerId = record.get('customerId');
                     });
                     var store = Ext.getStore('MyDealsStore');
-                    store.sync();
                     store.load();
                     store.clearFilter();
                     store.filter('customerId', customerId);
