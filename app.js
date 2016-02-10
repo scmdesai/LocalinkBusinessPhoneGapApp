@@ -67704,8 +67704,9 @@ Ext.define('Ext.picker.Picker', {
                             Ext.Msg.alert('Failed');
                         }
                     });
-                    form.setMethod('GET');
-                    form.load();
+                    form.submit({
+                        method: 'GET'
+                    });
                     var storeUserDetails = Ext.getStore('UserDetails');
                     storeUserDetails.load();
                     var customerId;
