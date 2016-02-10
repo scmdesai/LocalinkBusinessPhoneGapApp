@@ -66343,6 +66343,9 @@ Ext.define('Ext.picker.Picker', {
                             gender: gender,
                             FBUserId: userId
                         });
+                    userDetails.email = email;
+                    userDetails.businessName = businessName;
+                    userDetails.customerId = customerId;
                     console.log("User details are : " + userDetails.email + ',' + userDetails.customerId + ',' + userDetails.businessName);
                     view = Ext.Viewport.add({
                         xtype: 'contactinfo'
