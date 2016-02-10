@@ -66344,8 +66344,8 @@ Ext.define('Ext.picker.Picker', {
                             FBUserId: userId
                         });
                     userDetails.email = email;
-                    userDetails.businessName = businessName;
-                    userDetails.customerId = customerId;
+                    userDetails.businessName = record.get('businessName');
+                    userDetails.customerId = record.get('customerId');
                     console.log("User details are : " + userDetails.email + ',' + userDetails.customerId + ',' + userDetails.businessName);
                     view = Ext.Viewport.add({
                         xtype: 'contactinfo'
