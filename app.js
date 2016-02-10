@@ -67361,12 +67361,12 @@ Ext.define('Ext.picker.Picker', {
         ds.clearFilter();
         var view = Ext.Viewport.getActiveItem().destroy();
         Ext.Viewport.setActiveItem(info);
-        //workaround to fix the warning of destroy element in deleteDeals
-        //var el = Ext.getCmp('ListOfDeals').destroy();
-        //el.parentNode.removeChild(el);
-        var btn = Ext.getCmp('DeleteDeal');
-        btn.destroy();
     },
+    //workaround to fix the warning of destroy element in deleteDeals
+    //var el = Ext.getCmp('ListOfDeals').destroy();
+    //el.parentNode.removeChild(el);
+    //var btn = Ext.getCmp('DeleteDeal');
+    //btn.destroy();
     onUploadDealTap: function(button, e, eOpts) {
         /*var cameraPic;
 		var actionSheet = new Ext.ActionSheet({
