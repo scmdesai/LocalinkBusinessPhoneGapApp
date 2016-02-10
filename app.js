@@ -66286,8 +66286,7 @@ Ext.define('Ext.picker.Picker', {
         ]
     },
     onLoginTap: function(button, e, eOpts) {
-        var userDetails = new UserDetails();
-        // Settings
+        // Settings.
         FacebookInAppBrowser.settings.appId = '900651756709444';
         FacebookInAppBrowser.settings.redirectUrl = 'http://localhost:1841';
         FacebookInAppBrowser.settings.permissions = 'email';
@@ -66323,6 +66322,12 @@ Ext.define('Ext.picker.Picker', {
                     var tmp = info[0].split("\":\"");
                     var email = tmp[1];
                     //console.log(email);
+                    tmp = inf[1].split("\":\"");
+                    var loginName = tmp[1];
+                    tmp = inf[2].split("\":\"");
+                    var gender = tmp[1];
+                    tmp = inf[3].split("\":\"");
+                    var userId = tmp[1];
                     var record = Ext.getStore('MyJsonPStore').findRecord('emailAddress', 'studionafisa@yahoo.com', 0, true, false, false);
                     //console.log(store.getData());
                     //store.loadRecord();
@@ -66330,9 +66335,14 @@ Ext.define('Ext.picker.Picker', {
                     //view.setRecord(record.getRecord());
                     //console.log(view.getData());
                     //Ext.Viewport.setActiveItem(view);
-                    userDetails.email = email;
-                    userDetails.customerId = record.get('customerId');
-                    userDetails.businessName = record.get('businessName');
+                    var userDetails = new UserDetails({
+                            customerId: record.get('customerId'),
+                            businessName: record.get('businessName'),
+                            email: email,
+                            FBLoginName: loginName,
+                            gender: gender,
+                            FBUserId: userId
+                        });
                     console.log("User details are : " + userDetails.email + ',' + userDetails.customerId + ',' + userDetails.businessName);
                     view = Ext.Viewport.add({
                         xtype: 'contactinfo'
