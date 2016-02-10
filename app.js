@@ -66171,7 +66171,16 @@ Ext.define('Ext.picker.Picker', {
             reader: {
                 type: 'json'
             }
-        }
+        },
+        listeners: [
+            {
+                fn: 'onJsonstoreRefresh',
+                event: 'refresh'
+            }
+        ]
+    },
+    onJsonstoreRefresh: function(store, data, eOpts) {
+        console.log('Refreshing store');
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
@@ -67611,19 +67620,7 @@ Ext.define('Ext.picker.Picker', {
                     }
                 ]
             }
-        ],
-        listeners: [
-            {
-                fn: 'onDealsPanelPainted',
-                event: 'painted'
-            }
         ]
-    },
-    onDealsPanelPainted: function(element, eOpts) {
-        var myForm = Ext.get(element);
-        myForm.submit({
-            method: 'GET'
-        });
     }
 }, 0, [
     "DealsPanel"
@@ -67722,6 +67719,7 @@ Ext.define('Ext.picker.Picker', {
                         customerId = record.get('customerId');
                     });
                     var store = Ext.getStore('MyDealsStore');
+                    store.refresh();
                     store.load();
                     store.clearFilter();
                     store.filter('customerId', customerId);
