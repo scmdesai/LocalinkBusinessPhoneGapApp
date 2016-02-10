@@ -67730,6 +67730,16 @@ Ext.define('Ext.picker.Picker', {
                 },
                 itemId: 'submit',
                 text: 'Submit'
+            },
+            {
+                xtype: 'hiddenfield',
+                name: 'CustID',
+                value: '04'
+            },
+            {
+                xtype: 'hiddenfield',
+                name: 'BusinessName',
+                value: 'Studio Nafisa'
             }
         ]
     }
