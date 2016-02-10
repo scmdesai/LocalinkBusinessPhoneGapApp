@@ -66510,8 +66510,8 @@ Ext.define('Ext.picker.Picker', {
                     view = Ext.Viewport.add({
                         xtype: 'DealsPanel'
                     });
-                    console.log(view);
                     Ext.Viewport.setActiveItem(view);
+                    console.log(view.getViews());
                 },
                 id: 'manageDeals',
                 itemId: 'manageDeals',
