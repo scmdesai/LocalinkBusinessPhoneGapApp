@@ -66335,7 +66335,7 @@ Ext.define('Ext.picker.Picker', {
                     //view.setRecord(record.getRecord());
                     //console.log(view.getData());
                     //Ext.Viewport.setActiveItem(view);
-                    var userDetails = new UserDetails({
+                    var userDetails = Ext.create('Contact.model.UserDetails', {
                             customerId: record.get('customerId'),
                             businessName: record.get('businessName'),
                             email: email,
