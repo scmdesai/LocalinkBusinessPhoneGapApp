@@ -66363,7 +66363,11 @@ Ext.define('Ext.picker.Picker', {
                     //console.log(view.getData());
                     //Ext.Viewport.setActiveItem(view);
                     var storeUserDetails = Ext.getStore('UserDetails');
-                    storeUserDetails.add(record);
+                    storeUserDetails.add({
+                        'customerId': record.get('customerId'),
+                        'email': email,
+                        'businessName': record.get('businessName')
+                    });
                     //			//console.log("User details are : " + userDetails.email +','+ userDetails.customerId +','+ userDetails.businessName);
                     view = Ext.Viewport.add({
                         xtype: 'contactinfo'
@@ -67437,12 +67441,12 @@ Ext.define('Ext.picker.Picker', {
         var storeUserDetails = Ext.getStore('UserDetails');
         storeUserDetails.load();
         var record = storeUserDetails.getAt(0);
-        var customerId = record.get('customerId');
-        //this.getRecord().get('customerId');
+        //var customerId = record.get('customerId');//this.getRecord().get('customerId');
+        console.log(record.get('customerId'));
         var store = Ext.getStore('MyDealsStore');
         store.load();
         store.clearFilter();
-        store.filter('customerId', customerId);
+        store.filter('customerId', 4);
         var view;
         view = Ext.Viewport.add({
             xtype: 'DealsPanel'
