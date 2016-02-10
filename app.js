@@ -66501,6 +66501,7 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
+                    console.log('Manage Button pressed');
                     var customerId = this.getParent().getRecord().get('customerId');
                     var store = Ext.getStore('MyDealsStore');
                     store.load();
@@ -66511,7 +66512,6 @@ Ext.define('Ext.picker.Picker', {
                         xtype: 'DealsPanel'
                     });
                     Ext.Viewport.setActiveItem(view);
-                    console.log(view.getViews());
                 },
                 id: 'manageDeals',
                 itemId: 'manageDeals',
