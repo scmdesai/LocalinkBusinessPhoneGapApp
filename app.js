@@ -67710,6 +67710,7 @@ Ext.define('Ext.picker.Picker', {
                         customerId = record.get('customerId');
                     });
                     var store = Ext.getStore('MyDealsStore');
+                    store.sync();
                     store.load();
                     store.clearFilter();
                     store.filter('customerId', customerId);
@@ -67722,18 +67723,7 @@ Ext.define('Ext.picker.Picker', {
                 itemId: 'submit',
                 text: 'Submit'
             }
-        ],
-        listeners: [
-            {
-                fn: 'onSubmitUpdatedata',
-                event: 'updatedata',
-                delegate: '#submit'
-            }
         ]
-    },
-    onSubmitUpdatedata: function(component, newData, eOpts) {
-        console.log(component.getItemId);
-        console.log(newData);
     }
 }, 0, [
     "uploadDealForm"
