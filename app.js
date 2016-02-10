@@ -67453,6 +67453,7 @@ Ext.define('Ext.picker.Picker', {
         var store = Ext.getStore('MyDealsStore');
         store.load();
         store.clearFilter();
+        console.log('Fitering for customerId: ' + customerId);
         store.filter('customerId', customerId);
         var view;
         view = Ext.Viewport.add({
