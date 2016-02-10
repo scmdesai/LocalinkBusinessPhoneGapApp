@@ -67362,7 +67362,7 @@ Ext.define('Ext.picker.Picker', {
         var view = Ext.Viewport.getActiveItem().destroy();
         Ext.Viewport.setActiveItem(info);
         //workaround to fix the warning of destroy element in deleteDeals
-        var el = Ext.getCmp('ListOfDeals').destroy();
+        //var el = Ext.getCmp('ListOfDeals').destroy();
         //el.parentNode.removeChild(el);
         var btn = Ext.getCmp('DeleteDeal');
         btn.destroy();
@@ -67603,8 +67603,23 @@ Ext.define('Ext.picker.Picker', {
                                     Ext.Msg.alert('Failed');
                                 }
                             });
+                            Ext.Viewport.getActiveItem().destroy();
+                            var storeUserDetails = Ext.getStore('UserDetails');
+                            storeUserDetails.load();
+                            var customerId;
+                            storeUserDetails.each(function(record) {
+                                customerId = record.get('customerId');
+                            });
+                            var store = Ext.getStore('MyDealsStore');
+                            store.load();
+                            store.clearFilter();
+                            store.filter('customerId', customerId);
+                            var view;
+                            view = Ext.Viewport.add({
+                                xtype: 'DealsPanel'
+                            });
+                            Ext.Viewport.setActiveItem(view);
                         },
-                        //var customerId = this.getParent().getRecord().get('customerId');
                         flex: 1,
                         id: 'DeleteDeal',
                         itemId: 'DeleteDeal',
@@ -67705,6 +67720,22 @@ Ext.define('Ext.picker.Picker', {
                             Ext.Msg.alert('Failed');
                         }
                     });
+                    Ext.Viewport.getActiveItem().destroy();
+                    var storeUserDetails = Ext.getStore('UserDetails');
+                    storeUserDetails.load();
+                    var customerId;
+                    storeUserDetails.each(function(record) {
+                        customerId = record.get('customerId');
+                    });
+                    var store = Ext.getStore('MyDealsStore');
+                    store.load();
+                    store.clearFilter();
+                    store.filter('customerId', customerId);
+                    var view;
+                    view = Ext.Viewport.add({
+                        xtype: 'DealsPanel'
+                    });
+                    Ext.Viewport.setActiveItem(view);
                 },
                 itemId: 'submit',
                 text: 'Submit'
