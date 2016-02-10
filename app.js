@@ -67603,7 +67603,6 @@ Ext.define('Ext.picker.Picker', {
                                     Ext.Msg.alert('Failed');
                                 }
                             });
-                            Ext.Viewport.getActiveItem().destroy();
                             var storeUserDetails = Ext.getStore('UserDetails');
                             storeUserDetails.load();
                             var customerId;
@@ -67614,12 +67613,13 @@ Ext.define('Ext.picker.Picker', {
                             store.load();
                             store.clearFilter();
                             store.filter('customerId', customerId);
-                            var view;
-                            view = Ext.Viewport.add({
-                                xtype: 'DealsPanel'
-                            });
-                            Ext.Viewport.setActiveItem(view);
                         },
+                        /*var view;
+
+						view =Ext.Viewport.add({xtype: 'DealsPanel'});
+
+
+						Ext.Viewport.setActiveItem(view);*/
                         flex: 1,
                         id: 'DeleteDeal',
                         itemId: 'DeleteDeal',
@@ -67720,7 +67720,6 @@ Ext.define('Ext.picker.Picker', {
                             Ext.Msg.alert('Failed');
                         }
                     });
-                    Ext.Viewport.getActiveItem().destroy();
                     var storeUserDetails = Ext.getStore('UserDetails');
                     storeUserDetails.load();
                     var customerId;
