@@ -67620,7 +67620,7 @@ Ext.define('Ext.picker.Picker', {
         ]
     },
     onDealsPanelPainted: function(element, eOpts) {
-        var myForm = this.up('DealsPanel');
+        var myForm = Ext.get(element);
         myForm.submit({
             method: 'GET'
         });
