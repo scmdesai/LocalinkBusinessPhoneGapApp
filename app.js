@@ -67440,9 +67440,9 @@ Ext.define('Ext.picker.Picker', {
         console.log('Manage Button pressed');
         var storeUserDetails = Ext.getStore('UserDetails');
         storeUserDetails.load();
-        var record = storeUserDetails.getAt(0);
+        var customerId = storeUserDetails.findRecord('email', 'studionafisa@yahoo.com').get('customerId');
         //var customerId = record.get('customerId');//this.getRecord().get('customerId');
-        console.log(record.get('customerId'));
+        console.log(customerId);
         var store = Ext.getStore('MyDealsStore');
         store.load();
         store.clearFilter();
