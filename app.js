@@ -67443,14 +67443,16 @@ Ext.define('Ext.picker.Picker', {
         console.log('Manage Button pressed');
         var storeUserDetails = Ext.getStore('UserDetails');
         storeUserDetails.load();
-        var record = storeUserDetails.findRecord('email', 'studionafisa@yahoo.com', 0, true, false, false);
-        var customerId = record.get('customerId');
-        //this.getRecord().get('customerId');
-        console.log(customerId);
+        storeUserDetails.each(function(record) {
+            console.log(record.get('customerId'));
+        });
+        //var record = storeUserDetails.findRecord('email','studionafisa@yahoo.com',0,true,false,false);
+        //var customerId = record.get('customerId');//this.getRecord().get('customerId');
+        //console.log(customerId);
         var store = Ext.getStore('MyDealsStore');
         store.load();
         store.clearFilter();
-        store.filter('customerId', customerId);
+        store.filter('customerId', 4);
         var view;
         view = Ext.Viewport.add({
             xtype: 'DealsPanel'
