@@ -66322,11 +66322,11 @@ Ext.define('Ext.picker.Picker', {
                     var tmp = info[0].split("\":\"");
                     var email = tmp[1];
                     //console.log(email);
-                    tmp = inf[1].split("\":\"");
+                    tmp = info[1].split("\":\"");
                     var loginName = tmp[1];
-                    tmp = inf[2].split("\":\"");
+                    tmp = info[2].split("\":\"");
                     var gender = tmp[1];
-                    tmp = inf[3].split("\":\"");
+                    tmp = info[3].split("\":\"");
                     var userId = tmp[1];
                     var record = Ext.getStore('MyJsonPStore').findRecord('emailAddress', 'studionafisa@yahoo.com', 0, true, false, false);
                     //console.log(store.getData());
