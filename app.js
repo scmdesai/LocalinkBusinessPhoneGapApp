@@ -67666,11 +67666,11 @@ Ext.define('Ext.picker.Picker', {
                 name: 'DealStatus',
                 options: [
                     {
-                        text: 'First Option',
+                        text: 'Active',
                         value: 'Active'
                     },
                     {
-                        text: 'Second Option',
+                        text: 'Expired',
                         value: 'Expired'
                     }
                 ]
@@ -67692,16 +67692,6 @@ Ext.define('Ext.picker.Picker', {
                 picker: {
                     yearFrom: 2016
                 }
-            },
-            {
-                xtype: 'hiddenfield',
-                name: 'CustID',
-                value: '04'
-            },
-            {
-                xtype: 'hiddenfield',
-                name: 'BusinessName',
-                value: 'Studio Nafisa'
             },
             {
                 xtype: 'filefield',
