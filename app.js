@@ -67721,7 +67721,6 @@ Ext.define('Ext.picker.Picker', {
                             Ext.Msg.alert('Failed');
                         }
                     });
-                    //form.destroy();
                     var storeUserDetails = Ext.getStore('UserDetails');
                     storeUserDetails.load();
                     var customerId;
@@ -67729,6 +67728,7 @@ Ext.define('Ext.picker.Picker', {
                         customerId = record.get('customerId');
                     });
                     var store = Ext.getStore('MyDealsStore');
+                    store.sync();
                     store.load();
                     store.clearFilter();
                     store.filter('customerId', customerId);
