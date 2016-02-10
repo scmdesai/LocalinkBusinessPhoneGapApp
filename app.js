@@ -67425,6 +67425,7 @@ Ext.define('Ext.picker.Picker', {
 		 });
 		Ext.Viewport.add(actionSheet);
 		        actionSheet.show();*/
+        Ext.Viewport.getActiveItem().destroy();
         var view = Ext.Viewport.add({
                 xtype: 'uploadDealForm'
             });
@@ -67720,6 +67721,7 @@ Ext.define('Ext.picker.Picker', {
                             Ext.Msg.alert('Failed');
                         }
                     });
+                    form.destroy();
                     var storeUserDetails = Ext.getStore('UserDetails');
                     storeUserDetails.load();
                     var customerId;
@@ -67738,10 +67740,6 @@ Ext.define('Ext.picker.Picker', {
                 },
                 itemId: 'submit',
                 text: 'Submit'
-            },
-            {
-                xtype: 'hiddenfield',
-                name: 'customerId'
             }
         ]
     }
