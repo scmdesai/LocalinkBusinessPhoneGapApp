@@ -67596,7 +67596,7 @@ Ext.define('Ext.picker.Picker', {
                             var store = Ext.getStore('MyDealsStore');
                             store.load();
                             store.clearFilter();
-                            store.filter('itemName()', '92237a20-d039-11e5-8b44-7d9a6e25ad81');
+                            store.filter('itemName', '92237a20-d039-11e5-8b44-7d9a6e25ad81');
                             store.each(function(record) {
                                 console.log(record.get('dealName'));
                             });
