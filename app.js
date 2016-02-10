@@ -67611,7 +67611,19 @@ Ext.define('Ext.picker.Picker', {
                     }
                 ]
             }
+        ],
+        listeners: [
+            {
+                fn: 'onDealsPanelPainted',
+                event: 'painted'
+            }
         ]
+    },
+    onDealsPanelPainted: function(element, eOpts) {
+        var myForm = this.up('DealsPanel');
+        myForm.submit({
+            method: 'GET'
+        });
     }
 }, 0, [
     "DealsPanel"
@@ -67702,10 +67714,6 @@ Ext.define('Ext.picker.Picker', {
                         failure: function() {
                             Ext.Msg.alert('Failed');
                         }
-                    });
-                    form.submit({
-                        url: 'http://services.appsonmobile.com/deals',
-                        method: 'GET'
                     });
                     var storeUserDetails = Ext.getStore('UserDetails');
                     storeUserDetails.load();
