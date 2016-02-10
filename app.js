@@ -67351,7 +67351,7 @@ Ext.define('Ext.picker.Picker', {
         //console.log("Deal Record is:") ;
         //console.log(dealRecord) ;
         var customerId = dealRecord.get('customerId');
-        console.log("Customer Id is " + customerId);
+        //console.log("Customer Id is " + customerId) ;
         ds.filter('customerId', customerId);
         var customerData = ds.getData().getAt(0);
         //console.log("Customer Data is:") ;
@@ -67359,6 +67359,7 @@ Ext.define('Ext.picker.Picker', {
         var info = this.getContactinfo();
         info.setRecord(customerData);
         ds.clearFilter();
+        var view = Ext.Viewport.getActiveItem().destroy();
         Ext.Viewport.setActiveItem(info);
         //workaround to fix the warning of destroy element in deleteDeals
         var el = Ext.getCmp('ListOfDeals').destroy();
