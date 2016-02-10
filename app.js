@@ -67651,7 +67651,6 @@ Ext.define('Ext.picker.Picker', {
 (Ext.cmd.derive('Contact.view.UploadDealForm', Ext.form.Panel, {
     config: {
         enctype: 'multipart/form-data',
-        trackResetOnLoad: true,
         url: 'http://services.appsonmobile.com/uploadS3',
         items: [
             {
@@ -67705,6 +67704,7 @@ Ext.define('Ext.picker.Picker', {
                         }
                     });
                     form.submit({
+                        url: 'http://services.appsonmobile.com/deals',
                         method: 'GET'
                     });
                     var storeUserDetails = Ext.getStore('UserDetails');
