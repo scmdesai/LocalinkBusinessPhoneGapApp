@@ -66254,7 +66254,10 @@ Ext.define('Ext.picker.Picker', {
  */
 (Ext.cmd.derive('Contact.store.UserDetails', Ext.data.Store, {
     config: {
+        autoLoad: true,
+        autoSync: true,
         model: 'Contact.model.UserDetails',
+        remoteFilter: true,
         storeId: 'UserDetails',
         proxy: {
             type: 'localstorage'
