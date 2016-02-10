@@ -67443,13 +67443,14 @@ Ext.define('Ext.picker.Picker', {
         console.log('Manage Button pressed');
         var storeUserDetails = Ext.getStore('UserDetails');
         storeUserDetails.load();
-        //var customerId = storeUserDetails.findRecord('email','studionafisa@yahoo.com',0,true,false,false);
-        //var customerId = record.get('customerId');//this.getRecord().get('customerId');
-        console.log(storeUserDetails.getCount());
+        var record = storeUserDetails.findRecord('email', 'studionafisa@yahoo.com', 0, true, false, false);
+        var customerId = record.get('customerId');
+        //this.getRecord().get('customerId');
+        console.log(customerId);
         var store = Ext.getStore('MyDealsStore');
         store.load();
         store.clearFilter();
-        store.filter('customerId', 4);
+        store.filter('customerId', customerId);
         var view;
         view = Ext.Viewport.add({
             xtype: 'DealsPanel'
