@@ -66171,16 +66171,7 @@ Ext.define('Ext.picker.Picker', {
             reader: {
                 type: 'json'
             }
-        },
-        listeners: [
-            {
-                fn: 'onJsonstoreRefresh',
-                event: 'refresh'
-            }
-        ]
-    },
-    onJsonstoreRefresh: function(store, data, eOpts) {
-        console.log('Refreshing store');
+        }
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.store,
@@ -67719,8 +67710,9 @@ Ext.define('Ext.picker.Picker', {
                         customerId = record.get('customerId');
                     });
                     var store = Ext.getStore('MyDealsStore');
-                    store.refresh();
-                    store.load();
+                    store.load({
+                        url: 'http://services.appsonmobile.com/deals'
+                    });
                     store.clearFilter();
                     store.filter('customerId', customerId);
                     var view;
