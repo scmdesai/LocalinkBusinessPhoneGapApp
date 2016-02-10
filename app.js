@@ -66500,19 +66500,7 @@ Ext.define('Ext.picker.Picker', {
             },
             {
                 xtype: 'button',
-                handler: function(button, e) {
-                    console.log('Manage Button pressed');
-                    var customerId = this.getParent().getRecord().get('customerId');
-                    var store = Ext.getStore('MyDealsStore');
-                    store.load();
-                    store.clearFilter();
-                    store.filter('customerId', customerId);
-                    var view;
-                    view = Ext.Viewport.add({
-                        xtype: 'DealsPanel'
-                    });
-                    Ext.Viewport.setActiveItem(view);
-                },
+                handler: function(button, e) {},
                 id: 'manageDeals',
                 itemId: 'manageDeals',
                 text: 'Manage Deals'
@@ -66527,7 +66515,6 @@ Ext.define('Ext.picker.Picker', {
             var customerId = record.get('customerId');
             this.down('#nameTxt').setHtml(name);
             this.down('contactpic').setData(record.data);
-            Ext.get('manageDeals').enable();
         }
     }
 }, 0, [
@@ -67043,7 +67030,8 @@ Ext.define('Ext.picker.Picker', {
             uploadDealBtn: 'button#uploadDealBtn',
             deleteDealBtn: 'button#deleteDealBtn',
             share: 'button#share',
-            changePicture: 'button#changePicture'
+            changePicture: 'button#changePicture',
+            manageDeals: 'button#manageDeals'
         },
         control: {
             "contactpic": {
@@ -67081,6 +67069,9 @@ Ext.define('Ext.picker.Picker', {
             },
             "button#share": {
                 tap: 'onShareTap'
+            },
+            "button#manageDeals": {
+                tap: 'onManageDealsTap'
             }
         }
     },
@@ -67362,6 +67353,19 @@ Ext.define('Ext.picker.Picker', {
         var record = button.getParent().getParent().getData();
         //console.log(businessName.customerId);
         window.plugins.socialsharing.share('Hi!Check out the latest deal from ' + record.customerId, null, null, record.dealPictureURL);
+    },
+    onManageDealsTap: function(button, e, eOpts) {
+        console.log('Manage Button pressed');
+        var customerId = this.getParent().getRecord().get('customerId');
+        var store = Ext.getStore('MyDealsStore');
+        store.load();
+        store.clearFilter();
+        store.filter('customerId', customerId);
+        var view;
+        view = Ext.Viewport.add({
+            xtype: 'DealsPanel'
+        });
+        Ext.Viewport.setActiveItem(view);
     }
 }, 0, 0, 0, 0, 0, 0, [
     Contact.controller,
