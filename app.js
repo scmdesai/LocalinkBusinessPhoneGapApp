@@ -67440,8 +67440,7 @@ Ext.define('Ext.picker.Picker', {
         /*var el = document.getElementById('ListOfDeals');
 		 el.setAttribute('class','checkbox_visible');
 		*/
-        var msg = Ext.create('Ext.window.MessageBox');
-        msg.alert('Empty list', 'Please select records to be Deleted');
+        Ext.Msg.alert('Empty list', 'Please select records to be Deleted');
     },
     onShareTap: function(button, e, eOpts) {
         //window.plugins.socialsharing('Message via Facebook', null /* img */, null /* url */, function() {console.log('share ok');}, function(errormsg){alert(errormsg);});
