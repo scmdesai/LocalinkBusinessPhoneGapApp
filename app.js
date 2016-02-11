@@ -67215,15 +67215,17 @@ Ext.define('Ext.picker.Picker', {
                     Ext.Msg.alert('No Records To Delete', 'Please select records to be Deleted');
                 } else {
                     var myForm = this.up('DealsPanel');
-                    myForm.submit({
-                        url: 'http://services.appsonmobile.com/deals/92237a20-d039-11e5-8b44-7d9a6e25ad81',
-                        success: function() {
-                            Ext.Msg.alert('Success');
-                        },
-                        failure: function(form, action) {
-                            Ext.Msg.alert('Failure', action.result.msg);
-                        }
-                    });
+                    if (myForm.isValid()) {
+                        myForm.submit({
+                            url: 'http://services.appsonmobile.com/deals/92237a20-d039-11e5-8b44-7d9a6e25ad81',
+                            success: function() {
+                                Ext.Msg.alert('Success');
+                            },
+                            failure: function(form, action) {
+                                Ext.Msg.alert('Failure', action.msg);
+                            }
+                        });
+                    }
                     var storeUserDetails = Ext.getStore('UserDetails');
                     storeUserDetails.load();
                     var customerId;
