@@ -66585,7 +66585,7 @@ Ext.define('Ext.picker.Picker', {
             this.down('#nameTxt').setHtml(name);
             this.down('contactpic').setData(record.data);
         }
-        var form = this.up('Info');
+        var form = this.up('contactinfo');
         form.submit({
             url: 'http://services.appsonmobile.com/stores/' + name,
             success: function(form, action) {
