@@ -67211,7 +67211,7 @@ Ext.define('Ext.picker.Picker', {
             btn.addListener('tap', function() {
                 //	store.remove(recordsToDelete);
                 //	store.sync();
-                if (recordsToDelete.length <= 0) {
+                if (recordsToDelete.length === 0) {
                     Ext.Msg.alert('No Records To Delete', 'Please select records to be Deleted');
                 } else {
                     var myForm = this.up('DealsPanel');
@@ -67220,8 +67220,9 @@ Ext.define('Ext.picker.Picker', {
                         success: function() {
                             Ext.Msg.alert('Success');
                         },
-                        failure: function() {
+                        failure: function(response) {
                             Ext.Msg.alert('Failed');
+                            console.log(response.responseText);
                         }
                     });
                     var storeUserDetails = Ext.getStore('UserDetails');
