@@ -67211,7 +67211,9 @@ Ext.define('Ext.picker.Picker', {
             btn.addListener('tap', function() {
                 //	store.remove(recordsToDelete);
                 //	store.sync();
-                if (recordsToDelete.length <= 0) {
+                var arrayLength = recordsToDelete.length;
+                console.log('Array Length is : ' + arrayLength);
+                if (arrayLength <= 0) {
                     console.log('Empty list');
                     var msg = Ext.create('Ext.window.MessageBox');
                     msg.alert('Empty list', 'Please select records to be Deleted');
