@@ -67208,9 +67208,36 @@ Ext.define('Ext.picker.Picker', {
                 }
             });
             var btn = Ext.getCmp('DeleteDeal');
-            btn.addListener('tap', function() {});
-        } else //	store.remove(recordsToDelete);
-        //	store.sync();
+            btn.addListener('tap', function() {
+                //	store.remove(recordsToDelete);
+                //	store.sync();
+                var myForm = Ext.get('DealsPanel');
+                myForm.submit({
+                    url: 'http://services.appsonmobile.com/deals/75c35d90-d035-11e5-8b44-7d9a6e25ad81',
+                    success: function() {
+                        Ext.Msg.alert('Success');
+                    },
+                    failure: function() {
+                        Ext.Msg.alert('Failed');
+                    }
+                });
+                var storeUserDetails = Ext.getStore('UserDetails');
+                storeUserDetails.load();
+                var customerId;
+                storeUserDetails.each(function(record) {
+                    customerId = record.get('customerId');
+                });
+                var store = Ext.getStore('MyDealsStore');
+                store.load();
+                store.clearFilter();
+                store.filter('customerId', customerId);
+            });
+        } else /*var view;
+
+		view =Ext.Viewport.add({xtype: 'DealsPanel'});
+
+
+		Ext.Viewport.setActiveItem(view);*/
         /*btn.addAfterListener('tap',function(){
 
 
@@ -67559,9 +67586,10 @@ Ext.define('Ext.picker.Picker', {
                     },
                     {
                         xtype: 'button',
-                        handler: function(button, e) {
-                            var myForm = this.up('DealsPanel');
-                            /*Ext.Ajax.request({
+                        handler: function(button, e) {},
+                        /*
+							var myForm = this.up('DealsPanel');*/
+                        /*Ext.Ajax.request({
 
 							url: 'http://services.appsonmobile.com/deals/98da6770-cf58-11e5-a053-056b986b2d22',// call method in the django's view
 							method: 'POST',
@@ -67578,30 +67606,35 @@ Ext.define('Ext.picker.Picker', {
 								Ext.Msg.alert('Failure', json['message']);
 							},
 						});*/
-                            myForm.submit({
-                                url: 'http://services.appsonmobile.com/deals/75c35d90-d035-11e5-8b44-7d9a6e25ad81',
-                                success: function() {
-                                    Ext.Msg.alert('Success');
-                                },
-                                failure: function() {
-                                    Ext.Msg.alert('Failed');
-                                }
-                            });
-                            var storeUserDetails = Ext.getStore('UserDetails');
-                            storeUserDetails.load();
-                            var customerId;
-                            storeUserDetails.each(function(record) {
-                                customerId = record.get('customerId');
-                            });
-                            var store = Ext.getStore('MyDealsStore');
-                            store.load();
-                            store.clearFilter();
-                            var rec = store.findRecord('dealName', 'Try this coupon');
-                            console.log(rec.get('DealPictureURL') + ',' + rec.get('businessName'));
-                            store.clearFilter();
-                            store.load();
-                            store.filter('customerId', customerId);
-                        },
+                        /*myForm.submit({
+
+
+						url  : 'http://services.appsonmobile.com/deals/75c35d90-d035-11e5-8b44-7d9a6e25ad81',
+
+						success: function() {
+						Ext.Msg.alert('Success');
+						},
+						failure: function() {
+						Ext.Msg.alert('Failed');
+						}
+						});
+
+
+
+						var storeUserDetails = Ext.getStore('UserDetails');
+						storeUserDetails.load();
+						var customerId;
+
+						storeUserDetails.each(function(record){
+						customerId = record.get('customerId');
+						});
+
+						var store = Ext.getStore('MyDealsStore');
+						store.load();
+						store.clearFilter() ;
+
+
+						store.filter('customerId', customerId);*/
                         /*var view;
 
 						view =Ext.Viewport.add({xtype: 'DealsPanel'});
