@@ -67211,26 +67211,30 @@ Ext.define('Ext.picker.Picker', {
             btn.addListener('tap', function() {
                 //	store.remove(recordsToDelete);
                 //	store.sync();
-                var myForm = this.up('DealsPanel');
-                myForm.submit({
-                    url: 'http://services.appsonmobile.com/deals/75c35d90-d035-11e5-8b44-7d9a6e25ad81',
-                    success: function() {
-                        Ext.Msg.alert('Success');
-                    },
-                    failure: function() {
-                        Ext.Msg.alert('Failed');
-                    }
-                });
-                var storeUserDetails = Ext.getStore('UserDetails');
-                storeUserDetails.load();
-                var customerId;
-                storeUserDetails.each(function(record) {
-                    customerId = record.get('customerId');
-                });
-                var store = Ext.getStore('MyDealsStore');
-                store.load();
-                store.clearFilter();
-                store.filter('customerId', customerId);
+                if (recordsToDelete.length <= 0) {
+                    Ext.Msg.alert('No Records To Delete', 'Please select records to be Deleted');
+                } else {
+                    var myForm = this.up('DealsPanel');
+                    myForm.submit({
+                        url: 'http://services.appsonmobile.com/deals/75c35d90-d035-11e5-8b44-7d9a6e25ad81',
+                        success: function() {
+                            Ext.Msg.alert('Success');
+                        },
+                        failure: function() {
+                            Ext.Msg.alert('Failed');
+                        }
+                    });
+                    var storeUserDetails = Ext.getStore('UserDetails');
+                    storeUserDetails.load();
+                    var customerId;
+                    storeUserDetails.each(function(record) {
+                        customerId = record.get('customerId');
+                    });
+                    var store = Ext.getStore('MyDealsStore');
+                    store.load();
+                    store.clearFilter();
+                    store.filter('customerId', customerId);
+                }
             });
         } else /*var view;
 
@@ -67440,7 +67444,7 @@ Ext.define('Ext.picker.Picker', {
         /*var el = document.getElementById('ListOfDeals');
 		 el.setAttribute('class','checkbox_visible');
 		*/
-        Ext.Msg.alert('Empty list', 'Please select records to be Deleted');
+        Ext.Msg.alert('No Records To Delete', 'Please select records to be Deleted');
     },
     onShareTap: function(button, e, eOpts) {
         //window.plugins.socialsharing('Message via Facebook', null /* img */, null /* url */, function() {console.log('share ok');}, function(errormsg){alert(errormsg);});
