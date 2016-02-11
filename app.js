@@ -67211,6 +67211,7 @@ Ext.define('Ext.picker.Picker', {
             btn.addListener('tap', function() {
                 //	store.remove(recordsToDelete);
                 //	store.sync();
+                console.log('Length of records Array is : ' + recordsToDelete.length);
                 if (recordsToDelete.length < 1) {
                     Ext.Msg.alert('Please select records to Delete');
                 }
