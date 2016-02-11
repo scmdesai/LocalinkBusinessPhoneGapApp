@@ -67222,7 +67222,7 @@ Ext.define('Ext.picker.Picker', {
                         },
                         failure: function(response) {
                             Ext.Msg.alert('Failed');
-                            console.log(response.responseText);
+                            console.log(response);
                         }
                     });
                     var storeUserDetails = Ext.getStore('UserDetails');
