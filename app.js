@@ -67317,49 +67317,74 @@ Ext.define('Ext.picker.Picker', {
         Ext.Viewport.setActiveItem(form);
         form.setRecord(info);
     },
-    onSaveContactButtonTap: function(button, e, eOpts) {
-        var form = this.getContactform();
-        var errors = form.getValidationErrors();
-        console.log('On Save Button Tap');
-        if (errors.length) {
-            Ext.Msg.alert('Error', errors.join('<br/>'));
-        } else {
-            var values = form.getValues();
-            var record = form.getRecord();
-            //console.log('Record is :' + record.getData());
-            //var valueContactPic = form.getAt(2).getValue();
-            var valueBusinessName = form.getAt(3).getValue();
-            var valuePhoneNumber = form.getAt(4).getValue();
-            var valueAddress = form.getAt(5).getValue();
-            var valueCategory = form.getAt(7).getValue();
-            var valueCustomerId = form.getAt(6).getValue();
-            var valueEmailAddress = form.getAt(8).getValue();
-            var valueCity = form.getAt(9).getValue();
-            var valuePicture = form.getAt(12).getValue();
-            var valueState = form.getAt(10).getValue();
-            var valueZipcode = form.getAt(11).getValue();
-            if (record) {
-                record.setData(values);
-                record.set('businessName', valueBusinessName);
-                record.set('phoneNumber', valuePhoneNumber);
-                record.set('address', valueAddress);
-                record.set('category', valueCategory);
-                record.set('customerId', valueCustomerId);
-                record.set('emailAddress', valueEmailAddress);
-                record.set('picture', valuePicture);
-                record.set('city', valueCity);
-                record.set('state', valueState);
-                record.set('zipcode', valueZipcode);
-                record.commit();
-                if (form.referrer.setRecord) {
-                    form.referrer.setRecord(record);
-                }
-            } else {}
-            //Ext.StoreManager.lookup('MyJsonPStore').add(values);
-            Ext.Viewport.setActiveItem(form.referrer);
-            delete form.referrer;
-        }
-    },
+    onSaveContactButtonTap: function(button, e, eOpts) {},
+    /*var form = this.getContactform();
+		var errors = form.getValidationErrors();
+		console.log('On Save Button Tap');
+
+
+
+		if (errors.length) {
+			Ext.Msg.alert('Error', errors.join('<br/>'));
+		} else {
+			var values = form.getValues();
+			var record = form.getRecord();
+			//console.log('Record is :' + record.getData());
+
+
+			//var valueContactPic = form.getAt(2).getValue();
+			var valueBusinessName = form.getAt(3).getValue();
+			var valuePhoneNumber = form.getAt(4).getValue();
+			var valueAddress = form.getAt(5).getValue();
+			var valueCategory = form.getAt(7).getValue();
+			var valueCustomerId = form.getAt(6).getValue();
+			var valueEmailAddress = form.getAt(8).getValue();
+			var valueCity = form.getAt(9).getValue();
+			var valuePicture = form.getAt(12).getValue();
+			var valueState = form.getAt(10).getValue();
+			var valueZipcode = form.getAt(11).getValue();
+
+
+
+
+			if (record) {
+
+
+
+				record.setData(values);
+				record.set('businessName',valueBusinessName);
+				record.set('phoneNumber',valuePhoneNumber);
+		        record.set('address',valueAddress);
+
+
+				record.set('category',valueCategory);
+				record.set('customerId',valueCustomerId);
+		        record.set('emailAddress',valueEmailAddress);
+
+				record.set('picture',valuePicture);
+				record.set('city',valueCity);
+				record.set('state',valueState);
+		        record.set('zipcode',valueZipcode);
+
+
+
+
+				record.commit();
+
+				if (form.referrer.setRecord) {
+
+
+					form.referrer.setRecord(record);
+				}
+			} else {
+				//Ext.StoreManager.lookup('MyJsonPStore').add(values);
+			}
+			Ext.Viewport.setActiveItem(form.referrer);
+			delete form.referrer;
+		}
+
+
+		*/
     onCancelButtonTap: function(button, e, eOpts) {
         var form = this.getContactform();
         Ext.Viewport.setActiveItem(form.referrer);
