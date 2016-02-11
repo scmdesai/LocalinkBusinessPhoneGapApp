@@ -67222,7 +67222,10 @@ Ext.define('Ext.picker.Picker', {
                         },
                         failure: function(form, action) {
                             //Ext.Msg.alert('Failure', JSON.stringify(action, null, 4));
-                            console.log(JSON.stringify(action, null, 4));
+                            for (i in action) {
+                                console.log(i);
+                                console.log(action[i]);
+                            }
                         }
                     });
                     var storeUserDetails = Ext.getStore('UserDetails');
