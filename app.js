@@ -67212,28 +67212,31 @@ Ext.define('Ext.picker.Picker', {
                 //	store.remove(recordsToDelete);
                 //	store.sync();
                 if (recordsToDelete.length === 0) {
-                    window.alert('Please select records to Delete');
+                    console.log('Empty list');
+                    var msg = Ext.create('Ext.window.MessageBox');
+                    msg.alert('Empty list', 'Please select records to be Deleted');
+                } else {
+                    var myForm = this.up('DealsPanel');
+                    myForm.submit({
+                        url: 'http://services.appsonmobile.com/deals/75c35d90-d035-11e5-8b44-7d9a6e25ad81',
+                        success: function() {
+                            Ext.Msg.alert('Success');
+                        },
+                        failure: function() {
+                            Ext.Msg.alert('Failed');
+                        }
+                    });
+                    var storeUserDetails = Ext.getStore('UserDetails');
+                    storeUserDetails.load();
+                    var customerId;
+                    storeUserDetails.each(function(record) {
+                        customerId = record.get('customerId');
+                    });
+                    var store = Ext.getStore('MyDealsStore');
+                    store.load();
+                    store.clearFilter();
+                    store.filter('customerId', customerId);
                 }
-                var myForm = this.up('DealsPanel');
-                myForm.submit({
-                    url: 'http://services.appsonmobile.com/deals/75c35d90-d035-11e5-8b44-7d9a6e25ad81',
-                    success: function() {
-                        Ext.Msg.alert('Success');
-                    },
-                    failure: function() {
-                        Ext.Msg.alert('Failed');
-                    }
-                });
-                var storeUserDetails = Ext.getStore('UserDetails');
-                storeUserDetails.load();
-                var customerId;
-                storeUserDetails.each(function(record) {
-                    customerId = record.get('customerId');
-                });
-                var store = Ext.getStore('MyDealsStore');
-                store.load();
-                store.clearFilter();
-                store.filter('customerId', customerId);
             });
         } else /*var view;
 
