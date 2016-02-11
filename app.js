@@ -67596,7 +67596,7 @@ Ext.define('Ext.picker.Picker', {
                             var store = Ext.getStore('MyDealsStore');
                             store.load();
                             store.clearFilter();
-                            var rec = store.findExact('dealName', 'Try this coupon');
+                            var rec = store.findRecord('dealName', 'Try this coupon');
                             console.log(rec.get('itemName()'));
                             store.clearFilter();
                             store.load();
