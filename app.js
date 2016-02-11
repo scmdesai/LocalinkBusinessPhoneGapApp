@@ -66444,6 +66444,8 @@ Ext.define('Ext.picker.Picker', {
         minHeight: '100%',
         modal: true,
         enableSubmissionForm: false,
+        method: 'get',
+        url: '',
         items: [
             {
                 xtype: 'toolbar',
@@ -66583,6 +66585,16 @@ Ext.define('Ext.picker.Picker', {
             this.down('#nameTxt').setHtml(name);
             this.down('contactpic').setData(record.data);
         }
+        var form = this.up('Info');
+        form.submit({
+            url: 'http://services.appsonmobile.com/stores/' + name,
+            success: function(form, action) {
+                console.log('Success' + name);
+            },
+            failure: function(form, action) {
+                console.log('Failure' + name);
+            }
+        });
     }
 }, 0, [
     "contactinfo"
@@ -67221,11 +67233,7 @@ Ext.define('Ext.picker.Picker', {
                             Ext.Msg.alert('Success');
                         },
                         failure: function(form, action) {
-                            //Ext.Msg.alert('Failure', JSON.stringify(action, null, 4));
-                            for (i in action) {
-                                console.log(i);
-                                console.log(action[i]);
-                            }
+                            Ext.Msg.alert('Failure');
                         }
                     });
                     var storeUserDetails = Ext.getStore('UserDetails');
