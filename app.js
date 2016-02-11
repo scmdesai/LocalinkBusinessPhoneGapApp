@@ -67211,34 +67211,26 @@ Ext.define('Ext.picker.Picker', {
             btn.addListener('tap', function() {
                 //	store.remove(recordsToDelete);
                 //	store.sync();
-                var arrayLength = recordsToDelete.length;
-                console.log('Array Length is : ' + arrayLength);
-                if (arrayLength <= 0) {
-                    console.log('Empty list');
-                    var msg = Ext.create('Ext.window.MessageBox');
-                    msg.alert('Empty list', 'Please select records to be Deleted');
-                } else {
-                    var myForm = this.up('DealsPanel');
-                    myForm.submit({
-                        url: 'http://services.appsonmobile.com/deals/75c35d90-d035-11e5-8b44-7d9a6e25ad81',
-                        success: function() {
-                            Ext.Msg.alert('Success');
-                        },
-                        failure: function() {
-                            Ext.Msg.alert('Failed');
-                        }
-                    });
-                    var storeUserDetails = Ext.getStore('UserDetails');
-                    storeUserDetails.load();
-                    var customerId;
-                    storeUserDetails.each(function(record) {
-                        customerId = record.get('customerId');
-                    });
-                    var store = Ext.getStore('MyDealsStore');
-                    store.load();
-                    store.clearFilter();
-                    store.filter('customerId', customerId);
-                }
+                var myForm = this.up('DealsPanel');
+                myForm.submit({
+                    url: 'http://services.appsonmobile.com/deals/75c35d90-d035-11e5-8b44-7d9a6e25ad81',
+                    success: function() {
+                        Ext.Msg.alert('Success');
+                    },
+                    failure: function() {
+                        Ext.Msg.alert('Failed');
+                    }
+                });
+                var storeUserDetails = Ext.getStore('UserDetails');
+                storeUserDetails.load();
+                var customerId;
+                storeUserDetails.each(function(record) {
+                    customerId = record.get('customerId');
+                });
+                var store = Ext.getStore('MyDealsStore');
+                store.load();
+                store.clearFilter();
+                store.filter('customerId', customerId);
             });
         } else /*var view;
 
@@ -67445,8 +67437,11 @@ Ext.define('Ext.picker.Picker', {
         Ext.Viewport.setActiveItem(view);
     },
     onDeleteDealTap: function(button, e, eOpts) {
-        var el = document.getElementById('ListOfDeals');
-        el.setAttribute('class', 'checkbox_visible');
+        /*var el = document.getElementById('ListOfDeals');
+		 el.setAttribute('class','checkbox_visible');
+		*/
+        var msg = Ext.create('Ext.window.MessageBox');
+        msg.alert('Empty list', 'Please select records to be Deleted');
     },
     onShareTap: function(button, e, eOpts) {
         //window.plugins.socialsharing('Message via Facebook', null /* img */, null /* url */, function() {console.log('share ok');}, function(errormsg){alert(errormsg);});
