@@ -67221,16 +67221,7 @@ Ext.define('Ext.picker.Picker', {
                             Ext.Msg.alert('Success');
                         },
                         failure: function(form, action) {
-                            switch (action.failureType) {
-                                case Ext.form.action.CLIENT_INVALID:
-                                    Ext.Msg.alert('Failure', 'Form fields may not be submitted with invalid values');
-                                    break;
-                                case Ext.form.action.CONNECT_FAILURE:
-                                    Ext.Msg.alert('Failure', 'Ajax communication failed');
-                                    break;
-                                case Ext.form.action.SERVER_INVALID:
-                                    Ext.Msg.alert('Failure', action.result.msg);
-                            }
+                            Ext.Msg.alert('Failure', action.result.msg);
                         }
                     });
                     var storeUserDetails = Ext.getStore('UserDetails');
