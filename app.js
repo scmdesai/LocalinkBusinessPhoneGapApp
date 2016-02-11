@@ -67597,7 +67597,7 @@ Ext.define('Ext.picker.Picker', {
                             store.load();
                             store.clearFilter();
                             var rec = store.findRecord('dealName', 'Try this coupon');
-                            console.log(rec.get('itemName()'));
+                            console.log(rec.get('DealPictureURL') + ',' + rec.get('businessName'));
                             store.clearFilter();
                             store.load();
                             store.filter('customerId', customerId);
