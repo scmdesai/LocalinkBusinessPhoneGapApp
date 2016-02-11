@@ -66814,6 +66814,7 @@ Ext.define('Ext.picker.Picker', {
         itemId: 'formpanel',
         autoDestroy: false,
         modal: true,
+        standardSubmit: true,
         items: [
             {
                 xtype: 'toolbar',
