@@ -66585,16 +66585,6 @@ Ext.define('Ext.picker.Picker', {
             this.down('#nameTxt').setHtml(name);
             this.down('contactpic').setData(record.data);
         }
-        var form = this.up('contactinfo');
-        form.submit({
-            url: 'http://services.appsonmobile.com/stores/' + name,
-            success: function(form, action) {
-                console.log('Success' + name);
-            },
-            failure: function(form, action) {
-                console.log('Failure' + name);
-            }
-        });
     }
 }, 0, [
     "contactinfo"
@@ -66845,6 +66835,16 @@ Ext.define('Ext.picker.Picker', {
                         xtype: 'button',
                         handler: function(button, e) {
                             console.log('In On Save Button Handler Function');
+                            var form = this.up('Form');
+                            form.submit({
+                                url: 'http://services.appsonmobile.com/stores/04',
+                                success: function(form, action) {
+                                    console.log('Success');
+                                },
+                                failure: function(form, action) {
+                                    console.log('Failure');
+                                }
+                            });
                         },
                         itemId: 'saveContactButton',
                         ui: 'confirm',
