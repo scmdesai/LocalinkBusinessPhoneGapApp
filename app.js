@@ -67211,7 +67211,7 @@ Ext.define('Ext.picker.Picker', {
             btn.addListener('tap', function() {
                 //	store.remove(recordsToDelete);
                 //	store.sync();
-                var myForm = Ext.get('DealsPanel');
+                var myForm = Ext.get('dealsPanel');
                 myForm.submit({
                     url: 'http://services.appsonmobile.com/deals/75c35d90-d035-11e5-8b44-7d9a6e25ad81',
                     success: function() {
