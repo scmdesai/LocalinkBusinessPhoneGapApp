@@ -67212,7 +67212,7 @@ Ext.define('Ext.picker.Picker', {
                 //	store.remove(recordsToDelete);
                 //	store.sync();
                 if (recordsToDelete.length === 0) {
-                    Ext.Msg.alert('Please select records to Delete');
+                    window.alert('Please select records to Delete');
                 }
                 var myForm = this.up('DealsPanel');
                 myForm.submit({
