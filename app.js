@@ -67216,7 +67216,7 @@ Ext.define('Ext.picker.Picker', {
                 } else {
                     var myForm = this.up('DealsPanel');
                     myForm.submit({
-                        url: 'http://services.appsonmobile.com/deals/75c35d90-d035-11e5-8b44-7d9a6e25ad81',
+                        url: 'http://services.appsonmobile.com/deals/92237a20-d039-11e5-8b44-7d9a6e25ad81',
                         success: function() {
                             Ext.Msg.alert('Success');
                         },
@@ -67543,6 +67543,7 @@ Ext.define('Ext.picker.Picker', {
         minHeight: '100%',
         padding: '5 5 5 5',
         style: 'border:1px inset',
+        styleHtmlContent: true,
         url: '',
         items: [
             {
