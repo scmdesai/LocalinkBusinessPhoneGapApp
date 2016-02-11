@@ -67258,11 +67258,7 @@ Ext.define('Ext.picker.Picker', {
 
 		}*/
         {
-            //workaround to fix the warning of destroy element in deleteDeals
-            var el = Ext.getCmp('ListOfDeals').destroy();
-            //el.parentNode.removeChild(el);
-            var btn = Ext.getCmp('DeleteDeal');
-            btn.destroy();
+            Ext.Viewport.getActiveItem().destroy();
             var pic = this.getDealpicture();
             /*console.log("Data View is: ") ;
 		console.log(dataview) ;
