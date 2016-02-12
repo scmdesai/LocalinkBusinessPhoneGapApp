@@ -66840,6 +66840,12 @@ Ext.define('Ext.picker.Picker', {
                             var record = form.getRecord();
                             var customerId = form.getRecord().get('customerId');
                             form.getComponent('CustomerId').setValue(customerId);
+                            form.getComponent('Category').setValue(form.getRecord().get('category'));
+                            form.getComponent('email').setValue(form.getRecord().get('emailAddress'));
+                            form.getComponent('city').setValue(form.getRecord().get('city'));
+                            form.getComponent('state').setValue(form.getRecord().get('state'));
+                            form.getComponent('zipcode').setValue(form.getRecord().get('zipcode'));
+                            form.getComponent('pictureURL').setValue(form.getRecord().get('picture'));
                             console.log('Editing records for customerId: ' + customerId);
                             form.submit({
                                 url: 'http://services.appsonmobile.com/stores/' + customerId,
