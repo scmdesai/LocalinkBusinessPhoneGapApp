@@ -67021,7 +67021,7 @@ Ext.define('Ext.picker.Picker', {
     },
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
-        console.log('Customer ID is ' + record.data.CustomerId);
+        console.log('Customer ID is ' + record.data.customerId);
         if (record) {
             this.child('contactpic').setData(record.data);
             this.down('#businessName').setValue(record.data.businessName);
