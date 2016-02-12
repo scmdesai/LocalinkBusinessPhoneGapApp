@@ -66846,7 +66846,12 @@ Ext.define('Ext.picker.Picker', {
                                     Ext.Msg.alert('Failure', action.result.msg);
                                 }
                             });
-                            form.destroy();
+                            var record = form.getRecord();
+                            view = Ext.Viewport.add({
+                                xtype: 'contactinfo'
+                            });
+                            view.setRecord(record);
+                            Ext.Viewport.setActiveItem(view);
                         },
                         itemId: 'saveContactButton',
                         ui: 'confirm',
