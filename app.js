@@ -66814,7 +66814,6 @@ Ext.define('Ext.picker.Picker', {
         itemId: 'formpanel',
         autoDestroy: false,
         modal: true,
-        baseParams: 'Ext.encode({\n                    BusinessName: valueBusinessName,\n\t\t            Category: valueCategory,\n\t\t address: valueAddress,\n\t\t phoneNumber: valuePhoneNumber,\n\t\t email: valueEmailAddress,\n\t\t CustomerId: valueCustomerId,\n\t\t city: valueCity,\n\t\t pictureURL: valuePicture,\n\t\t state: valueState,\n\t\t zipcode: valueZipcode\n\n                })',
         standardSubmit: true,
         items: [
             {
@@ -66849,17 +66848,31 @@ Ext.define('Ext.picker.Picker', {
                             var valueState = form.getAt(10).getValue();
                             var valueZipcode = form.getAt(11).getValue();
                             //var values = form.getValues();
-                            var errors = form.getValidationErrors();
-                            console.log(errors);
-                            form.submit({
-                                url: 'http://services.appsonmobile.com/stores/04',
-                                success: function(form, action) {
-                                    console.log('Success');
-                                },
-                                failure: function(form, action) {
-                                    console.log('Failure');
-                                }
-                            });
+                            if (form.isValid()) {
+                                form.submit({
+                                    url: 'http://services.appsonmobile.com/stores/04',
+                                    params: {
+                                        BusinessName: businessName.getValue(),
+                                        Category: category.getValue(),
+                                        CustomerId: customerId.getValue(),
+                                        phoneNumber: phoneNumber.getValue(),
+                                        address: address.getValue(),
+                                        email: emailAddress.getValue(),
+                                        city: city.getValue(),
+                                        state: state.getValue(),
+                                        zipcode: zipcode.getValue(),
+                                        pictureURL: picture.getValue()
+                                    },
+                                    success: function(form, action) {
+                                        console.log('Success');
+                                    },
+                                    failure: function(form, action) {
+                                        console.log('Failure');
+                                    }
+                                });
+                            } else {
+                                Ext.Msg.alert('Pease check if all fields are filled');
+                            }
                         },
                         itemId: 'saveContactButton',
                         ui: 'confirm',
