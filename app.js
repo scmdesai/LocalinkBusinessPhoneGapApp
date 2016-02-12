@@ -66914,35 +66914,49 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'textfield',
                 hidden: true,
+                id: 'CustomerId',
+                itemId: 'CustomerId',
                 name: 'CustomerId'
             },
             {
                 xtype: 'textfield',
                 hidden: true,
+                id: 'Category',
+                itemId: 'Category',
                 name: 'Category'
             },
             {
                 xtype: 'textfield',
                 hidden: true,
+                id: 'email',
+                itemId: 'email',
                 name: 'email'
             },
             {
                 xtype: 'textfield',
                 hidden: true,
+                id: 'city',
+                itemId: 'city',
                 name: 'city'
             },
             {
                 xtype: 'textfield',
                 hidden: true,
+                id: 'state',
+                itemId: 'state',
                 name: 'state'
             },
             {
                 xtype: 'textfield',
                 hidden: true,
+                id: 'zipcode',
+                itemId: 'zipcode',
                 name: 'zipcode'
             },
             {
                 xtype: 'hiddenfield',
+                id: 'pictureURL',
+                itemId: 'pictureURL',
                 name: 'pictureURL'
             }
         ],
@@ -67022,19 +67036,18 @@ Ext.define('Ext.picker.Picker', {
     },
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
-        console.log('Customer ID is ' + record.data.customerId);
         if (record) {
             this.child('contactpic').setData(record.data);
             this.down('#businessName').setValue(record.data.businessName);
             this.down('#phoneNumber').setValue(record.data.phoneNumber);
             this.down('#address').setValue(record.data.address);
-            this.down('#CustomerId').setValue(record.data.customerId);
-            this.down('#Category').setValue(record.data.category);
-            this.down('#email').setValue(record.data.emailAddress);
-            this.down('#city').setValue(record.data.city);
-            this.down('#state').setValue(record.data.state);
-            this.down('#zipcode').setValue(record.data.zipcode);
-            this.down('#pictureURL').setValue(record.data.picture);
+            Ext.get('CustomerId').setValue(record.data.customerId);
+            Ext.get('Category').setValue(record.data.category);
+            Ext.get('email').setValue(record.data.emailAddress);
+            Ext.get('city').setValue(record.data.city);
+            Ext.get('state').setValue(record.data.state);
+            Ext.get('zipcode').setValue(record.data.zipcode);
+            Ext.get('pictureURL').setValue(record.data.picture);
         }
     }
 }, 0, [
