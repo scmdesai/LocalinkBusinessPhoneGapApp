@@ -66861,16 +66861,16 @@ Ext.define('Ext.picker.Picker', {
                             form.submit({
                                 url: 'http://services.appsonmobile.com/stores/04',
                                 params: {
-                                    CustomerId: valueCustomerId,
-                                    BusinessName: valueBusinessName,
-                                    Category: valueCategory,
-                                    phoneNumber: valuePhoneNumber,
-                                    address: valueAddress,
-                                    email: valueEmailAddress,
-                                    zipcode: valueZipcode,
-                                    state: valueState,
-                                    city: valueCity,
-                                    pictureURL: valuePicture
+                                    'CustomerId': valueCustomerId,
+                                    'BusinessName': valueBusinessName,
+                                    'Category': valueCategory,
+                                    'phoneNumber': valuePhoneNumber,
+                                    'address': valueAddress,
+                                    'email': valueEmailAddress,
+                                    'zipcode': valueZipcode,
+                                    'state': valueState,
+                                    'city': valueCity,
+                                    'pictureURL': valuePicture
                                 },
                                 success: function(form, action) {
                                     console.log('Success');
@@ -66882,16 +66882,7 @@ Ext.define('Ext.picker.Picker', {
                         },
                         itemId: 'saveContactButton',
                         ui: 'confirm',
-                        text: 'Save',
-                        listeners: [
-                            {
-                                fn: function(element, eOpts) {
-                                    console.log('Save Button painted');
-                                    this.addEvents('tap');
-                                },
-                                event: 'painted'
-                            }
-                        ]
+                        text: 'Save'
                     }
                 ]
             },
