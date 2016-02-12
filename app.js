@@ -66837,6 +66837,8 @@ Ext.define('Ext.picker.Picker', {
                         handler: function(button, e) {
                             console.log('In On Save Button Handler Function');
                             var form = this.up('contactform');
+                            var values = form.getValues();
+                            console.log('Form Values are : ' + values);
                             form.submit({
                                 url: 'http://services.appsonmobile.com/stores/04',
                                 success: function(form, action) {
