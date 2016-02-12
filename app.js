@@ -66353,7 +66353,7 @@ Ext.define('Ext.picker.Picker', {
                         'email': email,
                         'businessName': record.get('businessName')
                     });
-                    //			//console.log("User details are : " + userDetails.email +','+ userDetails.customerId +','+ userDetails.businessName);
+                    console.log("User details are : " + userDetails.email + ',' + userDetails.customerId + ',' + userDetails.businessName);
                     view = Ext.Viewport.add({
                         xtype: 'contactinfo'
                     });
