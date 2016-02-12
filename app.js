@@ -66577,7 +66577,6 @@ Ext.define('Ext.picker.Picker', {
         ]
     },
     setRecord: function(record) {
-        console.log('Inside Info setRecord Function');
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
         if (record) {
             var name = record.get('businessName');
@@ -66836,7 +66835,7 @@ Ext.define('Ext.picker.Picker', {
                         handler: function(button, e) {
                             console.log('In On Save Button Handler Function');
                             var form = this.up('contactform');
-                            var customerId = form.CustomerId;
+                            var customerId = form.getAt(6).getValue();
                             form.submit({
                                 url: 'http://services.appsonmobile.com/stores/' + customerId,
                                 success: function(form, action) {
@@ -66846,13 +66845,14 @@ Ext.define('Ext.picker.Picker', {
                                     Ext.Msg.alert('Failure');
                                 }
                             });
-                            var record = form.getRecord();
-                            view = Ext.Viewport.add({
-                                xtype: 'contactinfo'
-                            });
-                            view.setRecord(record);
-                            Ext.Viewport.setActiveItem(view);
                         },
+                        /*var record = form.getRecord();
+
+							view =Ext.Viewport.add({xtype: 'contactinfo'});
+							view.setRecord(record);
+
+
+							Ext.Viewport.setActiveItem(view);*/
                         itemId: 'saveContactButton',
                         ui: 'confirm',
                         text: 'Save'
@@ -67308,9 +67308,7 @@ Ext.define('Ext.picker.Picker', {
         }, this);
     },
     onEditButtonTap: function(button, e, eOpts) {
-        console.log('Inside Edit Button Tap');
         var referrer = Ext.Viewport.getActiveItem();
-        Ext.Viewport.getActiveItem().destroy();
         var form = this.getContactform();
         var info = this.getContactinfo().getRecord();
         //console.log('cust Id is: ' + info.get('customerId'));
