@@ -66835,8 +66835,7 @@ Ext.define('Ext.picker.Picker', {
                         handler: function(button, e) {
                             console.log('In On Save Button Handler Function');
                             var form = this.up('contactform');
-                            var contactForm = this.getContactform();
-                            var customerId = contactForm.getAt(6).getValue();
+                            var customerId = form.getRecord().get('customerId');
                             console.log('Editing records for customerId: ' + customerId);
                             form.submit({
                                 url: 'http://services.appsonmobile.com/stores/04',
@@ -67313,7 +67312,7 @@ Ext.define('Ext.picker.Picker', {
         var referrer = Ext.Viewport.getActiveItem();
         var form = this.getContactform();
         var info = this.getContactinfo().getRecord();
-        //console.log('cust Id is: ' + info.get('customerId'));
+        console.log('cust Id is: ' + info.get('customerId'));
         form.referrer = referrer;
         Ext.Viewport.setActiveItem(form);
         form.setRecord(info);
