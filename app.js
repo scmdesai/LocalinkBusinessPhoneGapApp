@@ -66814,7 +66814,6 @@ Ext.define('Ext.picker.Picker', {
         itemId: 'formpanel',
         autoDestroy: false,
         modal: true,
-        standardSubmit: true,
         items: [
             {
                 xtype: 'toolbar',
@@ -67053,7 +67052,7 @@ Ext.define('Ext.picker.Picker', {
         console.log('Inside Form Panel');
         if (record) {
             this.child('contactpic').setData(record.data);
-            this.down('#businessName').setValue(record.data.businessName);
+            this.down('#BusinessName').setValue(record.data.businessName);
             this.down('#phoneNumber').setValue(record.data.phoneNumber);
             this.down('#address').setValue(record.data.address);
         }
