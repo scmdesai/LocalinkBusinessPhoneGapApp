@@ -66837,10 +66837,20 @@ Ext.define('Ext.picker.Picker', {
                         handler: function(button, e) {
                             console.log('In On Save Button Handler Function');
                             var form = this.up('contactform');
-                            var values = form.getValues().businessName;
-                            console.log('Form Values are : ' + values);
+                            /*var valueBusinessName = form.getAt(3).getValue();
+							var valuePhoneNumber = form.getAt(4).getValue();
+							var valueAddress = form.getAt(5).getValue();
+							var valueCategory = form.getAt(7).getValue();
+							var valueCustomerId = form.getAt(6).getValue();
+							var valueEmailAddress = form.getAt(8).getValue();
+							var valueCity = form.getAt(9).getValue();
+							var valuePicture = form.getAt(12).getValue();
+							var valueState = form.getAt(10).getValue();
+							var valueZipcode = form.getAt(11).getValue();*/
+                            var values = form.getValues();
                             form.submit({
                                 url: 'http://services.appsonmobile.com/stores/04',
+                                params: values,
                                 success: function(form, action) {
                                     console.log('Success');
                                 },
