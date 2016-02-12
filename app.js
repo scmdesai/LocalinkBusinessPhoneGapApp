@@ -67026,6 +67026,7 @@ Ext.define('Ext.picker.Picker', {
             this.down('#businessName').setValue(record.data.businessName);
             this.down('#phoneNumber').setValue(record.data.phoneNumber);
             this.down('#address').setValue(record.data.address);
+            this.down('#CustomerId').setValue(record.data.customerId);
         }
     }
 }, 0, [
