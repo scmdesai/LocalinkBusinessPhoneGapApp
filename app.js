@@ -66840,10 +66840,10 @@ Ext.define('Ext.picker.Picker', {
                             form.submit({
                                 url: 'http://services.appsonmobile.com/stores/' + customerId,
                                 success: function(form, action) {
-                                    Ext.Msg.alert('Success', action.result.msg);
+                                    Ext.Msg.alert('Success');
                                 },
                                 failure: function(form, action) {
-                                    Ext.Msg.alert('Failure', action.result.msg);
+                                    Ext.Msg.alert('Failure');
                                 }
                             });
                             var record = form.getRecord();
@@ -67310,6 +67310,7 @@ Ext.define('Ext.picker.Picker', {
     onEditButtonTap: function(button, e, eOpts) {
         console.log('Inside Edit Button Tap');
         var referrer = Ext.Viewport.getActiveItem();
+        Ext.Viewport.getActiveItem().destroy();
         var form = this.getContactform();
         var info = this.getContactinfo().getRecord();
         //console.log('cust Id is: ' + info.get('customerId'));
