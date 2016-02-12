@@ -66815,6 +66815,18 @@ Ext.define('Ext.picker.Picker', {
         autoDestroy: false,
         modal: true,
         standardSubmit: true,
+        baseParams: {
+            BusinessName: valueBusinessName,
+            Category: valueCategory,
+            address: valueAddress,
+            phoneNumber: valuePhoneNumber,
+            email: valueEmailAddress,
+            CustomerId: valueCustomerId,
+            city: valueCity,
+            pictureURL: valuePicture,
+            state: valueState,
+            zipcode: valueZipcode
+        },
         items: [
             {
                 xtype: 'toolbar',
@@ -66848,20 +66860,9 @@ Ext.define('Ext.picker.Picker', {
                             var valueState = form.getAt(10).getValue();
                             var valueZipcode = form.getAt(11).getValue();
                             //var values = form.getValues();
+                            console.log(valueBusinessName);
                             form.submit({
                                 url: 'http://services.appsonmobile.com/stores/04',
-                                params: {
-                                    BusinessName: valueBusinessName,
-                                    Category: valueCategory,
-                                    address: valueAddress,
-                                    phoneNumber: valuePhoneNumber,
-                                    email: valueEmailAddress,
-                                    CustomerId: valueCustomerId,
-                                    city: valueCity,
-                                    pictureURL: valuePicture,
-                                    state: valueState,
-                                    zipcode: valueZipcode
-                                },
                                 success: function(form, action) {
                                     console.log('Success');
                                 },
