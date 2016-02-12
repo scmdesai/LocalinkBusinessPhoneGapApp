@@ -66849,7 +66849,7 @@ Ext.define('Ext.picker.Picker', {
                             var valueZipcode = form.getAt(11).getValue();
                             //var values = form.getValues();
                             form.submit({
-                                url: 'http://services.appsonmobile.com/stores/04',
+                                url: 'http://services.appsonmobile.com/stores',
                                 params: {
                                     BusinessName: form.getAt(3).getValue(),
                                     Category: form.getAt(7).getValue(),
