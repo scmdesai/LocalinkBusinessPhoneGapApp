@@ -66813,6 +66813,7 @@ Ext.define('Ext.picker.Picker', {
         itemId: 'formpanel',
         autoDestroy: false,
         modal: true,
+        standardSubmit: true,
         items: [
             {
                 xtype: 'toolbar',
@@ -66836,6 +66837,7 @@ Ext.define('Ext.picker.Picker', {
                             console.log('In On Save Button Handler Function');
                             var form = this.up('contactform');
                             var customerId = form.getAt(6).getValue();
+                            console.log('Editing records for customerId: ' + customerId);
                             form.submit({
                                 url: 'http://services.appsonmobile.com/stores/' + customerId,
                                 success: function(form, action) {
