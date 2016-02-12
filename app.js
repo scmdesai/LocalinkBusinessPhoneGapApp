@@ -66849,10 +66849,10 @@ Ext.define('Ext.picker.Picker', {
                             var valueState = form.getAt(10).getValue();
                             var valueZipcode = form.getAt(11).getValue();
                             //var values = form.getValues();
-                            console.log(valueBusinessName);
+                            var errors = form.getValidationErrors();
+                            console.log(errors);
                             form.submit({
                                 url: 'http://services.appsonmobile.com/stores/04',
-                                params: '{Ext.encode(form.getValues())}',
                                 success: function(form, action) {
                                     console.log('Success');
                                 },
