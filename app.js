@@ -66837,41 +66837,46 @@ Ext.define('Ext.picker.Picker', {
                         handler: function(button, e) {
                             console.log('In On Save Button Handler Function');
                             var form = this.up('contactform');
-                            var valueBusinessName = form.getAt(3).getValue();
-                            var valuePhoneNumber = form.getAt(4).getValue();
-                            var valueAddress = form.getAt(5).getValue();
-                            var valueCategory = form.getAt(7).getValue();
-                            var valueCustomerId = form.getAt(6).getValue();
-                            var valueEmailAddress = form.getAt(8).getValue();
-                            var valueCity = form.getAt(9).getValue();
-                            var valuePicture = form.getAt(12).getValue();
-                            var valueState = form.getAt(10).getValue();
-                            var valueZipcode = form.getAt(11).getValue();
-                            //var values = form.getValues();
-                            console.log('valueCustomerId : ' + valueCustomerId);
-                            console.log('valueBusinessName : ' + valueBusinessName);
-                            console.log('valueCategory : ' + valueCategory);
-                            console.log('valuePhoneNumber : ' + valuePhoneNumber);
-                            console.log('valueAddress : ' + valueAddress);
-                            console.log('valueEmailAddress : ' + valueEmailAddress);
-                            console.log('valueZipcode : ' + valueZipcode);
-                            console.log('valueState : ' + valueState);
-                            console.log('valueCity : ' + valueCity);
-                            console.log('valuePicture : ' + valuePicture);
+                            /*var valueBusinessName = form.getAt(3).getValue();
+							var valuePhoneNumber = form.getAt(4).getValue();
+							var valueAddress = form.getAt(5).getValue();
+							var valueCategory = form.getAt(7).getValue();
+							var valueCustomerId = form.getAt(6).getValue();
+							var valueEmailAddress = form.getAt(8).getValue();
+							var valueCity = form.getAt(9).getValue();
+							var valuePicture = form.getAt(12).getValue();
+							var valueState = form.getAt(10).getValue();
+							var valueZipcode = form.getAt(11).getValue();
+
+							//var values = form.getValues();
+
+							console.log('valueCustomerId : ' + valueCustomerId);
+							console.log('valueBusinessName : ' + valueBusinessName);
+							console.log('valueCategory : ' + valueCategory);
+							console.log('valuePhoneNumber : ' + valuePhoneNumber);
+							console.log('valueAddress : ' + valueAddress);
+
+
+							console.log('valueEmailAddress : ' + valueEmailAddress);
+							console.log('valueZipcode : ' + valueZipcode);
+							console.log('valueState : ' + valueState);
+							console.log('valueCity : ' + valueCity);
+							console.log('valuePicture : ' + valuePicture);*/
                             form.submit({
                                 url: 'http://services.appsonmobile.com/stores/04',
-                                body: {
-                                    'CustomerId': valueCustomerId,
-                                    'BusinessName': valueBusinessName,
-                                    'Category': valueCategory,
-                                    'phoneNumber': valuePhoneNumber,
-                                    'address': valueAddress,
-                                    'email': valueEmailAddress,
-                                    'zipcode': valueZipcode,
-                                    'state': valueState,
-                                    'city': valueCity,
-                                    'pictureURL': valuePicture
-                                },
+                                /*params: {
+
+								'CustomerId' : valueCustomerId,
+								'BusinessName' : valueBusinessName,
+								'Category' :     valueCategory,
+								'phoneNumber' : valuePhoneNumber,
+								'address' : valueAddress,
+								'email' : valueEmailAddress,
+								'zipcode' : valueZipcode,
+								'state' : valueState,
+								'city' : valueCity,
+								'pictureURL' : valuePicture
+								},*/
                                 success: function(form, action) {
                                     console.log('Success');
                                 },
