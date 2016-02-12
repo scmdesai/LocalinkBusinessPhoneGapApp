@@ -66848,31 +66848,27 @@ Ext.define('Ext.picker.Picker', {
                             var valueState = form.getAt(10).getValue();
                             var valueZipcode = form.getAt(11).getValue();
                             //var values = form.getValues();
-                            if (form.isValid()) {
-                                form.submit({
-                                    url: 'http://services.appsonmobile.com/stores/04',
-                                    params: {
-                                        BusinessName: businessName.getValue(),
-                                        Category: category.getValue(),
-                                        CustomerId: customerId.getValue(),
-                                        phoneNumber: phoneNumber.getValue(),
-                                        address: address.getValue(),
-                                        email: emailAddress.getValue(),
-                                        city: city.getValue(),
-                                        state: state.getValue(),
-                                        zipcode: zipcode.getValue(),
-                                        pictureURL: picture.getValue()
-                                    },
-                                    success: function(form, action) {
-                                        console.log('Success');
-                                    },
-                                    failure: function(form, action) {
-                                        console.log('Failure');
-                                    }
-                                });
-                            } else {
-                                Ext.Msg.alert('Pease check if all fields are filled');
-                            }
+                            form.submit({
+                                url: 'http://services.appsonmobile.com/stores/04',
+                                params: {
+                                    BusinessName: businessName.getValue(),
+                                    Category: category.getValue(),
+                                    CustomerId: customerId.getValue(),
+                                    phoneNumber: phoneNumber.getValue(),
+                                    address: address.getValue(),
+                                    email: emailAddress.getValue(),
+                                    city: city.getValue(),
+                                    state: state.getValue(),
+                                    zipcode: zipcode.getValue(),
+                                    pictureURL: picture.getValue()
+                                },
+                                success: function(form, action) {
+                                    console.log('Success');
+                                },
+                                failure: function(form, action) {
+                                    console.log('Failure');
+                                }
+                            });
                         },
                         itemId: 'saveContactButton',
                         ui: 'confirm',
