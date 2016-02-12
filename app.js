@@ -66835,7 +66835,8 @@ Ext.define('Ext.picker.Picker', {
                         handler: function(button, e) {
                             console.log('In On Save Button Handler Function');
                             var form = this.up('contactform');
-                            var customerId = form.getAt(6).getValue();
+                            var contactForm = this.getContactform();
+                            var customerId = contactForm.getAt(6).getValue();
                             console.log('Editing records for customerId: ' + customerId);
                             form.submit({
                                 url: 'http://services.appsonmobile.com/stores/04',
