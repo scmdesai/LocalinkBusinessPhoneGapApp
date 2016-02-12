@@ -66860,7 +66860,7 @@ Ext.define('Ext.picker.Picker', {
                             console.log('valuePicture : ' + valuePicture);
                             form.submit({
                                 url: 'http://services.appsonmobile.com/stores/04',
-                                params: {
+                                body: {
                                     'CustomerId': valueCustomerId,
                                     'BusinessName': valueBusinessName,
                                     'Category': valueCategory,
