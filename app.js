@@ -66838,7 +66838,7 @@ Ext.define('Ext.picker.Picker', {
                             var customerId = form.getRecord().get('customerId');
                             console.log('Editing records for customerId: ' + customerId);
                             form.submit({
-                                url: 'http://services.appsonmobile.com/stores/04',
+                                url: 'http://services.appsonmobile.com/stores/' + customerId,
                                 success: function(form, action) {
                                     Ext.Msg.alert('Success');
                                 },
