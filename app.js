@@ -66911,7 +66911,7 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'textfield',
                 html: '',
-                itemId: 'BusinessName',
+                itemId: 'businessName',
                 margin: '20px 0 0 0',
                 label: 'Business Name',
                 labelAlign: 'top',
@@ -67052,7 +67052,7 @@ Ext.define('Ext.picker.Picker', {
         console.log('Inside Form Panel');
         if (record) {
             this.child('contactpic').setData(record.data);
-            this.down('#BusinessName').setValue(record.data.businessName);
+            this.down('#businessName').setValue(record.data.businessName);
             this.down('#phoneNumber').setValue(record.data.phoneNumber);
             this.down('#address').setValue(record.data.address);
         }
