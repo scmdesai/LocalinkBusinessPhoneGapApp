@@ -67021,14 +67021,14 @@ Ext.define('Ext.picker.Picker', {
     },
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
-        console.log('Inside Form Panel');
+        console.log('Customer ID is ' + record.data.CustomerId);
         if (record) {
             this.child('contactpic').setData(record.data);
             this.down('#businessName').setValue(record.data.businessName);
             this.down('#phoneNumber').setValue(record.data.phoneNumber);
             this.down('#address').setValue(record.data.address);
-            this.down('#customerId').setValue(record.data.customerId);
-            this.down('#category').setValue(record.data.category);
+            this.down('#CustomerId').setValue(record.data.customerId);
+            this.down('#Category').setValue(record.data.category);
             this.down('#email').setValue(record.data.emailAddress);
             this.down('#city').setValue(record.data.city);
             this.down('#state').setValue(record.data.state);
