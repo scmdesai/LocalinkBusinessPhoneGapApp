@@ -66851,16 +66851,16 @@ Ext.define('Ext.picker.Picker', {
                             form.submit({
                                 url: 'http://services.appsonmobile.com/stores/04',
                                 params: {
-                                    BusinessName: form.getAt(3).getValue(),
-                                    Category: form.getAt(7).getValue(),
-                                    CustomerId: form.getAt(6).getValue(),
-                                    phoneNumber: form.getAt(4).getValue(),
-                                    address: form.getAt(5).getValue(),
-                                    email: form.getAt(8).getValue(),
-                                    city: form.getAt(9).getValue(),
-                                    state: form.getAt(10).getValue(),
-                                    zipcode: form.getAt(11).getValue(),
-                                    pictureURL: form.getAt(12).getValue()
+                                    BusinessName: valueBusinessName,
+                                    Category: valueCategory,
+                                    CustomerId: valueCustomerId,
+                                    phoneNumber: valuePhoneNumber,
+                                    address: valueAddress,
+                                    email: valueEmailAddress,
+                                    city: valueCity,
+                                    state: valueState,
+                                    zipcode: valueZipcode,
+                                    pictureURL: valuePicture
                                 },
                                 success: function(form, action) {
                                     console.log('Success');
