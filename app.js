@@ -66912,11 +66912,12 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'textfield',
                 html: '',
-                itemId: 'businessName',
+                itemId: 'BusinessName',
                 margin: '20px 0 0 0',
                 label: 'Business Name',
                 labelAlign: 'top',
                 labelWrap: true,
+                name: 'BusinessName',
                 required: true
             },
             {
@@ -66926,6 +66927,7 @@ Ext.define('Ext.picker.Picker', {
                 label: 'Phone Number',
                 labelAlign: 'top',
                 labelWrap: true,
+                name: 'phoneNumber',
                 required: true
             },
             {
@@ -66934,22 +66936,23 @@ Ext.define('Ext.picker.Picker', {
                 itemId: 'address',
                 label: 'Address',
                 labelAlign: 'top',
+                name: 'address',
                 required: true
             },
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'customerId'
+                name: 'CustomerId'
             },
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'category'
+                name: 'Category'
             },
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'emailAddress'
+                name: 'email'
             },
             {
                 xtype: 'textfield',
@@ -66968,7 +66971,7 @@ Ext.define('Ext.picker.Picker', {
             },
             {
                 xtype: 'hiddenfield',
-                name: 'picture'
+                name: 'pictureURL'
             }
         ],
         listeners: [
