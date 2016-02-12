@@ -66584,6 +66584,7 @@ Ext.define('Ext.picker.Picker', {
             this.down('#nameTxt').setHtml(name);
             this.down('contactpic').setData(record.data);
         }
+        console.log('CustomerId in info page is ' + customerId);
     }
 }, 0, [
     "contactinfo"
