@@ -67027,8 +67027,8 @@ Ext.define('Ext.picker.Picker', {
             this.down('#businessName').setValue(record.data.businessName);
             this.down('#phoneNumber').setValue(record.data.phoneNumber);
             this.down('#address').setValue(record.data.address);
-            this.down('#CustomerId').setValue(record.data.customerId);
-            this.down('#Category').setValue(record.data.category);
+            this.down('#customerId').setValue(record.data.customerId);
+            this.down('#category').setValue(record.data.category);
             this.down('#email').setValue(record.data.emailAddress);
             this.down('#city').setValue(record.data.city);
             this.down('#state').setValue(record.data.state);
