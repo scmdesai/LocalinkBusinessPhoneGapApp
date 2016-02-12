@@ -66838,7 +66838,6 @@ Ext.define('Ext.picker.Picker', {
                             var form = this.up('contactform');
                             var record = form.getRecord();
                             var customerId = form.getRecord().get('customerId');
-                            form.loadRecord(record);
                             console.log('Editing records for customerId: ' + customerId);
                             form.submit({
                                 url: 'http://services.appsonmobile.com/stores/' + customerId,
@@ -67028,6 +67027,13 @@ Ext.define('Ext.picker.Picker', {
             this.down('#businessName').setValue(record.data.businessName);
             this.down('#phoneNumber').setValue(record.data.phoneNumber);
             this.down('#address').setValue(record.data.address);
+            this.down('#CustomerId').setValue(record.data.customerId);
+            this.down('#Category').setValue(record.data.category);
+            this.down('#email').setValue(record.data.emailAddress);
+            this.down('#city').setValue(record.data.city);
+            this.down('#state').setValue(record.data.state);
+            this.down('#zipcode').setValue(record.data.zipcode);
+            this.down('#pictureURL').setValue(record.data.picture);
         }
     }
 }, 0, [
