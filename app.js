@@ -66348,6 +66348,7 @@ Ext.define('Ext.picker.Picker', {
                     //console.log(view.getData());
                     //Ext.Viewport.setActiveItem(view);
                     var storeUserDetails = Ext.getStore('UserDetails');
+                    storeUserDetails.removeAll();
                     storeUserDetails.add({
                         'customerId': record.get('customerId'),
                         'email': email,
