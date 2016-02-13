@@ -67698,15 +67698,13 @@ Ext.define('Ext.picker.Picker', {
 						Ext.Viewport.setActiveItem(view);*/
                             var myForm = this.up('DealsPanel');
                             myForm.submit({
-                                url: 'http://services.appsonmobile.com/deals/8d65c9d0-d01f-11e5-8b44-7d9a6e25ad81',
-                                success: function(response, eOpts) {
-                                    response = Ext.decode(response.responseText);
-                                    if (response.success === true) {
-                                        Ext.Msg.alert('Success');
-                                    }
+                                url: 'http://services.appsonmobile.com/deals/95c44a00-d21a-11e5-bdc4-e13397eb4787',
+                                success: function(form, action) {
+                                    Ext.Msg.alert('Success');
                                 },
-                                failure: function(response, eOpts) {
+                                failure: function(form, action) {
                                     Ext.Msg.alert('Failure');
+                                    console.log(action.response.responseText);
                                 }
                             });
                         },
