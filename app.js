@@ -67812,10 +67812,10 @@ Ext.define('Ext.picker.Picker', {
                 handler: function(button, e) {
                     var form = this.up('uploadDealForm');
                     form.submit({
-                        success: function() {
+                        success: function(form, action) {
                             Ext.Msg.alert('Success');
                         },
-                        failure: function() {
+                        failure: function(form, action) {
                             Ext.Msg.alert('Failed');
                         }
                     });
