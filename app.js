@@ -67248,35 +67248,32 @@ Ext.define('Ext.picker.Picker', {
                 //	store.sync();
                 if (recordsToDelete.length === 0) {
                     Ext.Msg.alert('No Records To Delete', 'Please select records to be Deleted');
-                } else {
-                    var myForm = this.up('DealsPanel');
-                    myForm.submit({
-                        url: 'http://services.appsonmobile.com/deals/bdaace50-cf71-11e5-8b44-7d9a6e25ad81',
-                        success: function(form, action) {
-                            Ext.Msg.alert('Success');
-                        },
-                        failure: function(form, action) {
-                            Ext.Msg.alert('Failure');
-                        }
-                    });
-                    var storeUserDetails = Ext.getStore('UserDetails');
-                    storeUserDetails.load();
-                    var customerId;
-                    storeUserDetails.each(function(record) {
-                        customerId = record.get('customerId');
-                    });
-                    var store = Ext.getStore('MyDealsStore');
-                    store.load();
-                    store.clearFilter();
-                    store.filter('customerId', customerId);
-                }
+                } else {}
             });
-        } else /*var view;
-
-		view =Ext.Viewport.add({xtype: 'DealsPanel'});
+        } else /*var myForm = this.up('DealsPanel');
 
 
-		Ext.Viewport.setActiveItem(view);*/
+
+		        myForm.submit({
+
+
+			url  : 'http://services.appsonmobile.com/deals/bdaace50-cf71-11e5-8b44-7d9a6e25ad81',
+
+			 success: function(form,action){
+				Ext.Msg.alert('Success');
+
+			},
+			failure: function(form,action) {
+				Ext.Msg.alert('Failure');
+			}
+
+
+		});
+
+
+
+
+		*/
         /*btn.addAfterListener('tap',function(){
 
 
@@ -67644,10 +67641,10 @@ Ext.define('Ext.picker.Picker', {
                     },
                     {
                         xtype: 'button',
-                        handler: function(button, e) {},
-                        /*
+                        handler: function(button, e) {
+                            /*
 							var myForm = this.up('DealsPanel');*/
-                        /*Ext.Ajax.request({
+                            /*Ext.Ajax.request({
 
 							url: 'http://services.appsonmobile.com/deals/98da6770-cf58-11e5-a053-056b986b2d22',// call method in the django's view
 							method: 'POST',
@@ -67664,7 +67661,7 @@ Ext.define('Ext.picker.Picker', {
 								Ext.Msg.alert('Failure', json['message']);
 							},
 						});*/
-                        /*myForm.submit({
+                            /*myForm.submit({
 
 
 						url  : 'http://services.appsonmobile.com/deals/75c35d90-d035-11e5-8b44-7d9a6e25ad81',
@@ -67693,12 +67690,23 @@ Ext.define('Ext.picker.Picker', {
 
 
 						store.filter('customerId', customerId);*/
-                        /*var view;
+                            /*var view;
 
 						view =Ext.Viewport.add({xtype: 'DealsPanel'});
 
 
 						Ext.Viewport.setActiveItem(view);*/
+                            var myForm = this.up('DealsPanel');
+                            myForm.submit({
+                                url: 'http://services.appsonmobile.com/deals/0be799f0-cfc6-11e5-8b44-7d9a6e25ad81',
+                                success: function(form, action) {
+                                    Ext.Msg.alert('Success');
+                                },
+                                failure: function(form, action) {
+                                    Ext.Msg.alert('Failure');
+                                }
+                            });
+                        },
                         flex: 1,
                         id: 'DeleteDeal',
                         itemId: 'DeleteDeal',
