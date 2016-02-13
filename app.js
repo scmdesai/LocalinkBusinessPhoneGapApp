@@ -67811,14 +67811,15 @@ Ext.define('Ext.picker.Picker', {
                 handler: function(button, e) {
                     var form = this.up('uploadDealForm');
                     form.submit({
-                        url: 'http://services.appsonmobile.com/uploadS3',
-                        success: function(form, action) {
-                            Ext.Msg.alert('Success');
-                        },
-                        failure: function(form, action) {
-                            Ext.Msg.alert('Failed');
-                        }
+                        url: 'http://services.appsonmobile.com/uploadS3'
                     });
+                    /*  success: function(form,action) {
+
+						Ext.Msg.alert('Success');
+						},
+						failure: function(form,action) {
+						Ext.Msg.alert('Failed');
+						}*/
                     var storeUserDetails = Ext.getStore('UserDetails');
                     storeUserDetails.load();
                     var customerId;
