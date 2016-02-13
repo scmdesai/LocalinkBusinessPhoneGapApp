@@ -67810,7 +67810,7 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    var form = this.up('UploadDealForm');
+                    var form = this.up('uploadDealForm');
                     form.submit({
                         url: 'http://services.appsonmobile.com/uploadS3',
                         success: function(form, action) {
@@ -67822,23 +67822,32 @@ Ext.define('Ext.picker.Picker', {
                             console.log(action.msg);
                         }
                     });
-                    var storeUserDetails = Ext.getStore('UserDetails');
-                    storeUserDetails.load();
-                    var customerId;
-                    storeUserDetails.each(function(record) {
-                        customerId = record.get('customerId');
-                    });
-                    var store = Ext.getStore('MyDealsStore');
-                    store.sync();
-                    store.load();
-                    store.clearFilter();
-                    store.filter('customerId', customerId);
-                    var view;
-                    view = Ext.Viewport.add({
-                        xtype: 'DealsPanel'
-                    });
-                    Ext.Viewport.setActiveItem(view);
                 },
+                /*var storeUserDetails = Ext.getStore('UserDetails');
+					storeUserDetails.load();
+					var customerId;
+
+					storeUserDetails.each(function(record){
+					customerId = record.get('customerId');
+					});
+
+					var store = Ext.getStore('MyDealsStore');
+					store.sync();
+					store.load();
+
+					store.clearFilter() ;
+
+
+					store.filter('customerId', customerId);
+
+
+					var view;
+
+					view =Ext.Viewport.add({xtype: 'DealsPanel'});
+
+
+
+					Ext.Viewport.setActiveItem(view);*/
                 itemId: 'submit',
                 text: 'Submit'
             },
