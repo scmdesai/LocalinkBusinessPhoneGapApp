@@ -67704,7 +67704,7 @@ Ext.define('Ext.picker.Picker', {
                                 },
                                 failure: function(form, action) {
                                     Ext.Msg.alert('Failure');
-                                    console.log(action.response.responseText);
+                                    console.log(action.response);
                                 }
                             });
                         },
