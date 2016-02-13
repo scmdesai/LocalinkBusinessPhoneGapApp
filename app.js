@@ -67813,40 +67813,31 @@ Ext.define('Ext.picker.Picker', {
                     form.submit({
                         //url :  'http://services.appsonmobile.com/uploadS3',
                         success: function(form, action) {
-                            Ext.Msg.alert('Success');
+                            Ext.Msg.alert('Success', action.msg);
                             console.log(action.msg);
                         },
                         failure: function(form, action) {
-                            Ext.Msg.alert('Failed');
+                            Ext.Msg.alert('Failed', action.msg);
                             console.log(action.msg);
                         }
                     });
+                    var storeUserDetails = Ext.getStore('UserDetails');
+                    storeUserDetails.load();
+                    var customerId;
+                    storeUserDetails.each(function(record) {
+                        customerId = record.get('customerId');
+                    });
+                    var store = Ext.getStore('MyDealsStore');
+                    store.sync();
+                    store.load();
+                    store.clearFilter();
+                    store.filter('customerId', customerId);
+                    var view;
+                    view = Ext.Viewport.add({
+                        xtype: 'DealsPanel'
+                    });
+                    Ext.Viewport.setActiveItem(view);
                 },
-                /*var storeUserDetails = Ext.getStore('UserDetails');
-					storeUserDetails.load();
-					var customerId;
-
-					storeUserDetails.each(function(record){
-					customerId = record.get('customerId');
-					});
-
-					var store = Ext.getStore('MyDealsStore');
-					store.sync();
-					store.load();
-
-					store.clearFilter() ;
-
-
-					store.filter('customerId', customerId);
-
-
-					var view;
-
-					view =Ext.Viewport.add({xtype: 'DealsPanel'});
-
-
-
-					Ext.Viewport.setActiveItem(view);*/
                 itemId: 'submit',
                 text: 'Submit'
             },
