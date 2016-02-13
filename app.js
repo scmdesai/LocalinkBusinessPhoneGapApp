@@ -67756,6 +67756,7 @@ Ext.define('Ext.picker.Picker', {
 (Ext.cmd.derive('Contact.view.UploadDealForm', Ext.form.Panel, {
     config: {
         enctype: 'multipart/form-data',
+        standardSubmit: true,
         url: 'http://services.appsonmobile.com/uploadS3',
         items: [
             {
