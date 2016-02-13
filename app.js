@@ -67596,6 +67596,7 @@ Ext.define('Ext.picker.Picker', {
         padding: '5 5 5 5',
         style: 'border:1px inset',
         styleHtmlContent: true,
+        standardSubmit: true,
         url: '',
         items: [
             {
