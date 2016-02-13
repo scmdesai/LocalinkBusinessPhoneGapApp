@@ -67699,13 +67699,14 @@ Ext.define('Ext.picker.Picker', {
                             var myForm = this.up('DealsPanel');
                             myForm.submit({
                                 url: 'http://services.appsonmobile.com/deals/e97a7140-cfc9-11e5-8b44-7d9a6e25ad81',
-                                success: function(form, action) {
-                                    Ext.Msg.alert('Success');
+                                success: function(response, eOpts) {
+                                    response = Ext.decode(response.responseText);
+                                    if (response.success === true) {
+                                        Ext.Msg.alert('Success');
+                                    }
                                 },
-                                failure: function(form, action) {
+                                failure: function(response, eOpts) {
                                     Ext.Msg.alert('Failure');
-                                    console.log('Failure');
-                                    console.log(action.success);
                                 }
                             });
                         },
