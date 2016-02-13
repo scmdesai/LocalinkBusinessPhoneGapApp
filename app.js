@@ -67518,6 +67518,7 @@ Ext.define('Ext.picker.Picker', {
         storeUserDetails.load();
         var customerId;
         storeUserDetails.each(function(record) {
+            console.log('StoreUserDetails : ' + record.get('customerId'));
             customerId = record.get('customerId');
         });
         //var record = storeUserDetails.findRecord('email','studionafisa@yahoo.com',0,true,false,false);
