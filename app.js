@@ -67517,6 +67517,7 @@ Ext.define('Ext.picker.Picker', {
         var storeUserDetails = Ext.getStore('UserDetails');
         storeUserDetails.load();
         var customerId;
+        console.log('StoreUserDetails Length :' + storeUserDetails.getAllCount());
         storeUserDetails.each(function(record) {
             console.log('StoreUserDetails : ' + record.get('customerId'));
             customerId = record.get('customerId');
