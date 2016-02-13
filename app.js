@@ -66849,9 +66849,11 @@ Ext.define('Ext.picker.Picker', {
                                 url: 'http://services.appsonmobile.com/stores/' + customerId,
                                 success: function(form, action) {
                                     Ext.Msg.alert('Success');
+                                    console.log(action.msg);
                                 },
                                 failure: function(form, action) {
                                     Ext.Msg.alert('Failure');
+                                    console.log(action.msg);
                                 }
                             });
                         },
@@ -67704,7 +67706,7 @@ Ext.define('Ext.picker.Picker', {
                                 },
                                 failure: function(form, action) {
                                     Ext.Msg.alert('Failure');
-                                    console.log(action.response);
+                                    console.log(action.msg);
                                 }
                             });
                         },
