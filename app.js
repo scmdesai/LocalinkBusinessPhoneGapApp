@@ -67493,7 +67493,7 @@ Ext.define('Ext.picker.Picker', {
 		        actionSheet.show();*/
         Ext.Viewport.getActiveItem().destroy();
         var view = Ext.Viewport.add({
-                xtype: 'uploadDealForm'
+                xtype: 'UploadDealForm'
             });
         Ext.Viewport.setActiveItem(view);
     },
