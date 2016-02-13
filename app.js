@@ -67810,14 +67810,16 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    var form = this.up('uploadDealForm');
+                    var form = this.up('UploadDealForm');
                     form.submit({
                         url: 'http://services.appsonmobile.com/uploadS3',
                         success: function(form, action) {
                             Ext.Msg.alert('Success');
+                            console.log(action.msg);
                         },
                         failure: function(form, action) {
                             Ext.Msg.alert('Failed');
+                            console.log(action.msg);
                         }
                     });
                     var storeUserDetails = Ext.getStore('UserDetails');
