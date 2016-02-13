@@ -66835,7 +66835,6 @@ Ext.define('Ext.picker.Picker', {
                     {
                         xtype: 'button',
                         handler: function(button, e) {
-                            console.log('In On Save Button Handler Function');
                             var form = this.up('contactform');
                             var record = form.getRecord();
                             var customerId = form.getRecord().get('customerId');
@@ -66846,7 +66845,6 @@ Ext.define('Ext.picker.Picker', {
                             form.getComponent('state').setValue(form.getRecord().get('state'));
                             form.getComponent('zipcode').setValue(form.getRecord().get('zipcode'));
                             form.getComponent('pictureURL').setValue(form.getRecord().get('picture'));
-                            console.log('Editing records for customerId: ' + customerId);
                             form.submit({
                                 url: 'http://services.appsonmobile.com/stores/' + customerId,
                                 success: function(form, action) {
@@ -67253,7 +67251,7 @@ Ext.define('Ext.picker.Picker', {
                 } else {
                     var myForm = this.up('DealsPanel');
                     myForm.submit({
-                        url: 'http://services.appsonmobile.com/deals/92237a20-d039-11e5-8b44-7d9a6e25ad81',
+                        url: 'http://services.appsonmobile.com/deals/7d17f4f0-d019-11e5-8b44-7d9a6e25ad81',
                         success: function() {
                             Ext.Msg.alert('Success');
                         },
@@ -67414,7 +67412,6 @@ Ext.define('Ext.picker.Picker', {
         delete form.referrer;
     },
     onBackFromDealsPanelTap: function(button, e, eOpts) {
-        console.log("Inside DealsPanelBack");
         var ds = Ext.StoreManager.lookup('MyJsonPStore');
         ds.clearFilter();
         var dealRecord = this.getContactinfo().getRecord();
@@ -67514,18 +67511,13 @@ Ext.define('Ext.picker.Picker', {
         window.plugins.socialsharing.share('Hi!Check out the latest deal from ' + record.customerId, null, null, record.dealPictureURL);
     },
     onManageDealsTap: function(button, e, eOpts) {
-        console.log('Manage Button pressed');
         var storeUserDetails = Ext.getStore('UserDetails');
         storeUserDetails.load();
         var customerId;
-        console.log('StoreUserDetails Length :' + storeUserDetails.getAllCount());
         storeUserDetails.each(function(record) {
             console.log('StoreUserDetails : ' + record.get('customerId'));
             customerId = record.get('customerId');
         });
-        //var record = storeUserDetails.findRecord('email','studionafisa@yahoo.com',0,true,false,false);
-        //var customerId = record.get('customerId');//this.getRecord().get('customerId');
-        //console.log(customerId);
         var store = Ext.getStore('MyDealsStore');
         store.load();
         store.clearFilter();
@@ -67756,7 +67748,6 @@ Ext.define('Ext.picker.Picker', {
 (Ext.cmd.derive('Contact.view.UploadDealForm', Ext.form.Panel, {
     config: {
         enctype: 'multipart/form-data',
-        standardSubmit: true,
         url: 'http://services.appsonmobile.com/uploadS3',
         items: [
             {
