@@ -67597,7 +67597,6 @@ Ext.define('Ext.picker.Picker', {
         minHeight: '100%',
         padding: '5 5 5 5',
         style: 'border:1px inset',
-        multipartDetection: false,
         url: '',
         items: [
             {
