@@ -67252,7 +67252,7 @@ Ext.define('Ext.picker.Picker', {
                     var myForm = this.up('DealsPanel');
                     myForm.submit({
                         url: 'http://services.appsonmobile.com/deals/bdaace50-cf71-11e5-8b44-7d9a6e25ad81',
-                        success: function() {
+                        success: function(form, action) {
                             Ext.Msg.alert('Success');
                         },
                         failure: function(form, action) {
@@ -67599,7 +67599,6 @@ Ext.define('Ext.picker.Picker', {
         padding: '5 5 5 5',
         style: 'border:1px inset',
         styleHtmlContent: true,
-        standardSubmit: true,
         url: '',
         items: [
             {
