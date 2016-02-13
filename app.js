@@ -67809,7 +67809,7 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    var form = this.up('uploadDealForm');
+                    var form = this.up('UploadDealForm');
                     form.submit({
                         //url :  'http://services.appsonmobile.com/uploadS3',
                         success: function(form, action) {
@@ -67863,21 +67863,21 @@ Ext.define('Ext.picker.Picker', {
         ]
     }
 }, 0, [
-    "uploadDealForm"
+    "UploadDealForm"
 ], [
     "component",
     "container",
     "panel",
     "formpanel",
-    "uploadDealForm"
+    "UploadDealForm"
 ], {
     "component": true,
     "container": true,
     "panel": true,
     "formpanel": true,
-    "uploadDealForm": true
+    "UploadDealForm": true
 }, [
-    "widget.uploadDealForm"
+    "widget.UploadDealForm"
 ], 0, [
     Contact.view,
     'UploadDealForm'
