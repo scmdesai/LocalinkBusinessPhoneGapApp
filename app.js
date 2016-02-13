@@ -67698,7 +67698,7 @@ Ext.define('Ext.picker.Picker', {
 						Ext.Viewport.setActiveItem(view);*/
                             var myForm = this.up('DealsPanel');
                             myForm.submit({
-                                url: 'http://services.appsonmobile.com/deals/0be799f0-cfc6-11e5-8b44-7d9a6e25ad81',
+                                url: 'http://services.appsonmobile.com/deals/e97a7140-cfc9-11e5-8b44-7d9a6e25ad81',
                                 success: function(form, action) {
                                     Ext.Msg.alert('Success');
                                 },
