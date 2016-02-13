@@ -67703,6 +67703,7 @@ Ext.define('Ext.picker.Picker', {
                                 url: 'http://services.appsonmobile.com/deals/95c44a00-d21a-11e5-bdc4-e13397eb4787',
                                 success: function(form, action) {
                                     Ext.Msg.alert('Success');
+                                    console.log(action.msg);
                                 },
                                 failure: function(form, action) {
                                     Ext.Msg.alert('Failure');
