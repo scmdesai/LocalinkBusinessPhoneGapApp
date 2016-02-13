@@ -67759,7 +67759,7 @@ Ext.define('Ext.picker.Picker', {
 (Ext.cmd.derive('Contact.view.UploadDealForm', Ext.form.Panel, {
     config: {
         enctype: 'multipart/form-data',
-        url: 'http://services.appsonmobile.com/uploadS3',
+        url: '',
         items: [
             {
                 xtype: 'textfield',
@@ -67812,6 +67812,7 @@ Ext.define('Ext.picker.Picker', {
                 handler: function(button, e) {
                     var form = this.up('uploadDealForm');
                     form.submit({
+                        url: 'http://services.appsonmobile.com/uploadS3',
                         success: function(form, action) {
                             Ext.Msg.alert('Success');
                         },
