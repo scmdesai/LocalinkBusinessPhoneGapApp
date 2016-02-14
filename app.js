@@ -67234,46 +67234,25 @@ Ext.define('Ext.picker.Picker', {
             var customerId;
             var checkboxes = document.getElementsByName('checkbox');
             checkboxes[index].addEventListener('change', function() {
-                //console.log('Checkbox Changed' + index);
                 if (checkboxes[index].checked) {
-                    //record.dirty= true;
-                    // console.log(recordsToDelete.length);
                     recordsToDelete.push(record);
                     itemNames[i++] = record.get('itemName');
-                    console.log('Checkbox clicked for item Name ' + record.get('itemName'));
                 } else {
-                    //
-                    // record.dirty= false;
                     Ext.Array.remove(recordsToDelete, record);
                     Ext.Array.remove(itemNames, record.get('itemName'));
                 }
             });
-            //console.log(recordsToDelete.length);
-            /*for(var i=0;i<recordsToDelete.length;i++) {
-
-					console.log('itemName is: ' + itemNames[i]);
-				}*/
             var btn = Ext.getCmp('DeleteDeal');
             btn.addListener('tap', function() {
-                //	store.remove(recordsToDelete);
-                //	store.sync();
-                /* if(recordsToDelete.length===0){
-
-			  Ext.Msg.alert('No Records To Delete', 'Please select records to be Deleted');
-
-		  }
-
-
-		 else {*/
                 for (var j = 0; j < itemNames.length; j++) {
                     var myForm = this.up('DealsPanel');
                     myForm.submit({
                         url: 'http://services.appsonmobile.com/deals/' + itemNames[j],
                         success: function(form, action) {
-                            Ext.Msg.alert('Success');
+                            Ext.Msg.alert('Success', action.msg);
                         },
                         failure: function(form, action) {
-                            Ext.Msg.alert('Failure');
+                            Ext.Msg.alert('Failure', action.msg);
                         }
                     });
                 }
