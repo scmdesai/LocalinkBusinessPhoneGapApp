@@ -65984,7 +65984,7 @@ Ext.define('Ext.picker.Picker', {
                 name: 'dealPictureURL'
             },
             {
-                name: 'id',
+                name: 'itemName',
                 type: 'int'
             }
         ]
@@ -67230,6 +67230,7 @@ Ext.define('Ext.picker.Picker', {
             var el = dataview.getParent();
             Ext.Viewport.setActiveItem(el);
             var recordsToDelete = [];
+            var itemNames = [];
             var customerId;
             var checkboxes = document.getElementsByName('checkbox');
             checkboxes[index].addEventListener('change', function() {
@@ -67243,6 +67244,9 @@ Ext.define('Ext.picker.Picker', {
                     // record.dirty= false;
                     Ext.Array.remove(recordsToDelete, record);
                 }
+                for (var i = 0; i < recordsToDelete.length; i++) {
+                    itemNames[i] = recordsToDelete[i].itemName;
+                }
             });
             var btn = Ext.getCmp('DeleteDeal');
             btn.addListener('tap', function() {
@@ -67250,33 +67254,22 @@ Ext.define('Ext.picker.Picker', {
                 //	store.sync();
                 if (recordsToDelete.length === 0) {
                     Ext.Msg.alert('No Records To Delete', 'Please select records to be Deleted');
-                } else {}
+                } else {
+                    for (var itemName in itemNames) {
+                        var myForm = this.up('DealsPanel');
+                        myForm.submit({
+                            url: 'http://services.appsonmobile.com/deals/' + itemName,
+                            success: function(form, action) {
+                                Ext.Msg.alert('Success');
+                            },
+                            failure: function(form, action) {
+                                Ext.Msg.alert('Failure');
+                            }
+                        });
+                    }
+                }
             });
-        } else /*var myForm = this.up('DealsPanel');
-
-
-
-		        myForm.submit({
-
-
-			url  : 'http://services.appsonmobile.com/deals/bdaace50-cf71-11e5-8b44-7d9a6e25ad81',
-
-			 success: function(form,action){
-				Ext.Msg.alert('Success');
-
-			},
-			failure: function(form,action) {
-				Ext.Msg.alert('Failure');
-			}
-
-
-		});
-
-
-
-
-		*/
-        /*btn.addAfterListener('tap',function(){
+        } else /*btn.addAfterListener('tap',function(){
 
 
 
@@ -67642,10 +67635,10 @@ Ext.define('Ext.picker.Picker', {
                     },
                     {
                         xtype: 'button',
-                        handler: function(button, e) {
-                            /*
+                        handler: function(button, e) {},
+                        /*
 							var myForm = this.up('DealsPanel');*/
-                            /*Ext.Ajax.request({
+                        /*Ext.Ajax.request({
 
 							url: 'http://services.appsonmobile.com/deals/98da6770-cf58-11e5-a053-056b986b2d22',// call method in the django's view
 							method: 'POST',
@@ -67662,7 +67655,7 @@ Ext.define('Ext.picker.Picker', {
 								Ext.Msg.alert('Failure', json['message']);
 							},
 						});*/
-                            /*myForm.submit({
+                        /*myForm.submit({
 
 
 						url  : 'http://services.appsonmobile.com/deals/75c35d90-d035-11e5-8b44-7d9a6e25ad81',
@@ -67691,25 +67684,33 @@ Ext.define('Ext.picker.Picker', {
 
 
 						store.filter('customerId', customerId);*/
-                            /*var view;
+                        /*var view;
 
 						view =Ext.Viewport.add({xtype: 'DealsPanel'});
 
 
 						Ext.Viewport.setActiveItem(view);*/
-                            var myForm = this.up('DealsPanel');
-                            myForm.submit({
-                                url: 'http://services.appsonmobile.com/deals/5860bff0-d043-11e5-8b44-7d9a6e25ad81',
-                                success: function(form, action) {
-                                    Ext.Msg.alert('Success');
-                                    console.log(action.msg);
-                                },
-                                failure: function(form, action) {
-                                    Ext.Msg.alert('Failure');
-                                    console.log(action.msg);
-                                }
-                            });
-                        },
+                        /*var myForm = this.up('DealsPanel');
+
+
+
+						myForm.submit({
+
+
+						url  : 'http://services.appsonmobile.com/deals/5860bff0-d043-11e5-8b44-7d9a6e25ad81',
+
+						success: function(form,action){
+						Ext.Msg.alert('Success');
+						console.log(action.msg);
+
+						},
+						failure: function(form,action) {
+						Ext.Msg.alert('Failure');
+						console.log(action.msg);
+						}
+
+
+						});*/
                         flex: 1,
                         id: 'DeleteDeal',
                         itemId: 'DeleteDeal',
