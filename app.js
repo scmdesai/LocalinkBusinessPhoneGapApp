@@ -67239,6 +67239,7 @@ Ext.define('Ext.picker.Picker', {
                     //record.dirty= true;
                     // console.log(recordsToDelete.length);
                     recordsToDelete.push(record);
+                    console.log('Checkbox clicked for item Name' + record.itemName);
                 } else {
                     //console.log(recordsToDelete.length);
                     // record.dirty= false;
