@@ -67224,12 +67224,12 @@ Ext.define('Ext.picker.Picker', {
         }
     },
     onListOfDealsItemTap: function(dataview, index, target, record, e, eOpts) {
+        var recordsToDelete = [];
+        var itemNames = [];
         if (e.target.type === 'checkbox') {
             var store = Ext.getStore('MyDealsStore');
             var el = dataview.getParent();
             Ext.Viewport.setActiveItem(el);
-            var recordsToDelete = [];
-            var itemNames = [];
             var customerId;
             var checkboxes = document.getElementsByName('checkbox');
             checkboxes[index].addEventListener('change', function() {
