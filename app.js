@@ -67266,6 +67266,7 @@ Ext.define('Ext.picker.Picker', {
 
 		 else {*/
                 for (var itemName in itemNames) {
+                    console.log(itemName);
                     var myForm = this.up('DealsPanel');
                     myForm.submit({
                         url: 'http://services.appsonmobile.com/deals/' + itemName,
