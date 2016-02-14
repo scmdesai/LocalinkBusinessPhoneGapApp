@@ -67239,14 +67239,16 @@ Ext.define('Ext.picker.Picker', {
                     //record.dirty= true;
                     // console.log(recordsToDelete.length);
                     recordsToDelete.push(record);
-                    itemNames[i++] = record.get('itemName');
+                    //itemNames[i++]= record.get('itemName');
                     console.log('Checkbox clicked for item Name ' + record.get('itemName'));
                 } else {
                     //
                     // record.dirty= false;
                     Ext.Array.remove(recordsToDelete, record);
                 }
-                console.log(recordsToDelete.length);
+                for (var j = 0; j < recordsToDelete.length; j++) {
+                    itemNames[i++] = recordsToDelete[j].get('itemName');
+                }
             });
             //console.log(recordsToDelete.length);
             /*for(var i=0;i<recordsToDelete.length;i++) {
