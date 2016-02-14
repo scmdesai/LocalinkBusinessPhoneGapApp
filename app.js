@@ -67226,6 +67226,7 @@ Ext.define('Ext.picker.Picker', {
     onListOfDealsItemTap: function(dataview, index, target, record, e, eOpts) {
         var recordsToDelete = [];
         var itemNames = [];
+        var i = 0;
         if (e.target.type === 'checkbox') {
             var store = Ext.getStore('MyDealsStore');
             var el = dataview.getParent();
@@ -67239,15 +67240,15 @@ Ext.define('Ext.picker.Picker', {
                     // console.log(recordsToDelete.length);
                     recordsToDelete.push(record);
                     console.log('Checkbox clicked for item Name ' + record.get('itemName'));
-                    console.log(recordsToDelete.length);
-                } else {
+                } else //console.log(recordsToDelete.length);
+                {
                     //console.log(recordsToDelete.length);
                     // record.dirty= false;
                     Ext.Array.remove(recordsToDelete, record);
                 }
             });
+            console.log(recordsToDelete.length);
             for (var i = 0; i < recordsToDelete.length; i++) {
-                itemNames[i] = recordsToDelete[i].itemName;
                 console.log('itemName is: ' + itemNames[i]);
             }
             var btn = Ext.getCmp('DeleteDeal');
