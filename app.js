@@ -65984,8 +65984,7 @@ Ext.define('Ext.picker.Picker', {
                 name: 'dealPictureURL'
             },
             {
-                name: 'itemName',
-                type: 'int'
+                name: 'itemName'
             }
         ]
     }
