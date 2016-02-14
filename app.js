@@ -67265,11 +67265,11 @@ Ext.define('Ext.picker.Picker', {
 
 
 		 else {*/
-                for (var itemName in itemNames) {
-                    console.log(itemName);
+                console.log(itemNames.length);
+                for (var j = 0; j < itemNames.length; j++) {
                     var myForm = this.up('DealsPanel');
                     myForm.submit({
-                        url: 'http://services.appsonmobile.com/deals/' + itemName,
+                        url: 'http://services.appsonmobile.com/deals/' + itemNames[j],
                         success: function(form, action) {
                             Ext.Msg.alert('Success');
                         },
