@@ -67244,11 +67244,11 @@ Ext.define('Ext.picker.Picker', {
                     // record.dirty= false;
                     Ext.Array.remove(recordsToDelete, record);
                 }
-                for (var i = 0; i < recordsToDelete.length; i++) {
-                    itemNames[i] = recordsToDelete[i].itemName;
-                    console.log('itemName is: ' + itemNames[i]);
-                }
             });
+            for (var i = 0; i < recordsToDelete.length; i++) {
+                itemNames[i] = recordsToDelete[i].itemName;
+                console.log('itemName is: ' + itemNames[i]);
+            }
             var btn = Ext.getCmp('DeleteDeal');
             btn.addListener('tap', function() {
                 //	store.remove(recordsToDelete);
