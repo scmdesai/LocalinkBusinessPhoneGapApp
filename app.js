@@ -67811,8 +67811,7 @@ Ext.define('Ext.picker.Picker', {
                 handler: function(button, e) {
                     var form = this.up('UploadDealForm');
                     form.submit({
-                        //url :  'http://services.appsonmobile.com/uploadS3',
-                        waitMsg: 'Uploading Deal',
+                        url: 'http://services.appsonmobile.com/uploadS3',
                         success: function(form, action) {
                             Ext.Msg.alert('Success', action.msg);
                             console.log(action.msg);
