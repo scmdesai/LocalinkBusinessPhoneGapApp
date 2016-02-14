@@ -66847,11 +66847,11 @@ Ext.define('Ext.picker.Picker', {
                             form.submit({
                                 url: 'http://services.appsonmobile.com/stores/' + customerId,
                                 success: function(form, action) {
-                                    Ext.Msg.alert('Success');
+                                    Ext.Msg.alert('Success', action.msg);
                                     console.log(action.msg);
                                 },
                                 failure: function(form, action) {
-                                    Ext.Msg.alert('Failure');
+                                    Ext.Msg.alert('Failure', action.msg);
                                     console.log(action.msg);
                                 }
                             });
