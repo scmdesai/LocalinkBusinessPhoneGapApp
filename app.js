@@ -67242,11 +67242,11 @@ Ext.define('Ext.picker.Picker', {
                     itemNames[i++] = record.get('itemName');
                     console.log('Checkbox clicked for item Name ' + record.get('itemName'));
                 } else {
-                    //console.log(recordsToDelete.length);
+                    //
                     // record.dirty= false;
                     Ext.Array.remove(recordsToDelete, record);
-                    console.log('Checkbox removed for item Name ' + record.get('itemName'));
                 }
+                console.log(recordsToDelete.length);
             });
             //console.log(recordsToDelete.length);
             /*for(var i=0;i<recordsToDelete.length;i++) {
@@ -67265,7 +67265,6 @@ Ext.define('Ext.picker.Picker', {
 
 
 		 else {*/
-                console.log(itemNames.length);
                 for (var j = 0; j < itemNames.length; j++) {
                     var myForm = this.up('DealsPanel');
                     myForm.submit({
