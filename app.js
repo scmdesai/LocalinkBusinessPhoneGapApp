@@ -67239,40 +67239,47 @@ Ext.define('Ext.picker.Picker', {
                     //record.dirty= true;
                     // console.log(recordsToDelete.length);
                     recordsToDelete.push(record);
+                    itemNames[i++] = record.get('itemName');
                     console.log('Checkbox clicked for item Name ' + record.get('itemName'));
-                } else //console.log(recordsToDelete.length);
-                {
+                } else {
                     //console.log(recordsToDelete.length);
                     // record.dirty= false;
                     Ext.Array.remove(recordsToDelete, record);
+                    console.log('Checkbox removed for item Name ' + record.get('itemName'));
                 }
             });
-            console.log(recordsToDelete.length);
-            for (var i = 0; i < recordsToDelete.length; i++) {
-                console.log('itemName is: ' + itemNames[i]);
-            }
+            //console.log(recordsToDelete.length);
+            /*for(var i=0;i<recordsToDelete.length;i++) {
+
+					console.log('itemName is: ' + itemNames[i]);
+				}*/
             var btn = Ext.getCmp('DeleteDeal');
             btn.addListener('tap', function() {
                 //	store.remove(recordsToDelete);
                 //	store.sync();
-                if (recordsToDelete.length === 0) {
-                    Ext.Msg.alert('No Records To Delete', 'Please select records to be Deleted');
-                } else {
-                    for (var itemName in itemNames) {
-                        var myForm = this.up('DealsPanel');
-                        myForm.submit({
-                            url: 'http://services.appsonmobile.com/deals/' + itemName,
-                            success: function(form, action) {
-                                Ext.Msg.alert('Success');
-                            },
-                            failure: function(form, action) {
-                                Ext.Msg.alert('Failure');
-                            }
-                        });
-                    }
+                /* if(recordsToDelete.length===0){
+
+			  Ext.Msg.alert('No Records To Delete', 'Please select records to be Deleted');
+
+		  }
+
+
+		 else {*/
+                for (var itemName in itemNames) {
+                    var myForm = this.up('DealsPanel');
+                    myForm.submit({
+                        url: 'http://services.appsonmobile.com/deals/' + itemName,
+                        success: function(form, action) {
+                            Ext.Msg.alert('Success');
+                        },
+                        failure: function(form, action) {
+                            Ext.Msg.alert('Failure');
+                        }
+                    });
                 }
             });
-        } else /*btn.addAfterListener('tap',function(){
+        } else //}
+        /*btn.addAfterListener('tap',function(){
 
 
 
