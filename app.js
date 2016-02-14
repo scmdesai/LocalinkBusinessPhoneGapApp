@@ -67809,11 +67809,11 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    var form = this.up('UploadDealForm');
-                    form.submit({
+                    var uForm = this.up('UploadDealForm');
+                    uForm.submit({
                         url: 'http://services.appsonmobile.com/uploadS3',
                         success: function(form, action) {
-                            Ext.Msg.alert('Success', action.msg);
+                            Ext.Msg.alert('Success');
                             console.log(action.msg);
                         },
                         failure: function(form, action) {
