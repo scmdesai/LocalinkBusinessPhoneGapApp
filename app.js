@@ -67842,6 +67842,9 @@ Ext.define('Ext.picker.Picker', {
                 value: 'Studio Nafisa'
             }
         ]
+    },
+    hasUpload: function() {
+        return true;
     }
 }, 0, [
     "UploadDealForm"
