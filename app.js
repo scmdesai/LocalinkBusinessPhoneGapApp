@@ -67817,6 +67817,7 @@ Ext.define('Ext.picker.Picker', {
 					}
 					});*/
                     uForm.submit(Ext.Ajax.request({
+                        url: 'http://services.appsonmobile.com/uploadS3',
                         method: 'POST',
                         scope: this,
                         success: function(form, action) {
