@@ -67806,10 +67806,11 @@ Ext.define('Ext.picker.Picker', {
                     console.log(uForm.getAt(2).getValue());
                     console.log(uForm.getAt(3).getValue());
                     console.log(uForm.getAt(4).getValue());
+                    //inputNode.value = fileUpload.value.replace("C:\\fakepath\\", "");
+                    uForm.getAt(4).getValue().replace("C:\\fakepath\\", "");
                     uForm.submit({
                         url: 'http://services.appsonmobile.com/uploadS3',
                         // data: formData,
-                        target: 'iframe',
                         success: function(form, action) {
                             Ext.Msg.alert('Success');
                             console.log(action.msg);
