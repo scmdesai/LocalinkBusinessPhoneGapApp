@@ -67748,6 +67748,7 @@ Ext.define('Ext.picker.Picker', {
 (Ext.cmd.derive('Contact.view.UploadDealForm', Ext.form.Panel, {
     config: {
         enctype: 'multipart/form-data',
+        standardSubmit: true,
         url: 'http://services.appsonmobile.com/uploadS3',
         items: [
             {
@@ -67801,21 +67802,21 @@ Ext.define('Ext.picker.Picker', {
                 handler: function(button, e) {
                     var uForm = this.up('UploadDealForm');
                     //var formData = new FormData(uForm);
-                    console.log(uForm.getAt(0).getValue());
-                    console.log(uForm.getAt(1).getValue());
-                    console.log(uForm.getAt(2).getValue());
-                    console.log(uForm.getAt(3).getValue());
-                    console.log(uForm.getAt(4).getValue());
+                    /*console.log(uForm.getAt(0).getValue());
+					console.log(uForm.getAt(1).getValue());
+					console.log(uForm.getAt(2).getValue());
+					console.log(uForm.getAt(3).getValue());
+					console.log(uForm.getAt(4).getValue());*/
                     uForm.submit({
                         url: 'http://services.appsonmobile.com/uploadS3',
-                        async: false,
+                        target: 'frame',
                         success: function(form, action) {
                             Ext.Msg.alert('Success');
-                            console.log(action.msg);
+                            console.log("Action Msg is : " + action.msg);
                         },
                         failure: function(form, action) {
                             Ext.Msg.alert('Failed', action.msg);
-                            console.log(action.msg);
+                            console.log("Action Msg is : " + action.msg);
                         }
                     });
                     var storeUserDetails = Ext.getStore('UserDetails');
@@ -67847,6 +67848,11 @@ Ext.define('Ext.picker.Picker', {
                 xtype: 'hiddenfield',
                 name: 'BusinessName',
                 value: 'Studio Nafisa'
+            },
+            {
+                xtype: 'hiddenfield',
+                styleHtmlContent: true,
+                name: 'frame'
             }
         ]
     },
