@@ -67800,9 +67800,7 @@ Ext.define('Ext.picker.Picker', {
                 xtype: 'button',
                 handler: function(button, e) {
                     var uForm = this.up('UploadDealForm');
-                    Ext.Ajax.cors = true;
-                    Ext.Ajax.useDefaultXhrHeader = false;
-                    uForm.submit({
+                    Ext.onReady(uForm.submit({
                         url: 'http://services.appsonmobile.com/uploadS3',
                         success: function(form, action) {
                             Ext.Msg.alert('Success');
@@ -67812,7 +67810,7 @@ Ext.define('Ext.picker.Picker', {
                             Ext.Msg.alert('Failed', action.msg);
                             console.log(action.msg);
                         }
-                    });
+                    }));
                     var storeUserDetails = Ext.getStore('UserDetails');
                     storeUserDetails.load();
                     var customerId;
