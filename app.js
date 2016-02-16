@@ -67820,13 +67820,13 @@ Ext.define('Ext.picker.Picker', {
                         url: 'http://services.appsonmobile.com/uploadS3',
                         method: 'POST',
                         scope: this,
-                        success: function(form, action) {
+                        success: function(form, response) {
                             Ext.Msg.alert('Success');
-                            console.log(action.msg);
+                            console.log(response.msg);
                         },
                         failure: function(form, response) {
                             Ext.Msg.alert('Success');
-                            console.log(action.msg);
+                            console.log(response.msg);
                         }
                     }));
                     var storeUserDetails = Ext.getStore('UserDetails');
