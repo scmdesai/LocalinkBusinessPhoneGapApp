@@ -67937,7 +67937,7 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    var uForm = this.up('uploaddealForm');
+                    var uForm = this.getParent().up('uploaddealForm');
                     uForm.submit({
                         url: 'http://services.appsonmobile.com/uploadS3',
                         success: function(form, action) {
