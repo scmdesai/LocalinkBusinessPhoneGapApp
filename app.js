@@ -67801,7 +67801,11 @@ Ext.define('Ext.picker.Picker', {
                 handler: function(button, e) {
                     var uForm = this.up('UploadDealForm');
                     //var formData = new FormData(uForm);
-                    console.log(uForm.getComponent('fileUpload').getData());
+                    console.log(uForm.getAt(0).getValue());
+                    console.log(uForm.getAt(1).getValue());
+                    console.log(uForm.getAt(2).getValue());
+                    console.log(uForm.getAt(3).getValue());
+                    console.log(uForm.getAt(4).getValue());
                     uForm.submit({
                         url: 'http://services.appsonmobile.com/uploadS3',
                         // data: formData,
