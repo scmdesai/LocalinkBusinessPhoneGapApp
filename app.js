@@ -67807,7 +67807,8 @@ Ext.define('Ext.picker.Picker', {
                     console.log(uForm.getAt(3).getValue());
                     console.log(uForm.getAt(4).getValue());
                     //inputNode.value = fileUpload.value.replace("C:\\fakepath\\", "");
-                    uForm.getAt(4).getValue().replace("C:\\fakepath\\", "");
+                    var newValue = uForm.getAt(4).getValue().replace("C:\\fakepath\\", "");
+                    uForm.getAt(4).setValue(newValue);
                     console.log(uForm.getAt(4).getValue());
                     uForm.submit({
                         url: 'http://services.appsonmobile.com/uploadS3',
