@@ -67927,17 +67927,17 @@ Ext.define('Ext.picker.Picker', {
     config: {
         items: [
             {
-                xtype: 'uploadDealForm',
+                xtype: 'UploadDealForm',
                 height: '100%',
                 layout: 'fit',
-                enableSubmissionForm: true,
+                enableSubmissionForm: false,
                 method: 'post',
                 multipartDetection: true
             },
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    var uForm = this.up('uploadDealForm');
+                    var uForm = this.up('uploaddealForm');
                     uForm.submit({
                         url: 'http://services.appsonmobile.com/uploadS3',
                         success: function(form, action) {
