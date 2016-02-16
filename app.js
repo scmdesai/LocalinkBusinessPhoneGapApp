@@ -67844,7 +67844,10 @@ Ext.define('Ext.picker.Picker', {
         ]
     },
     hasUpload: function() {
-        return true;
+        //return true ;
+        return !!this.getFields().findBy(function(f) {
+            return f.isFileUpload();
+        });
     }
 }, 0, [
     "UploadDealForm"
