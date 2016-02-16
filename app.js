@@ -67748,6 +67748,7 @@ Ext.define('Ext.picker.Picker', {
 (Ext.cmd.derive('Contact.view.UploadDealForm', Ext.form.Panel, {
     config: {
         enctype: 'multipart/form-data',
+        standardSubmit: true,
         url: 'http://services.appsonmobile.com/uploadS3',
         items: [
             {
@@ -67800,35 +67801,17 @@ Ext.define('Ext.picker.Picker', {
                 xtype: 'button',
                 handler: function(button, e) {
                     var uForm = this.up('UploadDealForm');
-                    /*uForm.submit({
-
-					url :  'http://services.appsonmobile.com/uploadS3',
-
-
-
-					success: function(form,action) {
-
-					Ext.Msg.alert('Success');
-					console.log(action.msg);
-					},
-					failure: function(form,action) {
-					Ext.Msg.alert('Failed',action.msg);
-					console.log(action.msg);
-					}
-					});*/
-                    uForm.submit(Ext.Ajax.request({
+                    uForm.submit({
                         url: 'http://services.appsonmobile.com/uploadS3',
-                        method: 'POST',
-                        scope: this,
-                        success: function(form, response) {
+                        success: function(form, action) {
                             Ext.Msg.alert('Success');
-                            console.log(response.msg);
+                            console.log(action.msg);
                         },
-                        failure: function(form, response) {
-                            Ext.Msg.alert('Success');
-                            console.log(response.msg);
+                        failure: function(form, action) {
+                            Ext.Msg.alert('Failed', action.msg);
+                            console.log(action.msg);
                         }
-                    }));
+                    });
                     var storeUserDetails = Ext.getStore('UserDetails');
                     storeUserDetails.load();
                     var customerId;
