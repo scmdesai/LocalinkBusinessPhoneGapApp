@@ -67747,6 +67747,7 @@ Ext.define('Ext.picker.Picker', {
  */
 (Ext.cmd.derive('Contact.view.UploadDealForm', Ext.form.Panel, {
     config: {
+        html: '<iframe id="responseframe" width="100%"></iframe>',
         enctype: 'multipart/form-data',
         standardSubmit: true,
         url: 'http://services.appsonmobile.com/uploadS3',
@@ -67801,7 +67802,8 @@ Ext.define('Ext.picker.Picker', {
                 xtype: 'button',
                 handler: function(button, e) {
                     var uForm = this.up('UploadDealForm');
-                    var frame = Ext.get('frame');
+                    var frame = document.getElementById('responseframe');
+                    frame.style.height = frame.parentNode.style.height;
                     //var formData = new FormData(uForm);
                     /*console.log(uForm.getAt(0).getValue());
 					console.log(uForm.getAt(1).getValue());
@@ -67849,10 +67851,6 @@ Ext.define('Ext.picker.Picker', {
                 xtype: 'hiddenfield',
                 name: 'BusinessName',
                 value: 'Studio Nafisa'
-            },
-            {
-                xtype: 'textfield',
-                name: 'frame'
             }
         ]
     },
