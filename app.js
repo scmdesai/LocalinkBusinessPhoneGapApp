@@ -67250,9 +67250,11 @@ Ext.define('Ext.picker.Picker', {
                         url: 'http://services.appsonmobile.com/deals/' + itemNames[j],
                         success: function(form, action) {
                             Ext.Msg.alert('Success', action.msg);
+                            console.log(action.msg);
                         },
                         failure: function(form, action) {
                             Ext.Msg.alert('Failure', action.msg);
+                            console.log(action.msg);
                         }
                     });
                 }
