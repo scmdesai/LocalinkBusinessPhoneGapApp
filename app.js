@@ -67489,6 +67489,7 @@ Ext.define('Ext.picker.Picker', {
             businessName = record.get('businessName');
             view.setRecord(record);
         });
+        var frame = document.createElement('iframe');
         Ext.Viewport.setActiveItem(view);
     },
     onDeleteDealTap: function(button, e, eOpts) {
@@ -67607,10 +67608,23 @@ Ext.define('Ext.picker.Picker', {
                 ]
             },
             {
-                xtype: 'listofdeals',
+                xtype: 'container',
                 docked: 'top',
-                height: '85%',
-                itemCls: 'listofdealsScss'
+                height: '80%',
+                maxHeight: '100%',
+                scrollable: true,
+                layout: {
+                    type: 'vbox',
+                    align: 'stretchmax'
+                },
+                items: [
+                    {
+                        xtype: 'listofdeals',
+                        docked: 'top',
+                        width: '100%',
+                        itemCls: 'listofdealsScss'
+                    }
+                ]
             },
             {
                 xtype: 'container',
