@@ -67841,7 +67841,7 @@ Ext.define('Ext.picker.Picker', {
             },
             {
                 xtype: 'hiddenfield',
-                name: 'CustomerID'
+                name: 'CustID'
             },
             {
                 xtype: 'hiddenfield',
