@@ -66102,7 +66102,7 @@ Ext.define('Ext.picker.Picker', {
         },
         proxy: {
             type: 'jsonp',
-            url: 'http://awseb-e-t-awsebloa-6jvxjux3fp3k-1527799463.us-west-2.elb.amazonaws.com/stores',
+            url: 'http://services.appsonmobile.com/stores',
             reader: {
                 type: 'json'
             }
@@ -66166,7 +66166,7 @@ Ext.define('Ext.picker.Picker', {
         storeId: 'MyDealsStore',
         proxy: {
             type: 'jsonp',
-            url: 'http://awseb-e-t-awsebloa-6jvxjux3fp3k-1527799463.us-west-2.elb.amazonaws.com/deals',
+            url: 'http://services.appsonmobile.com/deals',
             reader: {
                 type: 'json'
             }
@@ -66208,7 +66208,7 @@ Ext.define('Ext.picker.Picker', {
         },
         proxy: {
             type: 'jsonp',
-            url: 'http://awseb-e-t-awsebloa-6jvxjux3fp3k-1527799463.us-west-2.elb.amazonaws.com/stores',
+            url: 'http://services.appsonmobile.com/stores',
             reader: {
                 type: 'json'
             }
