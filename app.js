@@ -67805,7 +67805,7 @@ Ext.define('Ext.picker.Picker', {
                 handler: function(button, e) {
                     var uForm = this.up('UploadDealForm');
                     var frame = document.getElementById('responseframe');
-                    frame.style.height = frame.parentNode.style.height;
+                    //frame.style.height = frame.parentNode.style.height;
                     //var formData = new FormData(uForm);
                     /*console.log(uForm.getAt(0).getValue());
 					console.log(uForm.getAt(1).getValue());
@@ -67824,24 +67824,6 @@ Ext.define('Ext.picker.Picker', {
                             console.log("Action Msg is : " + action.msg);
                         }
                     });
-                    console.log(frame.nodeValue());
-                    console.log(uForm.getElementsByTagName('iframe'));
-                    var storeUserDetails = Ext.getStore('UserDetails');
-                    storeUserDetails.load();
-                    var customerId;
-                    storeUserDetails.each(function(record) {
-                        customerId = record.get('customerId');
-                    });
-                    var store = Ext.getStore('MyDealsStore');
-                    store.sync();
-                    store.load();
-                    store.clearFilter();
-                    store.filter('customerId', customerId);
-                    var view;
-                    view = Ext.Viewport.add({
-                        xtype: 'DealsPanel'
-                    });
-                    Ext.Viewport.setActiveItem(view);
                 },
                 itemId: 'submit',
                 text: 'Submit'
