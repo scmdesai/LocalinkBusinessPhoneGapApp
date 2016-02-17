@@ -66102,7 +66102,7 @@ Ext.define('Ext.picker.Picker', {
         },
         proxy: {
             type: 'jsonp',
-            url: 'http://services.appsonmobile.com/stores',
+            url: 'http://awseb-e-t-awsebloa-6jvxjux3fp3k-1527799463.us-west-2.elb.amazonaws.com/stores',
             reader: {
                 type: 'json'
             }
@@ -66166,7 +66166,7 @@ Ext.define('Ext.picker.Picker', {
         storeId: 'MyDealsStore',
         proxy: {
             type: 'jsonp',
-            url: 'http://services.appsonmobile.com/deals',
+            url: 'http://awseb-e-t-awsebloa-6jvxjux3fp3k-1527799463.us-west-2.elb.amazonaws.com/deals',
             reader: {
                 type: 'json'
             }
@@ -66208,7 +66208,7 @@ Ext.define('Ext.picker.Picker', {
         },
         proxy: {
             type: 'jsonp',
-            url: 'http://services.appsonmobile.com/stores',
+            url: 'http://awseb-e-t-awsebloa-6jvxjux3fp3k-1527799463.us-west-2.elb.amazonaws.com/stores',
             reader: {
                 type: 'json'
             }
@@ -67747,9 +67747,9 @@ Ext.define('Ext.picker.Picker', {
  */
 (Ext.cmd.derive('Contact.view.UploadDealForm', Ext.form.Panel, {
     config: {
-        html: '<iframe id="responseframe" width="100%"></iframe>',
+        html: '<iframe id="responseframe" src="" width="100%"></iframe>',
+        styleHtmlContent: true,
         enctype: 'multipart/form-data',
-        standardSubmit: true,
         url: 'http://services.appsonmobile.com/uploadS3',
         items: [
             {
@@ -67822,6 +67822,8 @@ Ext.define('Ext.picker.Picker', {
                             console.log("Action Msg is : " + action.msg);
                         }
                     });
+                    console.log(frame.nodeValue());
+                    console.log(uForm.getElementsByTagName('iframe'));
                     var storeUserDetails = Ext.getStore('UserDetails');
                     storeUserDetails.load();
                     var customerId;
@@ -67841,16 +67843,6 @@ Ext.define('Ext.picker.Picker', {
                 },
                 itemId: 'submit',
                 text: 'Submit'
-            },
-            {
-                xtype: 'hiddenfield',
-                name: 'CustID',
-                value: '04'
-            },
-            {
-                xtype: 'hiddenfield',
-                name: 'BusinessName',
-                value: 'Studio Nafisa'
             }
         ]
     },
