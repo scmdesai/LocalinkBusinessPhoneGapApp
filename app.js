@@ -66692,7 +66692,7 @@ Ext.define('Ext.picker.Picker', {
         useSimpleItems: false,
         itemTpl: [
             '',
-            '<div style="font-size:20px" >{dealName}<input type="checkbox"  class="checkbox_hidden" name="checkbox" style="zoom:1.5;float:right;" id= "chkbx" ></div>',
+            '<div style="font-size:20px" >{dealName}<input type="checkbox"  class="checkbox_hidden" name="checkbox" style="zoom:2;float:right;" id= "chkbx" ></div>',
             '',
             '',
             '<div style="color:#0000FF;font-size:12px;font-style:italics">{dealStartDate} - {dealEndDate}</div>'
@@ -67611,6 +67611,7 @@ Ext.define('Ext.picker.Picker', {
                 xtype: 'container',
                 docked: 'top',
                 height: '80%',
+                margin: '5 5 5 5',
                 maxHeight: '100%',
                 scrollable: true,
                 layout: {
