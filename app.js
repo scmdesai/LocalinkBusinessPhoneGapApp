@@ -67759,9 +67759,9 @@ Ext.define('Ext.picker.Picker', {
  */
 (Ext.cmd.derive('Contact.view.UploadDealForm', Ext.form.Panel, {
     config: {
-        html: '<iframe id="responseframe" src="" width="100%"></iframe>',
         styleHtmlContent: true,
         enctype: 'multipart/form-data',
+        standardSubmit: true,
         url: 'http://services.appsonmobile.com/uploadS3',
         items: [
             {
@@ -67814,7 +67814,7 @@ Ext.define('Ext.picker.Picker', {
                 xtype: 'button',
                 handler: function(button, e) {
                     var uForm = this.up('UploadDealForm');
-                    var frame = document.getElementById('responseframe');
+                    //var frame = document.getElementById('responseframe');
                     //frame.style.height = frame.parentNode.style.height;
                     //var formData = new FormData(uForm);
                     /*console.log(uForm.getAt(0).getValue());
@@ -67822,9 +67822,11 @@ Ext.define('Ext.picker.Picker', {
 					console.log(uForm.getAt(2).getValue());
 					console.log(uForm.getAt(3).getValue());
 					console.log(uForm.getAt(4).getValue());*/
+                    var frame = document.createElement('iframe');
+                    frame.setAttribute('name', 'frame_x');
+                    uform.setAttribute('target', 'frame_x');
                     uForm.submit({
                         url: 'http://services.appsonmobile.com/uploadS3',
-                        target: frame,
                         success: function(form, action) {
                             Ext.Msg.alert('Success');
                             console.log("Action Msg is : " + action.msg);
