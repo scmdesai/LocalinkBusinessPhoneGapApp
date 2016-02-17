@@ -67826,6 +67826,7 @@ Ext.define('Ext.picker.Picker', {
                     uForm.target = frame;
                     uForm.submit({
                         url: 'http://services.appsonmobile.com/uploadS3',
+                        target: frame,
                         success: function(form, action) {
                             Ext.Msg.alert('Success');
                             console.log("Action Msg is : " + action.msg);
