@@ -67752,6 +67752,7 @@ Ext.define('Ext.picker.Picker', {
         html: '<iframe id="responseframe" src="" width="100%"></iframe>',
         styleHtmlContent: true,
         enctype: 'multipart/form-data',
+        standardSubmit: true,
         url: 'http://services.appsonmobile.com/uploadS3',
         items: [
             {
