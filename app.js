@@ -67824,7 +67824,7 @@ Ext.define('Ext.picker.Picker', {
 					console.log(uForm.getAt(4).getValue());*/
                     var frame = document.createElement('iframe');
                     frame.setAttribute('name', 'frame_x');
-                    uForm.setAttribute('target', 'frame_x');
+                    uForm.target = frame;
                     uForm.submit({
                         url: 'http://services.appsonmobile.com/uploadS3',
                         success: function(form, action) {
