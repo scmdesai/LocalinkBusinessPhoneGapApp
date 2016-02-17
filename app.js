@@ -67613,19 +67613,19 @@ Ext.define('Ext.picker.Picker', {
                 itemCls: 'listofdealsScss'
             },
             {
-                xtype: 'spacer',
-                height: '10%'
-            },
-            {
                 xtype: 'container',
                 docked: 'bottom',
-                layout: 'hbox',
+                margin: '0 5 5 5',
+                layout: {
+                    type: 'hbox',
+                    align: 'stretchmax'
+                },
                 items: [
                     {
                         xtype: 'button',
                         flex: 1,
                         itemId: 'UploadDeal',
-                        ui: 'confirm-small',
+                        ui: 'confirm-round',
                         width: 170,
                         text: 'Upload New Deal'
                     },
@@ -67715,7 +67715,7 @@ Ext.define('Ext.picker.Picker', {
                         flex: 1,
                         id: 'DeleteDeal',
                         itemId: 'DeleteDeal',
-                        ui: 'decline-small',
+                        ui: 'decline-round',
                         text: 'Delete'
                     }
                 ]
@@ -67831,6 +67831,11 @@ Ext.define('Ext.picker.Picker', {
                         xtype: 'button',
                         handler: function(button, e) {
                             Ext.Viewport.getActiveItem().destroy();
+                            var view;
+                            view = Ext.Viewport.add({
+                                xtype: 'DealsPanel'
+                            });
+                            Ext.Viewport.setActiveItem(view);
                         },
                         flex: 10,
                         ui: 'decline-round',
