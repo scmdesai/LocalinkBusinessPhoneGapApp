@@ -67761,7 +67761,6 @@ Ext.define('Ext.picker.Picker', {
     config: {
         styleHtmlContent: true,
         enctype: 'multipart/form-data',
-        standardSubmit: true,
         url: 'http://services.appsonmobile.com/uploadS3',
         items: [
             {
