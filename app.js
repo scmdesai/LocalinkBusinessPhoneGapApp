@@ -66917,14 +66917,13 @@ Ext.define('Ext.picker.Picker', {
                         // The in-line CSS rules are used to resize the image
                         //
                         largeImage.src = imageURI;
-                        largeImage.setHtml('<img src=""" + imageURI + """/>');
                     }
                     // A button will call this function
                     //
                     function capturePhoto() {
                         // Take picture using device camera and retrieve image as base64-encoded string
                         navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
-                            quality: 50,
+                            quality: 40,
                             destinationType: destinationType.DATA_URL
                         });
                     }
