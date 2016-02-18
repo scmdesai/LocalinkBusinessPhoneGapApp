@@ -66960,7 +66960,7 @@ Ext.define('Ext.picker.Picker', {
                 height: '10%',
                 itemId: 'changePicture',
                 maxWidth: '20%',
-                right: '5%',
+                right: '80%',
                 top: '20%',
                 iconCls: 'add'
             }
