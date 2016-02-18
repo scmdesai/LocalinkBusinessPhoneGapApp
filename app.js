@@ -66890,12 +66890,12 @@ Ext.define('Ext.picker.Picker', {
                     });
                     function uploadPhoto(data) {
                         // this is where you would send the image file to server
-                        var form = this.up('contactform');
-                        form.get('contactpic').setValue(data);
+                        var el = Ext.getCmp('contactpic');
+                        el.setHeight('120px');
+                        el.setWidth('160px');
+                        el.setData(data);
                     }
                 },
-                //output image to screen
-                //cameraPic.src = "data:image/jpeg;base64," + data;
                 itemId: 'changePic',
                 iconCls: 'add'
             },
