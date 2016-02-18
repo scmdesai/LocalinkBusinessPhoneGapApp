@@ -66913,12 +66913,12 @@ Ext.define('Ext.picker.Picker', {
                             // pass that file entry over to gotImageURI()
                             updateCameraImages: function(imageURI) {
                                 gImageURI = imageURI;
-                                window.resolveLocalFileSystemURI(imageURI, FileIO.gotImageURI, FileIO.errorHandler);
+                                window.resolveLocalFileSystemURL(imageURI, FileIO.gotImageURI, FileIO.errorHandler);
                             },
                             // pickup the file entry, rename it, and move the file to the app's root directory.
                             // on success run the movedImageSuccess() method
                             gotImageURI: function(fileEntry) {
-                                var picName = gCurrentFlo + ".jpg";
+                                var picName = fileEntry + ".jpg";
                                 fileEntry.moveTo(gFileSystem.root, picName, FileIO.movedImageSuccess, FileIO.errorHandler);
                             },
                             // send the full URI of the moved image to the updateImageSrc() method which does some DOM manipulation
@@ -66963,7 +66963,7 @@ Ext.define('Ext.picker.Picker', {
                         };
                     var el = Ext.get('contactpic');
                     //el.dom.src = "data:image/jpeg;base64," + data ;
-                    el.settHtml('<img src="""+ picURL +""" width="160"/>');
+                    el.setHtml('<img src="""+ picURL +""" width="160"/>');
                 },
                 itemId: 'changePic',
                 iconCls: 'add'
