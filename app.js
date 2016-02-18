@@ -66918,8 +66918,8 @@ Ext.define('Ext.picker.Picker', {
                             // pickup the file entry, rename it, and move the file to the app's root directory.
                             // on success run the movedImageSuccess() method
                             gotImageURI: function(fileEntry) {
-                                var picName = fileEntry + ".jpg";
-                                fileEntry.moveTo(gFileSystem.root, picName, FileIO.movedImageSuccess, FileIO.errorHandler);
+                                var picName;
+                                fileEntry.moveTo(fileSystem.root, picName, FileIO.movedImageSuccess, FileIO.errorHandler);
                             },
                             // send the full URI of the moved image to the updateImageSrc() method which does some DOM manipulation
                             movedImageSuccess: function(fileEntry) {
