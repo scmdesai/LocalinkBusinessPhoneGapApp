@@ -66889,8 +66889,8 @@ Ext.define('Ext.picker.Picker', {
                     });
                     function uploadPhoto(data) {
                         // this is where you would send the image file to server
-                        var el = Ext.get('contactpic');
-                        console.log(el.getHTML());
+                        var el = Ext.getCmp('contactpic');
+                        console.log(el);
                     }
                 },
                 //output image to screen
