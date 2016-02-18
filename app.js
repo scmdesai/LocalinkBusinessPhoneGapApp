@@ -66887,7 +66887,7 @@ Ext.define('Ext.picker.Picker', {
                 handler: function(button, e) {
                     var pictureSource = navigator.camera.PictureSourceType;
                     var destinationType = navigator.camera.DestinationType;
-                    navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
+                    navigator.camera.getPicture(onPhotoDataSuccess, null, {
                         quality: 20,
                         allowEdit: true,
                         destinationType: destinationType.DATA_URL,
