@@ -66888,7 +66888,7 @@ Ext.define('Ext.picker.Picker', {
                     var pic = Ext.get('contactpic');
                     //pic.src = "http://localbuzzapp.s3-website-us-west-2.amazonaws.com/rinarockers.png";
                     var url = "http://localbuzzapp.s3-website-us-west-2.amazonaws.com/rinarockers.png";
-                    pic.setHtml('<img src="http://localbuzzapp.s3-website-us-west-2.amazonaws.com/rinarockers.png"/>');
+                    pic.setHtml('<img src="' + url + '"/>');
                 },
                 /*window.imagePicker.getPictures(function(results) {
 					for (var i = 0; i < results.length; i++) {
