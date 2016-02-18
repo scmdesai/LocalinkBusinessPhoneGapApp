@@ -66409,8 +66409,7 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    var smallImage = document.getElementById('contactpic');
-                    smallImage.style.display = 'block';
+                    console.log(e.callParent().getOwnPropertyNames());
                 },
                 height: '10%',
                 itemId: 'changePic',
