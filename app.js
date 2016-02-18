@@ -66899,8 +66899,8 @@ Ext.define('Ext.picker.Picker', {
                         window.resolveLocalFileSystemURL(data, onSuccess, onError);
                         function onSuccess(fileEntry) {
                             fileEntry.file(function(file) {
-                                console.log('Got the file' + file.localURL);
-                                picURL = file.localURL;
+                                console.log('Got the file' + file.toURL());
+                                picURL = file.toURL();
                             });
                         }
                         function onError() {
@@ -66908,7 +66908,6 @@ Ext.define('Ext.picker.Picker', {
                         }
                         //el.dom.src = "data:image/jpeg;base64," + data ;
                         el.setHtml('<img src="""+ picURL +""" width="160"/>');
-                        console.log(data);
                     }
                 },
                 itemId: 'changePic',
