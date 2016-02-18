@@ -66871,18 +66871,12 @@ Ext.define('Ext.picker.Picker', {
                 ]
             },
             {
-                xtype: 'container',
-                layout: 'vbox',
-                items: [
-                    {
-                        xtype: 'contactpic',
-                        maxWidth: '50%',
-                        layout: {
-                            type: 'vbox',
-                            align: 'start'
-                        }
-                    }
-                ]
+                xtype: 'contactpic',
+                maxWidth: '50%',
+                layout: {
+                    type: 'vbox',
+                    align: 'start'
+                }
             },
             {
                 xtype: 'textfield',
