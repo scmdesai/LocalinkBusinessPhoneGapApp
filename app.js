@@ -66895,17 +66895,19 @@ Ext.define('Ext.picker.Picker', {
                         var el = Ext.get('contactpic');
                         //console.log(pic);
                         //var pic = 'data:image/jpeg;base64' + data;
+                        var picURL;
                         window.resolveLocalFileSystemURL(data, onSuccess, onError);
                         function onSuccess(fileEntry) {
                             fileEntry.file(function(file) {
                                 console.log('Got the file' + file.localURL);
+                                picURL = file.localURL;
                             });
                         }
                         function onError() {
                             console.log('Error getting the file');
                         }
                         //el.dom.src = "data:image/jpeg;base64," + data ;
-                        el.setHtml('<img src="""+ data +""" width="160"/>');
+                        el.setHtml('<img src="""+ picURL +""" width="160"/>');
                         console.log(data);
                     }
                 },
