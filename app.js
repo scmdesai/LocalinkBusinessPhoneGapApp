@@ -66895,7 +66895,7 @@ Ext.define('Ext.picker.Picker', {
                         var el = Ext.get('contactpic');
                         //console.log(pic);
                         //var pic = 'data:image/jpeg;base64' + data;
-                        window.resolveLocalFileSystemURI(data, onSuccess, onError);
+                        window.resolveLocalFileSystemURL(data, onSuccess, onError);
                         function onSuccess() {
                             console.log('Got the file');
                         }
