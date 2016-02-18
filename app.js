@@ -66884,31 +66884,90 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    navigator.camera.getPicture(uploadPhoto, null, {
-                        quality: 60,
-                        height: "100px",
-                        destinationType: navigator.camera.DestinationType.FILE_URI,
-                        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
-                    });
-                    function uploadPhoto(data) {
-                        // this is where you would send the image file to server
-                        var el = Ext.get('contactpic');
-                        //console.log(pic);
-                        //var pic = 'data:image/jpeg;base64' + data;
-                        var picURL;
-                        window.resolveLocalFileSystemURL(data, onSuccess, onError);
-                        function onSuccess(fileEntry) {
-                            fileEntry.file(function(file) {
-                                console.log('Got the file' + file.toURL());
-                                picURL = file.toURL();
-                            });
-                        }
-                        function onError() {
-                            console.log('Error getting the file');
-                        }
-                        //el.dom.src = "data:image/jpeg;base64," + data ;
-                        el.setHtml('<img src="""+ picURL +""" width="160"/>');
+                    var picURL;
+                    getPhoto(pictureSource.PHOTOLIBRARY);
+                    function getPhoto(source) {
+                        // Retrieve image file location from specified source
+                        navigator.camera.getPicture(onPhotoURISuccess, onFail, {
+                            quality: 50,
+                            destinationType: destinationType.FILE_URI,
+                            saveToPhotoAlbum: false,
+                            sourceType: source,
+                            allowEdit: true
+                        });
                     }
+                    // Called when a photo is successfully retrieved
+                    function onPhotoURISuccess(imageURI) {
+                        FileIO.updateCameraImages(imageURI);
+                    }
+                    // Called if something bad happens.
+                    function onFail(message) {
+                        console.log('Failed because: ' + message);
+                    }
+                    // set some globals
+                    var gImageURI = '';
+                    var gFileSystem = {};
+                    var FileIO = {
+                            // sets the filesystem to the global var gFileSystem
+                            gotFS: function(fileSystem) {
+                                gFileSystem = fileSystem;
+                            },
+                            // pickup the URI from the Camera edit and assign it to the global var gImageURI
+                            // create a filesystem object called a 'file entry' based on the image URI
+                            // pass that file entry over to gotImageURI()
+                            updateCameraImages: function(imageURI) {
+                                gImageURI = imageURI;
+                                window.resolveLocalFileSystemURI(imageURI, FileIO.gotImageURI, FileIO.errorHandler);
+                            },
+                            // pickup the file entry, rename it, and move the file to the app's root directory.
+                            // on success run the movedImageSuccess() method
+                            gotImageURI: function(fileEntry) {
+                                var picName = gCurrentFlo + ".jpg";
+                                fileEntry.moveTo(gFileSystem.root, picName, FileIO.movedImageSuccess, FileIO.errorHandler);
+                            },
+                            // send the full URI of the moved image to the updateImageSrc() method which does some DOM manipulation
+                            movedImageSuccess: function(fileEntry) {
+                                updateImageSrc(fileEntry.fullPath);
+                                picURL = fileEntry.fullPath;
+                            },
+                            // get a new file entry for the moved image when the user hits the delete button
+                            // pass the file entry to removeFile()
+                            removeDeletedImage: function(imageURI) {
+                                window.resolveLocalFileSystemURI(imageURI, FileIO.removeFile, FileIO.errorHandler);
+                            },
+                            // delete the file
+                            removeFile: function(fileEntry) {
+                                fileEntry.remove();
+                            },
+                            // simple error handler
+                            errorHandler: function(e) {
+                                var msg = '';
+                                switch (e.code) {
+                                    case FileError.QUOTA_EXCEEDED_ERR:
+                                        msg = 'QUOTA_EXCEEDED_ERR';
+                                        break;
+                                    case FileError.NOT_FOUND_ERR:
+                                        msg = 'NOT_FOUND_ERR';
+                                        break;
+                                    case FileError.SECURITY_ERR:
+                                        msg = 'SECURITY_ERR';
+                                        break;
+                                    case FileError.INVALID_MODIFICATION_ERR:
+                                        msg = 'INVALID_MODIFICATION_ERR';
+                                        break;
+                                    case FileError.INVALID_STATE_ERR:
+                                        msg = 'INVALID_STATE_ERR';
+                                        break;
+                                    default:
+                                        msg = e.code;
+                                        break;
+                                }
+                                console.log('Error: ' + msg);
+                            }
+                        };
+                    var el = Ext.get('contactpic');
+                    //el.dom.src = "data:image/jpeg;base64," + data ;
+                    el.settHtml('<img src="""+ picURL +""" width="160"/>');
                 },
                 itemId: 'changePic',
                 iconCls: 'add'
