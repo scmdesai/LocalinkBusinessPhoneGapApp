@@ -66884,18 +66884,14 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    var picURL;
-                    getPhoto(pictureSource.PHOTOLIBRARY);
-                    function getPhoto(source) {
-                        // Retrieve image file location from specified source
-                        navigator.camera.getPicture(onPhotoURISuccess, onFail, {
-                            quality: 50,
-                            destinationType: destinationType.FILE_URI,
-                            saveToPhotoAlbum: false,
-                            sourceType: source,
-                            allowEdit: true
-                        });
-                    }
+                    // Retrieve image file location from specified source
+                    navigator.camera.getPicture(onPhotoURISuccess, onFail, {
+                        quality: 50,
+                        destinationType: destinationType.FILE_URI,
+                        saveToPhotoAlbum: false,
+                        sourceType: sourceType.PHOTOLIBRARY,
+                        allowEdit: true
+                    });
                     // Called when a photo is successfully retrieved
                     function onPhotoURISuccess(imageURI) {
                         FileIO.updateCameraImages(imageURI);
