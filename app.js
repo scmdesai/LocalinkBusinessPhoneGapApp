@@ -66872,8 +66872,6 @@ Ext.define('Ext.picker.Picker', {
             },
             {
                 xtype: 'container',
-                height: '10%',
-                maxWidth: '100%',
                 layout: 'vbox',
                 items: [
                     {
@@ -66883,19 +66881,6 @@ Ext.define('Ext.picker.Picker', {
                             type: 'vbox',
                             align: 'start'
                         }
-                    },
-                    {
-                        xtype: 'changePicture',
-                        handler: function(button, e) {
-                            var smallImage = document.getElementById('contactpic');
-                            smallImage.style.display = 'block';
-                        },
-                        height: '10%',
-                        itemId: 'changePicture',
-                        maxWidth: '20%',
-                        right: '5%',
-                        top: '60%',
-                        iconCls: 'add'
                     }
                 ]
             },
