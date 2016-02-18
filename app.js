@@ -66889,7 +66889,7 @@ Ext.define('Ext.picker.Picker', {
                         quality: 50,
                         destinationType: Camera.DestinationType.FILE_URI,
                         saveToPhotoAlbum: false,
-                        sourceType: Camera.SourceType.PHOTOLIBRARY,
+                        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
                         allowEdit: true
                     });
                     // Called when a photo is successfully retrieved
