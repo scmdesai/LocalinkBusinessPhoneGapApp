@@ -66872,6 +66872,8 @@ Ext.define('Ext.picker.Picker', {
             },
             {
                 xtype: 'container',
+                height: '10%',
+                maxWidth: '100%',
                 layout: 'vbox',
                 items: [
                     {
