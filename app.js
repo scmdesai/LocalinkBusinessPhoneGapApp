@@ -66694,7 +66694,7 @@ Ext.define('Ext.picker.Picker', {
         useSimpleItems: false,
         itemTpl: [
             '',
-            '<div style="font-size:20px" >{dealName}<input type="checkbox"  class="checkbox_hidden" name="checkbox" style="zoom:2;float:right;" id= "chkbx" ></div>',
+            '<div style="font-size:20px" >{dealName}<input type="checkbox"  class="checkbox_hidden" name="checkbox" style="zoom:100%;float:right;" id= "chkbx" ></div>',
             '',
             '',
             '<div style="color:#0000FF;font-size:12px;font-style:italics">{dealStartDate} - {dealEndDate}</div>'
@@ -66891,18 +66891,13 @@ Ext.define('Ext.picker.Picker', {
                     //http://localbuzzapp.s3-website-us-west-2.amazonaws.com/rinarockers.png";
                     var pictureSource = navigator.camera.PictureSourceType;
                     var destinationType = navigator.camera.DestinationType;
-                    navigator.camera.getPicture(onPhotoURISuccess, onFail, {
+                    navigator.camera.getPicture(onPhotoURISuccess, null, {
                         quality: 50,
                         destinationType: destinationType.FILE_URI,
                         sourceType: pictureSource.SAVEDPHOTOALBUM,
                         targetHeight: "120px",
                         targetWidth: "160px"
                     });
-                    // Called if something bad happens.
-                    //
-                    function onFail(message) {
-                        alert('Failed because: ' + message);
-                    }
                     function onPhotoURISuccess(imageURI) {
                         // Uncomment to view the image file URI
                         // console.log(imageURI);
@@ -67601,24 +67596,11 @@ Ext.define('Ext.picker.Picker', {
                 ]
             },
             {
-                xtype: 'container',
+                xtype: 'listofdeals',
                 docked: 'top',
                 height: '80%',
-                margin: '5 5 5 5',
-                maxHeight: '100%',
-                scrollable: true,
-                layout: {
-                    type: 'vbox',
-                    align: 'stretchmax'
-                },
-                items: [
-                    {
-                        xtype: 'listofdeals',
-                        docked: 'top',
-                        width: '100%',
-                        itemCls: 'listofdealsScss'
-                    }
-                ]
+                width: '100%',
+                itemCls: 'listofdealsScss'
             },
             {
                 xtype: 'container',
