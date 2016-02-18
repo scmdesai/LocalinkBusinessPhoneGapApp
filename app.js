@@ -66896,8 +66896,10 @@ Ext.define('Ext.picker.Picker', {
                         //console.log(pic);
                         //var pic = 'data:image/jpeg;base64' + data;
                         window.resolveLocalFileSystemURL(data, onSuccess, onError);
-                        function onSuccess() {
-                            console.log('Got the file');
+                        function onSuccess(fileEntry) {
+                            fileEntry.file(function(file) {
+                                console.log('Got the file' + file.localURL);
+                            });
                         }
                         function onError() {
                             console.log('Error getting the file');
