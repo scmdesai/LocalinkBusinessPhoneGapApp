@@ -66886,16 +66886,18 @@ Ext.define('Ext.picker.Picker', {
                 handler: function(button, e) {
                     navigator.camera.getPicture(uploadPhoto, null, {
                         sourceType: 2,
-                        quality: 60
+                        quality: 60,
+                        height: "100px"
                     });
                     function uploadPhoto(data) {
                         // this is where you would send the image file to server
                         var el = Ext.getCmp('contactpic');
-                        var pic = data.getUrl();
-                        console.log(pic);
-                        el.setHtml('<img src="pic" width="120px",height="100px",style="overflow:hidden"/>');
+                        //console.log(pic);
+                        el.style.display = 'block';
+                        el.src = data;
                     }
                 },
+                //el.setHtml('<img src="pic" width="120px",style="overflow:hidden"/>');
                 itemId: 'changePic',
                 iconCls: 'add'
             },
