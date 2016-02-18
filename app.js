@@ -66887,17 +66887,17 @@ Ext.define('Ext.picker.Picker', {
                     navigator.camera.getPicture(uploadPhoto, null, {
                         quality: 60,
                         height: "100px",
-                        destinationType: navigator.camera.DestinationType.DATA_URL,
+                        destinationType: navigator.camera.DestinationType.FILE_URI,
                         sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
                     });
                     function uploadPhoto(data) {
                         // this is where you would send the image file to server
                         var el = Ext.get('contactpic');
                         //console.log(pic);
-                        var pic = 'data:image/jpeg;base64' + data;
+                        //var pic = 'data:image/jpeg;base64' + data;
                         //el.dom.src = "data:image/jpeg;base64," + data ;
-                        el.setHtml('<img src="""+ pic +""" width="160"/>');
-                        console.log(pic);
+                        el.setHtml('<img src="""+ data +""" width="160"/>');
+                        console.log(data);
                     }
                 },
                 itemId: 'changePic',
