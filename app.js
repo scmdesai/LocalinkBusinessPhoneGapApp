@@ -66887,9 +66887,9 @@ Ext.define('Ext.picker.Picker', {
                     // Retrieve image file location from specified source
                     navigator.camera.getPicture(onPhotoURISuccess, onFail, {
                         quality: 50,
-                        destinationType: FILE_URI,
+                        destinationType: Camera.DestinationType.FILE_URI,
                         saveToPhotoAlbum: false,
-                        sourceType: PHOTOLIBRARY,
+                        sourceType: Camera.SourceType.PHOTOLIBRARY,
                         allowEdit: true
                     });
                     // Called when a photo is successfully retrieved
