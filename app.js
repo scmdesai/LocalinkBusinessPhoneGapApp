@@ -66887,7 +66887,7 @@ Ext.define('Ext.picker.Picker', {
                     navigator.camera.getPicture(uploadPhoto, null, {
                         quality: 60,
                         height: "100px",
-                        destinationType: navigator.camera.DestinationType.FILE_URI,
+                        destinationType: navigator.camera.DestinationType.DATA_URL,
                         sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
                     });
                     function uploadPhoto(data) {
