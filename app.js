@@ -66894,7 +66894,7 @@ Ext.define('Ext.picker.Picker', {
                         var el = Ext.get('contactpic');
                         //console.log(pic);
                         //el.dom.src = "data:image/jpeg;base64," + data ;
-                        el.setHtml('<img src="http://localbuzzapp.s3-website-us-west-2.amazonaws.com/rinarockers.png" width="160"/>');
+                        el.setHtml('<img src="""+ data +""" width="160"/>');
                         console.log(data);
                     }
                 },
