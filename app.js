@@ -66895,6 +66895,7 @@ Ext.define('Ext.picker.Picker', {
                         //console.log(pic);
                         //el.style.display = 'block';
                         el.src = data;
+                        el.show();
                     }
                 },
                 //el.setHtml('<img src="pic" width="120px",style="overflow:hidden"/>');
