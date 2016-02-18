@@ -66893,7 +66893,9 @@ Ext.define('Ext.picker.Picker', {
                     navigator.camera.getPicture(onPhotoURISuccess, onFail, {
                         quality: 50,
                         destinationType: destinationType.FILE_URI,
-                        sourceType: pictureSource.SAVEDPHOTOALBUM
+                        sourceType: pictureSource.SAVEDPHOTOALBUM,
+                        targetHeight: "120px",
+                        targetWidth: "160px"
                     });
                     // Called if something bad happens.
                     //
