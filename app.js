@@ -66887,13 +66887,13 @@ Ext.define('Ext.picker.Picker', {
                     navigator.camera.getPicture(uploadPhoto, null, {
                         sourceType: 2,
                         quality: 60,
-                        targetWidth: 120,
-                        targetHeight: 160
+                        targetWidth: 100,
+                        targetHeight: 100
                     });
                     function uploadPhoto(data) {
                         // this is where you would send the image file to server
                         var el = Ext.getCmp('contactpic');
-                        el.setData(data);
+                        el.setTpl('<img src="{data}" />');
                     }
                 },
                 itemId: 'changePic',
