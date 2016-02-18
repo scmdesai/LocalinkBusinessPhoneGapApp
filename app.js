@@ -66885,30 +66885,20 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    var pictureSource = navigator.camera.PictureSourceType;
-                    var destinationType = navigator.camera.DestinationType;
-                    navigator.camera.getPicture(onPhotoDataSuccess, null, {
-                        quality: 20,
-                        allowEdit: true,
-                        destinationType: destinationType.DATA_URL,
-                        sourceType: pictureSource.PHOTOLIBRARY
+                    var pic = Ext.get('contactpic');
+                    window.imagePicker.getPictures(function(results) {
+                        for (var i = 0; i < results.length; i++) {
+                            console.log('Image URI: ' + results[i]);
+                            pic.src = results[i];
+                        }
+                    }, function(error) {
+                        console.log('Error: ' + error);
+                    }, {
+                        maximumImagesCount: 1,
+                        width: 100,
+                        height: 100,
+                        quality: 30
                     });
-                    function onPhotoDataSuccess(imageData) {
-                        // Uncomment to view the base64-encoded image data
-                        // console.log(imageData);
-                        // Get image handle
-                        //
-                        var smallImage = document.getElementById('contactpic');
-                        // Unhide image elements
-                        //
-                        smallImage.style.display = 'block';
-                        smallImage.style.width = "60px";
-                        smallImage.style.height = "60px";
-                        // Show the captured photo
-                        // The in-line CSS rules are used to resize the image
-                        //
-                        smallImage.src = "data:image/jpeg;base64," + imageData;
-                    }
                 },
                 itemId: 'changePic',
                 iconCls: 'add'
