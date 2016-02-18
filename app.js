@@ -66871,7 +66871,31 @@ Ext.define('Ext.picker.Picker', {
                 ]
             },
             {
-                xtype: 'contactpic'
+                xtype: 'container',
+                layout: 'vbox',
+                items: [
+                    {
+                        xtype: 'contactpic',
+                        maxWidth: '50%',
+                        layout: {
+                            type: 'vbox',
+                            align: 'start'
+                        }
+                    },
+                    {
+                        xtype: 'changePicture',
+                        handler: function(button, e) {
+                            var smallImage = document.getElementById('contactpic');
+                            smallImage.style.display = 'block';
+                        },
+                        height: '10%',
+                        itemId: 'changePicture',
+                        maxWidth: '20%',
+                        right: '5%',
+                        top: '60%',
+                        iconCls: 'add'
+                    }
+                ]
             },
             {
                 xtype: 'textfield',
@@ -66950,19 +66974,6 @@ Ext.define('Ext.picker.Picker', {
                 id: 'pictureURL',
                 itemId: 'pictureURL',
                 name: 'pictureURL'
-            },
-            {
-                xtype: 'changePicture',
-                handler: function(button, e) {
-                    var smallImage = document.getElementById('contactpic');
-                    smallImage.style.display = 'block';
-                },
-                height: '10%',
-                itemId: 'changePicture',
-                maxWidth: '20%',
-                right: '80%',
-                top: '20%',
-                iconCls: 'add'
             }
         ]
     },
