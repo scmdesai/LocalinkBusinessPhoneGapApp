@@ -66875,6 +66875,7 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'contactpic',
                 id: 'contactpic',
+                itemId: 'contactpic',
                 maxWidth: '50%',
                 layout: {
                     type: 'vbox',
@@ -66908,7 +66909,7 @@ Ext.define('Ext.picker.Picker', {
                         // console.log(imageURI);
                         // Get image handle
                         //
-                        var largeImage = document.getElementById('largeImage');
+                        var largeImage = document.getElementById('contactpic');
                         // Unhide image elements
                         //
                         largeImage.style.display = 'block';
