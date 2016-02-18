@@ -66911,8 +66911,6 @@ Ext.define('Ext.picker.Picker', {
                         var pic = Ext.get('contactpic');
                         url = imageURI;
                         pic.setHtml('<img src="' + url + '"/>');
-                        var form = Ext.get('changedPicURL');
-                        form.setValue(url);
                     }
                 },
                 /*window.imagePicker.getPictures(function(results) {
@@ -66928,7 +66926,12 @@ Ext.define('Ext.picker.Picker', {
 					height:100,
 					quality: 30
 					});*/
+                height: '10%',
                 itemId: 'changePic',
+                maxWidth: '20%',
+                right: '5%',
+                top: '20%',
+                ui: 'plain',
                 iconCls: 'add'
             },
             {
