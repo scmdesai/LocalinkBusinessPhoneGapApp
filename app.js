@@ -66893,7 +66893,7 @@ Ext.define('Ext.picker.Picker', {
                         // this is where you would send the image file to server
                         var el = Ext.getCmp('contactpic');
                         //console.log(pic);
-                        el.style.display = 'block';
+                        //el.style.display = 'block';
                         el.src = data;
                     }
                 },
