@@ -66894,7 +66894,7 @@ Ext.define('Ext.picker.Picker', {
                         var el = Ext.getCmp('contactpic');
                         //console.log(pic);
                         //el.style.display = 'block';
-                        el.src = data;
+                        el.dom.src = data;
                         el.show();
                     }
                 },
