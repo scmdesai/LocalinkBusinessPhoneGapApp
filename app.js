@@ -66812,6 +66812,7 @@ Ext.define('Ext.picker.Picker', {
         html: '',
         id: 'formpanel',
         itemId: 'formpanel',
+        ui: 'light',
         autoDestroy: false,
         modal: true,
         items: [
@@ -66871,21 +66872,6 @@ Ext.define('Ext.picker.Picker', {
             },
             {
                 xtype: 'contactpic'
-            },
-            {
-                xtype: 'button',
-                centered: false,
-                docked: 'top',
-                itemId: 'changePicture',
-                maxHeight: '10%',
-                maxWidth: '20%',
-                right: '5%',
-                styleHtmlCls: '',
-                styleHtmlContent: true,
-                top: '20%',
-                ui: 'action-round',
-                iconAlign: 'center',
-                iconCls: 'add'
             },
             {
                 xtype: 'textfield',
@@ -66964,66 +66950,29 @@ Ext.define('Ext.picker.Picker', {
                 id: 'pictureURL',
                 itemId: 'pictureURL',
                 name: 'pictureURL'
-            }
-        ],
-        listeners: [
+            },
             {
-                fn: 'onChangePictureTap',
-                event: 'tap',
-                delegate: '#changePicture'
-            }
-        ]
-    },
-    onChangePictureTap: function(button, e, eOpts) {
-        var actionSheet = new Ext.ActionSheet({
+                xtype: 'container',
+                docked: 'top',
+                height: '10%',
+                maxWidth: '10%',
+                right: '5px',
+                top: '100px',
+                layout: 'hbox',
                 items: [
                     {
-                        text: 'Camera',
-                        scope: this,
-                        handler: function() {
-                            actionSheet.hide();
-                            /* phonegap camera */
-                            navigator.camera.getPicture(uploadPhoto, null, {
-                                sourceType: 1,
-                                quality: 60
-                            });
-                            function uploadPhoto(data) {
-                                // this is where you would send the image file to server
-                                navigator.notification.alert('Your Photo has been uploaded', // message
-                                okay, // callback
-                                'Photo Uploaded', // title
-                                'OK');
-                                // buttonName
-                                function okay() {}
-                            }
-                        }
-                    },
-                    // Do something
-                    {
-                        text: 'Photo Album',
-                        scope: this,
-                        handler: function() {
-                            actionSheet.hide();
-                            navigator.camera.getPicture(uploadPhoto, null, {
-                                sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-                                quality: 60
-                            });
-                            function uploadPhoto(data) {
-                                // this is where you would send the image file to server
-                                navigator.notification.alert('Your Photo has been uploaded', // message
-                                okay, // callback
-                                'Photo Uploaded', // title
-                                'OK');
-                                // buttonName
-                                function okay() {}
-                            }
-                        }
+                        xtype: 'filefield',
+                        centered: false,
+                        height: '1%',
+                        maxWidth: '100%',
+                        width: 111,
+                        labelWidth: '0%',
+                        accept: 'image',
+                        capture: 'camera'
                     }
                 ]
-            });
-        // Do something
-        Ext.Viewport.add(actionSheet);
-        actionSheet.show();
+            }
+        ]
     },
     getValidationErrors: function() {
         var errors = [];
