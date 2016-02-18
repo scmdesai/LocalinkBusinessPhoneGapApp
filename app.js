@@ -66895,9 +66895,9 @@ Ext.define('Ext.picker.Picker', {
                         //console.log(pic);
                         el.dom.src = "data:image/jpeg;base64," + data;
                         console.log(data);
+                        el.setHtml('<img src="file:///var/mobile/Containers/Data/Application/8BADE9FB-5475-453E-94C4-23D609ADC78F/tmp/cdv_photo_005.jpg",width="120px",style="overflow:hidden"/>');
                     }
                 },
-                //el.setHtml('<img src="data" width="120px",style="overflow:hidden"/>');
                 itemId: 'changePic',
                 iconCls: 'add'
             },
