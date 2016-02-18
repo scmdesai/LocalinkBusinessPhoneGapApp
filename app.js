@@ -66952,25 +66952,17 @@ Ext.define('Ext.picker.Picker', {
                 name: 'pictureURL'
             },
             {
-                xtype: 'container',
-                docked: 'top',
+                xtype: 'changePicture',
+                handler: function(button, e) {
+                    var smallImage = document.getElementById('contactpic');
+                    smallImage.style.display = 'block';
+                },
                 height: '10%',
-                maxWidth: '10%',
-                right: '5px',
-                top: '100px',
-                layout: 'hbox',
-                items: [
-                    {
-                        xtype: 'filefield',
-                        centered: false,
-                        height: '1%',
-                        maxWidth: '100%',
-                        width: 111,
-                        labelWidth: '0%',
-                        accept: 'image',
-                        capture: 'camera'
-                    }
-                ]
+                itemId: 'changePicture',
+                maxWidth: '20%',
+                right: '5%',
+                top: '20%',
+                iconCls: 'add'
             }
         ]
     },
