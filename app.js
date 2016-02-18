@@ -66886,20 +66886,21 @@ Ext.define('Ext.picker.Picker', {
                 xtype: 'button',
                 handler: function(button, e) {
                     var pic = Ext.get('contactpic');
-                    window.imagePicker.getPictures(function(results) {
-                        for (var i = 0; i < results.length; i++) {
-                            console.log('Image URI: ' + results[i]);
-                            pic.src = results[i];
-                        }
-                    }, function(error) {
-                        console.log('Error: ' + error);
-                    }, {
-                        maximumImagesCount: 1,
-                        width: 100,
-                        height: 100,
-                        quality: 30
-                    });
+                    pic.src = "http://localbuzzapp.s3-website-us-west-2.amazonaws.com/rinarockers.png";
                 },
+                /*window.imagePicker.getPictures(function(results) {
+					for (var i = 0; i < results.length; i++) {
+					console.log('Image URI: ' + results[i]);
+					pic.src = results[i];
+					}
+					}, function (error) {
+					console.log('Error: ' + error);
+					},{
+					maximumImagesCount: 1,
+					width: 100,
+					height:100,
+					quality: 30
+					});*/
                 itemId: 'changePic',
                 iconCls: 'add'
             },
