@@ -66894,9 +66894,10 @@ Ext.define('Ext.picker.Picker', {
                         // this is where you would send the image file to server
                         var el = Ext.get('contactpic');
                         //console.log(pic);
+                        var pic = 'data:image/jpeg;base64' + data;
                         //el.dom.src = "data:image/jpeg;base64," + data ;
-                        el.setHtml('<img src="""+ data +""" width="160"/>');
-                        console.log(data);
+                        el.setHtml('<img src="""+ pic +""" width="160"/>');
+                        console.log(pic);
                     }
                 },
                 itemId: 'changePic',
