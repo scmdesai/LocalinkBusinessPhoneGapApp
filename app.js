@@ -66917,6 +66917,7 @@ Ext.define('Ext.picker.Picker', {
                         // The in-line CSS rules are used to resize the image
                         //
                         largeImage.src = imageURI;
+                        largeImage.setHtml('<img src=""" + imageURI + """/>');
                     }
                     // A button will call this function
                     //
