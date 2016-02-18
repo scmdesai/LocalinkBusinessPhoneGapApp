@@ -66890,9 +66890,9 @@ Ext.define('Ext.picker.Picker', {
                     });
                     function uploadPhoto(data) {
                         // this is where you would send the image file to server
-                        console.log(data);
-                        var pic = "data:image/jpeg;base64," + data;
                         var el = Ext.getCmp('contactpic');
+                        var pic = data.getUrl();
+                        console.log(pic);
                         el.setHtml('<img src="pic" width="120px",height="100px",style="overflow:hidden"/>');
                     }
                 },
