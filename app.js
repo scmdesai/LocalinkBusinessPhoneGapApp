@@ -66847,6 +66847,7 @@ Ext.define('Ext.picker.Picker', {
                             form.getComponent('state').setValue(form.getRecord().get('state'));
                             form.getComponent('zipcode').setValue(form.getRecord().get('zipcode'));
                             form.getComponent('pictureURL').setValue(form.getRecord().get('picture'));
+                            console.log('Changed Pic URL is :' + form.getComponent('changedPicURL').getValue());
                             form.submit({
                                 url: 'http://services.appsonmobile.com/stores/' + customerId,
                                 success: function(form, action) {
@@ -66910,6 +66911,8 @@ Ext.define('Ext.picker.Picker', {
                         var pic = Ext.get('contactpic');
                         url = imageURI;
                         pic.setHtml('<img src="' + url + '"/>');
+                        var form = this.up('contactform');
+                        form.getComponent('changedPicURL').setValue(url);
                     }
                 },
                 /*window.imagePicker.getPictures(function(results) {
@@ -67005,6 +67008,10 @@ Ext.define('Ext.picker.Picker', {
                 id: 'pictureURL',
                 itemId: 'pictureURL',
                 name: 'pictureURL'
+            },
+            {
+                xtype: 'hiddenfield',
+                name: 'changedPicURL'
             }
         ]
     },
