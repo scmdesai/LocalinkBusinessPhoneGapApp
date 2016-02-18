@@ -66884,86 +66884,73 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    // Retrieve image file location from specified source
-                    navigator.camera.getPicture(onPhotoURISuccess, onFail, {
-                        quality: 50,
-                        destinationType: Camera.DestinationType.FILE_URI,
-                        saveToPhotoAlbum: false,
-                        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-                        allowEdit: true
-                    });
+                    var pictureSource = navigator.camera.PictureSourceType;
+                    var destinationType = navigator.camera.DestinationType;
+                    getPhoto(pictureSource.PHOTOLIBRARY);
+                    function onPhotoDataSuccess(imageData) {
+                        // Uncomment to view the base64-encoded image data
+                        // console.log(imageData);
+                        // Get image handle
+                        //
+                        var smallImage = document.getElementById('smallImage');
+                        // Unhide image elements
+                        //
+                        smallImage.style.display = 'block';
+                        // Show the captured photo
+                        // The in-line CSS rules are used to resize the image
+                        //
+                        smallImage.src = "data:image/jpeg;base64," + imageData;
+                    }
                     // Called when a photo is successfully retrieved
+                    //
                     function onPhotoURISuccess(imageURI) {
-                        FileIO.updateCameraImages(imageURI);
+                        // Uncomment to view the image file URI
+                        // console.log(imageURI);
+                        // Get image handle
+                        //
+                        var largeImage = document.getElementById('largeImage');
+                        // Unhide image elements
+                        //
+                        largeImage.style.display = 'block';
+                        // Show the captured photo
+                        // The in-line CSS rules are used to resize the image
+                        //
+                        largeImage.src = imageURI;
+                    }
+                    // A button will call this function
+                    //
+                    function capturePhoto() {
+                        // Take picture using device camera and retrieve image as base64-encoded string
+                        navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
+                            quality: 50,
+                            destinationType: destinationType.DATA_URL
+                        });
+                    }
+                    // A button will call this function
+                    //
+                    function capturePhotoEdit() {
+                        // Take picture using device camera, allow edit, and retrieve image as base64-encoded string
+                        navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
+                            quality: 20,
+                            allowEdit: true,
+                            destinationType: destinationType.DATA_URL
+                        });
+                    }
+                    // A button will call this function
+                    //
+                    function getPhoto(source) {
+                        // Retrieve image file location from specified source
+                        navigator.camera.getPicture(onPhotoURISuccess, onFail, {
+                            quality: 50,
+                            destinationType: destinationType.FILE_URI,
+                            sourceType: source
+                        });
                     }
                     // Called if something bad happens.
+                    //
                     function onFail(message) {
-                        console.log('Failed because: ' + message);
+                        alert('Failed because: ' + message);
                     }
-                    // set some globals
-                    var gImageURI = '';
-                    var gFileSystem = {};
-                    var FileIO = {
-                            // sets the filesystem to the global var gFileSystem
-                            gotFS: function(fileSystem) {
-                                gFileSystem = fileSystem;
-                            },
-                            // pickup the URI from the Camera edit and assign it to the global var gImageURI
-                            // create a filesystem object called a 'file entry' based on the image URI
-                            // pass that file entry over to gotImageURI()
-                            updateCameraImages: function(imageURI) {
-                                gImageURI = imageURI;
-                                window.resolveLocalFileSystemURL(imageURI, FileIO.gotImageURI, FileIO.errorHandler);
-                            },
-                            // pickup the file entry, rename it, and move the file to the app's root directory.
-                            // on success run the movedImageSuccess() method
-                            gotImageURI: function(fileEntry) {
-                                var picName;
-                                fileEntry.moveTo(fileSystem.root, picName, FileIO.movedImageSuccess, FileIO.errorHandler);
-                            },
-                            // send the full URI of the moved image to the updateImageSrc() method which does some DOM manipulation
-                            movedImageSuccess: function(fileEntry) {
-                                updateImageSrc(fileEntry.fullPath);
-                                picURL = fileEntry.fullPath;
-                            },
-                            // get a new file entry for the moved image when the user hits the delete button
-                            // pass the file entry to removeFile()
-                            removeDeletedImage: function(imageURI) {
-                                window.resolveLocalFileSystemURI(imageURI, FileIO.removeFile, FileIO.errorHandler);
-                            },
-                            // delete the file
-                            removeFile: function(fileEntry) {
-                                fileEntry.remove();
-                            },
-                            // simple error handler
-                            errorHandler: function(e) {
-                                var msg = '';
-                                switch (e.code) {
-                                    case FileError.QUOTA_EXCEEDED_ERR:
-                                        msg = 'QUOTA_EXCEEDED_ERR';
-                                        break;
-                                    case FileError.NOT_FOUND_ERR:
-                                        msg = 'NOT_FOUND_ERR';
-                                        break;
-                                    case FileError.SECURITY_ERR:
-                                        msg = 'SECURITY_ERR';
-                                        break;
-                                    case FileError.INVALID_MODIFICATION_ERR:
-                                        msg = 'INVALID_MODIFICATION_ERR';
-                                        break;
-                                    case FileError.INVALID_STATE_ERR:
-                                        msg = 'INVALID_STATE_ERR';
-                                        break;
-                                    default:
-                                        msg = e.code;
-                                        break;
-                                }
-                                console.log('Error: ' + msg);
-                            }
-                        };
-                    var el = Ext.get('contactpic');
-                    //el.dom.src = "data:image/jpeg;base64," + data ;
-                    el.setHtml('<img src="""+ picURL +""" width="160"/>');
                 },
                 itemId: 'changePic',
                 iconCls: 'add'
