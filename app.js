@@ -66404,7 +66404,22 @@ Ext.define('Ext.picker.Picker', {
         layout: {
             type: 'vbox',
             align: 'center'
-        }
+        },
+        items: [
+            {
+                xtype: 'button',
+                handler: function(button, e) {
+                    var smallImage = document.getElementById('picture');
+                    smallImage.style.display = 'block';
+                },
+                height: '10%',
+                itemId: 'changePic',
+                maxWidth: '20%',
+                right: '5%',
+                top: '70%',
+                iconCls: 'add'
+            }
+        ]
     }
 }, 0, [
     "contactpic"
