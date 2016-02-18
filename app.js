@@ -66911,8 +66911,8 @@ Ext.define('Ext.picker.Picker', {
                         var pic = Ext.get('contactpic');
                         url = imageURI;
                         pic.setHtml('<img src="' + url + '"/>');
-                        var form = this.up('contactform');
-                        form.getComponent('changedPicURL').setValue(url);
+                        var form = Ext.get('changedPicURL');
+                        form.setValue(url);
                     }
                 },
                 /*window.imagePicker.getPictures(function(results) {
