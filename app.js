@@ -66885,9 +66885,10 @@ Ext.define('Ext.picker.Picker', {
                 xtype: 'button',
                 handler: function(button, e) {
                     navigator.camera.getPicture(uploadPhoto, null, {
-                        sourceType: 2,
                         quality: 60,
-                        height: "100px"
+                        height: "100px",
+                        destinationType: navigator.camera.DestinationType.FILE_URI,
+                        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
                     });
                     function uploadPhoto(data) {
                         // this is where you would send the image file to server
