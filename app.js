@@ -66399,26 +66399,13 @@ Ext.define('Ext.picker.Picker', {
         style: 'overflow: hidden',
         ui: '',
         tpl: [
-            '<img src="{picture}" width="160" />'
+            '<img src="{picture}" width="160" />',
+            ''
         ],
         layout: {
             type: 'vbox',
             align: 'center'
-        },
-        items: [
-            {
-                xtype: 'button',
-                handler: function(button, e) {
-                    console.log(e.callParent().getOwnPropertyNames());
-                },
-                height: '10%',
-                itemId: 'changePic',
-                maxWidth: '20%',
-                right: '5%',
-                top: '70%',
-                iconCls: 'add'
-            }
-        ]
+        }
     }
 }, 0, [
     "contactpic"
@@ -66886,11 +66873,30 @@ Ext.define('Ext.picker.Picker', {
             },
             {
                 xtype: 'contactpic',
+                id: 'contactpic',
                 maxWidth: '50%',
                 layout: {
                     type: 'vbox',
                     align: 'start'
                 }
+            },
+            {
+                xtype: 'button',
+                handler: function(button, e) {
+                    navigator.camera.getPicture(uploadPhoto, null, {
+                        sourceType: 2,
+                        quality: 60
+                    });
+                    function uploadPhoto(data) {
+                        // this is where you would send the image file to server
+                        var el = Ext.get('contactpic');
+                        el.setData(data);
+                    }
+                },
+                //output image to screen
+                //cameraPic.src = "data:image/jpeg;base64," + data;
+                itemId: 'changePic',
+                iconCls: 'add'
             },
             {
                 xtype: 'textfield',
