@@ -67756,14 +67756,18 @@ Ext.define('Ext.picker.Picker', {
         items: [
             {
                 xtype: 'textfield',
+                styleHtmlContent: true,
                 label: 'Deal Name',
+                labelAlign: 'top',
                 name: 'DealName'
             },
             {
                 xtype: 'selectfield',
                 itemId: 'dealStatus',
                 maxHeight: '',
+                styleHtmlContent: true,
                 label: 'Deal Status',
+                labelAlign: 'top',
                 name: 'DealStatus',
                 options: [
                     {
@@ -67778,25 +67782,33 @@ Ext.define('Ext.picker.Picker', {
             },
             {
                 xtype: 'datepickerfield',
+                styleHtmlContent: true,
                 label: 'Deal Start',
+                labelAlign: 'top',
                 name: 'DealStartDate',
                 placeHolder: 'mm/dd/yyyy',
                 picker: {
+                    styleHtmlContent: true,
                     yearFrom: 2016
                 }
             },
             {
                 xtype: 'datepickerfield',
+                styleHtmlContent: true,
                 label: 'Deal End',
+                labelAlign: 'top',
                 name: 'DealEndDate',
                 placeHolder: 'mm/dd/yyyy',
                 picker: {
+                    styleHtmlContent: true,
                     yearFrom: 2016
                 }
             },
             {
                 xtype: 'filefield',
+                styleHtmlContent: true,
                 label: 'Deal Image',
+                labelAlign: 'top',
                 name: 'fileUpload',
                 capture: 'camera'
             },
