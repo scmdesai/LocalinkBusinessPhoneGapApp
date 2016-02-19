@@ -66981,13 +66981,6 @@ Ext.define('Ext.picker.Picker', {
                 id: 'pictureURL',
                 itemId: 'pictureURL',
                 name: 'pictureURL'
-            },
-            {
-                xtype: 'textfield',
-                hidden: true,
-                id: 'picURL',
-                itemId: 'picURL',
-                name: 'picURL'
             }
         ]
     },
