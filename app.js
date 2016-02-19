@@ -66895,16 +66895,10 @@ Ext.define('Ext.picker.Picker', {
             },
             {
                 xtype: 'filefield',
-                itemId: 'myfilefield1',
-                capture: 'camera',
-                listeners: [
-                    {
-                        fn: function(component, eOpts) {
-                            this.buttonEl.dom.textContent = 'Change Picture';
-                        },
-                        event: 'initialize'
-                    }
-                ]
+                id: 'ChangePicture',
+                itemId: 'ChangePicture',
+                name: 'Change Picture',
+                capture: 'camera'
             },
             {
                 xtype: 'button',
@@ -67061,6 +67055,8 @@ Ext.define('Ext.picker.Picker', {
     },
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
+        var fileField = Ext.get('ChangePicture');
+        this.child('fileField').set;
         if (record) {
             this.child('contactpic').setData(record.data);
             this.down('#businessName').setValue(record.data.businessName);
