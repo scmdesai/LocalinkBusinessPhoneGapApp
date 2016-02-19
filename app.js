@@ -67620,106 +67620,27 @@ Ext.define('Ext.picker.Picker', {
             },
             {
                 xtype: 'container',
-                centered: false,
-                styleHtmlContent: true,
-                width: '100%',
+                docked: 'bottom',
+                maxHeight: '20%',
+                maxWidth: '100%',
                 layout: 'hbox',
                 items: [
                     {
                         xtype: 'button',
-                        centered: false,
-                        docked: 'left',
-                        itemId: 'UploadDeal',
+                        flex: 1,
+                        id: 'uploadDealBtn',
+                        itemId: 'uploadDealBtn',
+                        margin: '5 5 5 5',
                         styleHtmlContent: true,
                         ui: 'confirm-round',
                         text: 'Upload New Deal'
                     },
                     {
-                        xtype: 'spacer',
-                        width: 12
-                    },
-                    {
                         xtype: 'button',
-                        handler: function(button, e) {},
-                        /*
-							var myForm = this.up('DealsPanel');*/
-                        /*Ext.Ajax.request({
-
-							url: 'http://services.appsonmobile.com/deals/98da6770-cf58-11e5-a053-056b986b2d22',// call method in the django's view
-							method: 'POST',
-							// form: myForm,
-
-							success: function (response, opts) {
-								var json = response.responseText;
-
-								Ext.Msg.alert('Success', json['message']);
-								console.log('Opts is : ' + opts);
-							},
-							failure: function (response, opts) {
-								var json = response.responseText;
-								Ext.Msg.alert('Failure', json['message']);
-							},
-						});*/
-                        /*myForm.submit({
-
-
-						url  : 'http://services.appsonmobile.com/deals/75c35d90-d035-11e5-8b44-7d9a6e25ad81',
-
-						success: function() {
-						Ext.Msg.alert('Success');
-						},
-						failure: function() {
-						Ext.Msg.alert('Failed');
-						}
-						});
-
-
-
-						var storeUserDetails = Ext.getStore('UserDetails');
-						storeUserDetails.load();
-						var customerId;
-
-						storeUserDetails.each(function(record){
-						customerId = record.get('customerId');
-						});
-
-						var store = Ext.getStore('MyDealsStore');
-						store.load();
-						store.clearFilter() ;
-
-
-						store.filter('customerId', customerId);*/
-                        /*var view;
-
-						view =Ext.Viewport.add({xtype: 'DealsPanel'});
-
-
-						Ext.Viewport.setActiveItem(view);*/
-                        /*var myForm = this.up('DealsPanel');
-
-
-
-						myForm.submit({
-
-
-						url  : 'http://services.appsonmobile.com/deals/5860bff0-d043-11e5-8b44-7d9a6e25ad81',
-
-						success: function(form,action){
-						Ext.Msg.alert('Success');
-						console.log(action.msg);
-
-						},
-						failure: function(form,action) {
-						Ext.Msg.alert('Failure');
-						console.log(action.msg);
-						}
-
-
-						});*/
-                        centered: true,
-                        docked: 'right',
+                        flex: 1,
                         id: 'DeleteDeal',
                         itemId: 'DeleteDeal',
+                        margin: '5 5 5 5',
                         styleHtmlContent: true,
                         ui: 'decline-round',
                         text: 'Delete'
