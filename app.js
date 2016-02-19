@@ -66855,6 +66855,8 @@ Ext.define('Ext.picker.Picker', {
                             form.getComponent('state').setValue(form.getRecord().get('state'));
                             form.getComponent('zipcode').setValue(form.getRecord().get('zipcode'));
                             form.getComponent('pictureURL').setValue(form.getRecord().get('picture'));
+                            var pic = form.getAt(2).getHtml();
+                            console.log(pic);
                             form.submit({
                                 url: 'http://services.appsonmobile.com/stores/' + customerId,
                                 success: function(form, action) {
@@ -67015,10 +67017,17 @@ Ext.define('Ext.picker.Picker', {
                 name: 'zipcode'
             },
             {
-                xtype: 'hiddenfield',
+                xtype: 'textfield',
                 id: 'pictureURL',
                 itemId: 'pictureURL',
                 name: 'pictureURL'
+            },
+            {
+                xtype: 'textfield',
+                hidden: true,
+                id: 'picURL',
+                itemId: 'picURL',
+                name: 'picURL'
             }
         ]
     },
