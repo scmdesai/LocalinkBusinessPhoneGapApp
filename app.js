@@ -66502,7 +66502,6 @@ Ext.define('Ext.picker.Picker', {
                         minHeight: '50%',
                         minWidth: '30%',
                         style: '',
-                        styleHtmlContent: false,
                         ui: 'light',
                         width: 97,
                         scrollable: false,
@@ -67628,8 +67627,8 @@ Ext.define('Ext.picker.Picker', {
                     {
                         xtype: 'button',
                         flex: 1,
-                        id: 'uploadDealBtn',
-                        itemId: 'uploadDealBtn',
+                        id: 'UploadDeal',
+                        itemId: 'UploadDeal',
                         margin: '5 5 5 5',
                         styleHtmlContent: true,
                         ui: 'confirm-round',
