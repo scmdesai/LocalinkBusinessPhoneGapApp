@@ -66975,6 +66975,11 @@ Ext.define('Ext.picker.Picker', {
                 id: 'pictureURL',
                 itemId: 'pictureURL',
                 name: 'pictureURL'
+            },
+            {
+                xtype: 'filefield',
+                label: 'Field',
+                name: 'fileUpload'
             }
         ]
     },
