@@ -66444,7 +66444,6 @@ Ext.define('Ext.picker.Picker', {
         border: 5,
         id: 'contactinfo',
         minHeight: '100%',
-        styleHtmlContent: true,
         modal: true,
         enableSubmissionForm: false,
         method: 'get',
@@ -66454,7 +66453,6 @@ Ext.define('Ext.picker.Picker', {
                 xtype: 'toolbar',
                 docked: 'top',
                 style: 'font-size:6vw',
-                styleHtmlContent: true,
                 ui: 'light',
                 items: [
                     {
@@ -66489,6 +66487,7 @@ Ext.define('Ext.picker.Picker', {
                 minWidth: '',
                 padding: '5 5 5 5',
                 style: 'border:1px inset',
+                styleHtmlContent: true,
                 layout: {
                     type: 'vbox',
                     align: 'end'
@@ -66503,10 +66502,10 @@ Ext.define('Ext.picker.Picker', {
                         minHeight: '50%',
                         minWidth: '30%',
                         style: '',
+                        styleHtmlContent: false,
                         ui: 'light',
                         width: 97,
                         scrollable: false,
-                        flex: 0.5,
                         layout: {
                             type: 'hbox',
                             align: 'start',
@@ -66535,7 +66534,6 @@ Ext.define('Ext.picker.Picker', {
                                 minHeight: '',
                                 minWidth: '100%',
                                 styleHtmlCls: '',
-                                styleHtmlContent: true,
                                 width: '100%',
                                 clearIcon: false,
                                 inputCls: 'customfield',
@@ -66561,7 +66559,6 @@ Ext.define('Ext.picker.Picker', {
                                 minHeight: '100%',
                                 minWidth: '100%',
                                 style: 'border:1 px inset',
-                                styleHtmlContent: true,
                                 width: '100%',
                                 clearIcon: false,
                                 inputCls: 'customfield',
@@ -67623,27 +67620,23 @@ Ext.define('Ext.picker.Picker', {
             },
             {
                 xtype: 'container',
-                docked: 'bottom',
-                margin: '0 5 5 5',
+                centered: false,
                 styleHtmlContent: true,
-                layout: {
-                    type: 'hbox',
-                    align: 'stretchmax'
-                },
+                width: '100%',
+                layout: 'hbox',
                 items: [
                     {
                         xtype: 'button',
-                        flex: 1,
+                        centered: false,
+                        docked: 'left',
                         itemId: 'UploadDeal',
                         styleHtmlContent: true,
                         ui: 'confirm-round',
-                        width: 170,
                         text: 'Upload New Deal'
                     },
                     {
                         xtype: 'spacer',
-                        flex: 0.1,
-                        width: 10
+                        width: 12
                     },
                     {
                         xtype: 'button',
@@ -67723,7 +67716,8 @@ Ext.define('Ext.picker.Picker', {
 
 
 						});*/
-                        flex: 1,
+                        centered: true,
+                        docked: 'right',
                         id: 'DeleteDeal',
                         itemId: 'DeleteDeal',
                         styleHtmlContent: true,
