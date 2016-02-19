@@ -66856,7 +66856,7 @@ Ext.define('Ext.picker.Picker', {
                             form.getComponent('zipcode').setValue(form.getRecord().get('zipcode'));
                             form.getComponent('pictureURL').setValue(form.getRecord().get('picture'));
                             var pic = Ext.get('contactpic');
-                            console.log(pic.src);
+                            console.log(pic.dom.innerHTML);
                             form.submit({
                                 url: 'http://services.appsonmobile.com/stores/' + customerId,
                                 success: function(form, action) {
