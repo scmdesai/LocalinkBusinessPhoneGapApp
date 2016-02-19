@@ -66901,53 +66901,6 @@ Ext.define('Ext.picker.Picker', {
                 capture: 'camera'
             },
             {
-                xtype: 'button',
-                handler: function(button, e) {
-                    //pic.src = "http://localbuzzapp.s3-website-us-west-2.amazonaws.com/rinarockers.png";
-                    var url = "";
-                    //http://localbuzzapp.s3-website-us-west-2.amazonaws.com/rinarockers.png";
-                    var pictureSource = navigator.camera.PictureSourceType;
-                    var destinationType = navigator.camera.DestinationType;
-                    navigator.camera.getPicture(onPhotoURISuccess, null, {
-                        quality: 50,
-                        destinationType: destinationType.FILE_URI,
-                        sourceType: pictureSource.SAVEDPHOTOALBUM,
-                        targetHeight: "120px",
-                        targetWidth: "160px"
-                    });
-                    function onPhotoURISuccess(imageURI) {
-                        // Uncomment to view the image file URI
-                        // console.log(imageURI);
-                        // Get image handle
-                        //
-                        var pic = Ext.get('contactpic');
-                        url = imageURI;
-                        pic.setHtml('<img src="' + url + '"/>');
-                    }
-                },
-                /*window.imagePicker.getPictures(function(results) {
-					for (var i = 0; i < results.length; i++) {
-					console.log('Image URI: ' + results[i]);
-					pic.src = results[i];
-					}
-					}, function (error) {
-					console.log('Error: ' + error);
-					},{
-					maximumImagesCount: 1,
-					width: 100,
-					height:100,
-					quality: 30
-					});*/
-                docked: 'right',
-                height: '10%',
-                itemId: 'changePic',
-                maxWidth: '20%',
-                right: '5%',
-                styleHtmlContent: true,
-                top: '20%',
-                iconCls: 'add'
-            },
-            {
                 xtype: 'textfield',
                 height: '20%',
                 html: '',
@@ -67056,7 +67009,6 @@ Ext.define('Ext.picker.Picker', {
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
         var fileField = Ext.get('ChangePicture');
-        this.child('fileField').set;
         if (record) {
             this.child('contactpic').setData(record.data);
             this.down('#businessName').setValue(record.data.businessName);
