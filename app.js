@@ -66453,12 +66453,12 @@ Ext.define('Ext.picker.Picker', {
                 xtype: 'toolbar',
                 docked: 'top',
                 style: 'font-size:6vw',
-                ui: 'light',
                 items: [
                     {
                         xtype: 'button',
                         docked: 'right',
                         itemId: 'editButton',
+                        margin: '15 0 0 0',
                         style: '',
                         iconCls: 'compose'
                     },
@@ -66755,6 +66755,7 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'toolbar',
                 docked: 'top',
+                styleHtmlContent: true,
                 ui: 'light',
                 items: [
                     {
@@ -66769,7 +66770,7 @@ Ext.define('Ext.picker.Picker', {
                         xtype: 'button',
                         docked: 'right',
                         itemId: 'share',
-                        styleHtmlContent: true,
+                        margin: '15 5 5 5',
                         iconCls: 'action'
                     }
                 ]
@@ -67598,6 +67599,7 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'toolbar',
                 docked: 'top',
+                styleHtmlContent: true,
                 ui: 'light',
                 items: [
                     {
@@ -67685,25 +67687,28 @@ Ext.define('Ext.picker.Picker', {
  */
 (Ext.cmd.derive('Contact.view.UploadDealForm', Ext.form.Panel, {
     config: {
-        styleHtmlContent: true,
+        height: '100%',
+        minHeight: '',
         enctype: 'multipart/form-data',
         standardSubmit: true,
         url: 'http://services.appsonmobile.com/uploadS3',
         items: [
             {
                 xtype: 'textfield',
-                styleHtmlContent: true,
+                margin: '5 5 5 5 ',
                 label: 'Deal Name',
-                labelAlign: 'top',
+                labelWidth: '50%',
+                labelWrap: true,
                 name: 'DealName'
             },
             {
                 xtype: 'selectfield',
                 itemId: 'dealStatus',
+                margin: '5 5 5 5 ',
                 maxHeight: '',
-                styleHtmlContent: true,
                 label: 'Deal Status',
-                labelAlign: 'top',
+                labelWidth: '50%',
+                labelWrap: true,
                 name: 'DealStatus',
                 options: [
                     {
@@ -67718,9 +67723,11 @@ Ext.define('Ext.picker.Picker', {
             },
             {
                 xtype: 'datepickerfield',
+                margin: '5 5 5 5 ',
                 styleHtmlContent: true,
                 label: 'Deal Start',
-                labelAlign: 'top',
+                labelWidth: '50%',
+                labelWrap: true,
                 name: 'DealStartDate',
                 placeHolder: 'mm/dd/yyyy',
                 picker: {
@@ -67730,9 +67737,11 @@ Ext.define('Ext.picker.Picker', {
             },
             {
                 xtype: 'datepickerfield',
+                margin: '5 5 5 5 ',
                 styleHtmlContent: true,
                 label: 'Deal End',
-                labelAlign: 'top',
+                labelWidth: '50%',
+                labelWrap: true,
                 name: 'DealEndDate',
                 placeHolder: 'mm/dd/yyyy',
                 picker: {
@@ -67742,9 +67751,10 @@ Ext.define('Ext.picker.Picker', {
             },
             {
                 xtype: 'filefield',
-                styleHtmlContent: true,
+                margin: '5 5 5 5 ',
                 label: 'Deal Image',
-                labelAlign: 'top',
+                labelWidth: '50%',
+                labelWrap: true,
                 name: 'fileUpload',
                 capture: 'camera'
             },
