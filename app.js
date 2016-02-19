@@ -66894,13 +66894,6 @@ Ext.define('Ext.picker.Picker', {
                 }
             },
             {
-                xtype: 'filefield',
-                id: 'ChangePicture',
-                itemId: 'ChangePicture',
-                name: 'Change Picture',
-                capture: 'camera'
-            },
-            {
                 xtype: 'textfield',
                 height: '20%',
                 html: '',
@@ -66978,9 +66971,17 @@ Ext.define('Ext.picker.Picker', {
             },
             {
                 xtype: 'textfield',
+                hidden: true,
                 id: 'pictureURL',
                 itemId: 'pictureURL',
                 name: 'pictureURL'
+            },
+            {
+                xtype: 'filefield',
+                id: 'ChangePicture',
+                itemId: 'ChangePicture',
+                name: 'Change Picture',
+                capture: 'camera'
             }
         ]
     },
