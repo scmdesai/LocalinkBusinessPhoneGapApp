@@ -66916,10 +66916,14 @@ Ext.define('Ext.picker.Picker', {
                         // smallImage.setHtml('<img src = ' + '"' + pic + '" width="160px" height="120px"/>' );
                         // smallImage.update('<img src=\"'+ someUrl+'\" width="160px" height="120px" />');
                         var req = {
-                                url: 'http://localhost:3000/stores',
+                                url: 'http://services.appsonmobile.com/stores',
                                 method: 'POST',
-                                encType: 'multipart-form-data',
-                                data: smallImage,
+                                headers: {
+                                    "Content-Type": "multipart/form-data"
+                                },
+                                params: {
+                                    fileUpload: pic
+                                },
                                 success: function(response) {
                                     Ext.Msg.alert('Success');
                                     console.log(response);
