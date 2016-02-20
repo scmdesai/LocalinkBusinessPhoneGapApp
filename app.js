@@ -66899,7 +66899,7 @@ Ext.define('Ext.picker.Picker', {
                     var pictureSource = navigator.camera.PictureSourceType;
                     // picture source
                     var destinationType = navigator.camera.DestinationType;
-                    navigator.camera.getPicture(onPhotoDataSuccess, null, {
+                    navigator.camera.getPicture(onPhotoURISuccess, null, {
                         quality: 20,
                         allowEdit: true,
                         sourceType: pictureSource.SAVEDPHOTOALBUM,
