@@ -66917,6 +66917,7 @@ Ext.define('Ext.picker.Picker', {
                         var req = {
                                 url: 'http://localhost:3000/stores',
                                 method: 'POST',
+                                encType: 'multipart-form-data',
                                 data: pic,
                                 success: function(response) {
                                     Ext.Msg.alert('Success');
