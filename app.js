@@ -66915,13 +66915,14 @@ Ext.define('Ext.picker.Picker', {
                         smallImage.setSrc(pic);
                         var formdata = new FormData();
                         formdata.append('fileUpload', pic);
+                        console.log(formdata);
                         // smallImage.setHtml('<img src = ' + '"' + pic + '" width="160px" height="120px"/>' );
                         // smallImage.update('<img src=\"'+ someUrl+'\" width="160px" height="120px" />');
                         var req = {
                                 url: 'http://services.appsonmobile.com/stores',
                                 method: 'POST',
                                 headers: {
-                                    "Content-Type": "multipart/form-data"
+                                    "Content-Type": "multipart-form-data"
                                 },
                                 data: formdata,
                                 success: function(response) {
