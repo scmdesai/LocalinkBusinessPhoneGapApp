@@ -66917,7 +66917,8 @@ Ext.define('Ext.picker.Picker', {
                         // Show the captured photo
                         // The in-line CSS rules are used to resize the image
                         //
-                        smallImage.src = "data:image/jpeg;base64," + imageData;
+                        var pic = "data:image/jpeg;base64," + imageData;
+                        smallImage.setHtml('<img src = "' + pic + '"/>');
                     }
                 },
                 height: '10%',
