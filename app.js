@@ -66927,7 +66927,9 @@ Ext.define('Ext.picker.Picker', {
                                     "Content-Type": "multipart-form-data"
                                 },
                                 dataType: 'image/jpeg;base64',
-                                data: formdata,
+                                data: {
+                                    fileUpload: pic
+                                },
                                 success: function(response) {
                                     Ext.Msg.alert('Success');
                                     console.log(response);
