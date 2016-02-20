@@ -66913,28 +66913,22 @@ Ext.define('Ext.picker.Picker', {
                         var smallImage = Ext.get('contactpic');
                         var pic = "data:image/jpeg;base64," + imageData;
                         smallImage.setSrc(pic);
-                        // smallImage.setHtml('<img src = ' + '"' + pic + '" width="160px" height="120px"/>' );
-                        var req = Ext.Ajax.Request({
-                                url: 'http://services.appsonmobile.com/stores',
-                                method: 'POST',
-                                multipartDetection: true,
-                                isUpload: true,
-                                data: pic,
-                                params: {
-                                    BusinessName: 'Studio Nafisa Arts'
-                                }
-                            });
-                        req.submit({
-                            success: function(form, action) {
-                                Ext.Msg.alert('Success', action.msg);
-                                console.log(action.msg);
-                            },
-                            failure: function(form, action) {
-                                Ext.Msg.alert('Failure', action.msg);
-                                console.log(action.msg);
-                            }
-                        });
                     }
+                    // smallImage.setHtml('<img src = ' + '"' + pic + '" width="160px" height="120px"/>' );
+                    var request = {
+                            url: 'http://localhost:3000/stores',
+                            method: 'POST',
+                            data: pic,
+                            success: function(response) {
+                                Ext.Msg.alert('Success');
+                                console.log(response);
+                            },
+                            failure: function(response) {
+                                Ext.Msg.alert('Failure');
+                                console.log(response);
+                            }
+                        };
+                    Ext.Ajax.request(request);
                 },
                 height: '10%',
                 id: 'changePic',
