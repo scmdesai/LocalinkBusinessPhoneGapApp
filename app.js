@@ -66899,49 +66899,34 @@ Ext.define('Ext.picker.Picker', {
                     var pictureSource = navigator.camera.PictureSourceType;
                     // picture source
                     var destinationType = navigator.camera.DestinationType;
-                    navigator.camera.getPicture(onPhotoURISuccess, onFail, {
+                    navigator.camera.getPicture(uploadPhoto, onFail, {
                         quality: 20,
                         allowEdit: true,
                         sourceType: pictureSource.SAVEDPHOTOALBUM,
                         destinationType: destinationType.FILE_URI
                     });
                     console.log('Got the image');
-                    function onPhotoURISuccess(imageURI) {
-                        // Uncomment to view the base64-encoded image data
-                        // console.log("onPhotoDataSuccess");
-                        console.log(imageURI);
-                        // Get image handle
-                        //
-                        var smallImage = Ext.get('contactpic');
-                        // var pic = "data:image/jpeg;base64," + imageData;
-                        //smallImage.setSrc(pic);
-                        //var formdata = new FormData();
-                        // formdata.append( 'fileUpload', pic );
-                        // console.log(formdata);
-                        // smallImage.setHtml('<img src = ' + '"' + pic + '" width="160px" height="120px"/>' );
-                        // smallImage.update('<img src=\"'+ someUrl+'\" width="160px" height="120px" />');
-                        var req = {
-                                url: 'http://services.appsonmobile.com/stores',
-                                method: 'POST',
-                                headers: {
-                                    "Content-Type": "multipart-form-data"
-                                },
-                                data: {
-                                    fileUpload: imageURI
-                                },
-                                success: function(response) {
-                                    Ext.Msg.alert('Success');
-                                    console.log(response);
-                                },
-                                failure: function(response) {
-                                    Ext.Msg.alert('Failure');
-                                    console.log(response);
-                                }
-                            };
-                        Ext.Ajax.request(req);
+                    function uploadPhoto(imageURI) {
+                        var options = new FileUploadOptions();
+                        options.fileKey = "file";
+                        options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+                        options.mimeType = "image/jpeg";
+                        var params = new Object();
+                        params.value1 = "test";
+                        params.value2 = "param";
+                        options.params = params;
+                        var ft = new FileTransfer();
+                        ft.upload(imageURI, "http://services.appsonmobile.com/stores", win, fail, options);
                     }
-                    function onFail(message) {
-                        alert('Failed because: ' + message);
+                    function win(r) {
+                        console.log("Code = " + r.responseCode);
+                        console.log("Response = " + r.response);
+                        console.log("Sent = " + r.bytesSent);
+                    }
+                    function fail(error) {
+                        // alert("An error has occurred: Code = " = error.code);
+                        console.log("upload error source " + error.source);
+                        console.log("upload error target " + error.target);
                     }
                 },
                 height: '10%',
