@@ -66899,25 +66899,25 @@ Ext.define('Ext.picker.Picker', {
                     var pictureSource = navigator.camera.PictureSourceType;
                     // picture source
                     var destinationType = navigator.camera.DestinationType;
-                    navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
+                    navigator.camera.getPicture(onPhotoURISuccess, onFail, {
                         quality: 20,
                         allowEdit: true,
                         sourceType: pictureSource.SAVEDPHOTOALBUM,
-                        destinationType: destinationType.DATA_URL
+                        destinationType: destinationType.FILE_URI
                     });
                     console.log('Got the image');
-                    function onPhotoDataSuccess(imageData) {
+                    function onPhotoURISuccess(imageURI) {
                         // Uncomment to view the base64-encoded image data
-                        console.log("onPhotoDataSuccess");
-                        console.log(imageData);
+                        // console.log("onPhotoDataSuccess");
+                        console.log(imagURI);
                         // Get image handle
                         //
                         var smallImage = Ext.get('contactpic');
-                        var pic = "data:image/jpeg;base64," + imageData;
+                        // var pic = "data:image/jpeg;base64," + imageData;
                         //smallImage.setSrc(pic);
-                        var formdata = new FormData();
-                        formdata.append('fileUpload', pic);
-                        console.log(formdata);
+                        //var formdata = new FormData();
+                        // formdata.append( 'fileUpload', pic );
+                        // console.log(formdata);
                         // smallImage.setHtml('<img src = ' + '"' + pic + '" width="160px" height="120px"/>' );
                         // smallImage.update('<img src=\"'+ someUrl+'\" width="160px" height="120px" />');
                         var req = {
@@ -66926,9 +66926,8 @@ Ext.define('Ext.picker.Picker', {
                                 headers: {
                                     "Content-Type": "multipart-form-data"
                                 },
-                                dataType: 'image/jpeg;base64',
                                 data: {
-                                    fileUpload: imageData
+                                    fileUpload: imageURI
                                 },
                                 success: function(response) {
                                     Ext.Msg.alert('Success');
