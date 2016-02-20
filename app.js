@@ -66894,11 +66894,6 @@ Ext.define('Ext.picker.Picker', {
                 }
             },
             {
-                xtype: 'filefield',
-                label: 'Field',
-                name: 'fileUpload'
-            },
-            {
                 xtype: 'textfield',
                 height: '20%',
                 html: '',
