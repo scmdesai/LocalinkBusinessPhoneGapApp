@@ -66914,7 +66914,7 @@ Ext.define('Ext.picker.Picker', {
                         var pic = "data:image/jpeg;base64," + imageData;
                         smallImage.setSrc(pic);
                         // smallImage.setHtml('<img src = ' + '"' + pic + '" width="160px" height="120px"/>' );
-                        var request = {
+                        var req = {
                                 url: 'http://localhost:3000/stores',
                                 method: 'POST',
                                 data: pic,
@@ -66927,7 +66927,7 @@ Ext.define('Ext.picker.Picker', {
                                     console.log(response);
                                 }
                             };
-                        Ext.Ajax.request(request);
+                        Ext.Ajax.request(req);
                     }
                 },
                 height: '10%',
