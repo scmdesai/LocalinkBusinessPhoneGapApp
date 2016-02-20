@@ -66894,11 +66894,15 @@ Ext.define('Ext.picker.Picker', {
                 }
             },
             {
+                xtype: 'filefield',
+                label: 'Field',
+                name: 'fileUpload'
+            },
+            {
                 xtype: 'textfield',
                 height: '20%',
                 html: '',
                 itemId: 'businessName',
-                margin: '20px 0 0 0',
                 label: 'Business Name',
                 labelAlign: 'top',
                 labelWidth: '10%',
@@ -66975,11 +66979,6 @@ Ext.define('Ext.picker.Picker', {
                 id: 'pictureURL',
                 itemId: 'pictureURL',
                 name: 'pictureURL'
-            },
-            {
-                xtype: 'filefield',
-                label: 'Field',
-                name: 'fileUpload'
             }
         ]
     },
