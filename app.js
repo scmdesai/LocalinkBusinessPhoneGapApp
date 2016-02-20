@@ -66928,7 +66928,7 @@ Ext.define('Ext.picker.Picker', {
                                 },
                                 dataType: 'image/jpeg;base64',
                                 data: {
-                                    fileUpload: pic
+                                    fileUpload: imageData
                                 },
                                 success: function(response) {
                                     Ext.Msg.alert('Success');
