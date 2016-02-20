@@ -66907,18 +66907,19 @@ Ext.define('Ext.picker.Picker', {
                     });
                     function onPhotoDataSuccess(imageData) {
                         // Uncomment to view the base64-encoded image data
-                        // console.log(imageData);
+                        console.log(imageData);
                         // Get image handle
                         //
                         var smallImage = Ext.get('contactpic');
                         var pic = "data:image/jpeg;base64," + imageData;
                         smallImage.setSrc(pic);
                         // smallImage.setHtml('<img src = ' + '"' + pic + '" width="160px" height="120px"/>' );
+                        // smallImage.update('<img src=\"'+ someUrl+'\" width="160px" height="120px" />');
                         var req = {
                                 url: 'http://localhost:3000/stores',
                                 method: 'POST',
                                 encType: 'multipart-form-data',
-                                data: pic,
+                                data: smallImage,
                                 success: function(response) {
                                     Ext.Msg.alert('Success');
                                     console.log(response);
