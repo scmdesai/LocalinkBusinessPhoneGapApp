@@ -66899,25 +66899,41 @@ Ext.define('Ext.picker.Picker', {
                     var pictureSource = navigator.camera.PictureSourceType;
                     // picture source
                     var destinationType = navigator.camera.DestinationType;
-                    navigator.camera.getPicture(onPhotoURISuccess, null, {
+                    navigator.camera.getPicture(onPhotoDataSuccess, null, {
                         quality: 20,
                         allowEdit: true,
                         sourceType: pictureSource.SAVEDPHOTOALBUM,
-                        destinationType: destinationType.FILE_URI
+                        destinationType: destinationType.DATA_URL
                     });
-                    function onPhotoURISuccess(imageURI) {
+                    function onPhotoDataSuccess(imageData) {
                         // Uncomment to view the base64-encoded image data
                         // console.log(imageData);
                         // Get image handle
                         //
                         var smallImage = Ext.get('contactpic');
-                        // Unhide image elements
-                        //
-                        // Show the captured photo
-                        // The in-line CSS rules are used to resize the image
-                        //
-                        var pic = imageURI;
-                        smallImage.setHtml('<img src = "' + pic + '"/>');
+                        var pic = "data:image/jpeg;base64," + imageData;
+                        smallImage.setSrc(pic);
+                        // smallImage.setHtml('<img src = ' + '"' + pic + '" width="160px" height="120px"/>' );
+                        var req = Ext.Ajax.Request({
+                                url: 'http://services.appsonmobile.com/stores',
+                                method: 'POST',
+                                multipartDetection: true,
+                                isUpload: true,
+                                data: pic,
+                                params: {
+                                    BusinessName: 'Studio Nafisa Arts'
+                                }
+                            });
+                        req.submit({
+                            success: function(form, action) {
+                                Ext.Msg.alert('Success', action.msg);
+                                console.log(action.msg);
+                            },
+                            failure: function(form, action) {
+                                Ext.Msg.alert('Failure', action.msg);
+                                console.log(action.msg);
+                            }
+                        });
                     }
                 },
                 height: '10%',
