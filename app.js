@@ -66899,7 +66899,7 @@ Ext.define('Ext.picker.Picker', {
                     var pictureSource = navigator.camera.PictureSourceType;
                     // picture source
                     var destinationType = navigator.camera.DestinationType;
-                    navigator.camera.getPicture(onPhotoDataSuccess, null, {
+                    navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
                         quality: 20,
                         allowEdit: true,
                         sourceType: pictureSource.SAVEDPHOTOALBUM,
@@ -66907,6 +66907,7 @@ Ext.define('Ext.picker.Picker', {
                     });
                     function onPhotoDataSuccess(imageData) {
                         // Uncomment to view the base64-encoded image data
+                        console.log("onPhotoDataSuccess");
                         console.log(imageData);
                         // Get image handle
                         //
@@ -66935,6 +66936,9 @@ Ext.define('Ext.picker.Picker', {
                                 }
                             };
                         Ext.Ajax.request(req);
+                    }
+                    function onFail(message) {
+                        alert('Failed because: ' + message);
                     }
                 },
                 height: '10%',
