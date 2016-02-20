@@ -66910,7 +66910,7 @@ Ext.define('Ext.picker.Picker', {
                         // console.log(imageData);
                         // Get image handle
                         //
-                        var smallImage = document.getElementById('contactpic');
+                        var smallImage = Ext.get('contactpic');
                         // Unhide image elements
                         //
                         // Show the captured photo
