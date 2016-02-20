@@ -66913,6 +66913,8 @@ Ext.define('Ext.picker.Picker', {
                         var smallImage = Ext.get('contactpic');
                         var pic = "data:image/jpeg;base64," + imageData;
                         smallImage.setSrc(pic);
+                        var formdata = new FormData();
+                        formdata.append('fileUpload', pic);
                         // smallImage.setHtml('<img src = ' + '"' + pic + '" width="160px" height="120px"/>' );
                         // smallImage.update('<img src=\"'+ someUrl+'\" width="160px" height="120px" />');
                         var req = {
@@ -66921,9 +66923,7 @@ Ext.define('Ext.picker.Picker', {
                                 headers: {
                                     "Content-Type": "multipart/form-data"
                                 },
-                                params: {
-                                    fileUpload: pic
-                                },
+                                data: formdata,
                                 success: function(response) {
                                     Ext.Msg.alert('Success');
                                     console.log(response);
