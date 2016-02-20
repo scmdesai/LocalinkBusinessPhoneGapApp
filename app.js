@@ -66909,7 +66909,7 @@ Ext.define('Ext.picker.Picker', {
                     function onPhotoURISuccess(imageURI) {
                         // Uncomment to view the base64-encoded image data
                         // console.log("onPhotoDataSuccess");
-                        console.log(imagURI);
+                        console.log(imageURI);
                         // Get image handle
                         //
                         var smallImage = Ext.get('contactpic');
