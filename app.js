@@ -66894,6 +66894,39 @@ Ext.define('Ext.picker.Picker', {
                 }
             },
             {
+                xtype: 'button',
+                handler: function(button, e) {
+                    var pictureSource = navigator.camera.PictureSourceType;
+                    // picture source
+                    var destinationType = navigator.camera.DestinationType;
+                    navigator.camera.getPicture(onPhotoDataSuccess, null, {
+                        quality: 20,
+                        allowEdit: true,
+                        destinationType: destinationType.DATA_URL
+                    });
+                    function onPhotoDataSuccess(imageData) {
+                        // Uncomment to view the base64-encoded image data
+                        // console.log(imageData);
+                        // Get image handle
+                        //
+                        var smallImage = document.getElementById('contactpic');
+                        // Unhide image elements
+                        //
+                        smallImage.style.display = 'block';
+                        // Show the captured photo
+                        // The in-line CSS rules are used to resize the image
+                        //
+                        smallImage.src = "data:image/jpeg;base64," + imageData;
+                    }
+                },
+                height: '10%',
+                id: 'changePic',
+                itemId: 'changePic',
+                maxWidth: '20%',
+                iconCls: 'add',
+                text: ''
+            },
+            {
                 xtype: 'textfield',
                 height: '20%',
                 html: '',
