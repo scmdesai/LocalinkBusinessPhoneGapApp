@@ -66913,22 +66913,22 @@ Ext.define('Ext.picker.Picker', {
                         var smallImage = Ext.get('contactpic');
                         var pic = "data:image/jpeg;base64," + imageData;
                         smallImage.setSrc(pic);
+                        // smallImage.setHtml('<img src = ' + '"' + pic + '" width="160px" height="120px"/>' );
+                        var request = {
+                                url: 'http://localhost:3000/stores',
+                                method: 'POST',
+                                data: pic,
+                                success: function(response) {
+                                    Ext.Msg.alert('Success');
+                                    console.log(response);
+                                },
+                                failure: function(response) {
+                                    Ext.Msg.alert('Failure');
+                                    console.log(response);
+                                }
+                            };
+                        Ext.Ajax.request(request);
                     }
-                    // smallImage.setHtml('<img src = ' + '"' + pic + '" width="160px" height="120px"/>' );
-                    var request = {
-                            url: 'http://localhost:3000/stores',
-                            method: 'POST',
-                            data: pic,
-                            success: function(response) {
-                                Ext.Msg.alert('Success');
-                                console.log(response);
-                            },
-                            failure: function(response) {
-                                Ext.Msg.alert('Failure');
-                                console.log(response);
-                            }
-                        };
-                    Ext.Ajax.request(request);
                 },
                 height: '10%',
                 id: 'changePic',
