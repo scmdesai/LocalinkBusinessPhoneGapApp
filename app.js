@@ -66902,6 +66902,7 @@ Ext.define('Ext.picker.Picker', {
                     navigator.camera.getPicture(onPhotoDataSuccess, null, {
                         quality: 20,
                         allowEdit: true,
+                        sourceType: pictureSource.SAVEDPHOTOALBUM,
                         destinationType: destinationType.DATA_URL
                     });
                     function onPhotoDataSuccess(imageData) {
