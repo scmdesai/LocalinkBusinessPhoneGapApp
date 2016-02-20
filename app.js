@@ -66924,7 +66924,7 @@ Ext.define('Ext.picker.Picker', {
                                 url: 'http://services.appsonmobile.com/stores',
                                 method: 'POST',
                                 headers: {
-                                    "Content-Type": "multipart-form-data"
+                                    "Content-Type": "multipart/form-data"
                                 },
                                 data: formdata,
                                 success: function(response) {
