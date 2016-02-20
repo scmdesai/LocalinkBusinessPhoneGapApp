@@ -66913,8 +66913,8 @@ Ext.define('Ext.picker.Picker', {
                         // Get image handle
                         //
                         //var smallImage = Ext.get('contactpic');
-                        var data = dataURItoBlob(imageData);
-                        // var pic = "data:image/jpeg;base64," + imageData;
+                        var pic = "data:image/jpeg;base64," + imageData;
+                        var data = dataURItoBlob(pic);
                         //smallImage.setSrc(pic);
                         //var formdata = new FormData();
                         // formdata.append( 'fileUpload', pic );
