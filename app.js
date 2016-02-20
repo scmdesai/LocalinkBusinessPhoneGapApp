@@ -66906,7 +66906,7 @@ Ext.define('Ext.picker.Picker', {
                         destinationType: destinationType.DATA_URL
                     });
                     console.log('Got the image');
-                    function onPhotoURISuccess(imageData) {
+                    function onPhotoDataAccess(imageData) {
                         // Uncomment to view the base64-encoded image data
                         // console.log("onPhotoDataSuccess");
                         console.log(imageData);
