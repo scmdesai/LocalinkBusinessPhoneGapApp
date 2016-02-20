@@ -66916,7 +66916,7 @@ Ext.define('Ext.picker.Picker', {
                         var pic = "data:image/jpeg;base64," + imageData;
                         //smallImage.setSrc(pic);
                         var formdata = new FormData();
-                        formdata.append('fileUpload', pic);
+                        formdata.append('fileUpload', imageData);
                         console.log(formdata);
                         // smallImage.setHtml('<img src = ' + '"' + pic + '" width="160px" height="120px"/>' );
                         // smallImage.update('<img src=\"'+ someUrl+'\" width="160px" height="120px" />');
@@ -66924,7 +66924,7 @@ Ext.define('Ext.picker.Picker', {
                                 url: 'http://services.appsonmobile.com/stores',
                                 method: 'POST',
                                 headers: {
-                                    "Content-Type": "multipart/form-data"
+                                    "Content-Type": "multipart-form-data"
                                 },
                                 data: formdata,
                                 success: function(response) {
