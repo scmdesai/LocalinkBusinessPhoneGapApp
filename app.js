@@ -66899,34 +66899,63 @@ Ext.define('Ext.picker.Picker', {
                     var pictureSource = navigator.camera.PictureSourceType;
                     // picture source
                     var destinationType = navigator.camera.DestinationType;
-                    navigator.camera.getPicture(uploadPhoto, null, {
+                    navigator.camera.getPicture(onPhotoDataAccess, onFail, {
                         quality: 20,
                         allowEdit: true,
                         sourceType: pictureSource.SAVEDPHOTOALBUM,
-                        destinationType: destinationType.FILE_URI
+                        destinationType: destinationType.DATA_URL
                     });
                     console.log('Got the image');
-                    function uploadPhoto(imageURI) {
-                        var options = new FileUploadOptions();
-                        options.fileKey = "file";
-                        options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
-                        options.mimeType = "image/jpeg";
-                        var params = new Object();
-                        params.value1 = "test";
-                        params.value2 = "param";
-                        options.params = params;
-                        var ft = new FileTransfer();
-                        ft.upload(imageURI, "http://services.appsonmobile.com/stores", win, fail, options);
+                    function onPhotoURISuccess(imageData) {
+                        // Uncomment to view the base64-encoded image data
+                        // console.log("onPhotoDataSuccess");
+                        console.log(imageData);
+                        // Get image handle
+                        //
+                        //var smallImage = Ext.get('contactpic');
+                        var data = this.dataURItoBlob(imageData);
+                        // var pic = "data:image/jpeg;base64," + imageData;
+                        //smallImage.setSrc(pic);
+                        //var formdata = new FormData();
+                        // formdata.append( 'fileUpload', pic );
+                        // console.log(formdata);
+                        // smallImage.setHtml('<img src = ' + '"' + pic + '" width="160px" height="120px"/>' );
+                        // smallImage.update('<img src=\"'+ someUrl+'\" width="160px" height="120px" />');
+                        var req = {
+                                url: 'http://services.appsonmobile.com/stores',
+                                method: 'POST',
+                                headers: {
+                                    "Content-Type": "multipart-form-data"
+                                },
+                                data: {
+                                    fileUpload: data
+                                },
+                                success: function(response) {
+                                    Ext.Msg.alert('Success');
+                                    console.log(response);
+                                },
+                                failure: function(response) {
+                                    Ext.Msg.alert('Failure');
+                                    console.log(response);
+                                }
+                            };
+                        Ext.Ajax.request(req);
                     }
-                    function win(r) {
-                        console.log("Code = " + r.responseCode);
-                        console.log("Response = " + r.response);
-                        console.log("Sent = " + r.bytesSent);
+                    function onFail(message) {
+                        alert('Failed because: ' + message);
                     }
-                    function fail(error) {
-                        // alert("An error has occurred: Code = " = error.code);
-                        console.log("upload error source " + error.source);
-                        console.log("upload error target " + error.target);
+                    function dataURItoBlob(dataURI) {
+                        var binary = atob(dataURI.split(',')[1]);
+                        var array = [];
+                        for (var i = 0; i < binary.length; i++) {
+                            array.push(binary.charCodeAt(i));
+                        }
+                        var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+                        return new Blob([
+                            new Uint8Array(array)
+                        ], {
+                            type: mimeString
+                        });
                     }
                 },
                 height: '10%',
