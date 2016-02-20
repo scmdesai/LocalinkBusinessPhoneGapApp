@@ -66903,9 +66903,9 @@ Ext.define('Ext.picker.Picker', {
                         quality: 20,
                         allowEdit: true,
                         sourceType: pictureSource.SAVEDPHOTOALBUM,
-                        destinationType: destinationType.DATA_URL
+                        destinationType: destinationType.FILE_URI
                     });
-                    function onPhotoDataSuccess(imageData) {
+                    function onPhotoURISuccess(imageURI) {
                         // Uncomment to view the base64-encoded image data
                         // console.log(imageData);
                         // Get image handle
@@ -66913,11 +66913,10 @@ Ext.define('Ext.picker.Picker', {
                         var smallImage = document.getElementById('contactpic');
                         // Unhide image elements
                         //
-                        smallImage.style.display = 'block';
                         // Show the captured photo
                         // The in-line CSS rules are used to resize the image
                         //
-                        var pic = "data:image/jpeg;base64," + imageData;
+                        var pic = imageURI;
                         smallImage.setHtml('<img src = "' + pic + '"/>');
                     }
                 },
