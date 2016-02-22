@@ -67963,62 +67963,52 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'CustomerId',
-                value: '04'
+                name: 'CustomerId'
             },
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'BusinessName',
-                value: 'Studio Nafisa Arts'
+                name: 'BusinessName'
             },
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'Category',
-                value: 'Arts'
+                name: 'Category'
             },
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'phoneNumber',
-                value: '630-340-0534'
+                name: 'phoneNumber'
             },
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'address',
-                value: '4260 Westbrook Dr, Aurora, IL 60504'
+                name: 'address'
             },
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'email',
-                value: 'studionafisa@yahoo.com'
+                name: 'email'
             },
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'zipcode',
-                value: '60504'
+                name: 'zipcode'
             },
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'state',
-                value: 'IL'
+                name: 'state'
             },
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'city',
-                value: 'Aurora'
+                name: 'city'
             },
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'pictureURL',
-                value: 'http://appsonmobile.com/locallink/stores/Studio Nafisa Arts.jpg'
+                name: 'pictureURL'
             }
         ]
     }
