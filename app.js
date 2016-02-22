@@ -67918,7 +67918,7 @@ Ext.define('Ext.picker.Picker', {
     config: {
         styleHtmlContent: true,
         layout: 'card',
-        url: 'http://services.appsonmobile.com/stores/04',
+        url: '',
         items: [
             {
                 xtype: 'filefield',
@@ -67930,7 +67930,17 @@ Ext.define('Ext.picker.Picker', {
                 xtype: 'button',
                 handler: function(button, e) {
                     var form = this.up('ChangeContactPicForm');
+                    var customerId = form.getRecord().get('customerId');
+                    form.getComponent('CustomerId').setValue(customerId);
+                    form.getComponent('BusinessName').setValue(form.getRecord().get('businessName'));
+                    form.getComponent('Category').setValue(form.getRecord().get('category'));
+                    form.getComponent('email').setValue(form.getRecord().get('emailAddress'));
+                    form.getComponent('city').setValue(form.getRecord().get('city'));
+                    form.getComponent('state').setValue(form.getRecord().get('state'));
+                    form.getComponent('zipcode').setValue(form.getRecord().get('zipcode'));
+                    form.getComponent('pictureURL').setValue(form.getRecord().get('picture'));
                     form.submit({
+                        url: 'http://services.appsonmobile.com/stores/' + customerId,
                         success: function(form, action) {
                             Ext.Msg.alert('Success');
                             console.log(action.msg);
