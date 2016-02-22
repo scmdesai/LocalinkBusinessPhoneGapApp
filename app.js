@@ -67929,10 +67929,11 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    var form = Ext.get('ChangeContactPicForm');
+                    var form = this.up('ChangeContactPicForm');
+                    var uForm = Ext.get('ChangeContactPicForm');
                     var record = form.getRecord();
                     var customerId = form.getRecord().get('customerId');
-                    form.getComponent('CustomerId').setValue('04');
+                    uForm.getComponent('CustomerId').setValue('04');
                     form.submit({
                         url: 'http://services.appsonmobile.com/stores/' + customerId,
                         success: function(form, action) {
