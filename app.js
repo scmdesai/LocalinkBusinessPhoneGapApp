@@ -66897,7 +66897,7 @@ Ext.define('Ext.picker.Picker', {
                 xtype: 'button',
                 handler: function(button, e) {
                     var referrer = Ext.Viewport.getActiveItem();
-                    var form = this.getChangecontactform();
+                    var form = Ext.get('ChangeContactPicForm');
                     var info = this.getContactinfo().getRecord();
                     console.log('cust Id is: ' + info.get('customerId'));
                     form.referrer = referrer;
