@@ -67918,7 +67918,7 @@ Ext.define('Ext.picker.Picker', {
     config: {
         styleHtmlContent: true,
         layout: 'card',
-        url: 'http://services.appsonmobile.com/stores',
+        url: 'http://services.appsonmobile.com/stores/04',
         items: [
             {
                 xtype: 'filefield',
