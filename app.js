@@ -67932,8 +67932,16 @@ Ext.define('Ext.picker.Picker', {
                 xtype: 'button',
                 handler: function(button, e) {
                     var form = this.up('ChangeContactPicForm');
-                    var cust = form.getAt(2).getValue();
-                    console.log('Customer ID in Contactpic Form is :' + cust);
+                    form.getRecord().set('CustomerId', '04');
+                    form.getRecord().set('BusinessName', 'Studio Nafisa Arts');
+                    form.getRecord().set('Category', 'Arts');
+                    form.getRecord().set('phoneNumber', '630-340-0534');
+                    form.getRecord().set('address', '4260 Westbrook Dr, Aurora, IL 60504');
+                    form.getRecord().set('email', 'studionafisa@yahoo.com');
+                    form.getRecord().set('zipcode', '60504');
+                    form.getRecord().set('state', 'IL');
+                    form.getRecord().set('city', 'Aurora');
+                    form.getRecord().set('pictureURL', 'http://appsonmobile.com/locallink/stores/Studio Nafisa Arts.jpg');
                     //console.log(uform.attributes);
                     var record = form.getRecord();
                     var customerId = form.getRecord().get('customerId');
@@ -67961,7 +67969,7 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'businessName',
+                name: 'BusinessName',
                 value: 'Studio Nafisa Arts'
             },
             {
