@@ -66896,7 +66896,7 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    Ext.Viewport.getActiveItem().destroy();
+                    //Ext.Viewport.getActiveItem().destroy();
                     var view = Ext.Viewport.add({
                             xtype: 'ChangeContactPicForm'
                         });
@@ -67918,6 +67918,24 @@ Ext.define('Ext.picker.Picker', {
                 label: '',
                 name: 'fileUpload',
                 capture: 'camera'
+            },
+            {
+                xtype: 'button',
+                handler: function(button, e) {
+                    var form = this.up('ChangeContactPicForm');
+                    form.submit({
+                        success: function(response) {
+                            Ext.Msg.alert('Success');
+                            console.log(response);
+                        },
+                        failure: function(response) {
+                            Ext.Msg.alert('Failure');
+                            console.log(response);
+                        }
+                    });
+                },
+                docked: 'bottom',
+                text: 'Submit'
             }
         ]
     }
