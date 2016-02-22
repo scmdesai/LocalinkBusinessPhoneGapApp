@@ -67932,13 +67932,9 @@ Ext.define('Ext.picker.Picker', {
                     var form = this.up('ChangeContactPicForm');
                     var record = form.getRecord();
                     var customerId = form.getRecord().get('customerId');
-                    form.getComponent('CustomerId').setValue(customerId);
-                    form.getComponent('Category').setValue(form.getRecord().get('category'));
-                    form.getComponent('email').setValue(form.getRecord().get('emailAddress'));
-                    form.getComponent('city').setValue(form.getRecord().get('city'));
-                    form.getComponent('state').setValue(form.getRecord().get('state'));
-                    form.getComponent('zipcode').setValue(form.getRecord().get('zipcode'));
-                    form.getComponent('pictureURL').setValue(form.getRecord().get('picture'));
+                    form.getAt(1).setValue(customerId);
+                    form.getAt(3).setValue(form.getRecord().get('category'));
+                    //form.getComponent('pictureURL').setValue(form.getRecord().get('picture'));
                     form.submit({
                         url: 'http://services.appsonmobile.com/stores/' + customerId,
                         success: function(form, action) {
