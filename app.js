@@ -67916,6 +67916,8 @@ Ext.define('Ext.picker.Picker', {
  */
 (Ext.cmd.derive('Contact.view.ChangeContactPicForm', Ext.form.Panel, {
     config: {
+        id: 'ChangeContactPicForm',
+        itemId: 'ChangeContactPicForm',
         styleHtmlContent: true,
         layout: 'card',
         url: '',
