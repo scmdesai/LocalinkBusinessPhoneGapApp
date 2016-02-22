@@ -66900,6 +66900,8 @@ Ext.define('Ext.picker.Picker', {
                     var view = Ext.Viewport.add({
                             xtype: 'ChangeContactPicForm'
                         });
+                    var frame = document.createElement('iframe');
+                    Ext.Viewport.setActiveItem(view);
                 },
                 /* var pictureSource = navigator.camera.PictureSourceType;   // picture source
 					var destinationType = navigator.camera.DestinationType;
