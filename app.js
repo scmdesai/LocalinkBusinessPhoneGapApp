@@ -66896,24 +66896,23 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    var referrer = Ext.Viewport.getActiveItem();
-                    var form = Ext.get('ChangeContactPicForm');
-                    var info = this.getContactinfo().getRecord();
-                    console.log('cust Id is: ' + info.get('customerId'));
-                    form.referrer = referrer;
-                    Ext.Viewport.setActiveItem(form);
-                    form.setRecord(info);
+                    var storeUserDetails = Ext.getStore('UserDetails');
+                    storeUserDetails.load();
+                    var customerId;
+                    var businessName;
+                    storeUserDetails.each(function(record) {
+                        console.log('StoreUserDetails : ' + record.get('customerId'));
+                        customerId = record.get('customerId');
+                        businessName = record.get('businessName');
+                    });
+                    var record = Ext.getStore('MyJsonPStore').findRecord('customerId', customerId, 0, true, false, false);
+                    var view = Ext.Viewport.add({
+                            xtype: 'ChangeContactPicForm'
+                        });
+                    view.setRecord(record);
+                    var frame = document.createElement('iframe');
+                    Ext.Viewport.setActiveItem(view);
                 },
-                /*
-					var view = Ext.Viewport.add({xtype: 'ChangeContactPicForm'});
-
-					var record =
-
-					view.setRecord(record);
-
-					var frame = document.createElement('iframe');
-
-					Ext.Viewport.setActiveItem(view);*/
                 /* var pictureSource = navigator.camera.PictureSourceType;   // picture source
 					var destinationType = navigator.camera.DestinationType;
 
@@ -67948,12 +67947,47 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'businessName'
+                name: 'CustomerId'
             },
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'customerId'
+                name: 'BusinessName'
+            },
+            {
+                xtype: 'textfield',
+                hidden: true,
+                name: 'Category'
+            },
+            {
+                xtype: 'textfield',
+                hidden: true,
+                name: 'phoneNumber'
+            },
+            {
+                xtype: 'textfield',
+                hidden: true,
+                name: 'address'
+            },
+            {
+                xtype: 'textfield',
+                hidden: true,
+                name: 'email'
+            },
+            {
+                xtype: 'textfield',
+                hidden: true,
+                name: 'zipcode'
+            },
+            {
+                xtype: 'textfield',
+                hidden: true,
+                name: 'state'
+            },
+            {
+                xtype: 'textfield',
+                hidden: true,
+                name: 'city'
             },
             {
                 xtype: 'textfield',
