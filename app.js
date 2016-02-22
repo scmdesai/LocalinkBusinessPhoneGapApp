@@ -67963,17 +67963,17 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'CustomerId'
+                name: 'customerId'
             },
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'BusinessName'
+                name: 'businessName'
             },
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'Category'
+                name: 'category'
             },
             {
                 xtype: 'textfield',
@@ -67988,7 +67988,7 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'email'
+                name: 'emailAddress'
             },
             {
                 xtype: 'textfield',
@@ -68008,7 +68008,7 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'pictureURL'
+                name: 'picture'
             }
         ]
     }
