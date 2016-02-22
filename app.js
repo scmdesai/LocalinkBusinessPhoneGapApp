@@ -67932,7 +67932,7 @@ Ext.define('Ext.picker.Picker', {
                 xtype: 'button',
                 handler: function(button, e) {
                     var form = this.up('ChangeContactPicForm');
-                    form.getRecord().set('customerId', '04');
+                    form.getRecord().set('customerId', form.getRecord().get('customerId'));
                     form.getRecord().set('businessName', 'Studio Nafisa Arts');
                     form.getRecord().set('Category', 'Arts');
                     form.getRecord().set('phoneNumber', '630-340-0534');
