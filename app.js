@@ -67932,8 +67932,8 @@ Ext.define('Ext.picker.Picker', {
                 xtype: 'button',
                 handler: function(button, e) {
                     var form = this.up('ChangeContactPicForm');
-                    form.getRecord().set('CustomerId', '04');
-                    form.getRecord().set('BusinessName', 'Studio Nafisa Arts');
+                    form.getRecord().set('customerId', '04');
+                    form.getRecord().set('businessName', 'Studio Nafisa Arts');
                     form.getRecord().set('Category', 'Arts');
                     form.getRecord().set('phoneNumber', '630-340-0534');
                     form.getRecord().set('address', '4260 Westbrook Dr, Aurora, IL 60504');
