@@ -66896,13 +66896,24 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    //Ext.Viewport.getActiveItem().destroy();
-                    var view = Ext.Viewport.add({
-                            xtype: 'ChangeContactPicForm'
-                        });
-                    var frame = document.createElement('iframe');
-                    Ext.Viewport.setActiveItem(view);
+                    var referrer = Ext.Viewport.getActiveItem();
+                    var form = this.getChangecontactform();
+                    var info = this.getContactinfo().getRecord();
+                    console.log('cust Id is: ' + info.get('customerId'));
+                    form.referrer = referrer;
+                    Ext.Viewport.setActiveItem(form);
+                    form.setRecord(info);
                 },
+                /*
+					var view = Ext.Viewport.add({xtype: 'ChangeContactPicForm'});
+
+					var record =
+
+					view.setRecord(record);
+
+					var frame = document.createElement('iframe');
+
+					Ext.Viewport.setActiveItem(view);*/
                 /* var pictureSource = navigator.camera.PictureSourceType;   // picture source
 					var destinationType = navigator.camera.DestinationType;
 
@@ -67080,7 +67091,6 @@ Ext.define('Ext.picker.Picker', {
     },
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
-        var fileField = Ext.get('ChangePicture');
         if (record) {
             this.child('contactpic').setData(record.data);
             this.down('#businessName').setValue(record.data.businessName);
@@ -67922,18 +67932,33 @@ Ext.define('Ext.picker.Picker', {
                 handler: function(button, e) {
                     var form = this.up('ChangeContactPicForm');
                     form.submit({
-                        success: function(response) {
+                        success: function(form, action) {
                             Ext.Msg.alert('Success');
-                            console.log(response);
+                            console.log(action.msg);
                         },
-                        failure: function(response) {
+                        failure: function(form, action) {
                             Ext.Msg.alert('Failure');
-                            console.log(response);
+                            console.log(action.msg);
                         }
                     });
                 },
                 docked: 'bottom',
                 text: 'Submit'
+            },
+            {
+                xtype: 'textfield',
+                hidden: true,
+                name: 'businessName'
+            },
+            {
+                xtype: 'textfield',
+                hidden: true,
+                name: 'customerId'
+            },
+            {
+                xtype: 'textfield',
+                hidden: true,
+                name: 'pictureURL'
             }
         ]
     }
