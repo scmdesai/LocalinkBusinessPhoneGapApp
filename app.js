@@ -66896,68 +66896,80 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    var pictureSource = navigator.camera.PictureSourceType;
-                    // picture source
-                    var destinationType = navigator.camera.DestinationType;
-                    navigator.camera.getPicture(onPhotoDataAccess, onFail, {
-                        quality: 20,
-                        allowEdit: true,
-                        sourceType: pictureSource.SAVEDPHOTOALBUM,
-                        destinationType: destinationType.DATA_URL
-                    });
-                    console.log('Got the image');
-                    function onPhotoDataAccess(imageData) {
-                        // Uncomment to view the base64-encoded image data
-                        // console.log("onPhotoDataSuccess");
-                        console.log(imageData);
-                        // Get image handle
-                        //
-                        //var smallImage = Ext.get('contactpic');
-                        var pic = "data:image/jpeg;base64," + imageData;
-                        var data = dataURItoBlob(pic);
-                        //smallImage.setSrc(pic);
-                        //var formdata = new FormData();
-                        // formdata.append( 'fileUpload', pic );
-                        // console.log(formdata);
-                        // smallImage.setHtml('<img src = ' + '"' + pic + '" width="160px" height="120px"/>' );
-                        // smallImage.update('<img src=\"'+ someUrl+'\" width="160px" height="120px" />');
-                        var req = {
-                                url: 'http://services.appsonmobile.com/stores',
-                                method: 'POST',
-                                headers: {
-                                    "Content-Type": "multipart-form-data"
-                                },
-                                data: {
-                                    fileUpload: pic
-                                },
-                                success: function(response) {
-                                    Ext.Msg.alert('Success');
-                                    console.log(response);
-                                },
-                                failure: function(response) {
-                                    Ext.Msg.alert('Failure');
-                                    console.log(response);
-                                }
-                            };
-                        Ext.Ajax.request(req);
-                    }
-                    function onFail(message) {
-                        alert('Failed because: ' + message);
-                    }
-                    function dataURItoBlob(dataURI) {
-                        var binary = atob(dataURI.split(',')[1]);
-                        var array = [];
-                        for (var i = 0; i < binary.length; i++) {
-                            array.push(binary.charCodeAt(i));
-                        }
-                        var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-                        return new Blob([
-                            new Uint8Array(array)
-                        ], {
-                            type: mimeString
+                    Ext.Viewport.getActiveItem().destroy();
+                    var view = Ext.Viewport.add({
+                            xtype: 'ChangeContactPicForm'
                         });
-                    }
                 },
+                /* var pictureSource = navigator.camera.PictureSourceType;   // picture source
+					var destinationType = navigator.camera.DestinationType;
+
+					navigator.camera.getPicture(onPhotoDataAccess, onFail, { quality: 20, allowEdit: true,
+					sourceType : pictureSource.SAVEDPHOTOALBUM ,destinationType: destinationType.DATA_URL });
+
+					console.log('Got the image');*/
+                /*function onPhotoDataAccess(imageData) {
+					// Uncomment to view the base64-encoded image data
+					// console.log("onPhotoDataSuccess");
+					console.log(imageData);
+
+					// Get image handle
+					//
+					//var smallImage = Ext.get('contactpic');
+					var pic = "data:image/jpeg;base64," + imageData;
+
+					var data    = dataURItoBlob(pic);
+
+
+
+
+					//smallImage.setSrc(pic);
+
+
+					//var formdata = new FormData();
+					// formdata.append( 'fileUpload', pic );
+					// console.log(formdata);
+
+					// smallImage.setHtml('<img src = ' + '"' + pic + '" width="160px" height="120px"/>' );
+					// smallImage.update('<img src=\"'+ someUrl+'\" width="160px" height="120px" />');
+
+
+					var req = {
+						url: 'http://services.appsonmobile.com/stores',
+						method: 'POST',
+						headers: {
+							"Content-Type": "multipart-form-data"
+						},
+						data: {fileUpload: pic},
+						accept:camera,
+						success: function(response){
+							Ext.Msg.alert('Success');
+							console.log(response);
+
+						},
+						failure: function(response) {
+							Ext.Msg.alert('Failure');
+							console.log(response);
+						}
+
+					};
+					Ext.Ajax.request(req);
+				}
+				function onFail(message) {
+					alert('Failed because: ' + message);
+				}
+				function dataURItoBlob(dataURI) {
+					var binary = atob(dataURI.split(',')[1]);
+					var array = [];
+					for (var i = 0; i < binary.length; i++) {
+						array.push(binary.charCodeAt(i));
+					}
+
+					var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+					return new Blob([new Uint8Array(array)], {
+						type: mimeString
+					});
+				}*/
                 height: '10%',
                 id: 'changePic',
                 itemId: 'changePic',
@@ -67878,6 +67890,57 @@ Ext.define('Ext.picker.Picker', {
 ], 0));
 
 /*
+ * File: app/view/ChangeContactPicForm.js
+ *
+ * This file was generated by Sencha Architect version 3.2.0.
+ * http://www.sencha.com/products/architect/
+ *
+ * This file requires use of the Sencha Touch 2.4.x library, under independent license.
+ * License of Sencha Architect does not include license for Sencha Touch 2.4.x. For more
+ * details see http://www.sencha.com/license or contact license@sencha.com.
+ *
+ * This file will be auto-generated each and everytime you save your project.
+ *
+ * Do NOT hand edit this file.
+ */
+(Ext.cmd.derive('Contact.view.ChangeContactPicForm', Ext.form.Panel, {
+    config: {
+        height: '50%',
+        maxWidth: '75%',
+        styleHtmlContent: true,
+        layout: 'fit',
+        url: 'http://services.appsonmobile.com/stores',
+        items: [
+            {
+                xtype: 'filefield',
+                label: '',
+                name: 'fileUpload',
+                capture: 'camera'
+            }
+        ]
+    }
+}, 0, [
+    "ChangeContactPicForm"
+], [
+    "component",
+    "container",
+    "panel",
+    "formpanel",
+    "ChangeContactPicForm"
+], {
+    "component": true,
+    "container": true,
+    "panel": true,
+    "formpanel": true,
+    "ChangeContactPicForm": true
+}, [
+    "widget.ChangeContactPicForm"
+], 0, [
+    Contact.view,
+    'ChangeContactPicForm'
+], 0));
+
+/*
  * File: app.js
  *
  * This file was generated by Sencha Architect version 3.2.0.
@@ -67917,7 +67980,8 @@ Ext.application({
         'Main',
         'DealsPanel',
         'Login',
-        'UploadDealForm'
+        'UploadDealForm',
+        'ChangeContactPicForm'
     ],
     controllers: [
         'Contacts'
