@@ -67931,10 +67931,9 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'button',
                 handler: function(button, e) {
-                    var form = this.getParent();
-                    //('ChangeContactPicForm');
-                    var uform = document.getElementById('ChangeContactPicForm');
-                    uform.appendChild('CustomerId');
+                    var form = this.up('ChangeContactPicForm');
+                    form.add('CustomerId').setValue('04');
+                    //var uform = document.getElementById('ChangeContactPicForm');
                     console.log(uform.attributes);
                     var record = form.getRecord();
                     var customerId = form.getRecord().get('customerId');
