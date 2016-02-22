@@ -67932,10 +67932,8 @@ Ext.define('Ext.picker.Picker', {
                 xtype: 'button',
                 handler: function(button, e) {
                     var form = this.up('ChangeContactPicForm');
-                    var uForm = Ext.get('ChangeContactPicForm');
                     var record = form.getRecord();
                     var customerId = form.getRecord().get('customerId');
-                    uForm.getAt('1').setValue('04');
                     form.submit({
                         url: 'http://services.appsonmobile.com/stores/' + customerId,
                         success: function(form, action) {
@@ -67954,52 +67952,62 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'CustomerId'
+                name: 'CustomerId',
+                value: '04'
             },
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'businessName'
+                name: 'businessName',
+                value: 'Studio Nafisa Arts'
             },
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'Category'
+                name: 'Category',
+                value: 'Arts'
             },
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'phoneNumber'
+                name: 'phoneNumber',
+                value: '630-340-0534'
             },
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'address'
+                name: 'address',
+                value: '4260 Westbrook Dr, Aurora, IL 60504'
             },
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'email'
+                name: 'email',
+                value: 'studionafisa@yahoo.com'
             },
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'zipcode'
+                name: 'zipcode',
+                value: '60504'
             },
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'state'
+                name: 'state',
+                value: 'IL'
             },
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'city'
+                name: 'city',
+                value: 'Aurora'
             },
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'pictureURL'
+                name: 'pictureURL',
+                value: 'http://appsonmobile.com/locallink/stores/Studio Nafisa Arts.jpg'
             }
         ]
     }
