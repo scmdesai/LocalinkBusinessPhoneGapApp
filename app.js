@@ -67907,10 +67907,8 @@ Ext.define('Ext.picker.Picker', {
  */
 (Ext.cmd.derive('Contact.view.ChangeContactPicForm', Ext.form.Panel, {
     config: {
-        height: '50%',
-        maxWidth: '75%',
         styleHtmlContent: true,
-        layout: 'fit',
+        layout: 'card',
         url: 'http://services.appsonmobile.com/stores',
         items: [
             {
