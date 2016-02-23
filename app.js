@@ -67920,9 +67920,8 @@ Ext.define('Ext.picker.Picker', {
         id: 'ChangeContactPicForm',
         itemId: 'ChangeContactPicForm',
         styleHtmlContent: true,
-        width: '70%',
+        width: '80%',
         layout: 'card',
-        url: '',
         items: [
             {
                 xtype: 'filefield',
@@ -67947,6 +67946,7 @@ Ext.define('Ext.picker.Picker', {
                             console.log(action.msg);
                         }
                     });
+                    form.destroy();
                 },
                 docked: 'bottom',
                 text: 'Submit'
