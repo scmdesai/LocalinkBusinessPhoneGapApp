@@ -66913,19 +66913,20 @@ Ext.define('Ext.picker.Picker', {
                             width: 600,
                             height: 600,
                             modal: true,
-                            closeAction: 'hide',
-                            items: [
-                                'ChangeContactPicForm'
-                            ]
+                            closeAction: 'hide'
                         });
+                    //items: ['ChangeContactPicForm']
                     win.show();
-                    var record = Ext.getStore('MyJsonPStore').findRecord('customerId', customerId, 0, true, false, false);
-                    var view = Ext.Viewport.add({
-                            xtype: 'ChangeContactPicForm'
-                        });
-                    view.setRecord(record);
-                    Ext.Viewport.setActiveItem(view);
                 },
+                /*var record = Ext.getStore('MyJsonPStore').findRecord('customerId',customerId,0,true,false,false);
+
+					var view = Ext.Viewport.add({xtype: 'ChangeContactPicForm'});
+
+					view.setRecord(record);
+
+
+
+					Ext.Viewport.setActiveItem(view);*/
                 /* var pictureSource = navigator.camera.PictureSourceType;   // picture source
 					var destinationType = navigator.camera.DestinationType;
 
