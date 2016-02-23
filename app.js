@@ -66905,12 +66905,25 @@ Ext.define('Ext.picker.Picker', {
                         customerId = record.get('customerId');
                         businessName = record.get('businessName');
                     });
+                    var windowView = new Ext.Window({
+                            title: 'Choose pic',
+                            layout: 'fit',
+                            autoScroll: true,
+                            y: 120,
+                            width: 600,
+                            height: 600,
+                            modal: true,
+                            closeAction: 'hide',
+                            items: [
+                                'ChangeContactPicForm'
+                            ]
+                        });
+                    win.show();
                     var record = Ext.getStore('MyJsonPStore').findRecord('customerId', customerId, 0, true, false, false);
                     var view = Ext.Viewport.add({
                             xtype: 'ChangeContactPicForm'
                         });
                     view.setRecord(record);
-                    var frame = document.createElement('iframe');
                     Ext.Viewport.setActiveItem(view);
                 },
                 /* var pictureSource = navigator.camera.PictureSourceType;   // picture source
@@ -67932,22 +67945,6 @@ Ext.define('Ext.picker.Picker', {
                 xtype: 'button',
                 handler: function(button, e) {
                     var form = this.up('ChangeContactPicForm');
-                    /*form.getRecord().set('customerId',form.getRecord().get('customerId'));
-					form.getRecord().set('businessName','Studio Nafisa Arts');
-					form.getRecord().set('Category','Arts');
-					form.getRecord().set('phoneNumber','630-340-0534');
-					form.getRecord().set('address','4260 Westbrook Dr, Aurora, IL 60504');
-					form.getRecord().set('email','studionafisa@yahoo.com');
-					form.getRecord().set('zipcode','60504');
-					form.getRecord().set('state','IL');
-					form.getRecord().set('city','Aurora');
-					form.getRecord().set('pictureURL','http://appsonmobile.com/locallink/stores/Studio Nafisa Arts.jpg');
-
-
-					*/
-                    var record = form.getRecord();
-                    form.setRecord(record);
-                    //console.log(uform.attributes);
                     var record = form.getRecord();
                     var customerId = form.getRecord().get('customerId');
                     form.submit({
