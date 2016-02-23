@@ -66916,7 +66916,7 @@ Ext.define('Ext.picker.Picker', {
                             closeAction: 'hide'
                         });
                     //items: ['ChangeContactPicForm']
-                    win.show();
+                    windowView.show();
                 },
                 /*var record = Ext.getStore('MyJsonPStore').findRecord('customerId',customerId,0,true,false,false);
 
