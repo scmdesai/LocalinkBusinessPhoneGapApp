@@ -66905,6 +66905,10 @@ Ext.define('Ext.picker.Picker', {
                         customerId = record.get('customerId');
                         businessName = record.get('businessName');
                     });
+                    var view = Ext.Viewport.add({
+                            xtype: 'ChangeContactPicForm'
+                        });
+                    view.setRecord(record);
                     var windowView = new Ext.Window({
                             title: 'Choose pic',
                             layout: 'fit',
@@ -66913,16 +66917,18 @@ Ext.define('Ext.picker.Picker', {
                             width: 600,
                             height: 600,
                             modal: true,
-                            closeAction: 'hide'
+                            closeAction: 'hide',
+                            items: [
+                                view
+                            ]
                         });
-                    //items: ['ChangeContactPicForm']
                     windowView.show();
                 },
                 /*var record = Ext.getStore('MyJsonPStore').findRecord('customerId',customerId,0,true,false,false);
 
-					var view = Ext.Viewport.add({xtype: 'ChangeContactPicForm'});
 
-					view.setRecord(record);
+
+
 
 
 
