@@ -67919,7 +67919,7 @@ Ext.define('Ext.picker.Picker', {
         id: 'ChangeContactPicForm',
         itemId: 'ChangeContactPicForm',
         styleHtmlContent: true,
-        layout: 'fit',
+        layout: 'card',
         url: '',
         items: [
             {
