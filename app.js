@@ -66914,7 +66914,7 @@ Ext.define('Ext.picker.Picker', {
                     view.showBy(button);
                     var form = this.up('contactform');
                     var record = form.getRecord();
-                    form.down('contactpic').setData(reord.data);
+                    form.down('contactpic').setData(record.data);
                 },
                 //Ext.Viewport.setActiveItem(view);
                 /* var pictureSource = navigator.camera.PictureSourceType;   // picture source
