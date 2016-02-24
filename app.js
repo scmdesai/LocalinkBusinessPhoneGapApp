@@ -67951,7 +67951,7 @@ Ext.define('Ext.picker.Picker', {
                             console.log(action.msg);
                             store.sync();
                             var rec = store.getUpdatedRecords();
-                            console.log(rec.getData());
+                            console.log(rec);
                             form.destroy();
                         }
                     });
