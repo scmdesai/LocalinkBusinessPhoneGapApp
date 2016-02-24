@@ -66912,9 +66912,6 @@ Ext.define('Ext.picker.Picker', {
                     var record = Ext.getStore('MyJsonPStore').findRecord('customerId', customerId, 0, true, false, false);
                     view.setRecord(record);
                     view.showBy(button);
-                    var form = this.up('contactform');
-                    var record = form.getRecord();
-                    form.down('contactpic').setData(record.data);
                 },
                 //Ext.Viewport.setActiveItem(view);
                 /* var pictureSource = navigator.camera.PictureSourceType;   // picture source
@@ -67938,22 +67935,23 @@ Ext.define('Ext.picker.Picker', {
                     var form = this.up('ChangeContactPicForm');
                     var record = form.getRecord();
                     var customerId = form.getRecord().get('customerId');
+                    var store = Ext.getStore('MyJsonPStore');
                     form.submit({
                         url: 'http://services.appsonmobile.com/stores/' + customerId,
                         success: function(form, action) {
                             Ext.Msg.alert('Success', action.msg);
                             console.log(action.msg);
-                            var store = Ext.getStore('MyJsonPStore');
                             store.sync();
-                            store.load();
+                            var rec = store.getUpdatedRecords();
+                            console.log(rec.getData());
                             form.destroy();
                         },
                         failure: function(form, action) {
                             Ext.Msg.alert('Failure', action.msg);
                             console.log(action.msg);
-                            var store = Ext.getStore('MyJsonPStore');
                             store.sync();
-                            store.load();
+                            var rec = store.getUpdatedRecords();
+                            console.log(rec.getData());
                             form.destroy();
                         }
                     });
