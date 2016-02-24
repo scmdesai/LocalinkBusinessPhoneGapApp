@@ -66863,10 +66863,21 @@ Ext.define('Ext.picker.Picker', {
                                 success: function(form, action) {
                                     Ext.Msg.alert('Success', action.msg);
                                     console.log(action.msg);
+                                    form.destroy();
+                                    view = Ext.Viewport.add({
+                                        xtype: 'contactinfo'
+                                    });
+                                    view.setRecord(record);
+                                    Ext.Viewport.setActiveItem(view);
                                 },
                                 failure: function(form, action) {
                                     Ext.Msg.alert('Failure', action.msg);
                                     console.log(action.msg);
+                                    form.destroy();
+                                    view = Ext.Viewport.add({
+                                        xtype: 'contactinfo'
+                                    });
+                                    view.setRecord(record);
                                 }
                             });
                         },
@@ -66913,7 +66924,6 @@ Ext.define('Ext.picker.Picker', {
                     var record = Ext.getStore('MyJsonPStore').findRecord('customerId', customerId, 0, true, false, false);
                     view.setRecord(record);
                     view.showBy(button);
-                    view.setRecord(record);
                 },
                 //Ext.Viewport.setActiveItem(view);
                 /* var pictureSource = navigator.camera.PictureSourceType;   // picture source
