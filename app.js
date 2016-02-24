@@ -66909,12 +66909,11 @@ Ext.define('Ext.picker.Picker', {
                     var view = Ext.Viewport.add({
                             xtype: 'ChangeContactPicForm'
                         });
-                    var store = Ext.getStore('MyJsonPStore');
                     var record = Ext.getStore('MyJsonPStore').findRecord('customerId', customerId, 0, true, false, false);
                     view.setRecord(record);
                     view.showBy(button);
-                    var store = Ext.getStore('MyJsonPStore');
-                    store.loadRecords(record);
+                    store.sync();
+                    store.load();
                 },
                 //Ext.Viewport.setActiveItem(view);
                 /* var pictureSource = navigator.camera.PictureSourceType;   // picture source
@@ -67938,17 +67937,22 @@ Ext.define('Ext.picker.Picker', {
                     var form = this.up('ChangeContactPicForm');
                     var record = form.getRecord();
                     var customerId = form.getRecord().get('customerId');
+                    var store = Ext.getStore('MyJsonPStore');
                     form.submit({
                         url: 'http://services.appsonmobile.com/stores/' + customerId,
                         success: function(form, action) {
                             Ext.Msg.alert('Success', action.msg);
                             console.log(action.msg);
                             form.destroy();
+                            store.sync();
+                            store.load();
                         },
                         failure: function(form, action) {
                             Ext.Msg.alert('Failure', action.msg);
                             console.log(action.msg);
                             form.destroy();
+                            store.sync();
+                            store.load();
                         }
                     });
                 },
