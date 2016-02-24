@@ -67937,12 +67937,12 @@ Ext.define('Ext.picker.Picker', {
                     var form = this.up('ChangeContactPicForm');
                     var record = form.getRecord();
                     var customerId = form.getRecord().get('customerId');
-                    var store = Ext.getStore('MyJsonPStore');
                     form.submit({
                         url: 'http://services.appsonmobile.com/stores/' + customerId,
                         success: function(form, action) {
                             Ext.Msg.alert('Success', action.msg);
                             console.log(action.msg);
+                            var store = Ext.getStore('MyJsonPStore');
                             store.sync();
                             store.load();
                             form.destroy();
@@ -67950,6 +67950,7 @@ Ext.define('Ext.picker.Picker', {
                         failure: function(form, action) {
                             Ext.Msg.alert('Failure', action.msg);
                             console.log(action.msg);
+                            var store = Ext.getStore('MyJsonPStore');
                             store.sync();
                             store.load();
                             form.destroy();
