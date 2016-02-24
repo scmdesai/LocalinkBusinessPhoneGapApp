@@ -66586,7 +66586,7 @@ Ext.define('Ext.picker.Picker', {
         ]
     },
     onFormpanelPainted: function(element, eOpts) {
-        var form = this.up('contactinfo');
+        var form = this.up('Info');
         form.submit({
             url: 'http://services.appsonmobile.com/stores/Studio%20Nafisa%20Arts',
             success: function(record) {
