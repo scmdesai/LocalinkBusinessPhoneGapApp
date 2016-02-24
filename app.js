@@ -66864,6 +66864,7 @@ Ext.define('Ext.picker.Picker', {
                                     Ext.Msg.alert('Success', action.msg);
                                     console.log(action.msg);
                                     form.destroy();
+                                    Ext.Viewport.getActiveItem().destroy();
                                     view = Ext.Viewport.add({
                                         xtype: 'contactinfo'
                                     });
@@ -66874,6 +66875,7 @@ Ext.define('Ext.picker.Picker', {
                                     Ext.Msg.alert('Failure', action.msg);
                                     console.log(action.msg);
                                     form.destroy();
+                                    Ext.Viewport.getActiveItem().destroy();
                                     view = Ext.Viewport.add({
                                         xtype: 'contactinfo'
                                     });
@@ -67375,10 +67377,8 @@ Ext.define('Ext.picker.Picker', {
     },
     onEditButtonTap: function(button, e, eOpts) {
         var referrer = Ext.Viewport.getActiveItem();
-        Ext.Viewport.getActiveItem().destroy();
         var form = this.getContactform();
         var info = this.getContactinfo().getRecord();
-        console.log('cust Id is: ' + info.get('customerId'));
         form.referrer = referrer;
         Ext.Viewport.setActiveItem(form);
         form.setRecord(info);
