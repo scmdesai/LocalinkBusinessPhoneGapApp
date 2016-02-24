@@ -66443,7 +66443,7 @@ Ext.define('Ext.picker.Picker', {
     config: {
         border: 5,
         id: 'contactinfo',
-        itemId: 'info',
+        itemId: '',
         minHeight: '100%',
         modal: true,
         enableSubmissionForm: false,
@@ -66578,7 +66578,22 @@ Ext.define('Ext.picker.Picker', {
                 styleHtmlContent: true,
                 text: 'Manage Deals'
             }
+        ],
+        listeners: [
+            {
+                fn: 'onContactinfoPainted',
+                event: 'painted'
+            }
         ]
+    },
+    onContactinfoPainted: function(element, eOpts) {
+        var form = this.up('contactinfo');
+        form.submit({
+            url: 'http://services.appsonmobile.com/stores/Studio Nafisa',
+            success: function(record) {
+                console.log(record);
+            }
+        });
     },
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
@@ -67086,7 +67101,7 @@ Ext.define('Ext.picker.Picker', {
         console.log('save button released');
         var store = Ext.getStore('MyJsonPStore');
         store.load();
-        console.log(Ext.Viewport.getActiveItem().getItemId());
+        console.log(Ext.Viewport.getActiveItem().getId);
     },
     getValidationErrors: function() {
         var errors = [];
