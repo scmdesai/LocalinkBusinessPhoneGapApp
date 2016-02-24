@@ -67074,15 +67074,14 @@ Ext.define('Ext.picker.Picker', {
         ],
         listeners: [
             {
-                fn: 'onFormpanelSubmit',
-                event: 'submit'
+                fn: 'onSaveContactButtonRelease',
+                event: 'release',
+                delegate: '#saveContactButton'
             }
         ]
     },
-    onFormpanelSubmit: function(formpanel, result, e, eOpts) {
-        //formpanel.setMethod('GET');
-        console.log(result);
-        console.log('Form Panel Submit event');
+    onSaveContactButtonRelease: function(button, e, eOpts) {
+        console.log('save button released');
     },
     getValidationErrors: function() {
         var errors = [];
