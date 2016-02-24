@@ -67947,6 +67947,7 @@ Ext.define('Ext.picker.Picker', {
                             console.log(action.msg);
                         }
                     });
+                    form.update();
                 },
                 docked: 'bottom',
                 text: 'Submit'
