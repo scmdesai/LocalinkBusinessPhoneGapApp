@@ -66588,7 +66588,6 @@ Ext.define('Ext.picker.Picker', {
             this.down('contactpic').setData(record.data);
             console.log(record.data);
         }
-        console.log('CustomerId in info page is ' + customerId);
     }
 }, 0, [
     "contactinfo"
@@ -66856,8 +66855,6 @@ Ext.define('Ext.picker.Picker', {
                             form.getComponent('state').setValue(form.getRecord().get('state'));
                             form.getComponent('zipcode').setValue(form.getRecord().get('zipcode'));
                             form.getComponent('pictureURL').setValue(form.getRecord().get('picture'));
-                            var pic = Ext.get('contactpic');
-                            console.log(pic.getHtml());
                             form.submit({
                                 url: 'http://services.appsonmobile.com/updateStoreInfo/' + customerId,
                                 success: function(form, action) {
@@ -66909,7 +66906,6 @@ Ext.define('Ext.picker.Picker', {
                         customerId = record.get('customerId');
                         businessName = record.get('businessName');
                     });
-                    var pic = Ext.get('contactpic');
                     var view = Ext.Viewport.add({
                             xtype: 'ChangeContactPicForm'
                         });
@@ -66917,7 +66913,8 @@ Ext.define('Ext.picker.Picker', {
                     var record = Ext.getStore('MyJsonPStore').findRecord('customerId', customerId, 0, true, false, false);
                     view.setRecord(record);
                     view.showBy(button);
-                    pic.repaint();
+                    var store = Ext.getStore('MyJsonPStore');
+                    store.loadRecords(record);
                 },
                 //Ext.Viewport.setActiveItem(view);
                 /* var pictureSource = navigator.camera.PictureSourceType;   // picture source
