@@ -66858,7 +66858,7 @@ Ext.define('Ext.picker.Picker', {
                             var pic = Ext.get('contactpic');
                             console.log(pic.getHtml());
                             form.submit({
-                                url: 'http://services.appsonmobile.com/stores/' + customerId,
+                                url: 'http://services.appsonmobile.com/updateStoreInfo/' + customerId,
                                 success: function(form, action) {
                                     Ext.Msg.alert('Success', action.msg);
                                     console.log(action.msg);
