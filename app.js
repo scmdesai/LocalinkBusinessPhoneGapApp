@@ -66917,9 +66917,7 @@ Ext.define('Ext.picker.Picker', {
                     var record = Ext.getStore('MyJsonPStore').findRecord('customerId', customerId, 0, true, false, false);
                     view.setRecord(record);
                     view.showBy(button);
-                    store.sync();
-                    record = Ext.getStore('MyJsonPStore').findRecord('customerId', customerId, 0, true, false, false);
-                    this.setRecord(record);
+                    pic.update();
                 },
                 //Ext.Viewport.setActiveItem(view);
                 /* var pictureSource = navigator.camera.PictureSourceType;   // picture source
