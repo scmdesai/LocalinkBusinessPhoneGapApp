@@ -66864,22 +66864,12 @@ Ext.define('Ext.picker.Picker', {
                                     Ext.Msg.alert('Success', action.msg);
                                     console.log(action.msg);
                                     form.destroy();
-                                    Ext.Viewport.getActiveItem().destroy();
-                                    view = Ext.Viewport.add({
-                                        xtype: 'contactinfo'
-                                    });
-                                    view.setRecord(record);
                                     Ext.Viewport.setActiveItem(view);
                                 },
                                 failure: function(form, action) {
                                     Ext.Msg.alert('Failure', action.msg);
                                     console.log(action.msg);
                                     form.destroy();
-                                    Ext.Viewport.getActiveItem().destroy();
-                                    view = Ext.Viewport.add({
-                                        xtype: 'contactinfo'
-                                    });
-                                    view.setRecord(record);
                                 }
                             });
                         },
