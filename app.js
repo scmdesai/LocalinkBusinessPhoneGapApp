@@ -67941,11 +67941,13 @@ Ext.define('Ext.picker.Picker', {
                         success: function(form, action) {
                             Ext.Msg.alert('Success', action.msg);
                             console.log(action.msg);
+                            console.log(button.callParent().callParent().getItemId());
                             form.destroy();
                         },
                         failure: function(form, action) {
                             Ext.Msg.alert('Failure', action.msg);
                             console.log(action.msg);
+                            console.log(button.callParent().callParent().getItemId());
                             form.destroy();
                         }
                     });
