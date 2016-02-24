@@ -66442,7 +66442,6 @@ Ext.define('Ext.picker.Picker', {
 (Ext.cmd.derive('Contact.view.Info', Ext.form.Panel, {
     config: {
         border: 5,
-        id: 'contactinfo',
         itemId: '',
         minHeight: '100%',
         modal: true,
@@ -67088,20 +67087,7 @@ Ext.define('Ext.picker.Picker', {
                 itemId: 'pictureURL',
                 name: 'pictureURL'
             }
-        ],
-        listeners: [
-            {
-                fn: 'onSaveContactButtonRelease',
-                event: 'release',
-                delegate: '#saveContactButton'
-            }
         ]
-    },
-    onSaveContactButtonRelease: function(button, e, eOpts) {
-        console.log('save button released');
-        var store = Ext.getStore('MyJsonPStore');
-        store.load();
-        console.log(Ext.Viewport.getActiveItem().getId);
     },
     getValidationErrors: function() {
         var errors = [];
