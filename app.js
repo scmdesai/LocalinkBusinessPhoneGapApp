@@ -66913,9 +66913,13 @@ Ext.define('Ext.picker.Picker', {
                     var view = Ext.Viewport.add({
                             xtype: 'ChangeContactPicForm'
                         });
+                    var store = Ext.getStore('MyJsonPStore');
                     var record = Ext.getStore('MyJsonPStore').findRecord('customerId', customerId, 0, true, false, false);
                     view.setRecord(record);
                     view.showBy(button);
+                    store.sync();
+                    record = Ext.getStore('MyJsonPStore').findRecord('customerId', customerId, 0, true, false, false);
+                    this.setRecord(record);
                 },
                 //Ext.Viewport.setActiveItem(view);
                 /* var pictureSource = navigator.camera.PictureSourceType;   // picture source
@@ -67076,23 +67080,7 @@ Ext.define('Ext.picker.Picker', {
                 itemId: 'pictureURL',
                 name: 'pictureURL'
             }
-        ],
-        listeners: [
-            {
-                fn: 'onFormpanelUpdatedata',
-                event: 'updatedata'
-            },
-            {
-                fn: 'onFormpanelPainted',
-                event: 'painted'
-            }
         ]
-    },
-    onFormpanelUpdatedata: function(component, newData, eOpts) {
-        console.log('Form Updated');
-    },
-    onFormpanelPainted: function(element, eOpts) {
-        console.log('Form painted');
     },
     getValidationErrors: function() {
         var errors = [];
