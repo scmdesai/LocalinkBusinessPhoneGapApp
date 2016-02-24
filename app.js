@@ -67375,6 +67375,7 @@ Ext.define('Ext.picker.Picker', {
     },
     onEditButtonTap: function(button, e, eOpts) {
         var referrer = Ext.Viewport.getActiveItem();
+        Ext.Viewport.getActiveItem().destroy();
         var form = this.getContactform();
         var info = this.getContactinfo().getRecord();
         console.log('cust Id is: ' + info.get('customerId'));
