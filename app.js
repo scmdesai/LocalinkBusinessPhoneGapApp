@@ -66586,7 +66586,6 @@ Ext.define('Ext.picker.Picker', {
             var customerId = record.get('customerId');
             this.down('#nameTxt').setHtml(name);
             this.down('contactpic').setData(record.data);
-            console.log(record.data);
         }
     }
 }, 0, [
@@ -67083,6 +67082,7 @@ Ext.define('Ext.picker.Picker', {
     onFormpanelSubmit: function(formpanel, result, e, eOpts) {
         //formpanel.setMethod('GET');
         console.log(result);
+        console.log('Form Panel Submit event');
     },
     getValidationErrors: function() {
         var errors = [];
