@@ -67072,7 +67072,17 @@ Ext.define('Ext.picker.Picker', {
                 itemId: 'pictureURL',
                 name: 'pictureURL'
             }
+        ],
+        listeners: [
+            {
+                fn: 'onFormpanelSubmit',
+                event: 'submit'
+            }
         ]
+    },
+    onFormpanelSubmit: function(formpanel, result, e, eOpts) {
+        //formpanel.setMethod('GET');
+        console.log(result);
     },
     getValidationErrors: function() {
         var errors = [];
@@ -67949,9 +67959,6 @@ Ext.define('Ext.picker.Picker', {
                         failure: function(form, action) {
                             Ext.Msg.alert('Failure', action.msg);
                             console.log(action.msg);
-                            store.sync();
-                            var rec = store.getUpdatedRecords();
-                            console.log(rec);
                             form.destroy();
                         }
                     });
