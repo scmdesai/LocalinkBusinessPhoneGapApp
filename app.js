@@ -67076,7 +67076,23 @@ Ext.define('Ext.picker.Picker', {
                 itemId: 'pictureURL',
                 name: 'pictureURL'
             }
+        ],
+        listeners: [
+            {
+                fn: 'onFormpanelUpdatedata',
+                event: 'updatedata'
+            },
+            {
+                fn: 'onFormpanelPainted',
+                event: 'painted'
+            }
         ]
+    },
+    onFormpanelUpdatedata: function(component, newData, eOpts) {
+        console.log('Form Updated');
+    },
+    onFormpanelPainted: function(element, eOpts) {
+        console.log('Form painted');
     },
     getValidationErrors: function() {
         var errors = [];
