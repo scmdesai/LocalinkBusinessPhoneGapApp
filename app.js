@@ -66912,9 +66912,9 @@ Ext.define('Ext.picker.Picker', {
                     var record = Ext.getStore('MyJsonPStore').findRecord('customerId', customerId, 0, true, false, false);
                     view.setRecord(record);
                     view.showBy(button);
-                    var store = Ext.getStore('MyJsonPStore');
-                    store.sync();
-                    store.load();
+                    var form = this.up('contactform');
+                    var record = form.getRecord();
+                    form.down('contactpic').setData(reord.data);
                 },
                 //Ext.Viewport.setActiveItem(view);
                 /* var pictureSource = navigator.camera.PictureSourceType;   // picture source
