@@ -66586,7 +66586,7 @@ Ext.define('Ext.picker.Picker', {
         ]
     },
     onFormpanelPainted: function(element, eOpts) {
-        console.log(element);
+        console.log(element.getHTML());
     },
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
