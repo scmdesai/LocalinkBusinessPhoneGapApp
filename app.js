@@ -66580,17 +66580,17 @@ Ext.define('Ext.picker.Picker', {
         ],
         listeners: [
             {
-                fn: 'onContactinfoPainted',
+                fn: 'onFormpanelPainted',
                 event: 'painted'
             }
         ]
     },
-    onContactinfoPainted: function(element, eOpts) {
+    onFormpanelPainted: function(element, eOpts) {
         var form = this.up('contactinfo');
         form.submit({
-            url: 'http://services.appsonmobile.com/stores/Studio Nafisa',
+            url: 'http://services.appsonmobile.com/stores/Studio%20Nafisa%20Arts',
             success: function(record) {
-                console.log(record);
+                console.log(record.businessName);
             }
         });
     },
@@ -66602,7 +66602,6 @@ Ext.define('Ext.picker.Picker', {
             this.down('#nameTxt').setHtml(name);
             this.down('contactpic').setData(record.data);
         }
-        it;
     }
 }, 0, [
     "contactinfo"
