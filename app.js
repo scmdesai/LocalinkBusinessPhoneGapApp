@@ -66912,6 +66912,7 @@ Ext.define('Ext.picker.Picker', {
                     var record = Ext.getStore('MyJsonPStore').findRecord('customerId', customerId, 0, true, false, false);
                     view.setRecord(record);
                     view.showBy(button);
+                    var store = Ext.getStore('MyJsonPStore');
                     store.sync();
                     store.load();
                 },
