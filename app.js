@@ -66824,6 +66824,7 @@ Ext.define('Ext.picker.Picker', {
         ui: 'light',
         autoDestroy: false,
         modal: true,
+        multipartDetection: false,
         items: [
             {
                 xtype: 'toolbar',
@@ -67946,7 +67947,6 @@ Ext.define('Ext.picker.Picker', {
                             console.log(action.msg);
                         }
                     });
-                    form.destroy();
                 },
                 docked: 'bottom',
                 text: 'Submit'
