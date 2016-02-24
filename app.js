@@ -66443,6 +66443,7 @@ Ext.define('Ext.picker.Picker', {
     config: {
         border: 5,
         id: 'contactinfo',
+        itemId: 'info',
         minHeight: '100%',
         modal: true,
         enableSubmissionForm: false,
@@ -66587,6 +66588,7 @@ Ext.define('Ext.picker.Picker', {
             this.down('#nameTxt').setHtml(name);
             this.down('contactpic').setData(record.data);
         }
+        it;
     }
 }, 0, [
     "contactinfo"
@@ -67082,6 +67084,9 @@ Ext.define('Ext.picker.Picker', {
     },
     onSaveContactButtonRelease: function(button, e, eOpts) {
         console.log('save button released');
+        var store = Ext.getStore('MyJsonPStore');
+        store.load();
+        console.log(Ext.Viewport.getActiveItem().getItemId());
     },
     getValidationErrors: function() {
         var errors = [];
