@@ -66105,6 +66105,10 @@ Ext.define('Ext.picker.Picker', {
             url: 'http://services.appsonmobile.com/stores',
             reader: {
                 type: 'json'
+            },
+            writer: {
+                type: 'json',
+                encode: true
             }
         }
     }
@@ -66215,6 +66219,10 @@ Ext.define('Ext.picker.Picker', {
             url: 'http://services.appsonmobile.com/stores',
             reader: {
                 type: 'json'
+            },
+            writer: {
+                type: 'json',
+                encode: true
             }
         }
     }
@@ -66849,12 +66857,14 @@ Ext.define('Ext.picker.Picker', {
                                 success: function(form, action) {
                                     Ext.Msg.alert('Success', action.msg);
                                     console.log(action.msg);
+                                    Ext.getStore('MyJsonPStore').load();
                                     form.destroy();
                                     Ext.Viewport.setActiveItem(view);
                                 },
                                 failure: function(form, action) {
                                     Ext.Msg.alert('Failure', action.msg);
                                     console.log(action.msg);
+                                    Ext.getStore('MyJsonPStore').load();
                                     form.destroy();
                                 }
                             });
@@ -67838,6 +67848,7 @@ Ext.define('Ext.picker.Picker', {
                                     console.log("Action Msg is : " + action.msg);
                                 }
                             });
+                            Ext.getStore('MyDealsStore').load();
                         },
                         flex: 10,
                         itemId: 'submit',
@@ -67911,7 +67922,6 @@ Ext.define('Ext.picker.Picker', {
                     var form = this.up('ChangeContactPicForm');
                     var record = form.getRecord();
                     var customerId = form.getRecord().get('customerId');
-                    var store = Ext.getStore('MyJsonPStore');
                     form.submit({
                         url: 'http://services.appsonmobile.com/stores/' + customerId,
                         success: function(form, action) {
@@ -67920,11 +67930,13 @@ Ext.define('Ext.picker.Picker', {
                             store.sync();
                             var rec = store.getUpdatedRecords();
                             console.log(rec.getData());
+                            Ext.getStore('MyJsonPStore').load();
                             form.destroy();
                         },
                         failure: function(form, action) {
                             Ext.Msg.alert('Failure', action.msg);
                             console.log(action.msg);
+                            Ext.getStore('MyJsonPStore').load();
                             form.destroy();
                         }
                     });
