@@ -67747,7 +67747,8 @@ Ext.define('Ext.picker.Picker', {
                             //uForm.target = frame;
                             uForm.submit({
                                 url: 'http://services.appsonmobile.com/uploadS3',
-                                scope: this,
+                                processData: false,
+                                contentType: false,
                                 success: function(form, action) {
                                     Ext.getStore('MyDealsStore').load();
                                     Ext.Msg.alert('Success');
