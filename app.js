@@ -67747,6 +67747,7 @@ Ext.define('Ext.picker.Picker', {
                             //uForm.target = frame;
                             uForm.submit({
                                 url: 'http://services.appsonmobile.com/uploadS3',
+                                scope: this,
                                 success: function(form, action) {
                                     Ext.getStore('MyDealsStore').load();
                                     Ext.Msg.alert('Success');
@@ -67768,9 +67769,6 @@ Ext.define('Ext.picker.Picker', {
                                         xtype: 'DealsPanel'
                                     });
                                     Ext.Viewport.setActiveItem(view);
-                                },
-                                complete: function(form, action) {
-                                    Ext.Msg.alert('Form Submit Completed', action.msg);
                                 }
                             });
                         },
