@@ -67461,63 +67461,6 @@ Ext.define('Ext.picker.Picker', {
         Ext.Viewport.setActiveItem(info);
     },
     onUploadDealTap: function(button, e, eOpts) {
-        /*var cameraPic;
-		var actionSheet = new Ext.ActionSheet({
-				items: [{
-					text: 'Camera',
-					id:'CameraPic',
-					scope : this,
-					handler : function(){
-						actionSheet.hide();
-		                /* phonegap camera */
-        //  navigator.camera.getPicture(uploadPhoto,null,{sourceType:1,quality:60});
-        //   function uploadPhoto(data){
-        // this is where you would send the image file to server
-        //output image to screen
-        //var image = document.getElementById('CameraPic');
-        //  image.src =  "data:image/jpeg;base64," + data;
-        /*     navigator.notification.alert(
-		                    'Your Photo has been uploaded', // message
-		                       okay,                           // callback
-		                    'Photo Uploaded',               // title
-		                    'OK'                            // buttonName
-		                );
-
-		       /*        function okay(){
-		                    // Do something
-		                }
-		              }
-					}
-		        },{
-		        text : 'Photo Album',
-		        scope : this,
-		        handler : function(){
-		            actionSheet.hide();
-		            navigator.camera.getPicture(uploadPhoto,null,{sourceType:Camera.PictureSourceType.PHOTOLIBRARY,quality:60});
-		             function uploadPhoto(data){
-		                // this is where you would send the image file to server
-
-		                //output image to screen
-		               // cameraPic.src = "data:image/jpeg;base64," + data;
-
-		                navigator.notification.alert(
-		                    'Your Photo has been uploaded', // message
-		                       okay,                           // callback
-		                    'Photo Uploaded',               // title
-		                    'OK'                            // buttonName
-		                );
-
-		               function okay(){
-		                    // Do something
-		                }
-		              }
-		        }
-		     }
-		   ]
-
-		 });
-		Ext.Viewport.add(actionSheet);
-		        actionSheet.show();*/
         var storeUserDetails = Ext.getStore('UserDetails');
         storeUserDetails.load();
         var customerId;
@@ -67836,11 +67779,23 @@ Ext.define('Ext.picker.Picker', {
                                     Ext.getStore('MyDealsStore').load();
                                     Ext.Msg.alert('Success');
                                     console.log("Action Msg is : " + action.msg);
+                                    Ext.Viewport.getActiveItem().destroy();
+                                    var view;
+                                    view = Ext.Viewport.add({
+                                        xtype: 'DealsPanel'
+                                    });
+                                    Ext.Viewport.setActiveItem(view);
                                 },
                                 failure: function(form, action) {
                                     Ext.getStore('MyDealsStore').load();
                                     Ext.Msg.alert('Failed', action.msg);
                                     console.log("Action Msg is : " + action.msg);
+                                    Ext.Viewport.getActiveItem().destroy();
+                                    var view;
+                                    view = Ext.Viewport.add({
+                                        xtype: 'DealsPanel'
+                                    });
+                                    Ext.Viewport.setActiveItem(view);
                                 }
                             });
                         },
