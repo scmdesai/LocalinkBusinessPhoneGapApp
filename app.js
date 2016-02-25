@@ -67285,18 +67285,18 @@ Ext.define('Ext.picker.Picker', {
                         success: function(form, action) {
                             Ext.Msg.alert('Success', action.msg);
                             console.log(action.msg);
-                        },
-                        failure: function(form, action) {
-                            Ext.Msg.alert('Failure', action.msg);
-                            console.log(action.msg);
-                        }
-                    });
-                    myForm.submit({
-                        url: 'http://services.appsonmobile.com/deals',
-                        method: 'GET',
-                        success: function(form, action) {
-                            Ext.Msg.alert('Success', action.msg);
-                            console.log(action.msg);
+                            myForm.submit({
+                                url: 'http://services.appsonmobile.com/deals',
+                                method: 'GET',
+                                success: function(form, action) {
+                                    Ext.Msg.alert('Success', action.msg);
+                                    console.log(action.msg);
+                                },
+                                failure: function(form, action) {
+                                    Ext.Msg.alert('Failure', action.msg);
+                                    console.log(action.msg);
+                                }
+                            });
                         },
                         failure: function(form, action) {
                             Ext.Msg.alert('Failure', action.msg);
