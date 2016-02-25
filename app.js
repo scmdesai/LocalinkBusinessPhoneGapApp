@@ -67265,7 +67265,6 @@ Ext.define('Ext.picker.Picker', {
         if (el) {
             el.destroy();
         }
-        //el.parentNode.removeChild(el);
         var btn = Ext.getCmp('DeleteDeal');
         if (btn) {
             btn.destroy();
@@ -67461,11 +67460,6 @@ Ext.define('Ext.picker.Picker', {
         var view = Ext.Viewport.getActiveItem().destroy();
         Ext.Viewport.setActiveItem(info);
     },
-    //workaround to fix the warning of destroy element in deleteDeals
-    //var el = Ext.getCmp('ListOfDeals').destroy();
-    //el.parentNode.removeChild(el);
-    //var btn = Ext.getCmp('DeleteDeal');
-    //btn.destroy();
     onUploadDealTap: function(button, e, eOpts) {
         /*var cameraPic;
 		var actionSheet = new Ext.ActionSheet({
@@ -67722,7 +67716,6 @@ Ext.define('Ext.picker.Picker', {
         height: '100%',
         minHeight: '',
         enctype: 'multipart/form-data',
-        standardSubmit: true,
         url: 'http://services.appsonmobile.com/uploadS3',
         items: [
             {
@@ -67834,21 +67827,22 @@ Ext.define('Ext.picker.Picker', {
                             var uForm = this.up('UploadDealForm');
                             var target = document.createAttribute("target");
                             target.nodeValue = "_self";
-                            var frame = document.createElement('iframe');
-                            frame.setAttribute('name', 'frame_x');
+                            //var frame = document.createElement('iframe');
+                            //frame.setAttribute('name', 'frame_x');
                             //uForm.target = frame;
                             uForm.submit({
                                 url: 'http://services.appsonmobile.com/uploadS3',
                                 success: function(form, action) {
+                                    Ext.getStore('MyDealsStore').load();
                                     Ext.Msg.alert('Success');
                                     console.log("Action Msg is : " + action.msg);
                                 },
                                 failure: function(form, action) {
+                                    Ext.getStore('MyDealsStore').load();
                                     Ext.Msg.alert('Failed', action.msg);
                                     console.log("Action Msg is : " + action.msg);
                                 }
                             });
-                            Ext.getStore('MyDealsStore').load();
                         },
                         flex: 10,
                         itemId: 'submit',
