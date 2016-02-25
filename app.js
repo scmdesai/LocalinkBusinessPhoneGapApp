@@ -67309,37 +67309,9 @@ Ext.define('Ext.picker.Picker', {
                 }
             });
         } else //}
-        /*btn.addAfterListener('tap',function(){
-
-
-
-			store.remove(recordsToDelete);
-		    store.sync();
-
-			//btn.destroy();
-		});*/
-        /*if(btn) {
-		     btn.addAfterListener('tap',function(){
-			//store.loadPage(record)
-			btn.destroy();});
-			//
-
-
-		 // });
-
-		}*/
         {
             Ext.Viewport.getActiveItem().destroy();
             var pic = this.getDealpicture();
-            /*console.log("Data View is: ") ;
-		console.log(dataview) ;
-		console.log("Index is: " + index) ;
-		console.log("Target is: ") ;
-		console.log(target) ;
-		console.log("Event is: ") ;
-		console.log(e) ;
-		console.log("Event Options is: ") ;
-		console.log(eOpts) ;*/
             pic.setRecord(record);
             Ext.Viewport.setActiveItem(pic);
         }
@@ -67575,7 +67547,7 @@ Ext.define('Ext.picker.Picker', {
         cls: 'listofdeals',
         id: 'dealsPanel',
         itemId: 'dealsPanel',
-        minHeight: '100%',
+        minHeight: '80%',
         padding: '5 5 5 5',
         style: 'border:1px inset',
         url: '',
@@ -67782,7 +67754,7 @@ Ext.define('Ext.picker.Picker', {
                                     Ext.Viewport.getActiveItem().destroy();
                                     var view;
                                     view = Ext.Viewport.add({
-                                        xtype: 'DealsPanel'
+                                        xtype: 'MyTabPanel'
                                     });
                                     Ext.Viewport.setActiveItem(view);
                                 },
@@ -67796,6 +67768,9 @@ Ext.define('Ext.picker.Picker', {
                                         xtype: 'DealsPanel'
                                     });
                                     Ext.Viewport.setActiveItem(view);
+                                },
+                                complete: function(form, action) {
+                                    Ext.Msg.alert('Form Submit Completed', action.msg);
                                 }
                             });
                         },
