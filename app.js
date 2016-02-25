@@ -66393,14 +66393,12 @@ Ext.define('Ext.picker.Picker', {
 (Ext.cmd.derive('Contact.view.Picture', Ext.Container, {
     config: {
         overflow: 'hidden',
-        height: 120,
-        minHeight: 100,
         padding: '5 5 5 5',
         style: 'overflow: hidden',
         styleHtmlContent: true,
         ui: '',
         tpl: [
-            '<img src="{picture}" width="160" />',
+            '<img src="{picture}"/>',
             ''
         ],
         layout: {
@@ -66479,7 +66477,7 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'panel',
                 border: '',
-                height: '',
+                height: 130,
                 maxHeight: '100%',
                 minHeight: '100%',
                 minWidth: '',
@@ -66495,95 +66493,78 @@ Ext.define('Ext.picker.Picker', {
                         xtype: 'contactpic',
                         border: '',
                         docked: 'left',
-                        height: 137,
                         maxHeight: '100%',
-                        minHeight: '50%',
-                        minWidth: '30%',
+                        minHeight: '100%',
+                        minWidth: '100%',
                         style: '',
                         ui: 'light',
-                        width: 97,
                         scrollable: false,
                         layout: {
                             type: 'hbox',
                             align: 'start',
                             pack: 'center'
                         }
-                    },
-                    {
-                        xtype: 'panel',
-                        height: '',
-                        maxHeight: '100%',
-                        minHeight: '100%',
-                        width: '100%',
-                        items: [
-                            {
-                                xtype: 'textfield',
-                                cls: [
-                                    'icon-phone',
-                                    'customfield'
-                                ],
-                                disabled: false,
-                                height: '',
-                                html: '',
-                                itemId: 'phoneNumber',
-                                maxHeight: '30%',
-                                maxWidth: '100%',
-                                minHeight: '',
-                                minWidth: '100%',
-                                styleHtmlCls: '',
-                                width: '100%',
-                                clearIcon: false,
-                                inputCls: 'customfield',
-                                name: 'phoneNumber',
-                                readOnly: true
-                            },
-                            {
-                                xtype: 'spacer',
-                                height: '10px'
-                            },
-                            {
-                                xtype: 'textareafield',
-                                cls: [
-                                    'icon-location',
-                                    'customfield'
-                                ],
-                                disabled: false,
-                                height: '100%',
-                                html: '',
-                                itemId: 'address',
-                                maxHeight: '100%',
-                                maxWidth: '100%',
-                                minHeight: '100%',
-                                minWidth: '100%',
-                                style: 'border:1 px inset',
-                                width: '100%',
-                                clearIcon: false,
-                                inputCls: 'customfield',
-                                name: 'address',
-                                readOnly: true,
-                                maxRows: 3
-                            }
-                        ]
                     }
                 ]
             },
             {
-                xtype: 'button',
-                handler: function(button, e) {},
-                id: 'manageDeals',
-                itemId: 'manageDeals',
-                styleHtmlContent: true,
-                text: 'Manage Deals'
-            }
-        ],
-        listeners: [
-            {
-                fn: 'onFormpanelPainted',
-                event: 'painted'
+                xtype: 'panel',
+                height: '',
+                maxHeight: '100%',
+                minHeight: '100%',
+                width: '100%',
+                items: [
+                    {
+                        xtype: 'textfield',
+                        cls: [
+                            'icon-phone',
+                            'customfield'
+                        ],
+                        disabled: false,
+                        height: '',
+                        html: '',
+                        itemId: 'phoneNumber',
+                        maxHeight: '30%',
+                        maxWidth: '100%',
+                        minHeight: '',
+                        minWidth: '100%',
+                        styleHtmlCls: '',
+                        width: '100%',
+                        clearIcon: false,
+                        inputCls: 'customfield',
+                        name: 'phoneNumber',
+                        readOnly: true
+                    },
+                    {
+                        xtype: 'spacer',
+                        height: '10px'
+                    },
+                    {
+                        xtype: 'textareafield',
+                        cls: [
+                            'icon-location',
+                            'customfield'
+                        ],
+                        disabled: false,
+                        height: '100%',
+                        html: '',
+                        itemId: 'address',
+                        maxHeight: '100%',
+                        maxWidth: '100%',
+                        minHeight: '100%',
+                        minWidth: '100%',
+                        style: 'border:1 px inset',
+                        width: '100%',
+                        clearIcon: false,
+                        inputCls: 'customfield',
+                        name: 'address',
+                        readOnly: true,
+                        maxRows: 3
+                    }
+                ]
             }
         ]
     },
-    onFormpanelPainted: function(element, eOpts) {},
     setRecord: function(record) {
         (arguments.callee.$previous || Ext.form.Panel.prototype.setRecord).apply(this, arguments);
         if (record) {
@@ -67647,24 +67628,9 @@ Ext.define('Ext.picker.Picker', {
         url: '',
         items: [
             {
-                xtype: 'toolbar',
-                docked: 'top',
-                styleHtmlContent: true,
-                ui: 'light',
-                items: [
-                    {
-                        xtype: 'button',
-                        itemId: 'BackFromDealsPanel',
-                        styleHtmlContent: true,
-                        ui: 'back',
-                        text: 'Back'
-                    }
-                ]
-            },
-            {
                 xtype: 'listofdeals',
                 docked: 'top',
-                height: '80%',
+                height: '90%',
                 styleHtmlContent: true,
                 width: '100%',
                 itemCls: 'listofdealsScss'
@@ -68052,7 +68018,7 @@ Ext.define('Ext.picker.Picker', {
         items: [
             {
                 xtype: 'container',
-                title: 'Tab 1',
+                title: 'Home',
                 height: '100%',
                 layout: 'vbox',
                 scrollable: true,
@@ -68066,7 +68032,17 @@ Ext.define('Ext.picker.Picker', {
             },
             {
                 xtype: 'container',
-                title: 'Tab 2'
+                title: 'Deals',
+                height: '100%',
+                items: [
+                    {
+                        xtype: 'DealsPanel',
+                        docked: 'top',
+                        height: '100%',
+                        layout: 'vbox',
+                        scrollable: true
+                    }
+                ]
             },
             {
                 xtype: 'container',
