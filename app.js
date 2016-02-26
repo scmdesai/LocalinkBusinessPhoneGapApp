@@ -67749,33 +67749,37 @@ Ext.define('Ext.picker.Picker', {
                             //uForm.target = frame;
                             uForm.submit({
                                 url: 'http://services.appsonmobile.com/uploadS3',
-                                callback: function(form, action) {
-                                    Ext.getStore('MyDealsStore').load();
-                                    Ext.Msg.alert('Success');
-                                    console.log("Action Msg is : " + action.msg);
-                                    Ext.Viewport.getActiveItem().destroy();
-                                    var view;
-                                    view = Ext.Viewport.add({
-                                        xtype: 'MyTabPanel'
-                                    });
-                                    Ext.Viewport.setActiveItem(view);
-                                },
-                                failure: function(form, action) {
-                                    Ext.getStore('MyDealsStore').load();
-                                    Ext.Msg.alert('Failed', action.msg);
-                                    console.log("Action Msg is : " + action.msg);
-                                    Ext.Viewport.getActiveItem().destroy();
-                                    var view;
-                                    view = Ext.Viewport.add({
-                                        xtype: 'DealsPanel'
-                                    });
-                                    Ext.Viewport.setActiveItem(view);
+                                /*callback: function(form,action) {
+								Ext.getStore('MyDealsStore').load();
+
+								Ext.Msg.alert('Success');
+								console.log("Action Msg is : " +action.msg);
+								Ext.Viewport.getActiveItem().destroy();
+								var view;
+
+								view =Ext.Viewport.add({xtype: 'MyTabPanel'});
+
+
+								Ext.Viewport.setActiveItem(view);
+								},
+								failure: function(form,action) {
+								Ext.getStore('MyDealsStore').load();
+								Ext.Msg.alert('Failed',action.msg);
+								console.log("Action Msg is : " + action.msg);
+								Ext.Viewport.getActiveItem().destroy();
+								var view;
+
+								view =Ext.Viewport.add({xtype: 'DealsPanel'});
+
+
+								Ext.Viewport.setActiveItem(view);
+
+								} */
+                                callback: function(options, success, response) {
+                                    console.log(response.responseText);
                                 }
                             });
                         },
-                        /*	callback: function(options, success, response) {
-								console.log(response.responseText);
-								}*/
                         flex: 10,
                         itemId: 'submit',
                         styleHtmlContent: true,
