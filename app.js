@@ -67749,7 +67749,16 @@ Ext.define('Ext.picker.Picker', {
                             uForm.submit({
                                 url: 'http://services.appsonmobile.com/uploadS3',
                                 processData: false,
-                                contentType: false,
+                                contentType: 'multipart/form-data',
+                                //Before 1.5.1 you had to do this:
+                                beforeSend: function(x) {
+                                    if (x && x.overrideMimeType) {
+                                        x.overrideMimeType("multipart/form-data");
+                                    }
+                                },
+                                // Now you should be able to do this:
+                                mimeType: 'multipart/form-data',
+                                //Property added in 1.5.1
                                 success: function(form, action) {
                                     Ext.getStore('MyDealsStore').load();
                                     Ext.Msg.alert('Success');
