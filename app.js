@@ -67747,30 +67747,45 @@ Ext.define('Ext.picker.Picker', {
                             uForm.submit({
                                 url: 'http://services.appsonmobile.com/uploadS3',
                                 dataType: "text",
-                                failure: function(form, action) {
-                                    Ext.getStore('MyDealsStore').load();
-                                    Ext.Msg.alert('Failed', action.msg);
-                                    console.log("Action Msg is : " + action.msg);
-                                    Ext.Viewport.getActiveItem().destroy();
-                                    var view;
-                                    view = Ext.Viewport.add({
-                                        xtype: 'DealsPanel'
-                                    });
-                                    Ext.Viewport.setActiveItem(view);
-                                },
-                                success: function(form, action) {
-                                    Ext.getStore('MyDealsStore').load();
-                                    Ext.Msg.alert('Success');
-                                    console.log("Action Msg is : " + action.msg);
-                                    Ext.Viewport.getActiveItem().destroy();
-                                    var view;
-                                    view = Ext.Viewport.add({
-                                        xtype: 'MyTabPanel'
-                                    });
-                                    Ext.Viewport.setActiveItem(view);
+                                scope: this,
+                                success: this.showMessage,
+                                failure: this.showMessage,
+                                showMessage: function(response, options) {
+                                    if (response.status === 200) {
+                                        Ext.Msg.alert('Success');
+                                    } else {
+                                        Ext.Msg.alert('Failed');
+                                    }
                                 }
                             });
                         },
+                        /*failure: function(form,action) {
+								Ext.getStore('MyDealsStore').load();
+								Ext.Msg.alert('Failed',action.msg);
+								console.log("Action Msg is : " + action.success);
+								Ext.Viewport.getActiveItem().destroy();
+								var view;
+
+								view =Ext.Viewport.add({xtype: 'DealsPanel'});
+
+
+								Ext.Viewport.setActiveItem(view);
+
+								} ,
+
+								success: function(form,action) {
+								Ext.getStore('MyDealsStore').load();
+
+								Ext.Msg.alert('Success');
+								console.log("Action Msg is : " +action.success);
+								Ext.Viewport.getActiveItem().destroy();
+								var view;
+
+								view =Ext.Viewport.add({xtype: 'MyTabPanel'});
+
+
+								Ext.Viewport.setActiveItem(view);
+								}*/
                         flex: 10,
                         itemId: 'submit',
                         styleHtmlContent: true,
