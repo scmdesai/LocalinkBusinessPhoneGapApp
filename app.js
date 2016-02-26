@@ -67663,8 +67663,7 @@ Ext.define('Ext.picker.Picker', {
                 ]
             },
             {
-                xtype: 'DealStartDate',
-                itemId: 'DealStartDate',
+                xtype: 'datepickerfield',
                 margin: '5 5 5 5 ',
                 styleHtmlContent: true,
                 label: 'Deal Start',
@@ -67687,7 +67686,7 @@ Ext.define('Ext.picker.Picker', {
                 labelWrap: true,
                 name: 'DealEndDate',
                 placeHolder: 'mm/dd/yyyy',
-                dateFormat: ' M d, Y',
+                dateFormat: ' \'M d, Y\'',
                 picker: {
                     styleHtmlContent: true,
                     yearFrom: 2016
@@ -67780,17 +67779,7 @@ Ext.define('Ext.picker.Picker', {
                     }
                 ]
             }
-        ],
-        listeners: [
-            {
-                fn: 'onDealStartDateChange',
-                event: 'change',
-                delegate: '#DealStartDate'
-            }
         ]
-    },
-    onDealStartDateChange: function(datepickerfield, newDate, oldDate, eOpts) {
-        this.up('UploadDealForm').down('#DealStartDate').setValue(datepicker.getFormattedValue());
     }
 }, 0, [
     "UploadDealForm"
