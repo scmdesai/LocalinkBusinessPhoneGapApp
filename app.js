@@ -67747,17 +67747,6 @@ Ext.define('Ext.picker.Picker', {
                             uForm.submit({
                                 url: 'http://services.appsonmobile.com/uploadS3',
                                 dataType: "text",
-                                success: function(form, action) {
-                                    Ext.getStore('MyDealsStore').load();
-                                    Ext.Msg.alert('Success');
-                                    console.log("Action Msg is : " + action.msg);
-                                    Ext.Viewport.getActiveItem().destroy();
-                                    var view;
-                                    view = Ext.Viewport.add({
-                                        xtype: 'MyTabPanel'
-                                    });
-                                    Ext.Viewport.setActiveItem(view);
-                                },
                                 failure: function(form, action) {
                                     Ext.getStore('MyDealsStore').load();
                                     Ext.Msg.alert('Failed', action.msg);
@@ -67768,9 +67757,19 @@ Ext.define('Ext.picker.Picker', {
                                         xtype: 'DealsPanel'
                                     });
                                     Ext.Viewport.setActiveItem(view);
+                                },
+                                success: function(form, action) {
+                                    Ext.getStore('MyDealsStore').load();
+                                    Ext.Msg.alert('Success');
+                                    console.log("Action Msg is : " + action.msg);
+                                    Ext.Viewport.getActiveItem().destroy();
+                                    var view;
+                                    view = Ext.Viewport.add({
+                                        xtype: 'MyTabPanel'
+                                    });
+                                    Ext.Viewport.setActiveItem(view);
                                 }
                             });
-                            uForm.get;
                         },
                         flex: 10,
                         itemId: 'submit',
