@@ -67672,6 +67672,7 @@ Ext.define('Ext.picker.Picker', {
                 labelWrap: true,
                 name: 'DealStartDate',
                 placeHolder: 'mm/dd/yyyy',
+                dateFormat: ' \'M d, Y\'',
                 picker: {
                     styleHtmlContent: true,
                     yearFrom: 2016
@@ -67686,6 +67687,7 @@ Ext.define('Ext.picker.Picker', {
                 labelWrap: true,
                 name: 'DealEndDate',
                 placeHolder: 'mm/dd/yyyy',
+                dateFormat: ' M d, Y',
                 picker: {
                     styleHtmlContent: true,
                     yearFrom: 2016
