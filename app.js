@@ -67747,53 +67747,32 @@ Ext.define('Ext.picker.Picker', {
                             //uForm.target = frame;
                             uForm.submit({
                                 url: 'http://services.appsonmobile.com/uploadS3',
-                                dataType: "text",
+                                xhr2: true,
                                 scope: this,
-                                success: function(response, options) {
-                                    console.log('Showing message' + response.status);
-                                    if (response.status === 200) {
-                                        Ext.Msg.alert('Success');
-                                    } else {
-                                        Ext.Msg.alert('Failed');
-                                    }
+                                failure: function(form, action) {
+                                    Ext.getStore('MyDealsStore').load();
+                                    Ext.Msg.alert('Failed', action.msg);
+                                    console.log("Action Msg is : " + action.success);
+                                    Ext.Viewport.getActiveItem().destroy();
+                                    var view;
+                                    view = Ext.Viewport.add({
+                                        xtype: 'DealsPanel'
+                                    });
+                                    Ext.Viewport.setActiveItem(view);
                                 },
-                                failure: function(response, options) {
-                                    console.log('Showing message' + response.status);
-                                    if (response.status === 200) {
-                                        Ext.Msg.alert('Success');
-                                    } else {
-                                        Ext.Msg.alert('Failed');
-                                    }
+                                success: function(form, action) {
+                                    Ext.getStore('MyDealsStore').load();
+                                    Ext.Msg.alert('Success');
+                                    console.log("Action Msg is : " + action.success);
+                                    Ext.Viewport.getActiveItem().destroy();
+                                    var view;
+                                    view = Ext.Viewport.add({
+                                        xtype: 'MyTabPanel'
+                                    });
+                                    Ext.Viewport.setActiveItem(view);
                                 }
                             });
                         },
-                        /*failure: function(form,action) {
-								Ext.getStore('MyDealsStore').load();
-								Ext.Msg.alert('Failed',action.msg);
-								console.log("Action Msg is : " + action.success);
-								Ext.Viewport.getActiveItem().destroy();
-								var view;
-
-								view =Ext.Viewport.add({xtype: 'DealsPanel'});
-
-
-								Ext.Viewport.setActiveItem(view);
-
-								} ,
-
-								success: function(form,action) {
-								Ext.getStore('MyDealsStore').load();
-
-								Ext.Msg.alert('Success');
-								console.log("Action Msg is : " +action.success);
-								Ext.Viewport.getActiveItem().destroy();
-								var view;
-
-								view =Ext.Viewport.add({xtype: 'MyTabPanel'});
-
-
-								Ext.Viewport.setActiveItem(view);
-								}*/
                         flex: 10,
                         itemId: 'submit',
                         styleHtmlContent: true,
