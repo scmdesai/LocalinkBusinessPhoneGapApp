@@ -67749,9 +67749,15 @@ Ext.define('Ext.picker.Picker', {
                                 url: 'http://services.appsonmobile.com/uploadS3',
                                 dataType: "text",
                                 scope: this,
-                                success: this.showMessage,
-                                failure: this.showMessage,
-                                showMessage: function(response, options) {
+                                success: function(response, options) {
+                                    console.log('Showing message' + response.status);
+                                    if (response.status === 200) {
+                                        Ext.Msg.alert('Success');
+                                    } else {
+                                        Ext.Msg.alert('Failed');
+                                    }
+                                },
+                                failure: function(response, options) {
                                     console.log('Showing message' + response.status);
                                     if (response.status === 200) {
                                         Ext.Msg.alert('Success');
