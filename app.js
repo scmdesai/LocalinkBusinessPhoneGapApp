@@ -67631,7 +67631,7 @@ Ext.define('Ext.picker.Picker', {
         height: '100%',
         minHeight: '',
         enctype: 'multipart/form-data',
-        multipartDetection: false,
+        timeout: 3000,
         url: 'http://services.appsonmobile.com/uploadS3',
         items: [
             {
@@ -67741,6 +67741,7 @@ Ext.define('Ext.picker.Picker', {
                         xtype: 'button',
                         handler: function(button, e) {
                             var uForm = this.up('UploadDealForm');
+                            uForm.responseType = 'JSON';
                             var target = document.createAttribute("target");
                             target.nodeValue = "_self";
                             //var frame = document.createElement('iframe');
@@ -67748,18 +67749,7 @@ Ext.define('Ext.picker.Picker', {
                             //uForm.target = frame;
                             uForm.submit({
                                 url: 'http://services.appsonmobile.com/uploadS3',
-                                processData: false,
-                                contentType: 'multipart/form-data',
-                                //Before 1.5.1 you had to do this:
-                                beforeSend: function(x) {
-                                    if (x && x.overrideMimeType) {
-                                        x.overrideMimeType("multipart/form-data");
-                                    }
-                                },
-                                // Now you should be able to do this:
-                                mimeType: 'multipart/form-data',
-                                //Property added in 1.5.1
-                                success: function(form, action) {
+                                callback: function(form, action) {
                                     Ext.getStore('MyDealsStore').load();
                                     Ext.Msg.alert('Success');
                                     console.log("Action Msg is : " + action.msg);
@@ -67783,6 +67773,9 @@ Ext.define('Ext.picker.Picker', {
                                 }
                             });
                         },
+                        /*	callback: function(options, success, response) {
+								console.log(response.responseText);
+								}*/
                         flex: 10,
                         itemId: 'submit',
                         styleHtmlContent: true,
@@ -67792,12 +67785,6 @@ Ext.define('Ext.picker.Picker', {
                 ]
             }
         ]
-    },
-    hasUpload: function() {
-        //return true ;
-        return !!this.getFields().findBy(function(f) {
-            return f.isFileUpload();
-        });
     }
 }, 0, [
     "UploadDealForm"
