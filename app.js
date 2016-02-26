@@ -67447,10 +67447,10 @@ Ext.define('Ext.picker.Picker', {
             businessName = record.get('businessName');
             view.setRecord(record);
         });
-        view.showBy(button);
+        //view.showBy(button);
+        var frame = document.createElement('iframe');
+        Ext.Viewport.setActiveItem(view);
     },
-    //var frame = document.createElement('iframe');
-    // Ext.Viewport.setActiveItem(view);
     onDeleteDealTap: function(button, e, eOpts) {
         /*var el = document.getElementById('ListOfDeals');
 		 el.setAttribute('class','checkbox_visible');
