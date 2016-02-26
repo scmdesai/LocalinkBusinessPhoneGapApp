@@ -67780,18 +67780,7 @@ Ext.define('Ext.picker.Picker', {
                     }
                 ]
             }
-        ],
-        listeners: [
-            {
-                fn: 'onFormpanelBeforeSubmit',
-                event: 'beforesubmit',
-                delegate: '#DealStartDate'
-            }
         ]
-    },
-    onFormpanelBeforeSubmit: function(formpanel, values, options, e, eOpts) {
-        console.log(value);
-        console.log(formpanel.getComponent('DealStartDate').getValue());
     }
 }, 0, [
     "UploadDealForm"
