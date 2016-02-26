@@ -67447,9 +67447,10 @@ Ext.define('Ext.picker.Picker', {
             businessName = record.get('businessName');
             view.setRecord(record);
         });
-        var frame = document.createElement('iframe');
-        Ext.Viewport.setActiveItem(view);
+        view.showBy(button);
     },
+    //var frame = document.createElement('iframe');
+    // Ext.Viewport.setActiveItem(view);
     onDeleteDealTap: function(button, e, eOpts) {
         /*var el = document.getElementById('ListOfDeals');
 		 el.setAttribute('class','checkbox_visible');
@@ -67751,6 +67752,7 @@ Ext.define('Ext.picker.Picker', {
                                 success: this.showMessage,
                                 failure: this.showMessage,
                                 showMessage: function(response, options) {
+                                    console.log('Showing message' + response.status);
                                     if (response.status === 200) {
                                         Ext.Msg.alert('Success');
                                     } else {
