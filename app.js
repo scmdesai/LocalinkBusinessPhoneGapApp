@@ -67631,6 +67631,7 @@ Ext.define('Ext.picker.Picker', {
         height: '100%',
         minHeight: '',
         enctype: 'multipart/form-data',
+        multipartDetection: false,
         url: 'http://services.appsonmobile.com/uploadS3',
         items: [
             {
