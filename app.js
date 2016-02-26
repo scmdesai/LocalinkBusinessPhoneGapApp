@@ -67783,15 +67783,14 @@ Ext.define('Ext.picker.Picker', {
         ],
         listeners: [
             {
-                fn: 'onFormpanelBeforeSubmit',
-                event: 'beforesubmit',
+                fn: 'onDealStartDateChange',
+                event: 'change',
                 delegate: '#DealStartDate'
             }
         ]
     },
-    onFormpanelBeforeSubmit: function(formpanel, values, options, e, eOpts) {
-        console.log(value);
-        console.log(formpanel.getComponent('DealStartDate').getValue());
+    onDealStartDateChange: function(datepickerfield, newDate, oldDate, eOpts) {
+        this.up('UploadDealForm').down('#DealStartDate').setValue(datepicker.getFormattedValue());
     }
 }, 0, [
     "UploadDealForm"
