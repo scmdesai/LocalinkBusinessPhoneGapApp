@@ -66377,10 +66377,10 @@ Ext.define('Ext.picker.Picker', {
                     var view = Ext.Viewport.add({
                             xtype: 'MyTabPanel'
                         });
-                    //var homeTab = tabPanel.down('info');
-                    //homeTab.setRecord(record);
-                    Ext.Viewport.setActiveItem(view);
-                } else {
+                } else //var homeTab = tabPanel.down('info');
+                //homeTab.setRecord(record);
+                // Ext.Viewport.setActiveItem(view);
+                {
                     console.log('no user info');
                 }
             }
