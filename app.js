@@ -67781,15 +67781,13 @@ Ext.define('Ext.picker.Picker', {
         ],
         listeners: [
             {
-                fn: 'onFormpanelBeforeSubmit',
-                event: 'beforesubmit',
-                delegate: '#DealStartDate'
+                fn: 'onDatepickerPick',
+                event: 'pick'
             }
         ]
     },
-    onFormpanelBeforeSubmit: function(formpanel, values, options, e, eOpts) {
-        console.log('Before Form Submit');
-        console.log(values);
+    onDatepickerPick: function(picker, value, slot, eOpts) {
+        console.log('In date picker');
     }
 }, 0, [
     "UploadDealForm"
