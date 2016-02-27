@@ -67671,6 +67671,11 @@ Ext.define('Ext.picker.Picker', {
                 labelWidth: '50%',
                 labelWrap: true,
                 name: 'DealStartDate',
+                value: {
+                    year: 2016,
+                    month: 2,
+                    day: 26
+                },
                 placeHolder: 'mm/dd/yyyy',
                 picker: {
                     styleHtmlContent: true,
@@ -67744,8 +67749,8 @@ Ext.define('Ext.picker.Picker', {
                             var uForm = this.up('UploadDealForm');
                             var dateComp = uForm.getComponent('DealStartDate');
                             var date = dateComp.getValue();
-                            var newFormat = dateComp.setValue('01/01/16');
-                            console.log(newFormat);
+                            date.format('M/d/Y');
+                            console.log(date);
                             uForm.submit({
                                 url: 'http://services.appsonmobile.com/uploadS3',
                                 xhr2: true,
