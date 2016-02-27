@@ -65976,16 +65976,15 @@ Ext.define('Ext.picker.Picker', {
             },
             {
                 convert: function(v, rec) {
-                    console.log(v);
-                    //show 1347465600000
-                    console.log(Ext.Date.format(new Date(v), 'n-j-Y'));
-                    //show m-d-Y
                     return Ext.Date.format(new Date(v), 'n-j-Y');
                 },
                 name: 'dealStartDate',
                 type: 'date'
             },
             {
+                convert: function(v, rec) {
+                    return Ext.Date.format(new Date(v), 'n-j-Y');
+                },
                 name: 'dealEndDate',
                 type: 'date'
             },
