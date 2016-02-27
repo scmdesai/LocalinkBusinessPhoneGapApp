@@ -67742,6 +67742,7 @@ Ext.define('Ext.picker.Picker', {
                         xtype: 'button',
                         handler: function(button, e) {
                             var uForm = this.up('UploadDealForm');
+                            console.log(uForm.getComponent('DealStartDate').getValue());
                             uForm.submit({
                                 url: 'http://services.appsonmobile.com/uploadS3',
                                 xhr2: true,
@@ -67778,16 +67779,7 @@ Ext.define('Ext.picker.Picker', {
                     }
                 ]
             }
-        ],
-        listeners: [
-            {
-                fn: 'onDatepickerPick',
-                event: 'pick'
-            }
         ]
-    },
-    onDatepickerPick: function(picker, value, slot, eOpts) {
-        console.log('In date picker');
     }
 }, 0, [
     "UploadDealForm"
