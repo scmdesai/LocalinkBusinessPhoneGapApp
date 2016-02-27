@@ -68065,6 +68065,7 @@ Ext.application({
  */
 (Ext.cmd.derive('Contact.view.MyTabPanel', Ext.tab.Panel, {
     config: {
+        fullscreen: true,
         styleHtmlContent: true,
         items: [
             {
