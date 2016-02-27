@@ -66375,8 +66375,7 @@ Ext.define('Ext.picker.Picker', {
                     });
                     console.log("User details are : " + email + ',' + record.get('customerId') + ',' + record.get('businessName'));
                     var tabPanel = Ext.ComponentQuery.query('MyTabPanel')[0];
-                    var homeTab = tabPanel.getXTypes();
-                    console.log(homeTab);
+                    console.log(tabPanel.getItemId());
                 } else //var homeTab = tabPanel.down('info');
                 //homeTab.setRecord(record);
                 // Ext.Viewport.setActiveItem(homeTab);
