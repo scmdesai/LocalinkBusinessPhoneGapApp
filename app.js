@@ -65976,10 +65976,13 @@ Ext.define('Ext.picker.Picker', {
             },
             {
                 dateFormat: 'MM/dd/YYYY',
-                name: 'dealStartDate'
+                name: 'dealStartDate',
+                type: 'date'
             },
             {
-                name: 'dealEndDate'
+                dateFormat: 'MM/dd/YYYY',
+                name: 'dealEndDate',
+                type: 'date'
             },
             {
                 name: 'dealPictureURL'
@@ -67691,6 +67694,11 @@ Ext.define('Ext.picker.Picker', {
                 labelWidth: '50%',
                 labelWrap: true,
                 name: 'DealEndDate',
+                value: {
+                    year: 2016,
+                    month: 2,
+                    day: 26
+                },
                 placeHolder: 'mm/dd/yyyy',
                 picker: {
                     styleHtmlContent: true,
