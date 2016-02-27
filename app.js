@@ -66375,7 +66375,7 @@ Ext.define('Ext.picker.Picker', {
                     });
                     console.log("User details are : " + email + ',' + record.get('customerId') + ',' + record.get('businessName'));
                     view = Ext.Viewport.add({
-                        xtype: 'MyTabPanel'
+                        xtype: 'Home'
                     });
                     view.setRecord(record);
                     Ext.Viewport.setActiveItem(view);
@@ -67971,9 +67971,10 @@ Ext.define('Ext.picker.Picker', {
     config: {
         items: [
             {
-                xtype: 'container',
+                xtype: 'Home',
                 title: 'Home',
                 height: '100%',
+                itemId: 'Home',
                 layout: 'vbox',
                 scrollable: true,
                 items: [
