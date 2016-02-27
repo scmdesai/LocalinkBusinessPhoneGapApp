@@ -65975,12 +65975,17 @@ Ext.define('Ext.picker.Picker', {
                 name: 'dealStatus'
             },
             {
-                dateFormat: 'MM/dd/YYYY',
+                convert: function(v, rec) {
+                    console.log(v);
+                    //show 1347465600000
+                    console.log(Ext.Date.format(new Date(v), 'n-j-Y'));
+                    //show m-d-Y
+                    return Ext.Date.format(new Date(v), 'n-j-Y');
+                },
                 name: 'dealStartDate',
                 type: 'date'
             },
             {
-                dateFormat: 'MM/dd/YYYY',
                 name: 'dealEndDate',
                 type: 'date'
             },
