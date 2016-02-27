@@ -67744,7 +67744,7 @@ Ext.define('Ext.picker.Picker', {
                             var uForm = this.up('UploadDealForm');
                             var dateComp = uForm.getComponent('DealStartDate');
                             var date = dateComp.getValue();
-                            var newFormat = dateComp.setValue(date.getFormattedValue('M/d/Y'));
+                            var newFormat = dateComp.setValue('01/01/16');
                             console.log(newFormat);
                             uForm.submit({
                                 url: 'http://services.appsonmobile.com/uploadS3',
