@@ -65975,6 +65975,7 @@ Ext.define('Ext.picker.Picker', {
                 name: 'dealStatus'
             },
             {
+                dateFormat: 'MM/dd/YYYY',
                 name: 'dealStartDate'
             },
             {
@@ -67749,7 +67750,6 @@ Ext.define('Ext.picker.Picker', {
                             var uForm = this.up('UploadDealForm');
                             var dateComp = uForm.getComponent('DealStartDate');
                             var date = dateComp.getValue();
-                            date.format('M/d/Y');
                             console.log(date);
                             uForm.submit({
                                 url: 'http://services.appsonmobile.com/uploadS3',
