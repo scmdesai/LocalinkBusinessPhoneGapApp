@@ -66377,7 +66377,10 @@ Ext.define('Ext.picker.Picker', {
                     var tabPanel = Ext.ComponentQuery.query('MyTabPanel')[0];
                     //var homeTab = tabPanel.down('info');
                     //homeTab.setRecord(record);
-                    Ext.Viewport.setActiveItem('MyTabPanel');
+                    Ext.Viewport.setActiveItem({
+                        xtype: 'MyTabPanel',
+                        activeItem: 0
+                    });
                 } else {
                     console.log('no user info');
                 }
