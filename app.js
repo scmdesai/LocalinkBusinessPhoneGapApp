@@ -66374,13 +66374,10 @@ Ext.define('Ext.picker.Picker', {
                         'businessName': record.get('businessName')
                     });
                     console.log("User details are : " + email + ',' + record.get('customerId') + ',' + record.get('businessName'));
-                    //var paneltab = Ext.create('Contact.view.MyTabPanel');
-                    // Ext.getCmp('Login').destroy();
-                    var view = Ext.Viewport.add({
-                            xtype: 'MyTabPanel'
-                        });
-                    //paneltab.setRecord(record);
-                    Ext.Viewport.setActiveItem(view);
+                    var tabPanel = Ext.ComponentQuery.query('MyTabPanel')[0];
+                    var homeTab = tabPanel.down('info');
+                    homeTab.setRecord(record);
+                    Ext.Viewport.setActiveItem(homeTab);
                 } else {
                     console.log('no user info');
                 }
@@ -67971,6 +67968,7 @@ Ext.define('Ext.picker.Picker', {
  */
 (Ext.cmd.derive('Contact.view.MyTabPanel', Ext.tab.Panel, {
     config: {
+        styleHtmlContent: true,
         items: [
             {
                 xtype: 'Home',
