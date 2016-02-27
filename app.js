@@ -66375,7 +66375,7 @@ Ext.define('Ext.picker.Picker', {
                     });
                     console.log("User details are : " + email + ',' + record.get('customerId') + ',' + record.get('businessName'));
                     var view = Ext.Viewport.add({
-                            xtype: 'MyTabPanel'
+                            xtype: 'myTabPanel'
                         });
                     //var view = Ext.create('Contact.view.MyTabPanel', {fullscreen: true});
                     Ext.Viewport.setActiveItem(view);
@@ -68084,19 +68084,19 @@ Ext.application({
         ]
     }
 }, 0, [
-    "MyTabPanel"
+    "myTabPanel"
 ], [
     "component",
     "container",
     "tabpanel",
-    "MyTabPanel"
+    "myTabPanel"
 ], {
     "component": true,
     "container": true,
     "tabpanel": true,
-    "MyTabPanel": true
+    "myTabPanel": true
 }, [
-    "widget.MyTabPanel"
+    "widget.myTabPanel"
 ], 0, [
     Contact.view,
     'MyTabPanel'
