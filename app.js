@@ -66378,8 +66378,8 @@ Ext.define('Ext.picker.Picker', {
                     Ext.getCmp('Login').destroy();
                     Ext.Viewport.add(paneltab);
                     paneltab.setRecord(record);
-                } else // Ext.Viewport.setActiveItem(view);
-                {
+                    Ext.Viewport.setActiveItem(paneltab);
+                } else {
                     console.log('no user info');
                 }
             }
