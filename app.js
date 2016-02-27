@@ -66377,7 +66377,7 @@ Ext.define('Ext.picker.Picker', {
                     //var view = Ext.Viewport.add({xtype:'myTabPanel'});
                     //var view = Ext.create('Contact.view.MyTabPanel', {fullscreen: true});
                     Ext.Viewport.setActiveItem({
-                        xtype: 'myTabPanel'
+                        xtype: 'contactform'
                     });
                 } else //var homeTab = tabPanel.down('info');
                 //homeTab.setRecord(record);
