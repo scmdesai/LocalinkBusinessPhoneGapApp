@@ -68074,32 +68074,12 @@ Ext.application({
                 height: '100%',
                 itemId: 'Home',
                 layout: 'vbox',
-                scrollable: true,
-                items: [
-                    {
-                        xtype: 'contactinfo',
-                        height: 426,
-                        layout: 'vbox'
-                    }
-                ]
+                scrollable: true
             },
             {
                 xtype: 'container',
                 title: 'Deals',
-                height: '100%',
-                items: [
-                    {
-                        xtype: 'DealsPanel',
-                        docked: 'top',
-                        height: '100%',
-                        layout: 'vbox',
-                        scrollable: true
-                    }
-                ]
-            },
-            {
-                xtype: 'container',
-                title: 'Tab 3'
+                height: '100%'
             }
         ]
     }
