@@ -66375,9 +66375,9 @@ Ext.define('Ext.picker.Picker', {
                     });
                     console.log("User details are : " + email + ',' + record.get('customerId') + ',' + record.get('businessName'));
                     var paneltab = Ext.create('Contact.view.MyTabPanel');
-                    Ext.getCmp('Login').destroy();
+                    // Ext.getCmp('Login').destroy();
                     Ext.Viewport.add(paneltab);
-                    paneltab.setRecord(record);
+                    //paneltab.setRecord(record);
                     Ext.Viewport.setActiveItem(paneltab);
                 } else {
                     console.log('no user info');
