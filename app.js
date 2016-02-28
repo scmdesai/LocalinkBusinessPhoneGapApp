@@ -66385,8 +66385,7 @@ Ext.define('Ext.picker.Picker', {
                     //console.log(Ext.Viewport.getComponent(0).getItemId());
                     //console.log(Ext.Viewport.getComponent(0).getComponent(0).getItemId());
                     var homeTab = Ext.Viewport.getComponent(0).getComponent(0).getComponent(0);
-                    view = homeTab.getItemAt(0);
-                    console.log(view.getItemId());
+                    homeTab.getContactinfo().setValues(record.getData());
                 } else //var homeTab = tabPanel.down('info');
                 //homeTab.setRecord(record);
                 // Ext.Viewport.setActiveItem(view);
@@ -67996,133 +67995,8 @@ Ext.define('Ext.picker.Picker', {
                         layout: 'fit',
                         items: [
                             {
-                                xtype: 'formpanel',
-                                border: 5,
-                                height: '100%',
-                                id: 'info',
-                                itemId: 'info3',
-                                minHeight: '100%',
-                                modal: true,
-                                items: [
-                                    {
-                                        xtype: 'toolbar',
-                                        docked: 'top',
-                                        style: 'font-size:6vw',
-                                        items: [
-                                            {
-                                                xtype: 'button',
-                                                docked: 'right',
-                                                itemId: 'editButton',
-                                                margin: '15 0 0 0',
-                                                style: '',
-                                                iconCls: 'compose'
-                                            },
-                                            {
-                                                xtype: 'spacer',
-                                                height: 11,
-                                                width: 18
-                                            },
-                                            {
-                                                xtype: 'component',
-                                                cls: 'contact-name',
-                                                disabled: true,
-                                                html: '<b>First Name</b>',
-                                                id: 'nameTxt1',
-                                                itemId: 'nameTxt',
-                                                style: ''
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        xtype: 'panel',
-                                        border: '',
-                                        height: 130,
-                                        maxHeight: '100%',
-                                        minHeight: '100%',
-                                        minWidth: '',
-                                        padding: '5 5 5 5',
-                                        style: 'border:1px inset',
-                                        styleHtmlContent: true,
-                                        layout: {
-                                            type: 'vbox',
-                                            align: 'end'
-                                        },
-                                        items: [
-                                            {
-                                                xtype: 'contactpic',
-                                                border: '',
-                                                docked: 'left',
-                                                maxHeight: '100%',
-                                                minHeight: '100%',
-                                                minWidth: '100%',
-                                                style: '',
-                                                ui: 'light',
-                                                scrollable: false,
-                                                layout: {
-                                                    type: 'hbox',
-                                                    align: 'start',
-                                                    pack: 'center'
-                                                }
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        xtype: 'panel',
-                                        height: '',
-                                        maxHeight: '100%',
-                                        minHeight: '100%',
-                                        width: '100%',
-                                        items: [
-                                            {
-                                                xtype: 'textfield',
-                                                cls: [
-                                                    'icon-phone',
-                                                    'customfield'
-                                                ],
-                                                disabled: false,
-                                                height: '',
-                                                html: '',
-                                                itemId: 'phoneNumber',
-                                                maxHeight: '30%',
-                                                maxWidth: '100%',
-                                                minHeight: '',
-                                                minWidth: '100%',
-                                                styleHtmlCls: '',
-                                                width: '100%',
-                                                clearIcon: false,
-                                                inputCls: 'customfield',
-                                                name: 'phoneNumber',
-                                                readOnly: true
-                                            },
-                                            {
-                                                xtype: 'spacer',
-                                                height: '10px'
-                                            },
-                                            {
-                                                xtype: 'textareafield',
-                                                cls: [
-                                                    'icon-location',
-                                                    'customfield'
-                                                ],
-                                                disabled: false,
-                                                height: '100%',
-                                                html: '',
-                                                itemId: 'address',
-                                                maxHeight: '100%',
-                                                maxWidth: '100%',
-                                                minHeight: '100%',
-                                                minWidth: '100%',
-                                                style: 'border:1 px inset',
-                                                width: '100%',
-                                                clearIcon: false,
-                                                inputCls: 'customfield',
-                                                name: 'address',
-                                                readOnly: true,
-                                                maxRows: 3
-                                            }
-                                        ]
-                                    }
-                                ]
+                                xtype: 'contactinfo',
+                                itemId: 'info4'
                             }
                         ]
                     },
