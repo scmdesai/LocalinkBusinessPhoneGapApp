@@ -66391,7 +66391,7 @@ Ext.define('Ext.picker.Picker', {
                                 }
                             ]
                         });
-                    console.log(view.getAt(0).getItemId());
+                    console.log(view.getComponent('home').getItemId());
                     Ext.Viewport.setActiveItem(view);
                 } else {
                     console.log('no user info');
