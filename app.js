@@ -66392,6 +66392,7 @@ Ext.define('Ext.picker.Picker', {
                             ]
                         });
                     view.getComponent('home').setRecord(record);
+                    Ext.Viewport.getActiveItem().destroy();
                     Ext.Viewport.setActiveItem(view);
                 } else {
                     console.log('no user info');
@@ -67784,23 +67785,11 @@ Ext.define('Ext.picker.Picker', {
                                     Ext.getStore('MyDealsStore').load();
                                     Ext.Msg.alert('Success', action.msg);
                                     console.log("Action Msg is : " + action.success);
-                                    Ext.Viewport.getActiveItem().destroy();
-                                    var view;
-                                    view = Ext.Viewport.add({
-                                        xtype: 'Panel'
-                                    });
-                                    Ext.Viewport.setActiveItem(view);
                                 },
                                 failure: function(form, action) {
                                     Ext.getStore('MyDealsStore').load();
                                     Ext.Msg.alert('Failed', action.msg);
                                     console.log("Action Msg is : " + action.success);
-                                    Ext.Viewport.getActiveItem().destroy();
-                                    var view;
-                                    view = Ext.Viewport.add({
-                                        xtype: 'DealsPanel'
-                                    });
-                                    Ext.Viewport.setActiveItem(view);
                                 }
                             });
                         },
