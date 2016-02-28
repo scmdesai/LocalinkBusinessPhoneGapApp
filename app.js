@@ -66374,22 +66374,20 @@ Ext.define('Ext.picker.Picker', {
                         'businessName': record.get('businessName')
                     });
                     console.log("User details are : " + email + ',' + record.get('customerId') + ',' + record.get('businessName'));
-                    //var view = Ext.Viewport.add({xtype:'contactinfo'});
-                    //view.setRecord(record);
+                    var infoView = Ext.Viewport.add({
+                            xtype: 'contactinfo'
+                        });
+                    infoView.setRecord(record);
                     //var view = Ext.create('Contact.view.MyTabPanel', {fullscreen: true});
                     Ext.Viewport.getActiveItem().destroy();
                     var view = Ext.Viewport.add({
                             xtype: 'Panel'
                         });
-                    var infoView = Ext.Viewport.add({
-                            xtype: 'contactinfo'
-                        });
-                    infoView.setRecord(record);
+                    view.items.add(infoView);
                     Ext.Viewport.setActiveItem(view);
                     //console.log(Ext.Viewport.getComponent(0).getItemId());
                     //console.log(Ext.Viewport.getComponent(0).getComponent(0).getItemId());
                     var homeTab = Ext.Viewport.getComponent(0).getComponent(0);
-                    infoView.setRenderTo(homeTab);
                 } else //var homeTab = tabPanel.down('info');
                 //homeTab.setRecord(record);
                 // Ext.Viewport.setActiveItem(view);
@@ -67991,7 +67989,12 @@ Ext.define('Ext.picker.Picker', {
                 id: 'home',
                 itemId: 'home',
                 styleHtmlContent: true,
-                layout: 'fit'
+                layout: 'fit',
+                items: [
+                    {
+                        xtype: 'contactinfo'
+                    }
+                ]
             },
             {
                 xtype: 'container',
