@@ -67978,15 +67978,21 @@ Ext.define('Ext.picker.Picker', {
                 items: [
                     {
                         xtype: 'container',
-                        title: 'Tab 1'
+                        title: 'Tab 1',
+                        items: [
+                            {
+                                xtype: 'contactinfo'
+                            }
+                        ]
                     },
                     {
                         xtype: 'container',
-                        title: 'Tab 2'
-                    },
-                    {
-                        xtype: 'container',
-                        title: 'Tab 3'
+                        title: 'Tab 2',
+                        items: [
+                            {
+                                xtype: 'DealsPanel'
+                            }
+                        ]
                     }
                 ]
             }
