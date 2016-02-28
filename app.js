@@ -66381,15 +66381,17 @@ Ext.define('Ext.picker.Picker', {
                                 {
                                     xtype: 'contactinfo',
                                     title: 'Home',
-                                    itemId: 'home'
+                                    itemId: 'home',
+                                    iconCls: 'home'
                                 },
                                 {
                                     xtype: 'DealsPanel',
-                                    title: 'Deals'
+                                    title: 'Deals',
+                                    iconCls: 'info'
                                 }
                             ]
                         });
-                    view.getAt(0).getItemId();
+                    console.log(view.getAt(0).getItemId());
                     Ext.Viewport.setActiveItem(view);
                 } else {
                     console.log('no user info');
