@@ -67960,6 +67960,7 @@ Ext.define('Ext.picker.Picker', {
                         xtype: 'formpanel',
                         setRecord: function(record) {
                             this.callParent(arguments);
+                            console.log('Inside set Record');
                             if (record) {
                                 var name = record.get('businessName');
                                 var customerId = record.get('customerId');
