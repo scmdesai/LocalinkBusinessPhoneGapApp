@@ -66374,25 +66374,20 @@ Ext.define('Ext.picker.Picker', {
                         'businessName': record.get('businessName')
                     });
                     console.log("User details are : " + email + ',' + record.get('customerId') + ',' + record.get('businessName'));
-                    var infoView = Ext.create({
-                            xtype: 'contactinfo'
+                    var view = Ext.create("Ext.tab.Panel", {
+                            fullscreen: true,
+                            tabBarPosition: 'bottom',
+                            items: [
+                                {
+                                    xtype: 'contactinfo'
+                                },
+                                {
+                                    xtype: 'DealsPanel'
+                                }
+                            ]
                         });
-                    infoView.setRecord(record);
-                    /*	//var view = Ext.create('Contact.view.MyTabPanel', {fullscreen: true});
-
-					Ext.Viewport.getActiveItem().destroy();
-
-					var view = Ext.Viewport.add({xtype:'Panel'});
-
-					view.items.add(infoView);*/
-                    Ext.Viewport.setActiveItem(infoView);
-                } else //console.log(Ext.Viewport.getComponent(0).getItemId());
-                //console.log(Ext.Viewport.getComponent(0).getComponent(0).getItemId());
-                // var homeTab = Ext.Viewport.getComponent(0).getComponent(0);
-                //var homeTab = tabPanel.down('info');
-                //homeTab.setRecord(record);
-                // Ext.Viewport.setActiveItem(view);
-                {
+                    Ext.Viewport.setActiveItem(view);
+                } else {
                     console.log('no user info');
                 }
             }
