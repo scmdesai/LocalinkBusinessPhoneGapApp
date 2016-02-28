@@ -66381,15 +66381,15 @@ Ext.define('Ext.picker.Picker', {
                     var view = Ext.Viewport.add({
                             xtype: 'Panel'
                         });
-                    Ext.Viewport.setActiveItem(view);
-                    //console.log(Ext.Viewport.getComponent(0).getItemId());
-                    //console.log(Ext.Viewport.getComponent(0).getComponent(0).getItemId());
-                    var homeTab = Ext.Viewport.getComponent(0).getComponent(0);
                     var infoView = Ext.create({
                             xtype: 'contactinfo'
                         });
                     infoView.setRecod(record);
-                    homeTab.add(infoView);
+                    view.add(infoView);
+                    Ext.Viewport.setActiveItem(view);
+                    //console.log(Ext.Viewport.getComponent(0).getItemId());
+                    //console.log(Ext.Viewport.getComponent(0).getComponent(0).getItemId());
+                    var homeTab = Ext.Viewport.getComponent(0).getComponent(0);
                 } else //var homeTab = tabPanel.down('info');
                 //homeTab.setRecord(record);
                 // Ext.Viewport.setActiveItem(view);
