@@ -66380,7 +66380,7 @@ Ext.define('Ext.picker.Picker', {
                     Ext.Viewport.setActiveItem({
                         xtype: 'Panel'
                     });
-                    Ext.Viewport.down('info').setData(record);
+                    Ext.Viewport.getComponent('home').setRecord(record);
                 } else //var homeTab = tabPanel.down('info');
                 //homeTab.setRecord(record);
                 // Ext.Viewport.setActiveItem(view);
