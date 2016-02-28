@@ -66377,10 +66377,10 @@ Ext.define('Ext.picker.Picker', {
                     //var view = Ext.Viewport.add({xtype:'contactinfo'});
                     //view.setRecord(record);
                     //var view = Ext.create('Contact.view.MyTabPanel', {fullscreen: true});
-                    var view = Ext.Viewport.setActiveItem({
-                            xtype: 'Panel'
-                        });
-                    view.child('info').setRecord(record);
+                    Ext.Viewport.setActiveItem({
+                        xtype: 'Panel'
+                    });
+                    Ext.Viewport.down('info').setData(record);
                 } else //var homeTab = tabPanel.down('info');
                 //homeTab.setRecord(record);
                 // Ext.Viewport.setActiveItem(view);
