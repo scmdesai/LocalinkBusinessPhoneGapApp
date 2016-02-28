@@ -66379,7 +66379,7 @@ Ext.define('Ext.picker.Picker', {
                     Ext.Viewport.setActiveItem({
                         xtype: 'Panel'
                     });
-                    var view = Ext.get('Panel').child('Home', true);
+                    var view = document.getElementById('info');
                     view.setRecord(record);
                 } else //var homeTab = tabPanel.down('info');
                 //homeTab.setRecord(record);
@@ -67972,19 +67972,26 @@ Ext.define('Ext.picker.Picker', {
  */
 (Ext.cmd.derive('Contact.view.Panel', Ext.Panel, {
     config: {
-        itemId: 'mypanel2',
+        id: 'panel',
+        itemId: 'panel',
         layout: 'fit',
         items: [
             {
                 xtype: 'tabpanel',
+                id: 'tabpanel',
+                itemId: 'tabpanel',
                 items: [
                     {
                         xtype: 'container',
                         title: 'Home',
+                        id: 'home',
+                        itemId: 'home',
                         styleHtmlContent: true,
+                        layout: 'fit',
                         items: [
                             {
                                 xtype: 'contactinfo',
+                                id: 'info',
                                 enableSubmissionForm: true,
                                 method: 'post',
                                 multipartDetection: true
@@ -68002,7 +68009,10 @@ Ext.define('Ext.picker.Picker', {
                             }
                         ]
                     }
-                ]
+                ],
+                tabBar: {
+                    docked: 'top'
+                }
             }
         ]
     }
