@@ -66379,7 +66379,7 @@ Ext.define('Ext.picker.Picker', {
                     Ext.Viewport.setActiveItem({
                         xtype: 'Panel'
                     });
-                    var view = Ext.getContactinfo();
+                    var view = Ext.get('contactinfo');
                     view.setrecord(record);
                 } else //var homeTab = tabPanel.down('info');
                 //homeTab.setRecord(record);
