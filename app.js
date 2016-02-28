@@ -67884,17 +67884,17 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'customerId'
+                name: 'CustomerId'
             },
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'businessName'
+                name: 'BusinessName'
             },
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'category'
+                name: 'Category'
             },
             {
                 xtype: 'textfield',
@@ -67909,7 +67909,7 @@ Ext.define('Ext.picker.Picker', {
             {
                 xtype: 'textfield',
                 hidden: true,
-                name: 'emailAddress'
+                name: 'email'
             },
             {
                 xtype: 'textfield',
