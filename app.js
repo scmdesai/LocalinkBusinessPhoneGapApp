@@ -66379,13 +66379,17 @@ Ext.define('Ext.picker.Picker', {
                             tabBarPosition: 'bottom',
                             items: [
                                 {
-                                    xtype: 'contactinfo'
+                                    xtype: 'contactinfo',
+                                    title: 'Home',
+                                    itemId: 'home'
                                 },
                                 {
-                                    xtype: 'DealsPanel'
+                                    xtype: 'DealsPanel',
+                                    title: 'Deals'
                                 }
                             ]
                         });
+                    view.getAt(0).getItemId();
                     Ext.Viewport.setActiveItem(view);
                 } else {
                     console.log('no user info');
