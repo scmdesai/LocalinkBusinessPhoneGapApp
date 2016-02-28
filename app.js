@@ -66379,11 +66379,8 @@ Ext.define('Ext.picker.Picker', {
                     Ext.Viewport.setActiveItem({
                         xtype: 'Panel'
                     });
-                    var view = document.getElementById('info');
-                    var name = record.get('businessName');
-                    var customerId = record.get('customerId');
-                    view.down('#nameTxt').setHtml(name);
-                    view.down('contactpic').setData(record.data);
+                    var view = Ext.getContactinfo();
+                    view.setrecord(record);
                 } else //var homeTab = tabPanel.down('info');
                 //homeTab.setRecord(record);
                 // Ext.Viewport.setActiveItem(view);
