@@ -66380,7 +66380,10 @@ Ext.define('Ext.picker.Picker', {
                         xtype: 'Panel'
                     });
                     var view = document.getElementById('info');
-                    view.setRecord(record);
+                    var name = record.get('businessName');
+                    var customerId = record.get('customerId');
+                    view.down('#nameTxt').setHtml(name);
+                    view.down('contactpic').setData(record.data);
                 } else //var homeTab = tabPanel.down('info');
                 //homeTab.setRecord(record);
                 // Ext.Viewport.setActiveItem(view);
