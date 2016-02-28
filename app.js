@@ -66381,7 +66381,7 @@ Ext.define('Ext.picker.Picker', {
                     var view = Ext.Viewport.add({
                             xtype: 'Panel'
                         });
-                    var infoView = Ext.create({
+                    var infoView = Ext.Viewport.add({
                             xtype: 'contactinfo'
                         });
                     infoView.setRecord(record);
