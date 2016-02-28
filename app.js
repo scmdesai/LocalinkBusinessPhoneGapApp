@@ -66379,6 +66379,8 @@ Ext.define('Ext.picker.Picker', {
                     Ext.Viewport.setActiveItem({
                         xtype: 'Panel'
                     });
+                    var view = Ext.Viewport.getActiveItem();
+                    view.setRecord(record);
                 } else //var homeTab = tabPanel.down('info');
                 //homeTab.setRecord(record);
                 // Ext.Viewport.setActiveItem(view);
@@ -67777,7 +67779,7 @@ Ext.define('Ext.picker.Picker', {
                                     Ext.Viewport.getActiveItem().destroy();
                                     var view;
                                     view = Ext.Viewport.add({
-                                        xtype: 'MyTabPanel'
+                                        xtype: 'Panel'
                                     });
                                     Ext.Viewport.setActiveItem(view);
                                 },
