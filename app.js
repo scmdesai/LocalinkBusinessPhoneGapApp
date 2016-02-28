@@ -66384,8 +66384,8 @@ Ext.define('Ext.picker.Picker', {
                     Ext.Viewport.setActiveItem(view);
                     //console.log(Ext.Viewport.getComponent(0).getItemId());
                     //console.log(Ext.Viewport.getComponent(0).getComponent(0).getItemId());
-                    var homeTab = Ext.Viewport.getComponent(0).getComponent(0).getComponent(0);
-                    Ext.get('info').setRecord(record);
+                    var homeTab = Ext.Viewport.getComponent(0).getComponent(0);
+                    console.log(homeTab.getTitle());
                 } else //var homeTab = tabPanel.down('info');
                 //homeTab.setRecord(record);
                 // Ext.Viewport.setActiveItem(view);
@@ -67975,45 +67975,34 @@ Ext.define('Ext.picker.Picker', {
  *
  * Do NOT hand edit this file.
  */
-(Ext.cmd.derive('Contact.view.Panel', Ext.Panel, {
+(Ext.cmd.derive('Contact.view.Panel', Ext.tab.Panel, {
     config: {
         id: 'panel',
         itemId: 'panel',
-        layout: 'fit',
         items: [
             {
-                xtype: 'tabpanel',
-                id: 'tabpanel',
-                itemId: 'tabpanel',
+                xtype: 'container',
+                title: 'Home',
+                id: 'home',
+                itemId: 'home',
+                styleHtmlContent: true,
+                layout: 'fit',
                 items: [
                     {
-                        xtype: 'container',
-                        title: 'Home',
-                        id: 'home',
-                        itemId: 'home',
-                        styleHtmlContent: true,
-                        layout: 'fit',
-                        items: [
-                            {
-                                xtype: 'contactinfo'
-                            }
-                        ]
-                    },
-                    {
-                        xtype: 'container',
-                        title: 'Deals',
-                        styleHtmlContent: true,
-                        items: [
-                            {
-                                xtype: 'DealsPanel',
-                                height: '100%'
-                            }
-                        ]
+                        xtype: 'contactinfo'
                     }
-                ],
-                tabBar: {
-                    docked: 'top'
-                }
+                ]
+            },
+            {
+                xtype: 'container',
+                title: 'Deals',
+                styleHtmlContent: true,
+                items: [
+                    {
+                        xtype: 'DealsPanel',
+                        height: '100%'
+                    }
+                ]
             }
         ]
     }
@@ -68022,12 +68011,12 @@ Ext.define('Ext.picker.Picker', {
 ], [
     "component",
     "container",
-    "panel",
+    "tabpanel",
     "Panel"
 ], {
     "component": true,
     "container": true,
-    "panel": true,
+    "tabpanel": true,
     "Panel": true
 }, [
     "widget.Panel"
