@@ -66384,7 +66384,7 @@ Ext.define('Ext.picker.Picker', {
                     var infoView = Ext.create({
                             xtype: 'contactinfo'
                         });
-                    infoView.setRecod(record);
+                    infoView.setRecord(record);
                     Ext.Viewport.setActiveItem(view);
                     //console.log(Ext.Viewport.getComponent(0).getItemId());
                     //console.log(Ext.Viewport.getComponent(0).getComponent(0).getItemId());
