@@ -66374,14 +66374,13 @@ Ext.define('Ext.picker.Picker', {
                         'businessName': record.get('businessName')
                     });
                     console.log("User details are : " + email + ',' + record.get('customerId') + ',' + record.get('businessName'));
-                    var view = Ext.Viewport.add({
-                            xtype: 'contactinfo'
-                        });
-                    view.setRecord(record);
+                    //var view = Ext.Viewport.add({xtype:'contactinfo'});
+                    //view.setRecord(record);
                     //var view = Ext.create('Contact.view.MyTabPanel', {fullscreen: true});
-                    Ext.Viewport.setActiveItem({
-                        xtype: 'Panel'
-                    });
+                    var view = Ext.Viewport.setActiveItem({
+                            xtype: 'Panel'
+                        });
+                    view.child('info').setRecord(record);
                 } else //var homeTab = tabPanel.down('info');
                 //homeTab.setRecord(record);
                 // Ext.Viewport.setActiveItem(view);
