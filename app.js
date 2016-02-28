@@ -66386,7 +66386,7 @@ Ext.define('Ext.picker.Picker', {
                     //console.log(Ext.Viewport.getComponent(0).getComponent(0).getItemId());
                     var homeTab = Ext.Viewport.getComponent(0).getComponent(0).getComponent(0);
                     view = homeTab.getInnerItems();
-                    console.log(view);
+                    console.log(view.setRecord(record));
                 } else //var homeTab = tabPanel.down('info');
                 //homeTab.setRecord(record);
                 // Ext.Viewport.setActiveItem(view);
