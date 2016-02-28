@@ -66379,8 +66379,8 @@ Ext.define('Ext.picker.Picker', {
                     Ext.Viewport.setActiveItem({
                         xtype: 'Panel'
                     });
-                    var view = Ext.get('contactinfo');
-                    view.setrecord(record);
+                    var view = Ext.getCmp('Info');
+                    view.setRecord(record);
                 } else //var homeTab = tabPanel.down('info');
                 //homeTab.setRecord(record);
                 // Ext.Viewport.setActiveItem(view);
