@@ -66883,7 +66883,6 @@ Ext.define('Ext.picker.Picker', {
                                     console.log(action.msg);
                                     Ext.getStore('MyJsonPStore').load();
                                     form.destroy();
-                                    Ext.Viewport.setActiveItem(view);
                                 },
                                 failure: function(form, action) {
                                     Ext.Msg.alert('Failure', action.msg);
@@ -67859,16 +67858,6 @@ Ext.define('Ext.picker.Picker', {
                     var form = this.up('ChangeContactPicForm');
                     var record = form.getRecord();
                     var customerId = form.getRecord().get('customerId');
-                    console.log(customerId);
-                    console.log(record.get('businessName'));
-                    console.log(record.get('category'));
-                    console.log(record.get('phoneNumber'));
-                    console.log(record.get('address'));
-                    console.log(record.get('emailAddress'));
-                    console.log(record.get('zipcode'));
-                    console.log(record.get('state'));
-                    console.log(record.get('city'));
-                    console.log(record.get('picture'));
                     form.submit({
                         url: 'http://services.appsonmobile.com/stores/' + customerId,
                         xhr2: true,
