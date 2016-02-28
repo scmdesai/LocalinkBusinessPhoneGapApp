@@ -66382,8 +66382,9 @@ Ext.define('Ext.picker.Picker', {
                             xtype: 'Panel'
                         });
                     Ext.Viewport.setActiveItem(view);
-                    console.log(Ext.Viewport.getComponent(0).getItemId());
-                    console.log(Ext.Viewport.getComponent(0).getComponent(0).getItemId());
+                    //console.log(Ext.Viewport.getComponent(0).getItemId());
+                    //console.log(Ext.Viewport.getComponent(0).getComponent(0).getItemId());
+                    console.log(Ext.Viewport.getComponent(0).getComponent(0).getComponent(0).getItemId());
                 } else //var homeTab = tabPanel.down('info');
                 //homeTab.setRecord(record);
                 // Ext.Viewport.setActiveItem(view);
