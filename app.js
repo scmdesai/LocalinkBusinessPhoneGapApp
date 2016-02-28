@@ -66385,7 +66385,7 @@ Ext.define('Ext.picker.Picker', {
                     //console.log(Ext.Viewport.getComponent(0).getItemId());
                     //console.log(Ext.Viewport.getComponent(0).getComponent(0).getItemId());
                     var homeTab = Ext.Viewport.getComponent(0).getComponent(0).getComponent(0);
-                    homeTab.getContactinfo().setValues(record.getData());
+                    homeTab.get('info').setValues(record.getData());
                 } else //var homeTab = tabPanel.down('info');
                 //homeTab.setRecord(record);
                 // Ext.Viewport.setActiveItem(view);
@@ -67995,8 +67995,7 @@ Ext.define('Ext.picker.Picker', {
                         layout: 'fit',
                         items: [
                             {
-                                xtype: 'contactinfo',
-                                itemId: 'info4'
+                                xtype: 'contactinfo'
                             }
                         ]
                     },
