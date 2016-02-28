@@ -66377,9 +66377,11 @@ Ext.define('Ext.picker.Picker', {
                     //var view = Ext.Viewport.add({xtype:'contactinfo'});
                     //view.setRecord(record);
                     //var view = Ext.create('Contact.view.MyTabPanel', {fullscreen: true});
-                    Ext.Viewport.setActiveItem({
-                        xtype: 'Panel'
-                    });
+                    Ext.Viewport.getActiveItem().destroy();
+                    var view = Ext.Viewport.add({
+                            xtype: 'Panel'
+                        });
+                    Ext.Viewport.setActiveItem(view);
                     console.log(Ext.Viewport.getComponent(0).getItemId());
                     console.log(Ext.Viewport.getComponent(0).getComponent(0).getItemId());
                 } else //var homeTab = tabPanel.down('info');
