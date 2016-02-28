@@ -66868,10 +66868,11 @@ Ext.define('Ext.picker.Picker', {
                         handler: function(button, e) {
                             var form = this.up('contactform');
                             var record = form.getRecord();
-                            var customerId = form.getRecord().get('customerId');
+                            var customerId = form.getRecord().get('CustomerId');
                             form.getComponent('CustomerId').setValue(customerId);
-                            form.getComponent('Category').setValue(form.getRecord().get('category'));
-                            form.getComponent('email').setValue(form.getRecord().get('emailAddress'));
+                            form.getComponent('Category').setValue(form.getRecord().get('Category'));
+                            form.getComponent('BusinessName').setValue(form.getRecord().get('BusinessName'));
+                            form.getComponent('email').setValue(form.getRecord().get('email'));
                             form.getComponent('city').setValue(form.getRecord().get('city'));
                             form.getComponent('state').setValue(form.getRecord().get('state'));
                             form.getComponent('zipcode').setValue(form.getRecord().get('zipcode'));
@@ -67016,8 +67017,8 @@ Ext.define('Ext.picker.Picker', {
                 xtype: 'textfield',
                 height: '20%',
                 html: '',
-                itemId: 'businessName',
-                label: 'Business Name',
+                itemId: 'BusinessName',
+                label: 'BusinessName',
                 labelAlign: 'top',
                 labelWidth: '10%',
                 labelWrap: true,
@@ -67864,7 +67865,6 @@ Ext.define('Ext.picker.Picker', {
                         success: function(form, action) {
                             Ext.Msg.alert('Success', action.msg);
                             console.log(action.msg);
-                            store.sync();
                             var rec = store.getUpdatedRecords();
                             console.log(rec.getData());
                             Ext.getStore('MyJsonPStore').load();
