@@ -67971,7 +67971,27 @@ Ext.define('Ext.picker.Picker', {
  * Do NOT hand edit this file.
  */
 (Ext.cmd.derive('Contact.view.MyPanel2', Ext.Panel, {
-    config: {}
+    config: {
+        items: [
+            {
+                xtype: 'tabpanel',
+                items: [
+                    {
+                        xtype: 'container',
+                        title: 'Tab 1'
+                    },
+                    {
+                        xtype: 'container',
+                        title: 'Tab 2'
+                    },
+                    {
+                        xtype: 'container',
+                        title: 'Tab 3'
+                    }
+                ]
+            }
+        ]
+    }
 }, 0, [
     "Panel"
 ], [
