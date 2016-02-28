@@ -67972,6 +67972,7 @@ Ext.define('Ext.picker.Picker', {
  */
 (Ext.cmd.derive('Contact.view.MyPanel2', Ext.Panel, {
     config: {
+        layout: 'fit',
         items: [
             {
                 xtype: 'tabpanel',
@@ -67990,7 +67991,8 @@ Ext.define('Ext.picker.Picker', {
                         title: 'Tab 2',
                         items: [
                             {
-                                xtype: 'DealsPanel'
+                                xtype: 'DealsPanel',
+                                height: '100%'
                             }
                         ]
                     }
